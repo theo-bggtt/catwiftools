@@ -49,6 +49,32 @@
       "frameworks": {
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
+          "dependencies": {
+            "Solnet.Extensions": {
+              "target": "Package",
+              "version": "[6.1.0, )"
+            },
+            "Solnet.KeyStore": {
+              "target": "Package",
+              "version": "[6.1.0, )"
+            },
+            "Solnet.Programs": {
+              "target": "Package",
+              "version": "[6.1.0, )"
+            },
+            "Solnet.Rpc": {
+              "target": "Package",
+              "version": "[6.1.0, )"
+            },
+            "Solnet.Serum": {
+              "target": "Package",
+              "version": "[6.0.13, )"
+            },
+            "Solnet.Wallet": {
+              "target": "Package",
+              "version": "[6.1.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
