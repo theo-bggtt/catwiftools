@@ -3,7 +3,6 @@ D:\crypto\catwiftools\bin\Debug\net8.0-windows\catwiftools.deps.json
 D:\crypto\catwiftools\bin\Debug\net8.0-windows\catwiftools.runtimeconfig.json
 D:\crypto\catwiftools\bin\Debug\net8.0-windows\catwiftools.dll
 D:\crypto\catwiftools\bin\Debug\net8.0-windows\catwiftools.pdb
-D:\crypto\catwiftools\obj\Debug\net8.0-windows\catwiftools.Form1.resources
 D:\crypto\catwiftools\obj\Debug\net8.0-windows\catwiftools.csproj.GenerateResource.cache
 D:\crypto\catwiftools\obj\Debug\net8.0-windows\catwiftools.GeneratedMSBuildEditorConfig.editorconfig
 D:\crypto\catwiftools\obj\Debug\net8.0-windows\catwiftools.AssemblyInfoInputs.cache
@@ -37,3 +36,6 @@ D:\crypto\catwiftools\bin\Debug\net8.0-windows\Solnet.Rpc.dll
 D:\crypto\catwiftools\bin\Debug\net8.0-windows\Solnet.Serum.dll
 D:\crypto\catwiftools\bin\Debug\net8.0-windows\Solnet.Wallet.dll
 D:\crypto\catwiftools\obj\Debug\net8.0-windows\catwifto.9DAE803C.Up2Date
+D:\crypto\catwiftools\obj\Debug\net8.0-windows\catwiftools.MainPage.resources
+D:\crypto\catwiftools\obj\Debug\net8.0-windows\catwiftools.WalletCreator.resources
+D:\crypto\catwiftools\obj\Debug\net8.0-windows\catwiftools.WalletManager.resources

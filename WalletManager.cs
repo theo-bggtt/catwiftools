@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace catwiftools
 {
-    public partial class WalletCreator : UserControl
+    public partial class WalletManager : UserControl
     {
-        public WalletCreator()
+        public WalletManager()
         {
             InitializeComponent();
-        }
-
-        private void gbxdevwalletcreation_Enter(object sender, EventArgs e)
-        {
-
         }
     }
 }
