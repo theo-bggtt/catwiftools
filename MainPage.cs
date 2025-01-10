@@ -39,5 +39,11 @@ namespace catwiftools
         {
 
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            walletManager1.Visible = false;
+            walletCreator1.Visible = false;
+        }
     }
 }
