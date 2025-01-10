@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="9.1.0" />
     <PackageReference Include="Solnet.Extensions" Version="6.1.0" />
     <PackageReference Include="Solnet.KeyStore" Version="6.1.0" />
     <PackageReference Include="Solnet.Programs" Version="6.1.0" />

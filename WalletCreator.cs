@@ -17,7 +17,15 @@ namespace catwiftools
             InitializeComponent();
         }
 
-        private void gbxdevwalletcreation_Enter(object sender, EventArgs e)
+        private void btnbundlewalletcreation_Click(object sender, EventArgs e)
+        {
+            int walletqt = Convert.ToInt32(tbxbundlewalletcreation.Text);
+            tbxlog.Text += "Creating wallet." + Environment.NewLine;
+            string wallet = WalletCreatorScript.CreateWallets(walletqt);
+            tbxlog.Text += wallet;
+        }
+
+        private void WalletCreator_Load(object sender, EventArgs e)
         {
 
         }

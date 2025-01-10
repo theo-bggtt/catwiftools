@@ -77,6 +77,7 @@
             walletManager1.Name = "walletManager1";
             walletManager1.Size = new Size(1047, 551);
             walletManager1.TabIndex = 4;
+            walletManager1.Load += walletManager1_Load;
             // 
             // MainPage
             // 

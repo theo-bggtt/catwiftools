@@ -29,9 +29,10 @@
         private void InitializeComponent()
         {
             gbxAvaibleDevWallets = new GroupBox();
-            gbxAvaibleBundleWallets = new GroupBox();
             lvAvaibleDevWallets = new ListView();
+            gbxAvaibleBundleWallets = new GroupBox();
             lvAvaibleBundleWallets = new ListView();
+            listBoxWallets = new ListBox();
             gbxAvaibleDevWallets.SuspendLayout();
             gbxAvaibleBundleWallets.SuspendLayout();
             SuspendLayout();
@@ -46,6 +47,14 @@
             gbxAvaibleDevWallets.TabStop = false;
             gbxAvaibleDevWallets.Text = "Avaible dev Wallets";
             // 
+            // lvAvaibleDevWallets
+            // 
+            lvAvaibleDevWallets.Location = new Point(6, 39);
+            lvAvaibleDevWallets.Name = "lvAvaibleDevWallets";
+            lvAvaibleDevWallets.Size = new Size(188, 339);
+            lvAvaibleDevWallets.TabIndex = 2;
+            lvAvaibleDevWallets.UseCompatibleStateImageBehavior = false;
+            // 
             // gbxAvaibleBundleWallets
             // 
             gbxAvaibleBundleWallets.Controls.Add(lvAvaibleBundleWallets);
@@ -56,14 +65,6 @@
             gbxAvaibleBundleWallets.TabStop = false;
             gbxAvaibleBundleWallets.Text = "Avaible Bundle Wallets";
             // 
-            // lvAvaibleDevWallets
-            // 
-            lvAvaibleDevWallets.Location = new Point(6, 39);
-            lvAvaibleDevWallets.Name = "lvAvaibleDevWallets";
-            lvAvaibleDevWallets.Size = new Size(188, 339);
-            lvAvaibleDevWallets.TabIndex = 2;
-            lvAvaibleDevWallets.UseCompatibleStateImageBehavior = false;
-            // 
             // lvAvaibleBundleWallets
             // 
             lvAvaibleBundleWallets.Location = new Point(6, 39);
@@ -72,14 +73,27 @@
             lvAvaibleBundleWallets.TabIndex = 3;
             lvAvaibleBundleWallets.UseCompatibleStateImageBehavior = false;
             // 
+            // listBoxWallets
+            // 
+            listBoxWallets.FormattingEnabled = true;
+            listBoxWallets.ItemHeight = 15;
+            listBoxWallets.Location = new Point(530, 70);
+            listBoxWallets.Name = "listBoxWallets";
+            listBoxWallets.SelectionMode = SelectionMode.MultiSimple;
+            listBoxWallets.Size = new Size(188, 334);
+            listBoxWallets.TabIndex = 2;
+            listBoxWallets.SelectedIndexChanged += listBoxWallets_SelectedIndexChanged;
+            // 
             // WalletManager
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(listBoxWallets);
             Controls.Add(gbxAvaibleBundleWallets);
             Controls.Add(gbxAvaibleDevWallets);
             Name = "WalletManager";
             Size = new Size(1067, 591);
+            Load += WalletManager_Load;
             gbxAvaibleDevWallets.ResumeLayout(false);
             gbxAvaibleBundleWallets.ResumeLayout(false);
             ResumeLayout(false);
@@ -91,5 +105,6 @@
         private ListView lvAvaibleDevWallets;
         private GroupBox gbxAvaibleBundleWallets;
         private ListView lvAvaibleBundleWallets;
+        private ListBox listBoxWallets;
     }
 }

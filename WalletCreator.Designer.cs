@@ -53,7 +53,6 @@
             gbxdevwalletcreation.TabIndex = 6;
             gbxdevwalletcreation.TabStop = false;
             gbxdevwalletcreation.Text = "Dev Wallet Creator";
-            gbxdevwalletcreation.Enter += gbxdevwalletcreation_Enter;
             // 
             // lbldevwalletcreation
             // 
@@ -144,6 +143,7 @@
             btnbundlewalletcreation.TabIndex = 0;
             btnbundlewalletcreation.Text = "Create Wallets";
             btnbundlewalletcreation.UseVisualStyleBackColor = false;
+            btnbundlewalletcreation.Click += btnbundlewalletcreation_Click;
             // 
             // WalletCreator
             // 
@@ -155,6 +155,7 @@
             Controls.Add(gbxdevwalletcreation);
             Name = "WalletCreator";
             Size = new Size(1051, 553);
+            Load += WalletCreator_Load;
             gbxdevwalletcreation.ResumeLayout(false);
             gbxdevwalletcreation.PerformLayout();
             gbxbundlewalletcreation.ResumeLayout(false);
