@@ -18,6 +18,11 @@
         },
         "runtime": {
           "catwiftools.dll": {}
+        },
+        "resources": {
+          "en-US/catwiftools.resources.dll": {
+            "locale": "en-US"
+          }
         }
       },
       "BouncyCastle.Cryptography/2.3.1": {

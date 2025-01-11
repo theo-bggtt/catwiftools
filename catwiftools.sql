@@ -31,7 +31,7 @@ CREATE TABLE `wallets` (
   `idWallet` int(11) NOT NULL,
   `walletName` varchar(50) NOT NULL,
   `walletphrase` varchar(300) NOT NULL,
-  `walletType` varchar(50) NOT NULL
+  `walletType` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -44,14 +44,6 @@ CREATE TABLE `wallettypes` (
   `idType` int(11) NOT NULL,
   `typeName` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `wallettypes`
---
-
-INSERT INTO `wallettypes` (`idType`, `typeName`) VALUES
-(1, 'bundle');
-(2, 'dev');
 
 --
 -- Index pour les tables déchargées
@@ -86,7 +78,7 @@ ALTER TABLE `wallets`
 -- AUTO_INCREMENT pour la table `wallettypes`
 --
 ALTER TABLE `wallettypes`
-  MODIFY `idType` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idType` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- Contraintes pour les tables déchargées
@@ -96,7 +88,7 @@ ALTER TABLE `wallettypes`
 -- Contraintes pour la table `wallets`
 --
 ALTER TABLE `wallets`
-  ADD CONSTRAINT `fk_walettype` FOREIGN KEY (`walletType`) REFERENCES `wallettypes` (`typeName`);
+  ADD CONSTRAINT `fk_walettype` FOREIGN KEY (`walletType`) REFERENCES `wallettypes` (`idType`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

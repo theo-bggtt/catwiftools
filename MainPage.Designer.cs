@@ -1,6 +1,6 @@
 ﻿namespace catwiftools
 {
-    partial class MainPage
+    partial class CatWifTools
     {
         /// <summary>
         /// Required designer variable.
@@ -28,80 +28,66 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            walletCreator1 = new WalletCreator();
-            walletManager1 = new WalletManager();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CatWifTools));
+            btnTokenLauncher = new Button();
+            btnWalletManager = new Button();
+            btnWalletCreator = new Button();
+            mainNavBar1 = new mainNavBar();
             SuspendLayout();
             // 
-            // button1
+            // btnTokenLauncher
             // 
-            button1.Location = new Point(85, 13);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            resources.ApplyResources(btnTokenLauncher, "btnTokenLauncher");
+            btnTokenLauncher.Name = "btnTokenLauncher";
+            btnTokenLauncher.UseVisualStyleBackColor = true;
+            btnTokenLauncher.Click += btnTokenLauncher_Click;
             // 
-            // button2
+            // btnWalletManager
             // 
-            button2.Location = new Point(201, 12);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 1;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            resources.ApplyResources(btnWalletManager, "btnWalletManager");
+            btnWalletManager.Name = "btnWalletManager";
+            btnWalletManager.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnWalletCreator
             // 
-            button3.Location = new Point(305, 12);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 23);
-            button3.TabIndex = 2;
-            button3.Text = "button3";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            resources.ApplyResources(btnWalletCreator, "btnWalletCreator");
+            btnWalletCreator.Name = "btnWalletCreator";
+            btnWalletCreator.UseVisualStyleBackColor = true;
             // 
-            // walletCreator1
+            // mainNavBar1
             // 
-            walletCreator1.Location = new Point(7, 40);
-            walletCreator1.Name = "walletCreator1";
-            walletCreator1.Size = new Size(1051, 553);
-            walletCreator1.TabIndex = 3;
+            resources.ApplyResources(mainNavBar1, "mainNavBar1");
+            mainNavBar1.BackColor = Color.Transparent;
+            mainNavBar1.Name = "mainNavBar1";
             // 
-            // walletManager1
+            // CatWifTools
             // 
-            walletManager1.Location = new Point(7, 42);
-            walletManager1.Name = "walletManager1";
-            walletManager1.Size = new Size(1047, 551);
-            walletManager1.TabIndex = 4;
-            walletManager1.Load += walletManager1_Load;
-            // 
-            // MainPage
-            // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1066, 600);
-            Controls.Add(walletManager1);
-            Controls.Add(walletCreator1);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Name = "MainPage";
-            Text = "MainPage";
+            resources.ApplyResources(this, "$this");
+            AutoScaleMode = AutoScaleMode.None;
+            BackColor = Color.FromArgb(25, 25, 25);
+            ControlBox = false;
+            Controls.Add(mainNavBar1);
+            Controls.Add(btnWalletCreator);
+            Controls.Add(btnWalletManager);
+            Controls.Add(btnTokenLauncher);
+            FormBorderStyle = FormBorderStyle.None;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "CatWifTools";
+            ShowIcon = false;
+            SizeGripStyle = SizeGripStyle.Hide;
             Load += MainPage_Load;
+            MouseDown += CatWifTools_MouseDown;
+            MouseMove += CatWifTools_MouseMove;
+            MouseUp += CatWifTools_MouseUp;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
-
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private WalletCreator walletCreator1;
-        private WalletManager walletManager1;
+        private Button btnTokenLauncher;
+        private Button btnWalletManager;
+        private Button btnWalletCreator;
+        private mainNavBar mainNavBar1;
     }
 }

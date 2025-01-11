@@ -75,6 +75,7 @@
             btndevwalletcreation.TabIndex = 0;
             btndevwalletcreation.Text = "Create";
             btndevwalletcreation.UseVisualStyleBackColor = false;
+            btndevwalletcreation.Click += btndevwalletcreation_Click;
             // 
             // lbllog
             // 
@@ -155,7 +156,6 @@
             Controls.Add(gbxdevwalletcreation);
             Name = "WalletCreator";
             Size = new Size(1051, 553);
-            Load += WalletCreator_Load;
             gbxdevwalletcreation.ResumeLayout(false);
             gbxdevwalletcreation.PerformLayout();
             gbxbundlewalletcreation.ResumeLayout(false);
