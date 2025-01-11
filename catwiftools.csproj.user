@@ -1,20 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Compile Update="bundler\bundlerNav.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="mainNavBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="MainPage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="TokenLauncher.cs">
+    <Compile Update="bundler\TokenLauncher.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="WalletCreator.cs">
+    <Compile Update="proxies\proxiesNav.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="WalletManager.cs">
+    <Compile Update="settings\settingsNav.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="tasks\tasksNav.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="wallet\WalletCreator.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="wallet\WalletManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="wallet\walletNav.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

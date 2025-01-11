@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             lblTitle = new Label();
-            label1 = new Label();
-            pictureBox1 = new PictureBox();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            lblAuthor = new Label();
+            pbxLogo = new PictureBox();
+            btnTasks = new Button();
+            btnProxies = new Button();
+            btnWallets = new Button();
+            btnBundler = new Button();
+            btnSettings = new Button();
+            ((System.ComponentModel.ISupportInitialize)pbxLogo).BeginInit();
             SuspendLayout();
             // 
             // lblTitle
@@ -49,120 +50,144 @@
             lblTitle.TabIndex = 0;
             lblTitle.Text = "CatWifTools";
             // 
-            // label1
+            // lblAuthor
             // 
-            label1.AutoSize = true;
-            label1.ForeColor = Color.FromArgb(153, 153, 153);
-            label1.Location = new Point(74, 48);
-            label1.Name = "label1";
-            label1.Size = new Size(74, 15);
-            label1.TabIndex = 1;
-            label1.Text = "@water.1213";
+            lblAuthor.AutoSize = true;
+            lblAuthor.ForeColor = Color.FromArgb(153, 153, 153);
+            lblAuthor.Location = new Point(74, 48);
+            lblAuthor.Name = "lblAuthor";
+            lblAuthor.Size = new Size(74, 15);
+            lblAuthor.TabIndex = 1;
+            lblAuthor.Text = "@water.1213";
             // 
-            // pictureBox1
+            // pbxLogo
             // 
-            pictureBox1.BackColor = Color.FromArgb(25, 25, 25);
-            pictureBox1.Image = Properties.Resources._21;
-            pictureBox1.Location = new Point(10, 10);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(54, 54);
-            pictureBox1.TabIndex = 2;
-            pictureBox1.TabStop = false;
+            pbxLogo.BackColor = Color.FromArgb(25, 25, 25);
+            pbxLogo.Image = Properties.Resources._21;
+            pbxLogo.Location = new Point(10, 10);
+            pbxLogo.Name = "pbxLogo";
+            pbxLogo.Size = new Size(54, 54);
+            pbxLogo.TabIndex = 2;
+            pbxLogo.TabStop = false;
             // 
-            // button1
+            // btnTasks
             // 
-            button1.BackColor = Color.Transparent;
-            button1.BackgroundImageLayout = ImageLayout.None;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.FromArgb(153, 153, 153);
-            button1.Image = Properties.Resources.box;
-            button1.ImageAlign = ContentAlignment.MiddleLeft;
-            button1.Location = new Point(10, 104);
-            button1.Name = "button1";
-            button1.Padding = new Padding(5, 0, 5, 0);
-            button1.Size = new Size(180, 40);
-            button1.TabIndex = 3;
-            button1.Text = "Bundler";
-            button1.UseMnemonic = false;
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            btnTasks.BackColor = Color.Transparent;
+            btnTasks.BackgroundImageLayout = ImageLayout.None;
+            btnTasks.FlatAppearance.BorderSize = 0;
+            btnTasks.FlatStyle = FlatStyle.Flat;
+            btnTasks.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnTasks.ForeColor = Color.FromArgb(153, 153, 153);
+            btnTasks.Image = Properties.Resources.tasks;
+            btnTasks.ImageAlign = ContentAlignment.MiddleLeft;
+            btnTasks.Location = new Point(10, 104);
+            btnTasks.Name = "btnTasks";
+            btnTasks.Padding = new Padding(5, 0, 5, 0);
+            btnTasks.Size = new Size(180, 40);
+            btnTasks.TabIndex = 3;
+            btnTasks.Text = "Tasks";
+            btnTasks.UseMnemonic = false;
+            btnTasks.UseVisualStyleBackColor = false;
+            btnTasks.Click += btnTasks_Click;
             // 
-            // button2
+            // btnProxies
             // 
-            button2.BackColor = Color.Transparent;
-            button2.BackgroundImageLayout = ImageLayout.None;
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button2.ForeColor = Color.FromArgb(153, 153, 153);
-            button2.Image = Properties.Resources.box;
-            button2.ImageAlign = ContentAlignment.MiddleLeft;
-            button2.Location = new Point(10, 302);
-            button2.Name = "button2";
-            button2.Padding = new Padding(5, 0, 5, 0);
-            button2.Size = new Size(180, 40);
-            button2.TabIndex = 4;
-            button2.Text = "Bundler";
-            button2.UseMnemonic = false;
-            button2.UseVisualStyleBackColor = false;
+            btnProxies.BackColor = Color.Transparent;
+            btnProxies.BackgroundImageLayout = ImageLayout.None;
+            btnProxies.FlatAppearance.BorderSize = 0;
+            btnProxies.FlatStyle = FlatStyle.Flat;
+            btnProxies.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnProxies.ForeColor = Color.FromArgb(153, 153, 153);
+            btnProxies.Image = Properties.Resources.proxies;
+            btnProxies.ImageAlign = ContentAlignment.MiddleLeft;
+            btnProxies.Location = new Point(10, 299);
+            btnProxies.Name = "btnProxies";
+            btnProxies.Padding = new Padding(5, 0, 5, 0);
+            btnProxies.Size = new Size(180, 40);
+            btnProxies.TabIndex = 4;
+            btnProxies.Text = "Proxies";
+            btnProxies.UseMnemonic = false;
+            btnProxies.UseVisualStyleBackColor = false;
+            btnProxies.Click += btnProxies_Click;
             // 
-            // button3
+            // btnWallets
             // 
-            button3.BackColor = Color.Transparent;
-            button3.BackgroundImageLayout = ImageLayout.None;
-            button3.FlatAppearance.BorderSize = 0;
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button3.ForeColor = Color.FromArgb(153, 153, 153);
-            button3.Image = Properties.Resources.box;
-            button3.ImageAlign = ContentAlignment.MiddleLeft;
-            button3.Location = new Point(10, 236);
-            button3.Name = "button3";
-            button3.Padding = new Padding(5, 0, 5, 0);
-            button3.Size = new Size(180, 40);
-            button3.TabIndex = 5;
-            button3.Text = "Bundler";
-            button3.UseMnemonic = false;
-            button3.UseVisualStyleBackColor = false;
+            btnWallets.BackColor = Color.Transparent;
+            btnWallets.BackgroundImageLayout = ImageLayout.None;
+            btnWallets.FlatAppearance.BorderSize = 0;
+            btnWallets.FlatStyle = FlatStyle.Flat;
+            btnWallets.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnWallets.ForeColor = Color.FromArgb(153, 153, 153);
+            btnWallets.Image = Properties.Resources.wallets;
+            btnWallets.ImageAlign = ContentAlignment.MiddleLeft;
+            btnWallets.Location = new Point(10, 234);
+            btnWallets.Name = "btnWallets";
+            btnWallets.Padding = new Padding(5, 0, 5, 0);
+            btnWallets.Size = new Size(180, 40);
+            btnWallets.TabIndex = 5;
+            btnWallets.Text = "Wallets";
+            btnWallets.UseMnemonic = false;
+            btnWallets.UseVisualStyleBackColor = false;
+            btnWallets.Click += btnWallets_Click;
             // 
-            // button4
+            // btnBundler
             // 
-            button4.BackColor = Color.Transparent;
-            button4.BackgroundImageLayout = ImageLayout.None;
-            button4.FlatAppearance.BorderSize = 0;
-            button4.FlatStyle = FlatStyle.Flat;
-            button4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button4.ForeColor = Color.FromArgb(153, 153, 153);
-            button4.Image = Properties.Resources.box;
-            button4.ImageAlign = ContentAlignment.MiddleLeft;
-            button4.Location = new Point(10, 170);
-            button4.Name = "button4";
-            button4.Padding = new Padding(5, 0, 5, 0);
-            button4.Size = new Size(180, 40);
-            button4.TabIndex = 6;
-            button4.Text = "Bundler";
-            button4.UseMnemonic = false;
-            button4.UseVisualStyleBackColor = false;
+            btnBundler.BackColor = Color.Transparent;
+            btnBundler.BackgroundImageLayout = ImageLayout.None;
+            btnBundler.FlatAppearance.BorderSize = 0;
+            btnBundler.FlatStyle = FlatStyle.Flat;
+            btnBundler.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnBundler.ForeColor = Color.FromArgb(153, 153, 153);
+            btnBundler.Image = Properties.Resources.bundler;
+            btnBundler.ImageAlign = ContentAlignment.MiddleLeft;
+            btnBundler.Location = new Point(10, 169);
+            btnBundler.Name = "btnBundler";
+            btnBundler.Padding = new Padding(5, 0, 5, 0);
+            btnBundler.Size = new Size(180, 40);
+            btnBundler.TabIndex = 6;
+            btnBundler.Text = "Bundler";
+            btnBundler.UseMnemonic = false;
+            btnBundler.UseVisualStyleBackColor = false;
+            btnBundler.Click += btnBundler_Click;
+            // 
+            // btnSettings
+            // 
+            btnSettings.BackColor = Color.Transparent;
+            btnSettings.BackgroundImageLayout = ImageLayout.None;
+            btnSettings.FlatAppearance.BorderSize = 0;
+            btnSettings.FlatStyle = FlatStyle.Flat;
+            btnSettings.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnSettings.ForeColor = Color.FromArgb(153, 153, 153);
+            btnSettings.Image = Properties.Resources.settings;
+            btnSettings.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSettings.Location = new Point(10, 364);
+            btnSettings.Name = "btnSettings";
+            btnSettings.Padding = new Padding(5, 0, 5, 0);
+            btnSettings.Size = new Size(180, 40);
+            btnSettings.TabIndex = 7;
+            btnSettings.Text = "Settings";
+            btnSettings.UseMnemonic = false;
+            btnSettings.UseVisualStyleBackColor = false;
+            btnSettings.Click += btnSettings_Click;
             // 
             // mainNavBar
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(pictureBox1);
-            Controls.Add(label1);
+            Controls.Add(btnSettings);
+            Controls.Add(btnBundler);
+            Controls.Add(btnWallets);
+            Controls.Add(btnProxies);
+            Controls.Add(btnTasks);
+            Controls.Add(pbxLogo);
+            Controls.Add(lblAuthor);
             Controls.Add(lblTitle);
             Margin = new Padding(0);
             Name = "mainNavBar";
             Size = new Size(200, 810);
             Load += mainNavBar_Load;
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbxLogo).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -170,11 +195,12 @@
         #endregion
 
         private Label lblTitle;
-        private Label label1;
-        private PictureBox pictureBox1;
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
+        private Label lblAuthor;
+        private PictureBox pbxLogo;
+        public Button btnTasks;
+        public Button btnProxies;
+        public Button btnWallets;
+        public Button btnBundler;
+        public Button btnSettings;
     }
 }

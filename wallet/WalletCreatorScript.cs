@@ -4,7 +4,7 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Text;
 
-namespace catwiftools
+namespace catwiftools.wallet
 {
     public static class WalletCreatorScript
     {
@@ -26,7 +26,7 @@ namespace catwiftools
                 string walletName = WalletFromMnemonic(walletMnemonic);
 
                 // Ajout des détails du portefeuille
-                wallets.AppendLine($"Wallet N°{(i + 1)}: {walletName}");
+                wallets.AppendLine($"Wallet N°{i + 1}: {walletName}");
 
                 // Vérification et insertion dans la base de données
                 EnsureWalletTypeExists(walletType);

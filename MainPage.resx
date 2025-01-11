@@ -117,184 +117,220 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="&gt;&gt;mainNavBar1.Name" xml:space="preserve">
-    <value>mainNavBar1</value>
+  <data name="&gt;&gt;btnWalletManager.Name" xml:space="preserve">
+    <value>btnWalletManager</value>
+  </data>
+  <data name="&gt;&gt;bundlerNav1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="walletCreator1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 40</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>MainPage</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnWalletCreator.Text" xml:space="preserve">
+    <value>Wallet Creator</value>
+  </data>
+  <data name="&gt;&gt;walletCreator1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;walletCreator1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="walletCreator1.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="mainNavBar1.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="$this.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
     <value>GrowAndShrink</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="walletManager1.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnTokenLauncher.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="btnWalletCreator.Size" type="System.Drawing.Size, System.Drawing">
     <value>138, 23</value>
   </data>
-  <data name="&gt;&gt;btnWalletCreator.Name" xml:space="preserve">
-    <value>btnWalletCreator</value>
+  <data name="&gt;&gt;walletNav1.Name" xml:space="preserve">
+    <value>walletNav1</value>
   </data>
-  <data name="btnWalletManager.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;walletManager1.Type" xml:space="preserve">
-    <value>catwiftools.WalletManager, catwiftools, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;btnWalletManager.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1066, 600</value>
-  </data>
-  <data name="mainNavBar1.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="btnWalletManager.Text" xml:space="preserve">
-    <value>Wallet Manager</value>
-  </data>
-  <data name="&gt;&gt;walletCreator1.Type" xml:space="preserve">
-    <value>catwiftools.WalletCreator, catwiftools, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;btnTokenLauncher.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;walletManager1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;walletNav1.Parent" xml:space="preserve">
     <value>$this</value>
-  </data>
-  <data name="btnTokenLauncher.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="walletManager1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 42</value>
-  </data>
-  <data name="&gt;&gt;tokenLauncher1.Type" xml:space="preserve">
-    <value>catwiftools.TokenLauncher, catwiftools, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;btnTokenLauncher.Name" xml:space="preserve">
-    <value>btnTokenLauncher</value>
-  </data>
-  <data name="btnWalletCreator.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;walletCreator1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="walletManager1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1047, 551</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>CatWifTools</value>
-  </data>
-  <data name="walletCreator1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 40</value>
   </data>
   <data name="tokenLauncher1.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="btnWalletManager.Location" type="System.Drawing.Point, System.Drawing">
-    <value>487, 13</value>
-  </data>
-  <data name="mainNavBar1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 23</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>7, 15</value>
-  </data>
-  <data name="btnWalletCreator.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 23</value>
-  </data>
-  <data name="&gt;&gt;walletCreator1.Name" xml:space="preserve">
-    <value>walletCreator1</value>
-  </data>
-  <data name="&gt;&gt;btnWalletManager.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="walletCreator1.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="tokenLauncher1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>106, 193</value>
-  </data>
-  <data name="&gt;&gt;mainNavBar1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnWalletCreator.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="btnTokenLauncher.Text" xml:space="preserve">
-    <value>Token launcher</value>
+  <data name="btnTokenLauncher.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
   <data name="btnWalletCreator.Location" type="System.Drawing.Point, System.Drawing">
     <value>85, 13</value>
   </data>
-  <data name="tokenLauncher1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>853, 197</value>
-  </data>
-  <data name="&gt;&gt;walletManager1.Name" xml:space="preserve">
-    <value>walletManager1</value>
-  </data>
-  <data name="&gt;&gt;mainNavBar1.Type" xml:space="preserve">
-    <value>catwiftools.mainNavBar, catwiftools, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="btnWalletManager.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 23</value>
-  </data>
-  <data name="&gt;&gt;tokenLauncher1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnTokenLauncher.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;walletCreator1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;tokenLauncher1.Name" xml:space="preserve">
-    <value>tokenLauncher1</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnWalletCreator.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;walletNav1.Type" xml:space="preserve">
+    <value>catwiftools.wallet.walletNav, catwiftools, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;btnWalletManager.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;mainNavBar1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="btnWalletCreator.Text" xml:space="preserve">
-    <value>Wallet Creator</value>
-  </data>
   <data name="&gt;&gt;walletManager1.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>MainPage</value>
-  </data>
-  <data name="walletCreator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1051, 553</value>
   </data>
   <data name="&gt;&gt;btnTokenLauncher.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="&gt;&gt;btnTokenLauncher.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="btnWalletManager.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 23</value>
+  </data>
+  <data name="&gt;&gt;mainNavBar1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="btnTokenLauncher.Text" xml:space="preserve">
+    <value>Token launcher</value>
+  </data>
   <data name="&gt;&gt;tokenLauncher1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;btnWalletCreator.Type" xml:space="preserve">
+  <data name="mainNavBar1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 23</value>
+  </data>
+  <data name="btnTokenLauncher.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 23</value>
+  </data>
+  <data name="walletManager1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 42</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>7, 15</value>
+  </data>
+  <data name="&gt;&gt;walletCreator1.Name" xml:space="preserve">
+    <value>walletCreator1</value>
+  </data>
+  <data name="bundlerNav1.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;walletManager1.Type" xml:space="preserve">
+    <value>catwiftools.WalletManager, catwiftools, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>CatWifTools</value>
+  </data>
+  <data name="tokenLauncher1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>853, 197</value>
+  </data>
+  <data name="&gt;&gt;walletManager1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;bundlerNav1.Name" xml:space="preserve">
+    <value>bundlerNav1</value>
+  </data>
+  <data name="&gt;&gt;bundlerNav1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;walletCreator1.Type" xml:space="preserve">
+    <value>catwiftools.WalletCreator, catwiftools, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;walletNav1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;btnWalletManager.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="tokenLauncher1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>106, 193</value>
+  </data>
+  <data name="&gt;&gt;btnWalletCreator.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="btnWalletManager.Text" xml:space="preserve">
+    <value>Wallet Manager</value>
+  </data>
+  <data name="btnWalletManager.Location" type="System.Drawing.Point, System.Drawing">
+    <value>487, 13</value>
+  </data>
+  <data name="&gt;&gt;btnWalletCreator.Name" xml:space="preserve">
+    <value>btnWalletCreator</value>
+  </data>
+  <data name="&gt;&gt;btnTokenLauncher.Name" xml:space="preserve">
+    <value>btnTokenLauncher</value>
+  </data>
+  <data name="&gt;&gt;btnTokenLauncher.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnWalletManager.Name" xml:space="preserve">
-    <value>btnWalletManager</value>
+  <data name="&gt;&gt;mainNavBar1.Type" xml:space="preserve">
+    <value>catwiftools.mainNavBar, catwiftools, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;mainNavBar1.Name" xml:space="preserve">
+    <value>mainNavBar1</value>
+  </data>
+  <data name="&gt;&gt;mainNavBar1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;tokenLauncher1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;btnWalletManager.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bundlerNav1.Type" xml:space="preserve">
+    <value>catwiftools.bundler.bundlerNav, catwiftools, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="walletCreator1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1051, 553</value>
+  </data>
+  <data name="btnWalletCreator.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="btnTokenLauncher.Location" type="System.Drawing.Point, System.Drawing">
     <value>821, 13</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
+  <data name="&gt;&gt;tokenLauncher1.Type" xml:space="preserve">
+    <value>catwiftools.TokenLauncher, catwiftools, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="bundlerNav1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>225, 5</value>
+  </data>
+  <data name="&gt;&gt;btnWalletCreator.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tokenLauncher1.Name" xml:space="preserve">
+    <value>tokenLauncher1</value>
+  </data>
+  <data name="walletManager1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1047, 551</value>
+  </data>
+  <data name="btnWalletManager.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="walletNav1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>225, 5</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>1066, 600</value>
+  </data>
+  <data name="walletNav1.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;walletManager1.Name" xml:space="preserve">
+    <value>walletManager1</value>
+  </data>
+  <data name="&gt;&gt;btnWalletCreator.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="walletManager1.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
   <metadata name="$this.Language" type="System.Globalization.CultureInfo, System.Private.CoreLib, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
     <value>en-US</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </metadata>
 </root>
