@@ -8,8 +8,9 @@ using System.Windows.Forms;
 
 namespace catwiftools
 {
-    internal class functions
+    internal class Functions
     {
+        private Button? selectedButton = null;
 
         public static Image RecolorImage(Image originalImage, Color newColor)
         {
@@ -30,11 +31,11 @@ namespace catwiftools
                     ColorMatrix colorMatrix = new ColorMatrix(
                         new float[][]
                         {
-                    new float[] {0, 0, 0, 0, 0},       // Red
-                    new float[] {0, 0, 0, 0, 0},       // Green
-                    new float[] {0, 0, 0, 0, 0},       // Blue
-                    new float[] {0, 0, 0, 1, 0},       // Alpha
-                    new float[] {newColor.R / 255f, newColor.G / 255f, newColor.B / 255f, 0, 1} // Tint
+                            new float[] {0, 0, 0, 0, 0},       // Red
+                            new float[] {0, 0, 0, 0, 0},       // Green
+                            new float[] {0, 0, 0, 0, 0},       // Blue
+                            new float[] {0, 0, 0, 1, 0},       // Alpha
+                            new float[] {newColor.R / 255f, newColor.G / 255f, newColor.B / 255f, 0, 1} // Tint
                         });
 
                     imageAttributes.SetColorMatrix(colorMatrix);
@@ -52,7 +53,57 @@ namespace catwiftools
             return bitmap;
         }
 
+        // Changes color of text and image to selected
+        public void SelectButton(Button button)
+        {
+            if (selectedButton != null)
+            {
+                DeselectButton(selectedButton);
+            }
 
+            button.ForeColor = Color.FromArgb(00, 134, 179);
+            string filename = $"{button.Text.ToLower()}Selected";
+            string imagePath = $@"D:\crypto\catwiftools\img\icon\{filename}.png";
 
+            if (File.Exists(imagePath))
+            {
+                button.Image = Image.FromFile(imagePath);
+            }
+
+            button.Invalidate();
+            button.Paint += DrawLeftBorder;
+            button.Refresh();
+
+            selectedButton = button;
+        }
+
+        // Changes color of text and image to default
+        public void DeselectButton(Button button)
+        {
+            button.ForeColor = Color.FromArgb(153, 153, 153);
+            string filename = $"{button.Text.ToLower()}";
+            string imagePath = $@"D:\crypto\catwiftools\img\icon\{filename}.png";
+
+            if (File.Exists(imagePath))
+            {
+                button.Image = Image.FromFile(imagePath);
+            }
+
+            button.Invalidate();
+            button.Paint -= DrawLeftBorder;
+            button.Refresh();
+        }
+
+        public void DrawLeftBorder(object? sender, PaintEventArgs e)
+        {
+            if (sender is Button button)
+            {
+                using (Pen borderPen = new Pen(Color.FromArgb(0, 134, 179), 2)) //(0,134,179) = color, 2 = thickness
+                {
+                    // Left border
+                    e.Graphics.DrawLine(borderPen, 0, 0, 0, button.Height);
+                }
+            }
+        }
     }
 }

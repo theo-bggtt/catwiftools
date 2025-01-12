@@ -1,8 +1,5 @@
-﻿using catwiftools.bundler;
-using catwiftools.proxies;
-using catwiftools.settings;
-using catwiftools.tasks;
-using catwiftools.wallet;
+﻿using catwiftools.wallet;
+using System.Drawing.Imaging;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,12 +9,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace catwiftools
 {
     public partial class CatWifTools : Form
     {
-        private List<UserControl> userControls;
 
         public CatWifTools()
         {
@@ -27,132 +24,74 @@ namespace catwiftools
 
         private void InitializeUserControls()
         {
-            userControls = new List<UserControl>
-            {
-                walletNav1,
-                bundlerNav1,
-                // Add other user controls here
-            };
+
         }
 
         private void CatWifTools_Load(object sender, EventArgs e)
         {
-            //HideAllUserControls(null);
-            walletNav1.Visible = true;
+            // Set the default view
+            ShowOneGroupBox(null);
+
         }
 
-        public void HideAllUserControls(Button btn)
+
+        private void ShowOneGroupBox(System.Windows.Forms.GroupBox groupBoxToShow)
         {
-            for (int i = 0; i < userControls.Count; i++)
+            var groupBoxes = new List<System.Windows.Forms.GroupBox>
             {
-                if (userControls[i].Name == $"btn{btn.Name}")
-                {
-                    userControls[i].Visible = true;
-                }
-                else
-                {
-                    userControls[i].Visible = false;
-                }
+                gbxWalletNav, // Add other GroupBoxes here
+                gbxProxies,
+                gbxSettingsNav,
+                gbxBundlerNav,
+                gbxTasks,
+            };
+
+            HideAllExcept(groupBoxes, groupBoxToShow);
+        }
+
+        private void HandleButtonClick(Button selectedButton, System.Windows.Forms.GroupBox groupBoxToShow, params Button[] otherButtons)
+        {
+            Functions functions = new Functions();
+            functions.SelectButton(selectedButton);
+            foreach (var button in otherButtons)
+            {
+                functions.DeselectButton(button);
             }
+
+            ShowOneGroupBox(groupBoxToShow);
         }
 
         public void btnTasks_Click(object sender, EventArgs e)
         {
-            selectButton(btnTasks);
-            deselectButton(btnBundler);
-            deselectButton(btnProxies);
-            deselectButton(btnWallets);
-            deselectButton(btnSettings);
-            HideAllUserControls(btnTasks);
+            HandleButtonClick(btnTasks, gbxTasks, btnBundler, btnProxies, btnWallets, btnSettings);
         }
 
         private void btnBundler_Click(object sender, EventArgs e)
         {
-            selectButton(btnBundler);
-            deselectButton(btnProxies);
-            deselectButton(btnWallets);
-            deselectButton(btnTasks);
-            deselectButton(btnSettings);
-            HideAllUserControls(btnBundler);
+            HandleButtonClick(btnBundler, gbxBundlerNav, btnProxies, btnWallets, btnTasks, btnSettings);
         }
 
         private void btnWallets_Click(object sender, EventArgs e)
         {
-            selectButton(btnWallets);
-            deselectButton(btnProxies);
-            deselectButton(btnSettings);
-            deselectButton(btnTasks);
-            deselectButton(btnBundler);
-            HideAllUserControls(btnWallets);
+            HandleButtonClick(btnWallets, gbxWalletNav, btnProxies, btnSettings, btnTasks, btnBundler);
         }
+
 
         private void btnProxies_Click(object sender, EventArgs e)
         {
-            selectButton(btnProxies);
-            deselectButton(btnSettings);
-            deselectButton(btnWallets);
-            deselectButton(btnTasks);
-            deselectButton(btnBundler);
-            HideAllUserControls(btnProxies);
+            HandleButtonClick(btnProxies, gbxProxies, btnSettings, btnWallets, btnTasks, btnBundler);
         }
 
         private void btnSettings_Click(object sender, EventArgs e)
         {
-            selectButton(btnSettings);
-            deselectButton(btnProxies);
-            deselectButton(btnWallets);
-            deselectButton(btnTasks);
-            deselectButton(btnBundler);
-            HideAllUserControls(btnSettings);
+            HandleButtonClick(btnSettings, gbxSettingsNav, btnProxies, btnWallets, btnTasks, btnBundler);
         }
 
-        // Changes color of text and image to selected
-        public void selectButton(Button button)
-        {
-            button.ForeColor = Color.FromArgb(00, 134, 179);
-            string filename = $"{button.Text.ToLower()}Selected";
-            string imagePath = $@"D:\crypto\catwiftools\img\icon\{filename}.png";
 
-            if (File.Exists(imagePath))
-            {
-                button.Image = Image.FromFile(imagePath);
-            }
 
-            button.Invalidate();
-            button.Paint += DrawLeftBorder;
-            button.Refresh();
-        }
-
-        // Changes color of text and image to default
-        public void deselectButton(Button button)
-        {
-            button.ForeColor = Color.FromArgb(153, 153, 153);
-            string filename = $"{button.Text.ToLower()}";
-            string imagePath = $@"D:\crypto\catwiftools\img\icon\{filename}.png";
-
-            if (File.Exists(imagePath))
-            {
-                button.Image = Image.FromFile(imagePath);
-            }
-
-            button.Invalidate();
-            button.Paint -= DrawLeftBorder;
-            button.Refresh();
-        }
 
         // Draw the left border of a button
-        public void DrawLeftBorder(object sender, PaintEventArgs e)
-        {
-            Button button = sender as Button;
-            if (button != null)
-            {
-                using (Pen borderPen = new Pen(Color.FromArgb(0, 134, 179), 2)) //(0,134,179) = color, 2 = thickness
-                {
-                    // Left border
-                    e.Graphics.DrawLine(borderPen, 0, 0, 0, button.Height);
-                }
-            }
-        }
+
 
         //Draw the separator of header and buttons
         protected override void OnPaint(PaintEventArgs e)
@@ -163,11 +102,25 @@ namespace catwiftools
             {
                 e.Graphics.DrawLine(pen, 10, 84, 190, 84); // (X1, Y1, X2, Y2)
                 e.Graphics.DrawLine(pen, 215, 15, 215, 795);
-                if (walletNav1.Visible == true)
+                e.Graphics.DrawLine(pen, 435, 25, 435, 785);
+            }
+
+
+        }
+
+        public static void HideAllExcept(IEnumerable<System.Windows.Forms.GroupBox> groupBoxes, System.Windows.Forms.GroupBox groupBoxToShow)
+        {
+            foreach (var groupBox in groupBoxes)
+            {
+                if (groupBox != null)
                 {
-                    e.Graphics.DrawLine(pen, 435, 35, 435, 775);
+                    groupBox.Visible = groupBox == groupBoxToShow;
                 }
             }
+        }
+        private void gbxWalletNav_VisibleChanged(object sender, EventArgs e)
+        {
+           
         }
     }
 }

@@ -4,31 +4,16 @@
     <Compile Update="BorderlessGroupBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Update="bundler\bundlerNav.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Update="MainPage.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="bundler\TokenLauncher.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="proxies\proxiesNav.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="settings\settingsNav.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="tasks\tasksNav.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Update="wallet\WalletCreator.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="wallet\WalletManager.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="wallet\walletNav.cs">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>
