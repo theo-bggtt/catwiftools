@@ -15,26 +15,20 @@ namespace catwiftools
 {
     public partial class CatWifTools : Form
     {
+        Functions functions = new Functions();
 
         public CatWifTools()
         {
             InitializeComponent();
-            InitializeUserControls();
-        }
-
-        private void InitializeUserControls()
-        {
-
+            DraggingHelper.EnableDragging(this);
         }
 
         private void CatWifTools_Load(object sender, EventArgs e)
         {
             // Set the default view
             ShowOneGroupBox(null);
-
+            tmrClock.Enabled = true;
         }
-
-
         private void ShowOneGroupBox(System.Windows.Forms.GroupBox groupBoxToShow)
         {
             var groupBoxes = new List<System.Windows.Forms.GroupBox>
@@ -51,7 +45,6 @@ namespace catwiftools
 
         private void HandleButtonClick(Button selectedButton, System.Windows.Forms.GroupBox groupBoxToShow, params Button[] otherButtons)
         {
-            Functions functions = new Functions();
             functions.SelectButton(selectedButton);
             foreach (var button in otherButtons)
             {
@@ -87,12 +80,6 @@ namespace catwiftools
             HandleButtonClick(btnSettings, gbxSettingsNav, btnProxies, btnWallets, btnTasks, btnBundler);
         }
 
-
-
-
-        // Draw the left border of a button
-
-
         //Draw the separator of header and buttons
         protected override void OnPaint(PaintEventArgs e)
         {
@@ -101,11 +88,9 @@ namespace catwiftools
             using (Pen pen = new Pen(Color.Gray, 2)) // Color.Gray and thickness 2
             {
                 e.Graphics.DrawLine(pen, 10, 84, 190, 84); // (X1, Y1, X2, Y2)
-                e.Graphics.DrawLine(pen, 215, 15, 215, 795);
-                e.Graphics.DrawLine(pen, 435, 25, 435, 785);
+                e.Graphics.DrawLine(pen, 215, 43, 215, 795);
+                e.Graphics.DrawLine(pen, 435, 43, 435, 785);
             }
-
-
         }
 
         public static void HideAllExcept(IEnumerable<System.Windows.Forms.GroupBox> groupBoxes, System.Windows.Forms.GroupBox groupBoxToShow)
@@ -118,9 +103,20 @@ namespace catwiftools
                 }
             }
         }
-        private void gbxWalletNav_VisibleChanged(object sender, EventArgs e)
+
+        private void tmrClock_Tick(object sender, EventArgs e)
         {
-           
+            lblClock.Text = DateTime.Now.ToString("HH:mm:ss");
+        }
+
+        private void btnCloseApp_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

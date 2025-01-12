@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CatWifTools));
             btnSettings = new Button();
             btnBundler = new Button();
@@ -56,8 +57,12 @@
             btnSettingsBundler = new Button();
             lblSettings = new Label();
             gbxBackground = new BorderlessGroupBox();
-            lblBackground = new Label();
             pictureBox1 = new PictureBox();
+            lblBackground = new Label();
+            tmrClock = new System.Windows.Forms.Timer(components);
+            lblClock = new Label();
+            btnCloseApp = new Button();
+            btnMinimise = new Button();
             ((System.ComponentModel.ISupportInitialize)pbxLogo).BeginInit();
             gbxMainNavBar.SuspendLayout();
             gbxWalletNav.SuspendLayout();
@@ -315,12 +320,6 @@
             gbxBackground.Name = "gbxBackground";
             gbxBackground.TabStop = false;
             // 
-            // lblBackground
-            // 
-            resources.ApplyResources(lblBackground, "lblBackground");
-            lblBackground.ForeColor = Color.FromArgb(153, 153, 153);
-            lblBackground.Name = "lblBackground";
-            // 
             // pictureBox1
             // 
             resources.ApplyResources(pictureBox1, "pictureBox1");
@@ -329,12 +328,48 @@
             pictureBox1.Name = "pictureBox1";
             pictureBox1.TabStop = false;
             // 
+            // lblBackground
+            // 
+            resources.ApplyResources(lblBackground, "lblBackground");
+            lblBackground.ForeColor = Color.FromArgb(153, 153, 153);
+            lblBackground.Name = "lblBackground";
+            // 
+            // tmrClock
+            // 
+            tmrClock.Interval = 1000;
+            tmrClock.Tick += tmrClock_Tick;
+            // 
+            // lblClock
+            // 
+            resources.ApplyResources(lblClock, "lblClock");
+            lblClock.ForeColor = Color.FromArgb(153, 153, 153);
+            lblClock.Name = "lblClock";
+            // 
+            // btnCloseApp
+            // 
+            resources.ApplyResources(btnCloseApp, "btnCloseApp");
+            btnCloseApp.BackColor = Color.FromArgb(192, 0, 0);
+            btnCloseApp.Name = "btnCloseApp";
+            btnCloseApp.UseVisualStyleBackColor = false;
+            btnCloseApp.Click += btnCloseApp_Click;
+            // 
+            // btnMinimise
+            // 
+            resources.ApplyResources(btnMinimise, "btnMinimise");
+            btnMinimise.BackColor = Color.DimGray;
+            btnMinimise.Name = "btnMinimise";
+            btnMinimise.UseVisualStyleBackColor = false;
+            btnMinimise.Click += button1_Click;
+            // 
             // CatWifTools
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.FromArgb(25, 25, 25);
             ControlBox = false;
+            Controls.Add(btnMinimise);
+            Controls.Add(btnCloseApp);
+            Controls.Add(lblClock);
             Controls.Add(gbxMainNavBar);
             Controls.Add(gbxWalletNav);
             Controls.Add(gbxSettingsNav);
@@ -366,6 +401,7 @@
             gbxBackground.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -398,5 +434,9 @@
         private BorderlessGroupBox gbxBackground;
         private PictureBox pictureBox1;
         private Label lblBackground;
+        private System.Windows.Forms.Timer tmrClock;
+        private Label lblClock;
+        private Button btnCloseApp;
+        private Button btnMinimise;
     }
 }
