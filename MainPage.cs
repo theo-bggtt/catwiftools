@@ -17,127 +17,156 @@ namespace catwiftools
 {
     public partial class CatWifTools : Form
     {
-        private bool dragging = false;
-        private Point dragCursorPoint;
-        private Point dragFormPoint;
-
-        private mainNavBar navBar; // The user control with the 5 buttons
-        private tasksNav tasksControl;
-        private bundlerNav bundlerControl;
-        private walletNav walletControl;
-        private proxiesNav proxiesControl;
-        private settingsNav settingsControl;
-
-        private Dictionary<Button, UserControl> buttonControlMap;
+        private List<UserControl> userControls;
 
         public CatWifTools()
         {
             InitializeComponent();
+            InitializeUserControls();
+        }
 
-            // Initialize the navigation bar and the 5 user controls
-            navBar = new mainNavBar();
-            tasksControl = new tasksNav();
-            bundlerControl = new bundlerNav();
-            walletControl = new walletNav();
-            proxiesControl = new proxiesNav();
-            settingsControl = new settingsNav();
-
-            // Add the navigation bar and user controls to the form
-            this.Controls.Add(navBar);
-            this.Controls.Add(tasksControl);
-            this.Controls.Add(bundlerControl);
-            this.Controls.Add(walletControl);
-            this.Controls.Add(proxiesControl);
-            this.Controls.Add(settingsControl);
-
-            // Position the navigation bar and user controls
-            navBar.Dock = DockStyle.Top; // Adjust as necessary
-            var userControls = new List<UserControl> { tasksControl, bundlerControl, walletControl, proxiesControl, settingsControl };
-            foreach (var control in userControls)
+        private void InitializeUserControls()
+        {
+            userControls = new List<UserControl>
             {
-                control.Dock = DockStyle.Fill; // Adjust as necessary
-                control.Visible = false; // Hide all controls initially
-            }
-
-            // Map buttons in the nav bar to their respective user controls
-            buttonControlMap = new Dictionary<Button, UserControl>
-            {
-                { navBar.btnTasks, tasksControl },
-                { navBar.btnBundler, bundlerControl },
-                { navBar.btnWallets, walletControl },
-                { navBar.btnProxies, proxiesControl },
-                { navBar.btnSettings, settingsControl }
+                walletNav1,
+                bundlerNav1,
+                // Add other user controls here
             };
-
-
-            // Attach a single event handler for all buttons
-            foreach (var button in buttonControlMap.Keys)
-            {
-                button.Click += Button_Click;
-            }
         }
 
         private void CatWifTools_Load(object sender, EventArgs e)
         {
+            //HideAllUserControls(null);
             walletNav1.Visible = true;
-            bundlerNav1.Visible = false;
         }
 
-        // Paints the separator between the main navbar and the second navbar
+        public void HideAllUserControls(Button btn)
+        {
+            for (int i = 0; i < userControls.Count; i++)
+            {
+                if (userControls[i].Name == $"btn{btn.Name}")
+                {
+                    userControls[i].Visible = true;
+                }
+                else
+                {
+                    userControls[i].Visible = false;
+                }
+            }
+        }
+
+        public void btnTasks_Click(object sender, EventArgs e)
+        {
+            selectButton(btnTasks);
+            deselectButton(btnBundler);
+            deselectButton(btnProxies);
+            deselectButton(btnWallets);
+            deselectButton(btnSettings);
+            HideAllUserControls(btnTasks);
+        }
+
+        private void btnBundler_Click(object sender, EventArgs e)
+        {
+            selectButton(btnBundler);
+            deselectButton(btnProxies);
+            deselectButton(btnWallets);
+            deselectButton(btnTasks);
+            deselectButton(btnSettings);
+            HideAllUserControls(btnBundler);
+        }
+
+        private void btnWallets_Click(object sender, EventArgs e)
+        {
+            selectButton(btnWallets);
+            deselectButton(btnProxies);
+            deselectButton(btnSettings);
+            deselectButton(btnTasks);
+            deselectButton(btnBundler);
+            HideAllUserControls(btnWallets);
+        }
+
+        private void btnProxies_Click(object sender, EventArgs e)
+        {
+            selectButton(btnProxies);
+            deselectButton(btnSettings);
+            deselectButton(btnWallets);
+            deselectButton(btnTasks);
+            deselectButton(btnBundler);
+            HideAllUserControls(btnProxies);
+        }
+
+        private void btnSettings_Click(object sender, EventArgs e)
+        {
+            selectButton(btnSettings);
+            deselectButton(btnProxies);
+            deselectButton(btnWallets);
+            deselectButton(btnTasks);
+            deselectButton(btnBundler);
+            HideAllUserControls(btnSettings);
+        }
+
+        // Changes color of text and image to selected
+        public void selectButton(Button button)
+        {
+            button.ForeColor = Color.FromArgb(00, 134, 179);
+            string filename = $"{button.Text.ToLower()}Selected";
+            string imagePath = $@"D:\crypto\catwiftools\img\icon\{filename}.png";
+
+            if (File.Exists(imagePath))
+            {
+                button.Image = Image.FromFile(imagePath);
+            }
+
+            button.Invalidate();
+            button.Paint += DrawLeftBorder;
+            button.Refresh();
+        }
+
+        // Changes color of text and image to default
+        public void deselectButton(Button button)
+        {
+            button.ForeColor = Color.FromArgb(153, 153, 153);
+            string filename = $"{button.Text.ToLower()}";
+            string imagePath = $@"D:\crypto\catwiftools\img\icon\{filename}.png";
+
+            if (File.Exists(imagePath))
+            {
+                button.Image = Image.FromFile(imagePath);
+            }
+
+            button.Invalidate();
+            button.Paint -= DrawLeftBorder;
+            button.Refresh();
+        }
+
+        // Draw the left border of a button
+        public void DrawLeftBorder(object sender, PaintEventArgs e)
+        {
+            Button button = sender as Button;
+            if (button != null)
+            {
+                using (Pen borderPen = new Pen(Color.FromArgb(0, 134, 179), 2)) //(0,134,179) = color, 2 = thickness
+                {
+                    // Left border
+                    e.Graphics.DrawLine(borderPen, 0, 0, 0, button.Height);
+                }
+            }
+        }
+
+        //Draw the separator of header and buttons
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
 
-            using (Pen pen = new Pen(Color.Gray, 2)) // Color.Gray, thickness 2
+            using (Pen pen = new Pen(Color.Gray, 2)) // Color.Gray and thickness 2
             {
+                e.Graphics.DrawLine(pen, 10, 84, 190, 84); // (X1, Y1, X2, Y2)
                 e.Graphics.DrawLine(pen, 215, 15, 215, 795);
-            }
-        }
-
-
-        // Start of drag
-        private void CatWifTools_MouseDown(object sender, MouseEventArgs e)
-        {
-            dragging = true;
-            dragCursorPoint = Cursor.Position;
-            dragFormPoint = this.Location;
-        }
-
-        private void CatWifTools_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (dragging)
-            {
-                Point diff = Point.Subtract(Cursor.Position, new Size(dragCursorPoint));
-                this.Location = Point.Add(dragFormPoint, new Size(diff));
-            }
-        }
-
-        private void CatWifTools_MouseUp(object sender, MouseEventArgs e)
-        {
-            dragging = false;
-        }
-        // End of drag
-
-
-        public void ToggleBundlerNav()
-        {
-            bundlerNav1.Visible = !bundlerNav1.Visible;
-        }
-
-        private void Button_Click(object sender, EventArgs e)
-        {
-            Button clickedButton = sender as Button;
-
-            if (clickedButton != null && buttonControlMap.ContainsKey(clickedButton))
-            {
-                // Hide all user controls
-                foreach (var control in buttonControlMap.Values)
+                if (walletNav1.Visible == true)
                 {
-                    control.Visible = false;
+                    e.Graphics.DrawLine(pen, 435, 35, 435, 775);
                 }
-
-                // Show the user control associated with the clicked button
-                buttonControlMap[clickedButton].Visible = true;
             }
         }
     }

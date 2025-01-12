@@ -117,20 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="mainNavBar1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 5</value>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="mainNavBar1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="mainNavBar1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 810</value>
-  </data>
   <data name="walletNav1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="walletNav1.Size" type="System.Drawing.Size, System.Drawing">
     <value>200, 810</value>
   </data>
@@ -140,10 +131,167 @@
   <data name="bundlerNav1.Size" type="System.Drawing.Size, System.Drawing">
     <value>200, 810</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btnSettings.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="btnSettings.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="btnSettings.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 12pt</value>
+  </data>
+  <data name="btnSettings.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="btnSettings.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 369</value>
+  </data>
+  <data name="btnSettings.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 0, 5, 0</value>
+  </data>
+  <data name="btnSettings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 40</value>
+  </data>
+  <data name="btnSettings.Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="btnBundler.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="btnBundler.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="btnBundler.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 12pt</value>
+  </data>
+  <data name="btnBundler.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="btnBundler.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 174</value>
+  </data>
+  <data name="btnBundler.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 0, 5, 0</value>
+  </data>
+  <data name="btnBundler.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 40</value>
+  </data>
+  <data name="btnBundler.Text" xml:space="preserve">
+    <value>Bundler</value>
+  </data>
+  <data name="btnWallets.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="btnWallets.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="btnWallets.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 12pt</value>
+  </data>
+  <data name="btnWallets.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="btnWallets.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 239</value>
+  </data>
+  <data name="btnWallets.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 0, 5, 0</value>
+  </data>
+  <data name="btnWallets.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 40</value>
+  </data>
+  <data name="btnWallets.Text" xml:space="preserve">
+    <value>Wallets</value>
+  </data>
+  <data name="btnProxies.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="btnProxies.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="btnProxies.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 12pt</value>
+  </data>
+  <data name="btnProxies.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="btnProxies.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 304</value>
+  </data>
+  <data name="btnProxies.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 0, 5, 0</value>
+  </data>
+  <data name="btnProxies.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 40</value>
+  </data>
+  <data name="btnProxies.Text" xml:space="preserve">
+    <value>Proxies</value>
+  </data>
+  <data name="btnTasks.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="btnTasks.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="btnTasks.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 12pt</value>
+  </data>
+  <data name="btnTasks.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="btnTasks.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 109</value>
+  </data>
+  <data name="btnTasks.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 0, 5, 0</value>
+  </data>
+  <data name="btnTasks.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 40</value>
+  </data>
+  <data name="btnTasks.Text" xml:space="preserve">
+    <value>Tasks</value>
+  </data>
+  <data name="pbxLogo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 15</value>
+  </data>
+  <data name="pbxLogo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 54</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="lblAuthor.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblAuthor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>74, 53</value>
+  </data>
+  <data name="lblAuthor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 15</value>
+  </data>
+  <data name="lblAuthor.Text" xml:space="preserve">
+    <value>@water.1213</value>
+  </data>
+  <data name="lblTitle.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblTitle.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 15pt</value>
+  </data>
+  <data name="lblTitle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>74, 15</value>
+  </data>
+  <data name="lblTitle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 28</value>
+  </data>
+  <data name="lblTitle.Text" xml:space="preserve">
+    <value>CatWifTools</value>
+  </data>
+  <data name="gbxMainNavBar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 810</value>
+  </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>1440, 810</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
   </data>

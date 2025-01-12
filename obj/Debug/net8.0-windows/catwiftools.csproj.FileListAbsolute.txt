@@ -110,7 +110,6 @@ D:\crypto\catwiftools\obj\Debug\net8.0-windows\catwiftools.CatWifTools.resources
 D:\crypto\catwiftools\bin\Debug\net8.0-windows\en-US\catwiftools.resources.dll
 D:\crypto\catwiftools\obj\Debug\net8.0-windows\catwiftools.CatWifTools.en-US.resources
 D:\crypto\catwiftools\obj\Debug\net8.0-windows\en-US\catwiftools.resources.dll
-D:\crypto\catwiftools\obj\Debug\net8.0-windows\catwiftools.mainNavBar.resources
 D:\crypto\catwiftools\obj\Debug\net8.0-windows\catwiftools.Properties.Resources.resources
 D:\crypto\catwiftools\obj\Debug\net8.0-windows\catwiftools.bundler.bundlerNav.resources
 D:\crypto\catwiftools\obj\Debug\net8.0-windows\catwiftools.wallet.walletNav.resources
