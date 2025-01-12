@@ -132,7 +132,7 @@
     <value>MiddleLeft</value>
   </data>
   <data name="btnSettings.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 369</value>
+    <value>10, 274</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnSettings.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
@@ -157,7 +157,7 @@
     <value>MiddleLeft</value>
   </data>
   <data name="btnBundler.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 174</value>
+    <value>10, 79</value>
   </data>
   <data name="btnBundler.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 0, 5, 0</value>
@@ -181,7 +181,7 @@
     <value>MiddleLeft</value>
   </data>
   <data name="btnWallets.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 239</value>
+    <value>10, 144</value>
   </data>
   <data name="btnWallets.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 0, 5, 0</value>
@@ -205,7 +205,7 @@
     <value>MiddleLeft</value>
   </data>
   <data name="btnProxies.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 304</value>
+    <value>10, 209</value>
   </data>
   <data name="btnProxies.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 0, 5, 0</value>
@@ -229,7 +229,7 @@
     <value>MiddleLeft</value>
   </data>
   <data name="btnTasks.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 109</value>
+    <value>10, 14</value>
   </data>
   <data name="btnTasks.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 0, 5, 0</value>
@@ -241,7 +241,7 @@
     <value>Tasks</value>
   </data>
   <data name="pbxLogo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 15</value>
+    <value>15, 15</value>
   </data>
   <data name="pbxLogo.Size" type="System.Drawing.Size, System.Drawing">
     <value>54, 54</value>
@@ -251,7 +251,7 @@
     <value>True</value>
   </data>
   <data name="lblAuthor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>74, 53</value>
+    <value>79, 53</value>
   </data>
   <data name="lblAuthor.Size" type="System.Drawing.Size, System.Drawing">
     <value>74, 15</value>
@@ -266,7 +266,7 @@
     <value>Segoe UI, 15pt</value>
   </data>
   <data name="lblTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>74, 15</value>
+    <value>79, 15</value>
   </data>
   <data name="lblTitle.Size" type="System.Drawing.Size, System.Drawing">
     <value>116, 28</value>
@@ -274,14 +274,11 @@
   <data name="lblTitle.Text" xml:space="preserve">
     <value>CatWifTools</value>
   </data>
+  <data name="gbxMainNavBar.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 100</value>
+  </data>
   <data name="gbxMainNavBar.Size" type="System.Drawing.Size, System.Drawing">
     <value>200, 800</value>
-  </data>
-  <data name="gbxWalletNav.Location" type="System.Drawing.Point, System.Drawing">
-    <value>225, 43</value>
-  </data>
-  <data name="gbxWalletNav.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 762</value>
   </data>
   <data name="btnWalletsVolume.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
@@ -376,59 +373,11 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Wallets</value>
   </data>
-  <data name="gbxTasks.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="gbxWalletNav.Location" type="System.Drawing.Point, System.Drawing">
     <value>225, 43</value>
   </data>
-  <data name="gbxTasks.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1210, 762</value>
-  </data>
-  <data name="lblTasks.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblTasks.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 15pt</value>
-  </data>
-  <data name="lblTasks.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblTasks.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 5</value>
-  </data>
-  <data name="lblTasks.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 28</value>
-  </data>
-  <data name="lblTasks.Text" xml:space="preserve">
-    <value>Tasks</value>
-  </data>
-  <data name="gbxBundlerNav.Location" type="System.Drawing.Point, System.Drawing">
-    <value>225, 43</value>
-  </data>
-  <data name="gbxBundlerNav.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1210, 762</value>
-  </data>
-  <data name="lblBundler.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblBundler.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 15pt</value>
-  </data>
-  <data name="lblBundler.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblBundler.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 5</value>
-  </data>
-  <data name="lblBundler.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 28</value>
-  </data>
-  <data name="lblBundler.Text" xml:space="preserve">
-    <value>Bundler</value>
-  </data>
-  <data name="gbxProxies.Location" type="System.Drawing.Point, System.Drawing">
-    <value>225, 43</value>
-  </data>
-  <data name="gbxProxies.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1210, 762</value>
+  <data name="gbxWalletNav.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 762</value>
   </data>
   <data name="lblProxies.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -448,11 +397,11 @@
   <data name="lblProxies.Text" xml:space="preserve">
     <value>Proxies</value>
   </data>
-  <data name="gbxSettingsNav.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="gbxProxies.Location" type="System.Drawing.Point, System.Drawing">
     <value>225, 43</value>
   </data>
-  <data name="gbxSettingsNav.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 762</value>
+  <data name="gbxProxies.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1210, 762</value>
   </data>
   <data name="btnSettingsBumpIt.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
@@ -580,14 +529,17 @@
   <data name="lblSettings.Text" xml:space="preserve">
     <value>Settings</value>
   </data>
-  <data name="gbxBackground.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="gbxSettingsNav.Location" type="System.Drawing.Point, System.Drawing">
     <value>225, 43</value>
   </data>
-  <data name="gbxBackground.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1210, 762</value>
+  <data name="gbxSettingsNav.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 762</value>
   </data>
   <data name="pictureBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
+  </data>
+  <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 16</value>
   </data>
   <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>54, 54</value>
@@ -598,11 +550,20 @@
   <data name="lblBackground.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 45pt</value>
   </data>
+  <data name="lblBackground.Location" type="System.Drawing.Point, System.Drawing">
+    <value>84, 2</value>
+  </data>
   <data name="lblBackground.Size" type="System.Drawing.Size, System.Drawing">
     <value>348, 81</value>
   </data>
   <data name="lblBackground.Text" xml:space="preserve">
     <value>CatWifTools</value>
+  </data>
+  <data name="gbxBackground.Location" type="System.Drawing.Point, System.Drawing">
+    <value>700, 350</value>
+  </data>
+  <data name="gbxBackground.Size" type="System.Drawing.Size, System.Drawing">
+    <value>462, 85</value>
   </data>
   <data name="lblClock.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -631,17 +592,65 @@
   <data name="btnMinimise.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="btnMinimise.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1378, 10</value>
-  </data>
   <data name="btnMinimise.Size" type="System.Drawing.Size, System.Drawing">
     <value>22, 22</value>
   </data>
-  <data name="btnMinimise.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
-  </data>
   <data name="btnMinimise.Text" xml:space="preserve">
     <value>-</value>
+  </data>
+  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 15pt</value>
+  </data>
+  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 5</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 28</value>
+  </data>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Tasks</value>
+  </data>
+  <data name="gbxTasks.Location" type="System.Drawing.Point, System.Drawing">
+    <value>225, 43</value>
+  </data>
+  <data name="gbxTasks.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1210, 762</value>
+  </data>
+  <data name="gbxTasks.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 15pt</value>
+  </data>
+  <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>79, 28</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Bundler</value>
+  </data>
+  <data name="gbxBundlerNav.Location" type="System.Drawing.Point, System.Drawing">
+    <value>225, 43</value>
+  </data>
+  <data name="gbxBundlerNav.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1210, 762</value>
+  </data>
+  <data name="gbxBundlerNav.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>1440, 810</value>

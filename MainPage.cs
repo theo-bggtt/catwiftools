@@ -21,6 +21,7 @@ namespace catwiftools
         {
             InitializeComponent();
             DraggingHelper.EnableDragging(this);
+            this.Paint += Form_Paint;
         }
 
         private void CatWifTools_Load(object sender, EventArgs e)
@@ -29,6 +30,44 @@ namespace catwiftools
             ShowOneGroupBox(null);
             tmrClock.Enabled = true;
         }
+
+
+        public void btnTasks_Click(object sender, EventArgs e)
+        {
+            HandleButtonClick(btnTasks, gbxTasks, btnBundler, btnProxies, btnWallets, btnSettings);
+        }
+
+        private void btnBundler_Click(object sender, EventArgs e)
+        {
+            HandleButtonClick(btnBundler, gbxBundlerNav, btnProxies, btnWallets, btnTasks, btnSettings);
+        }
+
+        private void btnWallets_Click(object sender, EventArgs e)
+        {
+            HandleButtonClick(btnWallets, gbxWalletNav, btnProxies, btnSettings, btnTasks, btnBundler);
+        }
+
+        private void btnProxies_Click(object sender, EventArgs e)
+        {
+            HandleButtonClick(btnProxies, gbxProxies, btnSettings, btnWallets, btnTasks, btnBundler);
+        }
+
+        private void btnSettings_Click(object sender, EventArgs e)
+        {
+            HandleButtonClick(btnSettings, gbxSettingsNav, btnProxies, btnWallets, btnTasks, btnBundler);
+        }
+
+        public static void HideAllExcept(IEnumerable<System.Windows.Forms.GroupBox> groupBoxes, System.Windows.Forms.GroupBox groupBoxToShow)
+        {
+            foreach (var groupBox in groupBoxes)
+            {
+                if (groupBox != null)
+                {
+                    groupBox.Visible = groupBox == groupBoxToShow;
+                }
+            }
+        }
+
         private void ShowOneGroupBox(System.Windows.Forms.GroupBox groupBoxToShow)
         {
             var groupBoxes = new List<System.Windows.Forms.GroupBox>
@@ -54,31 +93,7 @@ namespace catwiftools
             ShowOneGroupBox(groupBoxToShow);
         }
 
-        public void btnTasks_Click(object sender, EventArgs e)
-        {
-            HandleButtonClick(btnTasks, gbxTasks, btnBundler, btnProxies, btnWallets, btnSettings);
-        }
 
-        private void btnBundler_Click(object sender, EventArgs e)
-        {
-            HandleButtonClick(btnBundler, gbxBundlerNav, btnProxies, btnWallets, btnTasks, btnSettings);
-        }
-
-        private void btnWallets_Click(object sender, EventArgs e)
-        {
-            HandleButtonClick(btnWallets, gbxWalletNav, btnProxies, btnSettings, btnTasks, btnBundler);
-        }
-
-
-        private void btnProxies_Click(object sender, EventArgs e)
-        {
-            HandleButtonClick(btnProxies, gbxProxies, btnSettings, btnWallets, btnTasks, btnBundler);
-        }
-
-        private void btnSettings_Click(object sender, EventArgs e)
-        {
-            HandleButtonClick(btnSettings, gbxSettingsNav, btnProxies, btnWallets, btnTasks, btnBundler);
-        }
 
         //Draw the separator of header and buttons
         protected override void OnPaint(PaintEventArgs e)
@@ -87,20 +102,8 @@ namespace catwiftools
 
             using (Pen pen = new Pen(Color.Gray, 2)) // Color.Gray and thickness 2
             {
-                e.Graphics.DrawLine(pen, 10, 84, 190, 84); // (X1, Y1, X2, Y2)
-                e.Graphics.DrawLine(pen, 215, 43, 215, 795);
-                e.Graphics.DrawLine(pen, 435, 43, 435, 785);
-            }
-        }
-
-        public static void HideAllExcept(IEnumerable<System.Windows.Forms.GroupBox> groupBoxes, System.Windows.Forms.GroupBox groupBoxToShow)
-        {
-            foreach (var groupBox in groupBoxes)
-            {
-                if (groupBox != null)
-                {
-                    groupBox.Visible = groupBox == groupBoxToShow;
-                }
+                e.Graphics.DrawLine(pen, 15, 91, 200, 91); // (X1, Y1, X2, Y2)
+                e.Graphics.DrawLine(pen, 215, 20, 215, 790);
             }
         }
 
@@ -117,6 +120,28 @@ namespace catwiftools
         private void button1_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void Form_Paint(object sender, PaintEventArgs e)
+        {
+            // Check if the GroupBox is visible
+            if (gbxWalletNav.Visible || gbxSettingsNav.Visible)
+            {
+                using (Pen pen = new Pen(Color.Gray, 2)) // CColor.Gray and thickness 2
+                {
+                    e.Graphics.DrawLine(pen, 435, 50, 435, 790);
+                }
+            }
+        }
+
+        private void gbxWalletNav_VisibleChanged(object sender, EventArgs e)
+        {
+            this.Invalidate(); // Triggers a repaint of the form
+        }
+
+        private void gbxSettingsNav_VisibleChanged(object sender, EventArgs e)
+        {
+            this.Invalidate(); // Triggers a repaint of the form
         }
     }
 }
