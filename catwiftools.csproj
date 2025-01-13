@@ -34,9 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="proxies\" />
     <Folder Include="settings\" />
-    <Folder Include="tasks\" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PendingCommit>
-  <CommitComment>List of group boxes to hide changed to accept groupboxes + usercontrols.</CommitComment>
+  <CommitComment>Added User controls for Tasks, bundler and proxies.
+Bundler user control started</CommitComment>
   <PinnedBranches />
   <PublishPrompt Enabled="True" />
   <ActiveAccountPrompt Enabled="True" />

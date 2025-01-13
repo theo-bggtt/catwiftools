@@ -44,8 +44,7 @@
             btnWalletsBundler = new Button();
             btnWalletsBumpIt = new Button();
             label1 = new Label();
-            gbxProxies = new BorderlessGroupBox();
-            lblProxies = new Label();
+            bundlerMainPage1 = new bundler.bundlerMainPage();
             gbxSettingsNav = new BorderlessGroupBox();
             btnSettingsBumpIt = new Button();
             btnSettingsGeneral = new Button();
@@ -59,20 +58,14 @@
             lblClock = new Label();
             btnCloseApp = new Button();
             btnMinimise = new Button();
-            gbxTasks = new BorderlessGroupBox();
-            label2 = new Label();
-            gbxBundlerNav = new BorderlessGroupBox();
-            label3 = new Label();
-            bundlerMainPage1 = new bundler.bundlerMainPage();
+            tasksMainPage1 = new tasks.tasksMainPage();
+            proxiesMainPage1 = new proxies.proxiesMainPage();
             ((System.ComponentModel.ISupportInitialize)pbxLogo).BeginInit();
             gbxMainNavBar.SuspendLayout();
             gbxWalletNav.SuspendLayout();
-            gbxProxies.SuspendLayout();
             gbxSettingsNav.SuspendLayout();
             gbxBackground.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            gbxTasks.SuspendLayout();
-            gbxBundlerNav.SuspendLayout();
             SuspendLayout();
             // 
             // btnSettings
@@ -187,7 +180,6 @@
             btnWalletsVolume.Name = "btnWalletsVolume";
             btnWalletsVolume.UseMnemonic = false;
             btnWalletsVolume.UseVisualStyleBackColor = false;
-            btnWalletsVolume.Click += btnWalletsVolume_Click;
             // 
             // btnWalletsBundler
             // 
@@ -216,19 +208,11 @@
             label1.ForeColor = Color.FromArgb(153, 153, 153);
             label1.Name = "label1";
             // 
-            // gbxProxies
+            // bundlerMainPage1
             // 
-            resources.ApplyResources(gbxProxies, "gbxProxies");
-            gbxProxies.BackColor = Color.FromArgb(25, 25, 25);
-            gbxProxies.Controls.Add(lblProxies);
-            gbxProxies.Name = "gbxProxies";
-            gbxProxies.TabStop = false;
-            // 
-            // lblProxies
-            // 
-            resources.ApplyResources(lblProxies, "lblProxies");
-            lblProxies.ForeColor = Color.FromArgb(153, 153, 153);
-            lblProxies.Name = "lblProxies";
+            resources.ApplyResources(bundlerMainPage1, "bundlerMainPage1");
+            bundlerMainPage1.BackColor = Color.Transparent;
+            bundlerMainPage1.Name = "bundlerMainPage1";
             // 
             // gbxSettingsNav
             // 
@@ -336,39 +320,19 @@
             btnMinimise.BackColor = Color.DimGray;
             btnMinimise.Name = "btnMinimise";
             btnMinimise.UseVisualStyleBackColor = false;
-            btnMinimise.Click += button1_Click;
+            btnMinimise.Click += btnMinimise_Click;
             // 
-            // gbxTasks
+            // tasksMainPage1
             // 
-            resources.ApplyResources(gbxTasks, "gbxTasks");
-            gbxTasks.Controls.Add(label2);
-            gbxTasks.Name = "gbxTasks";
-            gbxTasks.TabStop = false;
+            resources.ApplyResources(tasksMainPage1, "tasksMainPage1");
+            tasksMainPage1.BackColor = Color.Transparent;
+            tasksMainPage1.Name = "tasksMainPage1";
             // 
-            // label2
+            // proxiesMainPage1
             // 
-            resources.ApplyResources(label2, "label2");
-            label2.ForeColor = Color.FromArgb(153, 153, 153);
-            label2.Name = "label2";
-            // 
-            // gbxBundlerNav
-            // 
-            resources.ApplyResources(gbxBundlerNav, "gbxBundlerNav");
-            gbxBundlerNav.Controls.Add(label3);
-            gbxBundlerNav.Name = "gbxBundlerNav";
-            gbxBundlerNav.TabStop = false;
-            // 
-            // label3
-            // 
-            resources.ApplyResources(label3, "label3");
-            label3.ForeColor = Color.FromArgb(153, 153, 153);
-            label3.Name = "label3";
-            // 
-            // bundlerMainPage1
-            // 
-            resources.ApplyResources(bundlerMainPage1, "bundlerMainPage1");
-            bundlerMainPage1.BackColor = Color.White;
-            bundlerMainPage1.Name = "bundlerMainPage1";
+            resources.ApplyResources(proxiesMainPage1, "proxiesMainPage1");
+            proxiesMainPage1.BackColor = Color.Transparent;
+            proxiesMainPage1.Name = "proxiesMainPage1";
             // 
             // CatWifTools
             // 
@@ -376,20 +340,19 @@
             AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.FromArgb(25, 25, 25);
             ControlBox = false;
-            Controls.Add(bundlerMainPage1);
             Controls.Add(pbxLogo);
             Controls.Add(btnMinimise);
-            Controls.Add(gbxBackground);
             Controls.Add(lblTitle);
             Controls.Add(btnCloseApp);
             Controls.Add(lblClock);
             Controls.Add(gbxMainNavBar);
             Controls.Add(lblAuthor);
             Controls.Add(gbxWalletNav);
-            Controls.Add(gbxBundlerNav);
-            Controls.Add(gbxTasks);
-            Controls.Add(gbxProxies);
             Controls.Add(gbxSettingsNav);
+            Controls.Add(bundlerMainPage1);
+            Controls.Add(tasksMainPage1);
+            Controls.Add(proxiesMainPage1);
+            Controls.Add(gbxBackground);
             FormBorderStyle = FormBorderStyle.None;
             MaximizeBox = false;
             MinimizeBox = false;
@@ -401,17 +364,11 @@
             gbxMainNavBar.ResumeLayout(false);
             gbxWalletNav.ResumeLayout(false);
             gbxWalletNav.PerformLayout();
-            gbxProxies.ResumeLayout(false);
-            gbxProxies.PerformLayout();
             gbxSettingsNav.ResumeLayout(false);
             gbxSettingsNav.PerformLayout();
             gbxBackground.ResumeLayout(false);
             gbxBackground.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            gbxTasks.ResumeLayout(false);
-            gbxTasks.PerformLayout();
-            gbxBundlerNav.ResumeLayout(false);
-            gbxBundlerNav.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -431,14 +388,12 @@
         public Button btnWalletsBundler;
         public Button btnWalletsBumpIt;
         private Label label1;
-        private BorderlessGroupBox gbxProxies;
         private BorderlessGroupBox gbxSettingsNav;
         public Button btnSettingsBumpIt;
         public Button btnSettingsGeneral;
         public Button btnSettingsVolume;
         public Button btnSettingsBundler;
         private Label lblSettings;
-        private Label lblProxies;
         private BorderlessGroupBox gbxBackground;
         private PictureBox pictureBox1;
         private Label lblBackground;
@@ -446,10 +401,8 @@
         private Label lblClock;
         private Button btnCloseApp;
         private Button btnMinimise;
-        private BorderlessGroupBox gbxTasks;
-        private Label label2;
-        private BorderlessGroupBox gbxBundlerNav;
-        private Label label3;
         private bundler.bundlerMainPage bundlerMainPage1;
+        private tasks.tasksMainPage tasksMainPage1;
+        private proxies.proxiesMainPage proxiesMainPage1;
     }
 }

@@ -1,17 +1,4 @@
-﻿using catwiftools.wallet;
-using System.Drawing.Imaging;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
-
-namespace catwiftools
+﻿namespace catwiftools
 {
     public partial class CatWifTools : Form
     {
@@ -31,10 +18,10 @@ namespace catwiftools
             tmrClock.Enabled = true;
         }
 
-
+        // Main buttons
         public void btnTasks_Click(object sender, EventArgs e)
         {
-            HandleButtonClick(btnTasks, gbxTasks, btnBundler, btnProxies, btnWallets, btnSettings);
+            HandleButtonClick(btnTasks, tasksMainPage1, btnBundler, btnProxies, btnWallets, btnSettings);
         }
 
         private void btnBundler_Click(object sender, EventArgs e)
@@ -49,7 +36,7 @@ namespace catwiftools
 
         private void btnProxies_Click(object sender, EventArgs e)
         {
-            HandleButtonClick(btnProxies, gbxProxies, btnSettings, btnWallets, btnTasks, btnBundler);
+            HandleButtonClick(btnProxies, proxiesMainPage1, btnSettings, btnWallets, btnTasks, btnBundler);
         }
 
         private void btnSettings_Click(object sender, EventArgs e)
@@ -57,6 +44,7 @@ namespace catwiftools
             HandleButtonClick(btnSettings, gbxSettingsNav, btnProxies, btnWallets, btnTasks, btnBundler);
         }
 
+        // Main button events
         private void HandleButtonClick(Button selectedButton, Control controlToShow, params Button[] otherButtons)
         {
             functions.SelectButton(selectedButton);
@@ -74,11 +62,10 @@ namespace catwiftools
             var controls = new List<Control>
     {
         gbxWalletNav,     // Replace with actual GroupBoxes
-        gbxProxies,
         gbxSettingsNav,
-        gbxBundlerNav,
-        gbxTasks,
         bundlerMainPage1,
+        tasksMainPage1,
+        proxiesMainPage1,
     };
 
             HideAllExcept(controls, controlToShow);
@@ -98,14 +85,14 @@ namespace catwiftools
 
 
 
-        //Draw the separator of header and buttons
+        // Draw the separators
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
 
             using (Pen pen = new Pen(Color.Gray, 2)) // Color.Gray and thickness 2
             {
-                e.Graphics.DrawLine(pen, 15, 91, 200, 91); // (X1, Y1, X2, Y2)
+                e.Graphics.DrawLine(pen, 15, 91, 200, 91);
                 e.Graphics.DrawLine(pen, 215, 20, 215, 790);
             }
         }
@@ -120,35 +107,40 @@ namespace catwiftools
             this.Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnMinimise_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
         }
 
+
+        // Draw the separator for wallet and settings
         private void Form_Paint(object sender, PaintEventArgs e)
         {
             // Check if the GroupBox is visible
             if (gbxWalletNav.Visible || gbxSettingsNav.Visible)
             {
-                using (Pen pen = new Pen(Color.Gray, 2)) // CColor.Gray and thickness 2
+                using (Pen pen = new Pen(Color.Gray, 2)) // Color.Gray and thickness 2
                 {
                     e.Graphics.DrawLine(pen, 435, 50, 435, 790);
+                }
+            }
+            if (bundlerMainPage1.Visible)
+            {
+                using (Pen pen = new Pen(Color.Gray, 2)) // Color.Gray and thickness 2
+                {
+                    e.Graphics.DrawLine(pen, 225, 91, 1000, 91);
                 }
             }
         }
 
         private void gbxWalletNav_VisibleChanged(object sender, EventArgs e)
         {
-            this.Invalidate(); // Triggers a repaint of the form
+            this.Invalidate();
         }
 
         private void gbxSettingsNav_VisibleChanged(object sender, EventArgs e)
         {
-            this.Invalidate(); // Triggers a repaint of the form
-        }
-
-        private void btnWalletsVolume_Click(object sender, EventArgs e)
-        {
+            this.Invalidate();
         }
     }
 }
