@@ -4,17 +4,11 @@
     <Compile Update="BorderlessGroupBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="bundler\bundlerMainPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="MainPage.cs">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="bundler\TokenLauncher.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="wallet\WalletCreator.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="wallet\WalletManager.cs">
-      <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>

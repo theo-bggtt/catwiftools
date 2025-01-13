@@ -27,7 +27,7 @@ namespace catwiftools
         private void CatWifTools_Load(object sender, EventArgs e)
         {
             // Set the default view
-            ShowOneGroupBox(null);
+            ShowOneControl(null);
             tmrClock.Enabled = true;
         }
 
@@ -39,7 +39,7 @@ namespace catwiftools
 
         private void btnBundler_Click(object sender, EventArgs e)
         {
-            HandleButtonClick(btnBundler, gbxBundlerNav, btnProxies, btnWallets, btnTasks, btnSettings);
+            HandleButtonClick(btnBundler, bundlerMainPage1, btnProxies, btnWallets, btnTasks, btnSettings);
         }
 
         private void btnWallets_Click(object sender, EventArgs e)
@@ -57,32 +57,7 @@ namespace catwiftools
             HandleButtonClick(btnSettings, gbxSettingsNav, btnProxies, btnWallets, btnTasks, btnBundler);
         }
 
-        public static void HideAllExcept(IEnumerable<System.Windows.Forms.GroupBox> groupBoxes, System.Windows.Forms.GroupBox groupBoxToShow)
-        {
-            foreach (var groupBox in groupBoxes)
-            {
-                if (groupBox != null)
-                {
-                    groupBox.Visible = groupBox == groupBoxToShow;
-                }
-            }
-        }
-
-        private void ShowOneGroupBox(System.Windows.Forms.GroupBox groupBoxToShow)
-        {
-            var groupBoxes = new List<System.Windows.Forms.GroupBox>
-            {
-                gbxWalletNav, // Add other GroupBoxes here
-                gbxProxies,
-                gbxSettingsNav,
-                gbxBundlerNav,
-                gbxTasks,
-            };
-
-            HideAllExcept(groupBoxes, groupBoxToShow);
-        }
-
-        private void HandleButtonClick(Button selectedButton, System.Windows.Forms.GroupBox groupBoxToShow, params Button[] otherButtons)
+        private void HandleButtonClick(Button selectedButton, Control controlToShow, params Button[] otherButtons)
         {
             functions.SelectButton(selectedButton);
             foreach (var button in otherButtons)
@@ -90,8 +65,36 @@ namespace catwiftools
                 functions.DeselectButton(button);
             }
 
-            ShowOneGroupBox(groupBoxToShow);
+            ShowOneControl(controlToShow);
         }
+
+        private void ShowOneControl(Control controlToShow)
+        {
+            // Combine GroupBoxes and UserControls into a single list
+            var controls = new List<Control>
+    {
+        gbxWalletNav,     // Replace with actual GroupBoxes
+        gbxProxies,
+        gbxSettingsNav,
+        gbxBundlerNav,
+        gbxTasks,
+        bundlerMainPage1,
+    };
+
+            HideAllExcept(controls, controlToShow);
+        }
+
+        public static void HideAllExcept(IEnumerable<Control> controls, Control controlToShow)
+        {
+            foreach (var control in controls)
+            {
+                if (control != null)
+                {
+                    control.Visible = control == controlToShow;
+                }
+            }
+        }
+
 
 
 
@@ -142,6 +145,10 @@ namespace catwiftools
         private void gbxSettingsNav_VisibleChanged(object sender, EventArgs e)
         {
             this.Invalidate(); // Triggers a repaint of the form
+        }
+
+        private void btnWalletsVolume_Click(object sender, EventArgs e)
+        {
         }
     }
 }

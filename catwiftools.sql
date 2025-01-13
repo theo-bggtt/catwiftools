@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `wallets` (
   `idWallet` int(11) NOT NULL,
-  `walletName` varchar(50) NOT NULL,
+  `walletAddress` varchar(50) NOT NULL,
   `walletphrase` varchar(300) NOT NULL,
   `walletType` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

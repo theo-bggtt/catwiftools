@@ -117,205 +117,257 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="&gt;&gt;lblAuthor.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;btnSettingsBumpIt.Parent" xml:space="preserve">
+    <value>gbxSettingsNav</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="walletManager1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1047, 551</value>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
   </data>
-  <data name="&gt;&gt;btnTokenLauncher.Name" xml:space="preserve">
-    <value>btnTokenLauncher</value>
-  </data>
-  <data name="lblTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>71, 22</value>
-  </data>
-  <data name="&gt;&gt;walletManager1.Name" xml:space="preserve">
-    <value>walletManager1</value>
-  </data>
-  <data name="&gt;&gt;btnSettingsBundler.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pictureBox1.Name" xml:space="preserve">
-    <value>pictureBox1</value>
-  </data>
-  <data name="&gt;&gt;mainNavBar1.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;gbxBackground.Name" xml:space="preserve">
-    <value>gbxBackground</value>
-  </data>
-  <data name="&gt;&gt;btnWalletCreator.Name" xml:space="preserve">
-    <value>btnWalletCreator</value>
-  </data>
-  <data name="&gt;&gt;btnMinimise.Name" xml:space="preserve">
-    <value>btnMinimise</value>
-  </data>
-  <data name="&gt;&gt;lblClock.Name" xml:space="preserve">
-    <value>lblClock</value>
-  </data>
-  <data name="&gt;&gt;bundlerNav1.Name" xml:space="preserve">
-    <value>bundlerNav1</value>
-  </data>
-  <data name="&gt;&gt;gbxTasks.Name" xml:space="preserve">
-    <value>gbxTasks</value>
-  </data>
-  <data name="lblTasks.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 48</value>
-  </data>
-  <data name="&gt;&gt;btnSettingsBumpIt.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>gbxTasks</value>
-  </data>
-  <data name="&gt;&gt;btnCloseApp.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="gbxTasksNav.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="&gt;&gt;label3.Name" xml:space="preserve">
-    <value>label3</value>
-  </data>
-  <data name="&gt;&gt;lblClock.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="walletManager1.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;lblProxies.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="btnWallets.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="pbxLogo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 22</value>
-  </data>
-  <data name="&gt;&gt;mainNavBar1.Type" xml:space="preserve">
-    <value>catwiftools.mainNavBar, catwiftools, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;lblProxies.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnMinimise.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnWalletManager.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="gbxSettingsNav.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
-  <data name="&gt;&gt;gbxMainNavBar.Name" xml:space="preserve">
+  <data name="&gt;&gt;btnTasks.Parent" xml:space="preserve">
     <value>gbxMainNavBar</value>
   </data>
-  <data name="&gt;&gt;button2.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="&gt;&gt;btnWalletsVolume.Name" xml:space="preserve">
+    <value>btnWalletsVolume</value>
   </data>
-  <data name="lblClock.Location" type="System.Drawing.Point, System.Drawing">
-    <value>272, 13</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="walletManager1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 42</value>
   </data>
-  <data name="&gt;&gt;button2.Parent" xml:space="preserve">
-    <value>gbxWalletNav</value>
-  </data>
-  <data name="&gt;&gt;walletManager1.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="walletCreator1.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="button1.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;button1.Name" xml:space="preserve">
-    <value>button1</value>
-  </data>
-  <data name="&gt;&gt;btnSettingsGeneral.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnBundler.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnSettingsVolume.Type" xml:space="preserve">
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnTokenLauncher.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;gbxSettingsNav.Type" xml:space="preserve">
-    <value>catwiftools.BorderlessGroupBox, catwiftools, Culture=neutral, PublicKeyToken=null</value>
+  <data name="&gt;&gt;pbxLogo.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="lblBackground.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="&gt;&gt;tokenLauncher1.Type" xml:space="preserve">
+    <value>catwiftools.TokenLauncher, catwiftools, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="gbxProxies.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
+  <data name="&gt;&gt;btnWallets.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
-  <data name="&gt;&gt;btnSettingsBundler.Name" xml:space="preserve">
-    <value>btnSettingsBundler</value>
+  <data name="&gt;&gt;lblTitle.Name" xml:space="preserve">
+    <value>lblTitle</value>
   </data>
   <data name="&gt;&gt;label3.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="btnWalletsBundler.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 174</value>
+  <data name="&gt;&gt;btnWalletsBundler.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;btnTasks.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;btnSettingsBumpIt.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="gbxBackground.Location" type="System.Drawing.Point, System.Drawing">
+    <value>225, 5</value>
+  </data>
+  <data name="&gt;&gt;btnSettingsBundler.Name" xml:space="preserve">
+    <value>btnSettingsBundler</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btnWalletManager.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;lblAuthor.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;btnSettingsGeneral.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="btnWallets.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 246</value>
+  </data>
+  <data name="btnWalletsVolume.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 109</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 48</value>
+  </data>
+  <data name="btnWalletCreator.Text" xml:space="preserve">
+    <value>Wallet Creator</value>
+  </data>
+  <data name="btnTokenLauncher.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;btnWalletCreator.Name" xml:space="preserve">
+    <value>btnWalletCreator</value>
+  </data>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnWalletCreator.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;gbxBackground.Name" xml:space="preserve">
+    <value>gbxBackground</value>
+  </data>
+  <data name="&gt;&gt;gbxTasks.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="btnProxies.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
   </data>
-  <data name="&gt;&gt;gbxWalletNav.Parent" xml:space="preserve">
+  <data name="tokenLauncher1.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="btnWallets.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;btnMinimise.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="lblProxies.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 48</value>
+  </data>
+  <data name="&gt;&gt;btnSettingsGeneral.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnSettingsGeneral.Name" xml:space="preserve">
+    <value>btnSettingsGeneral</value>
+  </data>
+  <data name="btnSettingsGeneral.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 109</value>
+  </data>
+  <data name="&gt;&gt;lblTitle.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblSettings.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="walletNav1.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+  <data name="&gt;&gt;button3.Parent" xml:space="preserve">
+    <value>gbxWalletNav</value>
+  </data>
+  <data name="&gt;&gt;lblClock.Name" xml:space="preserve">
+    <value>lblClock</value>
+  </data>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;lblTasks.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="walletCreator1.Size" type="System.Drawing.Size, System.Drawing">
     <value>1051, 553</value>
   </data>
-  <data name="&gt;&gt;gbxSettingsNav.Parent" xml:space="preserve">
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;btnCloseApp.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;gbxBundlerNav.Parent" xml:space="preserve">
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;btnWalletsVolume.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="bundlerNav1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>225, 5</value>
+  </data>
+  <data name="&gt;&gt;btnTasks.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnBundler.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="btnWalletsBumpIt.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>CatWifTools</value>
+  </data>
+  <data name="&gt;&gt;gbxSettingsNav.Name" xml:space="preserve">
+    <value>gbxSettingsNav</value>
+  </data>
+  <data name="&gt;&gt;gbxMainNavBar.Name" xml:space="preserve">
+    <value>gbxMainNavBar</value>
+  </data>
+  <data name="&gt;&gt;walletManager1.Type" xml:space="preserve">
+    <value>catwiftools.WalletManager, catwiftools, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;walletManager1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="bundlerNav1.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;gbxTasks.ZOrder" xml:space="preserve">
+  <data name="lblSettings.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
-  </data>
-  <data name="btnBundler.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
   </data>
   <data name="&gt;&gt;bundlerNav1.Type" xml:space="preserve">
     <value>catwiftools.bundler.bundlerNav, catwiftools, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="&gt;&gt;btnWalletsBumpIt.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblSettings.Name" xml:space="preserve">
+    <value>lblSettings</value>
+  </data>
+  <data name="&gt;&gt;btnBundler.Parent" xml:space="preserve">
+    <value>gbxMainNavBar</value>
+  </data>
+  <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>379, 252</value>
+  </data>
+  <data name="&gt;&gt;button3.Name" xml:space="preserve">
+    <value>button3</value>
+  </data>
+  <data name="&gt;&gt;btnProxies.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblSettings.Parent" xml:space="preserve">
-    <value>gbxSettingsNav</value>
+  <data name="&gt;&gt;pbxLogo.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="&gt;&gt;pbxLogo.Parent" xml:space="preserve">
+  <data name="&gt;&gt;gbxBundlerNav.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;gbxWalletNav.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;mainNavBar1.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;gbxTasksNav.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
-  <data name="btnSettings.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 376</value>
+  <data name="&gt;&gt;gbxMainNavBar.Type" xml:space="preserve">
+    <value>catwiftools.BorderlessGroupBox, catwiftools, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="tokenLauncher1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>106, 193</value>
+  <data name="&gt;&gt;gbxTasks.Name" xml:space="preserve">
+    <value>gbxTasks</value>
   </data>
-  <data name="label2.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+  <data name="lblClock.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
   </data>
-  <data name="&gt;&gt;lblClock.ZOrder" xml:space="preserve">
-    <value>5</value>
+  <data name="btnWalletManager.Text" xml:space="preserve">
+    <value>Wallet Manager</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="btnWalletCreator.Location" type="System.Drawing.Point, System.Drawing">
+    <value>85, 13</value>
+  </data>
+  <data name="&gt;&gt;bundlerMainPage1.Type" xml:space="preserve">
+    <value>catwiftools.bundler.bundlerMainPage, catwiftools, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;lblTitle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button2.Parent" xml:space="preserve">
+    <value>gbxWalletNav</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;btnSettings.Parent" xml:space="preserve">
+    <value>gbxMainNavBar</value>
+  </data>
+  <data name="&gt;&gt;btnWalletsBumpIt.Name" xml:space="preserve">
+    <value>btnWalletsBumpIt</value>
   </data>
   <data name="&gt;&gt;gbxProxies.Type" xml:space="preserve">
     <value>catwiftools.BorderlessGroupBox, catwiftools, Culture=neutral, PublicKeyToken=null</value>
@@ -323,732 +375,50 @@
   <data name="btnWalletsBumpIt.Location" type="System.Drawing.Point, System.Drawing">
     <value>10, 239</value>
   </data>
-  <data name="&gt;&gt;btnWalletCreator.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;gbxProxiesNav.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnWalletManager.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;gbxBackground.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;lblProxies.Name" xml:space="preserve">
-    <value>lblProxies</value>
-  </data>
-  <data name="btnSettingsBumpIt.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 48</value>
-  </data>
-  <data name="&gt;&gt;btnProxies.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;button3.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="lblAuthor.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;btnSettings.Name" xml:space="preserve">
-    <value>btnSettings</value>
-  </data>
-  <data name="&gt;&gt;gbxSettingsNav.Name" xml:space="preserve">
-    <value>gbxSettingsNav</value>
-  </data>
-  <data name="&gt;&gt;tokenLauncher1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnTasks.Parent" xml:space="preserve">
-    <value>gbxMainNavBar</value>
-  </data>
-  <data name="lblSettings.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 48</value>
-  </data>
-  <data name="lblTasks.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="walletCreator1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 40</value>
-  </data>
-  <data name="gbxTasks.Location" type="System.Drawing.Point, System.Drawing">
-    <value>225, 5</value>
-  </data>
-  <data name="&gt;&gt;btnWalletsBundler.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;gbxProxies.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 109</value>
-  </data>
-  <data name="btnProxies.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 311</value>
-  </data>
-  <data name="&gt;&gt;tokenLauncher1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;lblBundler.Parent" xml:space="preserve">
-    <value>gbxBundlerNav</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnTasks.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 116</value>
-  </data>
-  <data name="&gt;&gt;btnWallets.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;btnBundler.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;lblTitle.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
-    <value>GrowAndShrink</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1066, 600</value>
-  </data>
-  <data name="&gt;&gt;btnCloseApp.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="button2.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;walletManager1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="walletManager1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 42</value>
-  </data>
-  <data name="gbxTasks.TabIndex" type="System.Int32, mscorlib">
+  <data name="gbxTasksNav.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
-  </data>
-  <data name="&gt;&gt;btnTasks.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;btnBundler.Parent" xml:space="preserve">
-    <value>gbxMainNavBar</value>
-  </data>
-  <data name="gbxWalletNav.Location" type="System.Drawing.Point, System.Drawing">
-    <value>225, 5</value>
-  </data>
-  <data name="btnWalletsVolume.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 109</value>
-  </data>
-  <data name="pbxLogo.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;lblSettings.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="gbxMainNavBar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 5</value>
-  </data>
-  <data name="&gt;&gt;walletCreator1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;pbxLogo.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="btnWalletCreator.Location" type="System.Drawing.Point, System.Drawing">
-    <value>85, 13</value>
-  </data>
-  <data name="btnWalletsBumpIt.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="btnTokenLauncher.Text" xml:space="preserve">
-    <value>Token launcher</value>
-  </data>
-  <data name="btnWalletsVolume.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;walletNav1.Name" xml:space="preserve">
-    <value>walletNav1</value>
-  </data>
-  <data name="lblSettings.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;gbxWalletNav.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;btnSettingsBundler.Parent" xml:space="preserve">
-    <value>gbxSettingsNav</value>
-  </data>
-  <data name="btnSettingsBumpIt.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 304</value>
-  </data>
-  <data name="btnWalletsBundler.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;gbxTasksNav.Type" xml:space="preserve">
-    <value>catwiftools.BorderlessGroupBox, catwiftools, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;btnWalletsVolume.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="gbxProxies.Location" type="System.Drawing.Point, System.Drawing">
-    <value>225, 5</value>
-  </data>
-  <data name="gbxBundlerNav.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="btnWalletCreator.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 23</value>
-  </data>
-  <data name="gbxTasksNav.Location" type="System.Drawing.Point, System.Drawing">
-    <value>225, 5</value>
-  </data>
-  <data name="mainNavBar1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 23</value>
-  </data>
-  <data name="&gt;&gt;btnTokenLauncher.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnWallets.Parent" xml:space="preserve">
-    <value>gbxMainNavBar</value>
-  </data>
-  <data name="btnCloseApp.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="&gt;&gt;btnWallets.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;walletCreator1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;gbxTasksNav.Name" xml:space="preserve">
-    <value>gbxTasksNav</value>
-  </data>
-  <data name="btnSettingsVolume.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 174</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="btnCloseApp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>836, 5</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>gbxWalletNav</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>CatWifTools</value>
-  </data>
-  <data name="&gt;&gt;pbxLogo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;gbxWalletNav.Type" xml:space="preserve">
-    <value>catwiftools.BorderlessGroupBox, catwiftools, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;gbxBackground.Type" xml:space="preserve">
-    <value>catwiftools.BorderlessGroupBox, catwiftools, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;btnBundler.Name" xml:space="preserve">
-    <value>btnBundler</value>
-  </data>
-  <data name="&gt;&gt;btnWalletsVolume.Name" xml:space="preserve">
-    <value>btnWalletsVolume</value>
-  </data>
-  <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;lblAuthor.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="gbxWalletNav.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="lblClock.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
-  </data>
-  <data name="gbxProxiesNav.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
-  </data>
-  <data name="&gt;&gt;gbxTasksNav.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;gbxTasks.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;gbxMainNavBar.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;lblBackground.Parent" xml:space="preserve">
-    <value>gbxBackground</value>
-  </data>
-  <data name="tokenLauncher1.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;btnTasks.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnSettingsGeneral.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;walletNav1.Type" xml:space="preserve">
-    <value>catwiftools.wallet.walletNav, catwiftools, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;btnMinimise.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;gbxBackground.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnSettingsBumpIt.Name" xml:space="preserve">
-    <value>btnSettingsBumpIt</value>
-  </data>
-  <data name="&gt;&gt;button2.Name" xml:space="preserve">
-    <value>button2</value>
-  </data>
-  <data name="&gt;&gt;lblBackground.Name" xml:space="preserve">
-    <value>lblBackground</value>
-  </data>
-  <data name="btnTokenLauncher.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="btnSettingsBundler.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 239</value>
-  </data>
-  <data name="&gt;&gt;btnWalletsBumpIt.Name" xml:space="preserve">
-    <value>btnWalletsBumpIt</value>
-  </data>
-  <data name="walletNav1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>225, 5</value>
-  </data>
-  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 5</value>
-  </data>
-  <data name="&gt;&gt;btnSettingsGeneral.Parent" xml:space="preserve">
-    <value>gbxSettingsNav</value>
-  </data>
-  <data name="&gt;&gt;lblSettings.Name" xml:space="preserve">
-    <value>lblSettings</value>
-  </data>
-  <data name="btnMinimise.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1378, 10</value>
-  </data>
-  <data name="&gt;&gt;btnWalletsVolume.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;gbxProxiesNav.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;walletCreator1.Name" xml:space="preserve">
-    <value>walletCreator1</value>
-  </data>
-  <data name="&gt;&gt;btnCloseApp.Name" xml:space="preserve">
-    <value>btnCloseApp</value>
-  </data>
-  <data name="&gt;&gt;btnWalletCreator.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tmrClock.Name" xml:space="preserve">
-    <value>tmrClock</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>7, 15</value>
-  </data>
-  <data name="lblBundler.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 48</value>
-  </data>
-  <data name="&gt;&gt;pbxLogo.Name" xml:space="preserve">
-    <value>pbxLogo</value>
-  </data>
-  <data name="gbxBundlerNav.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 8</value>
-  </data>
-  <data name="&gt;&gt;btnTasks.Name" xml:space="preserve">
-    <value>btnTasks</value>
-  </data>
-  <data name="&gt;&gt;lblProxies.Parent" xml:space="preserve">
-    <value>gbxProxies</value>
-  </data>
-  <data name="btnWallets.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 246</value>
-  </data>
-  <data name="gbxSettingsNav.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 8</value>
-  </data>
-  <data name="&gt;&gt;button3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;gbxSettingsNav.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="bundlerNav1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>225, 5</value>
-  </data>
-  <data name="&gt;&gt;gbxProxiesNav.Name" xml:space="preserve">
-    <value>gbxProxiesNav</value>
-  </data>
-  <data name="btnSettings.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="&gt;&gt;btnSettingsBumpIt.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 48</value>
-  </data>
-  <data name="&gt;&gt;button2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tokenLauncher1.Type" xml:space="preserve">
-    <value>catwiftools.TokenLauncher, catwiftools, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;btnSettingsGeneral.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>MainPage</value>
-  </data>
-  <data name="&gt;&gt;bundlerNav1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 174</value>
-  </data>
-  <data name="btnTokenLauncher.Location" type="System.Drawing.Point, System.Drawing">
-    <value>821, 13</value>
-  </data>
-  <data name="&gt;&gt;walletNav1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnSettingsGeneral.Name" xml:space="preserve">
-    <value>btnSettingsGeneral</value>
-  </data>
-  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 5</value>
-  </data>
-  <data name="&gt;&gt;btnProxies.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;btnSettingsBundler.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;walletManager1.Type" xml:space="preserve">
-    <value>catwiftools.WalletManager, catwiftools, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnWalletsBundler.Name" xml:space="preserve">
-    <value>btnWalletsBundler</value>
-  </data>
-  <data name="&gt;&gt;btnWalletsBundler.Parent" xml:space="preserve">
-    <value>gbxWalletNav</value>
-  </data>
-  <data name="&gt;&gt;pictureBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="gbxBackground.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
-  </data>
-  <data name="gbxMainNavBar.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="lblProxies.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 48</value>
-  </data>
-  <data name="btnWalletCreator.Text" xml:space="preserve">
-    <value>Wallet Creator</value>
-  </data>
-  <data name="lblProxies.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;lblTasks.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="lblTitle.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;btnProxies.Name" xml:space="preserve">
-    <value>btnProxies</value>
-  </data>
-  <data name="btnSettingsGeneral.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 109</value>
-  </data>
-  <data name="btnTokenLauncher.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 23</value>
-  </data>
-  <data name="&gt;&gt;btnWalletsVolume.Parent" xml:space="preserve">
-    <value>gbxWalletNav</value>
-  </data>
-  <data name="&gt;&gt;btnSettingsVolume.Parent" xml:space="preserve">
-    <value>gbxSettingsNav</value>
-  </data>
-  <data name="btnWalletCreator.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;gbxTasks.Type" xml:space="preserve">
-    <value>catwiftools.BorderlessGroupBox, catwiftools, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="btnWalletManager.Text" xml:space="preserve">
-    <value>Wallet Manager</value>
-  </data>
-  <data name="&gt;&gt;btnTokenLauncher.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="btnWalletManager.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;bundlerNav1.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;btnSettings.Parent" xml:space="preserve">
-    <value>gbxMainNavBar</value>
-  </data>
-  <data name="&gt;&gt;gbxMainNavBar.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;btnWalletsBumpIt.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;btnWalletsBumpIt.Parent" xml:space="preserve">
-    <value>gbxWalletNav</value>
-  </data>
-  <data name="&gt;&gt;lblTitle.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;gbxMainNavBar.Type" xml:space="preserve">
-    <value>catwiftools.BorderlessGroupBox, catwiftools, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;btnWalletManager.Name" xml:space="preserve">
-    <value>btnWalletManager</value>
-  </data>
-  <data name="&gt;&gt;btnSettingsVolume.Name" xml:space="preserve">
-    <value>btnSettingsVolume</value>
-  </data>
-  <data name="&gt;&gt;pictureBox1.Parent" xml:space="preserve">
-    <value>gbxBackground</value>
-  </data>
-  <data name="gbxProxiesNav.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 8</value>
-  </data>
-  <data name="&gt;&gt;button3.Name" xml:space="preserve">
-    <value>button3</value>
-  </data>
-  <data name="&gt;&gt;lblTitle.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;gbxProxiesNav.Type" xml:space="preserve">
-    <value>catwiftools.BorderlessGroupBox, catwiftools, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;lblAuthor.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;btnSettingsBumpIt.Parent" xml:space="preserve">
-    <value>gbxSettingsNav</value>
-  </data>
-  <data name="&gt;&gt;lblBundler.Name" xml:space="preserve">
-    <value>lblBundler</value>
-  </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;lblAuthor.Name" xml:space="preserve">
-    <value>lblAuthor</value>
-  </data>
-  <data name="&gt;&gt;lblTitle.Name" xml:space="preserve">
-    <value>lblTitle</value>
-  </data>
-  <data name="btnSettingsVolume.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="button3.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="gbxBackground.Location" type="System.Drawing.Point, System.Drawing">
-    <value>225, 5</value>
-  </data>
-  <data name="&gt;&gt;btnProxies.Parent" xml:space="preserve">
-    <value>gbxMainNavBar</value>
   </data>
   <data name="btnSettingsBundler.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
   </data>
-  <data name="&gt;&gt;lblBundler.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnCloseApp.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="btnTasks.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="lblAuthor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>71, 60</value>
-  </data>
-  <data name="&gt;&gt;btnWalletCreator.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnMinimise.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="button3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 239</value>
-  </data>
-  <data name="&gt;&gt;gbxWalletNav.Name" xml:space="preserve">
-    <value>gbxWalletNav</value>
-  </data>
-  <data name="&gt;&gt;button1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tmrClock.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Timer, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lblBundler.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;lblBundler.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;lblTasks.Name" xml:space="preserve">
-    <value>lblTasks</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;gbxBundlerNav.Type" xml:space="preserve">
-    <value>catwiftools.BorderlessGroupBox, catwiftools, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;lblTasks.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnMinimise.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
-  </data>
-  <data name="&gt;&gt;lblBackground.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
-  </data>
-  <data name="btnCloseApp.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnWalletsBundler.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnTokenLauncher.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnWallets.Name" xml:space="preserve">
-    <value>btnWallets</value>
-  </data>
-  <data name="&gt;&gt;walletNav1.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>379, 252</value>
-  </data>
-  <data name="btnWalletManager.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 23</value>
-  </data>
-  <data name="&gt;&gt;gbxProxies.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;gbxTasksNav.Name" xml:space="preserve">
+    <value>gbxTasksNav</value>
   </data>
   <data name="&gt;&gt;gbxBundlerNav.Name" xml:space="preserve">
     <value>gbxBundlerNav</value>
   </data>
-  <data name="tokenLauncher1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>853, 197</value>
-  </data>
-  <data name="&gt;&gt;btnSettings.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;gbxProxies.Name" xml:space="preserve">
-    <value>gbxProxies</value>
-  </data>
-  <data name="&gt;&gt;tokenLauncher1.Name" xml:space="preserve">
-    <value>tokenLauncher1</value>
-  </data>
-  <data name="mainNavBar1.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;lblTasks.Parent" xml:space="preserve">
-    <value>gbxTasks</value>
-  </data>
-  <data name="btnBundler.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 181</value>
-  </data>
-  <data name="lblBackground.Location" type="System.Drawing.Point, System.Drawing">
-    <value>496, 239</value>
-  </data>
-  <data name="pictureBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;mainNavBar1.Name" xml:space="preserve">
-    <value>mainNavBar1</value>
-  </data>
-  <data name="&gt;&gt;btnSettings.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;gbxTasksNav.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>gbxBundlerNav</value>
-  </data>
-  <data name="&gt;&gt;walletCreator1.Type" xml:space="preserve">
-    <value>catwiftools.WalletCreator, catwiftools, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;lblClock.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;gbxBundlerNav.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;button3.Parent" xml:space="preserve">
-    <value>gbxWalletNav</value>
-  </data>
-  <data name="&gt;&gt;btnSettingsVolume.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="&gt;&gt;lblBackground.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="label3.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;button1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;gbxMainNavBar.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;btnBundler.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnWalletsVolume.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnMinimise.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="&gt;&gt;button2.Name" xml:space="preserve">
+    <value>button2</value>
+  </data>
+  <data name="&gt;&gt;btnSettingsBundler.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gbxProxies.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;gbxWalletNav.Name" xml:space="preserve">
+    <value>gbxWalletNav</value>
+  </data>
+  <data name="&gt;&gt;gbxBackground.Type" xml:space="preserve">
+    <value>catwiftools.BorderlessGroupBox, catwiftools, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="walletCreator1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 40</value>
+  </data>
+  <data name="walletManager1.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
   </data>
   <data name="btnWalletManager.Location" type="System.Drawing.Point, System.Drawing">
     <value>487, 13</value>
@@ -1056,13 +426,661 @@
   <data name="&gt;&gt;btnWalletManager.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, System.Private.CoreLib, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
-    <value>en-US</value>
+  <data name="&gt;&gt;lblClock.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="btnWalletManager.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 23</value>
+  </data>
+  <data name="walletCreator1.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="button1.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;button1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;gbxProxiesNav.Type" xml:space="preserve">
+    <value>catwiftools.BorderlessGroupBox, catwiftools, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="tokenLauncher1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>106, 193</value>
+  </data>
+  <data name="button2.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="bundlerMainPage1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>225, 43</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pictureBox1.Parent" xml:space="preserve">
+    <value>gbxBackground</value>
+  </data>
+  <data name="&gt;&gt;walletCreator1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="btnMinimise.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1378, 10</value>
+  </data>
+  <data name="&gt;&gt;button1.Name" xml:space="preserve">
+    <value>button1</value>
+  </data>
+  <data name="gbxProxies.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="&gt;&gt;pictureBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mainNavBar1.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;lblClock.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;lblSettings.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 174</value>
+  </data>
+  <data name="&gt;&gt;btnWallets.Name" xml:space="preserve">
+    <value>btnWallets</value>
+  </data>
+  <data name="&gt;&gt;btnWallets.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblBackground.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="gbxProxies.Location" type="System.Drawing.Point, System.Drawing">
+    <value>225, 5</value>
+  </data>
+  <data name="bundlerNav1.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;gbxBundlerNav.Type" xml:space="preserve">
+    <value>catwiftools.BorderlessGroupBox, catwiftools, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="btnWalletsBundler.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="gbxTasks.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="&gt;&gt;button2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;lblTasks.Parent" xml:space="preserve">
+    <value>gbxTasks</value>
+  </data>
+  <data name="&gt;&gt;btnWalletManager.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;btnProxies.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;btnSettingsVolume.Name" xml:space="preserve">
+    <value>btnSettingsVolume</value>
+  </data>
+  <data name="&gt;&gt;btnCloseApp.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="gbxWalletNav.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;btnSettings.Name" xml:space="preserve">
+    <value>btnSettings</value>
+  </data>
+  <data name="&gt;&gt;btnCloseApp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnProxies.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 311</value>
+  </data>
+  <data name="&gt;&gt;btnProxies.Name" xml:space="preserve">
+    <value>btnProxies</value>
+  </data>
+  <data name="&gt;&gt;button1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="gbxMainNavBar.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 5</value>
+  </data>
+  <data name="lblBundler.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 48</value>
+  </data>
+  <data name="&gt;&gt;tokenLauncher1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblAuthor.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mainNavBar1.Type" xml:space="preserve">
+    <value>catwiftools.mainNavBar, catwiftools, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>7, 15</value>
+  </data>
+  <data name="&gt;&gt;gbxTasksNav.Type" xml:space="preserve">
+    <value>catwiftools.BorderlessGroupBox, catwiftools, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;gbxWalletNav.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;lblAuthor.Name" xml:space="preserve">
+    <value>lblAuthor</value>
+  </data>
+  <data name="&gt;&gt;lblBundler.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="gbxTasks.Location" type="System.Drawing.Point, System.Drawing">
+    <value>225, 5</value>
+  </data>
+  <data name="&gt;&gt;btnWalletCreator.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gbxTasks.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="btnWalletCreator.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 23</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;pictureBox1.Name" xml:space="preserve">
+    <value>pictureBox1</value>
+  </data>
+  <data name="&gt;&gt;gbxTasksNav.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblClock.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnWallets.Parent" xml:space="preserve">
+    <value>gbxMainNavBar</value>
+  </data>
+  <data name="btnCloseApp.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="&gt;&gt;btnSettingsVolume.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gbxBackground.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="btnWalletsBundler.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 174</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 5</value>
+  </data>
+  <data name="btnBundler.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;lblProxies.Name" xml:space="preserve">
+    <value>lblProxies</value>
+  </data>
+  <data name="&gt;&gt;btnSettingsVolume.Parent" xml:space="preserve">
+    <value>gbxSettingsNav</value>
+  </data>
+  <data name="btnTokenLauncher.Text" xml:space="preserve">
+    <value>Token launcher</value>
+  </data>
+  <data name="gbxWalletNav.Location" type="System.Drawing.Point, System.Drawing">
+    <value>225, 5</value>
+  </data>
+  <data name="lblAuthor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>71, 60</value>
+  </data>
+  <data name="&gt;&gt;lblBundler.Name" xml:space="preserve">
+    <value>lblBundler</value>
+  </data>
+  <data name="&gt;&gt;walletNav1.Name" xml:space="preserve">
+    <value>walletNav1</value>
+  </data>
+  <data name="&gt;&gt;btnBundler.Name" xml:space="preserve">
+    <value>btnBundler</value>
+  </data>
+  <data name="&gt;&gt;mainNavBar1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="lblTasks.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 48</value>
+  </data>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>gbxBundlerNav</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnWalletsBumpIt.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bundlerNav1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mainNavBar1.Name" xml:space="preserve">
+    <value>mainNavBar1</value>
+  </data>
+  <data name="&gt;&gt;gbxProxies.Name" xml:space="preserve">
+    <value>gbxProxies</value>
+  </data>
+  <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;walletNav1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="btnTokenLauncher.Location" type="System.Drawing.Point, System.Drawing">
+    <value>821, 13</value>
+  </data>
+  <data name="&gt;&gt;btnSettingsBundler.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;btnWalletManager.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnTokenLauncher.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;gbxProxiesNav.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="pictureBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="gbxBackground.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="gbxBundlerNav.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 8</value>
+  </data>
+  <data name="&gt;&gt;walletCreator1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;gbxSettingsNav.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;lblProxies.Parent" xml:space="preserve">
+    <value>gbxProxies</value>
+  </data>
+  <data name="&gt;&gt;lblBundler.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;btnWalletsBundler.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pbxLogo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gbxSettingsNav.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mainNavBar1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lblTasks.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;tokenLauncher1.Name" xml:space="preserve">
+    <value>tokenLauncher1</value>
+  </data>
+  <data name="&gt;&gt;lblTasks.Name" xml:space="preserve">
+    <value>lblTasks</value>
+  </data>
+  <data name="lblTitle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>71, 22</value>
+  </data>
+  <data name="&gt;&gt;bundlerNav1.Name" xml:space="preserve">
+    <value>bundlerNav1</value>
+  </data>
+  <data name="walletNav1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>225, 5</value>
+  </data>
+  <data name="lblProxies.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;lblProxies.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnSettings.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="lblClock.Location" type="System.Drawing.Point, System.Drawing">
+    <value>272, 13</value>
+  </data>
+  <data name="btnSettingsBumpIt.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="button3.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="lblAuthor.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;btnSettingsVolume.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;btnMinimise.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="bundlerMainPage1.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="&gt;&gt;btnWalletCreator.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="gbxSettingsNav.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 8</value>
+  </data>
+  <data name="&gt;&gt;gbxBackground.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="btnSettings.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 376</value>
+  </data>
+  <data name="&gt;&gt;bundlerMainPage1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblBackground.Parent" xml:space="preserve">
+    <value>gbxBackground</value>
+  </data>
+  <data name="&gt;&gt;btnProxies.Parent" xml:space="preserve">
+    <value>gbxMainNavBar</value>
+  </data>
+  <data name="&gt;&gt;walletNav1.Type" xml:space="preserve">
+    <value>catwiftools.wallet.walletNav, catwiftools, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;walletCreator1.Type" xml:space="preserve">
+    <value>catwiftools.WalletCreator, catwiftools, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="lblBundler.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;gbxTasks.Type" xml:space="preserve">
+    <value>catwiftools.BorderlessGroupBox, catwiftools, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;btnWalletsBumpIt.Parent" xml:space="preserve">
+    <value>gbxWalletNav</value>
+  </data>
+  <data name="&gt;&gt;pbxLogo.Name" xml:space="preserve">
+    <value>pbxLogo</value>
+  </data>
+  <data name="&gt;&gt;gbxProxiesNav.Name" xml:space="preserve">
+    <value>gbxProxiesNav</value>
+  </data>
+  <data name="&gt;&gt;gbxWalletNav.Type" xml:space="preserve">
+    <value>catwiftools.BorderlessGroupBox, catwiftools, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="btnSettingsGeneral.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="&gt;&gt;lblTitle.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;gbxMainNavBar.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>1066, 600</value>
+  </data>
+  <data name="&gt;&gt;tokenLauncher1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;gbxSettingsNav.Type" xml:space="preserve">
+    <value>catwiftools.BorderlessGroupBox, catwiftools, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;walletManager1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tokenLauncher1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>853, 197</value>
+  </data>
+  <data name="&gt;&gt;walletManager1.Name" xml:space="preserve">
+    <value>walletManager1</value>
+  </data>
+  <data name="btnBundler.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 181</value>
+  </data>
+  <data name="&gt;&gt;btnSettingsBumpIt.Name" xml:space="preserve">
+    <value>btnSettingsBumpIt</value>
+  </data>
+  <data name="&gt;&gt;lblBackground.Name" xml:space="preserve">
+    <value>lblBackground</value>
+  </data>
+  <data name="pbxLogo.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;btnTasks.Name" xml:space="preserve">
+    <value>btnTasks</value>
+  </data>
+  <data name="lblTitle.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;lblBundler.Parent" xml:space="preserve">
+    <value>gbxBundlerNav</value>
+  </data>
+  <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="gbxProxiesNav.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 8</value>
+  </data>
+  <data name="&gt;&gt;btnTokenLauncher.Name" xml:space="preserve">
+    <value>btnTokenLauncher</value>
+  </data>
+  <data name="btnCloseApp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>836, 5</value>
+  </data>
+  <data name="btnTasks.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>MainPage</value>
+  </data>
+  <data name="pbxLogo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 22</value>
+  </data>
+  <data name="btnSettingsBundler.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 239</value>
+  </data>
+  <data name="btnCloseApp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="&gt;&gt;btnTokenLauncher.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;lblAuthor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblSettings.Parent" xml:space="preserve">
+    <value>gbxSettingsNav</value>
+  </data>
+  <data name="btnSettingsVolume.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="btnSettings.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="gbxProxiesNav.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="&gt;&gt;tmrClock.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnSettingsBumpIt.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="button3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 239</value>
+  </data>
+  <data name="&gt;&gt;walletCreator1.Name" xml:space="preserve">
+    <value>walletCreator1</value>
+  </data>
+  <data name="btnTasks.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 116</value>
+  </data>
+  <data name="&gt;&gt;btnWalletsVolume.Parent" xml:space="preserve">
+    <value>gbxWalletNav</value>
+  </data>
+  <data name="btnWalletsVolume.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="walletManager1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1047, 551</value>
+  </data>
+  <data name="&gt;&gt;bundlerMainPage1.Name" xml:space="preserve">
+    <value>bundlerMainPage1</value>
+  </data>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>gbxTasks</value>
+  </data>
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 48</value>
+  </data>
+  <data name="&gt;&gt;btnSettingsGeneral.Parent" xml:space="preserve">
+    <value>gbxSettingsNav</value>
+  </data>
+  <data name="mainNavBar1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 23</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bundlerMainPage1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="lblSettings.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 48</value>
+  </data>
+  <data name="&gt;&gt;gbxProxies.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnSettings.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gbxBundlerNav.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnMinimise.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>gbxWalletNav</value>
+  </data>
+  <data name="&gt;&gt;tmrClock.Name" xml:space="preserve">
+    <value>tmrClock</value>
+  </data>
+  <data name="gbxMainNavBar.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;btnSettingsBundler.Parent" xml:space="preserve">
+    <value>gbxSettingsNav</value>
+  </data>
+  <data name="lblBackground.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="gbxTasksNav.Location" type="System.Drawing.Point, System.Drawing">
+    <value>225, 5</value>
+  </data>
+  <data name="lblBackground.Location" type="System.Drawing.Point, System.Drawing">
+    <value>496, 239</value>
+  </data>
+  <data name="&gt;&gt;bundlerNav1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;lblTasks.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 109</value>
+  </data>
+  <data name="&gt;&gt;button3.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 5</value>
+  </data>
+  <data name="btnTokenLauncher.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 23</value>
+  </data>
+  <data name="&gt;&gt;btnWalletsBumpIt.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="gbxBundlerNav.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="&gt;&gt;btnMinimise.Name" xml:space="preserve">
+    <value>btnMinimise</value>
+  </data>
+  <data name="&gt;&gt;btnWalletManager.Name" xml:space="preserve">
+    <value>btnWalletManager</value>
+  </data>
+  <data name="gbxSettingsNav.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="btnSettingsVolume.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 174</value>
+  </data>
+  <data name="&gt;&gt;gbxProxiesNav.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;button2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnSettingsBumpIt.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 304</value>
+  </data>
+  <data name="&gt;&gt;btnWalletCreator.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;btnWalletsBundler.Parent" xml:space="preserve">
+    <value>gbxWalletNav</value>
+  </data>
+  <data name="&gt;&gt;btnCloseApp.Name" xml:space="preserve">
+    <value>btnCloseApp</value>
+  </data>
+  <data name="&gt;&gt;btnWalletsBundler.Name" xml:space="preserve">
+    <value>btnWalletsBundler</value>
+  </data>
+  <data name="&gt;&gt;walletNav1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblProxies.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="walletNav1.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <metadata name="tmrClock.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
   </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="tmrClock.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, System.Private.CoreLib, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>en-US</value>
   </metadata>
 </root>

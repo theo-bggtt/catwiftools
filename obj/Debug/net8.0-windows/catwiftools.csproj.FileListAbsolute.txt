@@ -36,8 +36,6 @@ D:\crypto\catwiftools\bin\Debug\net8.0-windows\Solnet.Rpc.dll
 D:\crypto\catwiftools\bin\Debug\net8.0-windows\Solnet.Serum.dll
 D:\crypto\catwiftools\bin\Debug\net8.0-windows\Solnet.Wallet.dll
 D:\crypto\catwiftools\obj\Debug\net8.0-windows\catwifto.9DAE803C.Up2Date
-D:\crypto\catwiftools\obj\Debug\net8.0-windows\catwiftools.WalletCreator.resources
-D:\crypto\catwiftools\obj\Debug\net8.0-windows\catwiftools.WalletManager.resources
 C:\Users\theo.bggtt\Documents\2024-2025\Atelier_Programmation\sem2\catwiftools\bin\Debug\net8.0-windows\catwiftools.exe
 C:\Users\theo.bggtt\Documents\2024-2025\Atelier_Programmation\sem2\catwiftools\bin\Debug\net8.0-windows\catwiftools.deps.json
 C:\Users\theo.bggtt\Documents\2024-2025\Atelier_Programmation\sem2\catwiftools\bin\Debug\net8.0-windows\catwiftools.runtimeconfig.json
@@ -105,9 +103,10 @@ D:\crypto\catwiftools\bin\Debug\net8.0-windows\runtimes\win-x64\native\gssapi64.
 D:\crypto\catwiftools\bin\Debug\net8.0-windows\runtimes\win-x64\native\k5sprt64.dll
 D:\crypto\catwiftools\bin\Debug\net8.0-windows\runtimes\win-x64\native\krb5_64.dll
 D:\crypto\catwiftools\bin\Debug\net8.0-windows\runtimes\win-x64\native\krbcc64.dll
-D:\crypto\catwiftools\obj\Debug\net8.0-windows\catwiftools.TokenLauncher.resources
 D:\crypto\catwiftools\obj\Debug\net8.0-windows\catwiftools.CatWifTools.resources
 D:\crypto\catwiftools\bin\Debug\net8.0-windows\en-US\catwiftools.resources.dll
 D:\crypto\catwiftools\obj\Debug\net8.0-windows\catwiftools.CatWifTools.en-US.resources
 D:\crypto\catwiftools\obj\Debug\net8.0-windows\en-US\catwiftools.resources.dll
 D:\crypto\catwiftools\obj\Debug\net8.0-windows\catwiftools.Properties.Resources.resources
+D:\crypto\catwiftools\bin\Debug\net8.0-windows\catwiftools.dll.config
+D:\crypto\catwiftools\obj\Debug\net8.0-windows\catwiftools.bundler.bundlerMainPage.resources

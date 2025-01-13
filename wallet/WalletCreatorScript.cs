@@ -23,14 +23,14 @@ namespace catwiftools.wallet
                 // Génération du portefeuille
                 var newMnemonic = new Mnemonic(WordList.English, WordCount.Twelve);
                 string walletMnemonic = newMnemonic.ToString();
-                string walletName = WalletFromMnemonic(walletMnemonic);
+                string walletAddress = WalletFromMnemonic(walletMnemonic);
 
                 // Ajout des détails du portefeuille
-                wallets.AppendLine($"Wallet N°{i + 1}: {walletName}");
+                wallets.AppendLine($"Wallet N°{i + 1}: {walletAddress}");
 
                 // Vérification et insertion dans la base de données
                 EnsureWalletTypeExists(walletType);
-                StoreWalletInDatabase(walletName, walletMnemonic, walletType);
+                StoreWalletInDatabase(walletAddress, walletMnemonic, walletType);
             }
 
             return wallets.ToString();
@@ -58,7 +58,7 @@ namespace catwiftools.wallet
             }
         }
 
-        private static void StoreWalletInDatabase(string walletName, string walletMnemonic, int walletType)
+        private static void StoreWalletInDatabase(string walletAddress, string walletMnemonic, int walletType)
         {
             try
             {
@@ -66,10 +66,10 @@ namespace catwiftools.wallet
                 {
                     conn.Open();
                     // Requête d'insertion du portefeuille
-                    string query = "INSERT INTO wallets (walletName, walletphrase, walletType) VALUES (@walletName, @walletMnemonic, @walletType)";
+                    string query = "INSERT INTO wallets (walletAddress, walletphrase, walletType) VALUES (@walletAddress, @walletMnemonic, @walletType)";
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@walletName", walletName);
+                        cmd.Parameters.AddWithValue("@walletAddress", walletAddress);
                         cmd.Parameters.AddWithValue("@walletMnemonic", Encrypt(walletMnemonic)); // Mnémonique chiffré
                         cmd.Parameters.AddWithValue("@walletType", walletType);
                         cmd.ExecuteNonQuery();

@@ -63,6 +63,7 @@
             label2 = new Label();
             gbxBundlerNav = new BorderlessGroupBox();
             label3 = new Label();
+            bundlerMainPage1 = new bundler.bundlerMainPage();
             ((System.ComponentModel.ISupportInitialize)pbxLogo).BeginInit();
             gbxMainNavBar.SuspendLayout();
             gbxWalletNav.SuspendLayout();
@@ -186,6 +187,7 @@
             btnWalletsVolume.Name = "btnWalletsVolume";
             btnWalletsVolume.UseMnemonic = false;
             btnWalletsVolume.UseVisualStyleBackColor = false;
+            btnWalletsVolume.Click += btnWalletsVolume_Click;
             // 
             // btnWalletsBundler
             // 
@@ -362,12 +364,19 @@
             label3.ForeColor = Color.FromArgb(153, 153, 153);
             label3.Name = "label3";
             // 
+            // bundlerMainPage1
+            // 
+            resources.ApplyResources(bundlerMainPage1, "bundlerMainPage1");
+            bundlerMainPage1.BackColor = Color.White;
+            bundlerMainPage1.Name = "bundlerMainPage1";
+            // 
             // CatWifTools
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.FromArgb(25, 25, 25);
             ControlBox = false;
+            Controls.Add(bundlerMainPage1);
             Controls.Add(pbxLogo);
             Controls.Add(btnMinimise);
             Controls.Add(gbxBackground);
@@ -375,12 +384,12 @@
             Controls.Add(btnCloseApp);
             Controls.Add(lblClock);
             Controls.Add(gbxMainNavBar);
-            Controls.Add(gbxSettingsNav);
             Controls.Add(lblAuthor);
             Controls.Add(gbxWalletNav);
             Controls.Add(gbxBundlerNav);
             Controls.Add(gbxTasks);
             Controls.Add(gbxProxies);
+            Controls.Add(gbxSettingsNav);
             FormBorderStyle = FormBorderStyle.None;
             MaximizeBox = false;
             MinimizeBox = false;
@@ -441,5 +450,6 @@
         private Label label2;
         private BorderlessGroupBox gbxBundlerNav;
         private Label label3;
+        private bundler.bundlerMainPage bundlerMainPage1;
     }
 }
