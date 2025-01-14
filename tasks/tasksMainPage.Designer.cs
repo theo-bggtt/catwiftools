@@ -35,7 +35,7 @@
             // 
             lblTasksTitle.AutoSize = true;
             lblTasksTitle.Font = new Font("Segoe UI", 15F);
-            lblTasksTitle.ForeColor = Color.FromArgb(153, 153, 153);
+            lblTasksTitle.ForeColor = Color.White;
             lblTasksTitle.Location = new Point(10, 5);
             lblTasksTitle.Name = "lblTasksTitle";
             lblTasksTitle.Size = new Size(56, 28);

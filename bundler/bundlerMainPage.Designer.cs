@@ -41,7 +41,7 @@
             // 
             lblBundlerTitle.AutoSize = true;
             lblBundlerTitle.Font = new Font("Segoe UI", 15F);
-            lblBundlerTitle.ForeColor = Color.FromArgb(153, 153, 153);
+            lblBundlerTitle.ForeColor = Color.White;
             lblBundlerTitle.Location = new Point(10, 5);
             lblBundlerTitle.Name = "lblBundlerTitle";
             lblBundlerTitle.Size = new Size(79, 28);
@@ -50,12 +50,12 @@
             // 
             // btnTasks
             // 
-            btnTasks.BackColor = Color.FromArgb(153, 153, 153);
+            btnTasks.BackColor = Color.FromArgb(37, 37, 53);
             btnTasks.BackgroundImageLayout = ImageLayout.None;
             btnTasks.FlatAppearance.BorderSize = 0;
             btnTasks.FlatStyle = FlatStyle.Flat;
-            btnTasks.Font = new Font("Segoe UI", 10F);
-            btnTasks.ForeColor = Color.FromArgb(25, 25, 25);
+            btnTasks.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            btnTasks.ForeColor = Color.White;
             btnTasks.ImageAlign = ContentAlignment.MiddleLeft;
             btnTasks.ImeMode = ImeMode.NoControl;
             btnTasks.Location = new Point(10, 63);
@@ -69,12 +69,12 @@
             // 
             // button1
             // 
-            button1.BackColor = Color.FromArgb(153, 153, 153);
+            button1.BackColor = Color.FromArgb(37, 37, 53);
             button1.BackgroundImageLayout = ImageLayout.None;
             button1.FlatAppearance.BorderSize = 0;
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI", 10F);
-            button1.ForeColor = Color.FromArgb(25, 25, 25);
+            button1.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            button1.ForeColor = Color.White;
             button1.ImageAlign = ContentAlignment.MiddleLeft;
             button1.ImeMode = ImeMode.NoControl;
             button1.Location = new Point(141, 63);
@@ -88,12 +88,12 @@
             // 
             // button2
             // 
-            button2.BackColor = Color.FromArgb(153, 153, 153);
+            button2.BackColor = Color.FromArgb(37, 37, 53);
             button2.BackgroundImageLayout = ImageLayout.None;
             button2.FlatAppearance.BorderSize = 0;
             button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Segoe UI", 10F);
-            button2.ForeColor = Color.FromArgb(25, 25, 25);
+            button2.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            button2.ForeColor = Color.White;
             button2.ImageAlign = ContentAlignment.MiddleLeft;
             button2.ImeMode = ImeMode.NoControl;
             button2.Location = new Point(272, 63);
@@ -107,12 +107,12 @@
             // 
             // button3
             // 
-            button3.BackColor = Color.FromArgb(153, 153, 153);
+            button3.BackColor = Color.FromArgb(37, 37, 53);
             button3.BackgroundImageLayout = ImageLayout.None;
             button3.FlatAppearance.BorderSize = 0;
             button3.FlatStyle = FlatStyle.Flat;
-            button3.Font = new Font("Segoe UI", 10F);
-            button3.ForeColor = Color.FromArgb(25, 25, 25);
+            button3.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            button3.ForeColor = Color.White;
             button3.ImageAlign = ContentAlignment.MiddleLeft;
             button3.ImeMode = ImeMode.NoControl;
             button3.Location = new Point(439, 63);
@@ -126,12 +126,12 @@
             // 
             // button5
             // 
-            button5.BackColor = Color.FromArgb(153, 153, 153);
+            button5.BackColor = Color.FromArgb(37, 37, 53);
             button5.BackgroundImageLayout = ImageLayout.None;
             button5.FlatAppearance.BorderSize = 0;
             button5.FlatStyle = FlatStyle.Flat;
-            button5.Font = new Font("Segoe UI", 10F);
-            button5.ForeColor = Color.FromArgb(25, 25, 25);
+            button5.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            button5.ForeColor = Color.White;
             button5.ImageAlign = ContentAlignment.MiddleLeft;
             button5.ImeMode = ImeMode.NoControl;
             button5.Location = new Point(570, 63);
@@ -145,12 +145,12 @@
             // 
             // button6
             // 
-            button6.BackColor = Color.FromArgb(153, 153, 153);
+            button6.BackColor = Color.FromArgb(37, 37, 53);
             button6.BackgroundImageLayout = ImageLayout.None;
             button6.FlatAppearance.BorderSize = 0;
             button6.FlatStyle = FlatStyle.Flat;
-            button6.Font = new Font("Segoe UI", 10F);
-            button6.ForeColor = Color.FromArgb(25, 25, 25);
+            button6.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            button6.ForeColor = Color.White;
             button6.ImageAlign = ContentAlignment.MiddleLeft;
             button6.ImeMode = ImeMode.NoControl;
             button6.Location = new Point(701, 63);

@@ -13,7 +13,13 @@
     <Compile Update="proxies\proxiesMainPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="settings\settingsGeneral.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="tasks\tasksMainPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="wallet\walletVolume.cs">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>

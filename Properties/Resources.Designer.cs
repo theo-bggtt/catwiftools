@@ -83,6 +83,26 @@ namespace catwiftools.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bumpIt {
+            get {
+                object obj = ResourceManager.GetObject("bumpIt", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bumpItSelected {
+            get {
+                object obj = ResourceManager.GetObject("bumpItSelected", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bundler {
             get {
                 object obj = ResourceManager.GetObject("bundler", resourceCulture);
@@ -96,6 +116,26 @@ namespace catwiftools.Properties {
         internal static System.Drawing.Bitmap bundlerSelected {
             get {
                 object obj = ResourceManager.GetObject("bundlerSelected", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap folder {
+            get {
+                object obj = ResourceManager.GetObject("folder", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap folderSelected {
+            get {
+                object obj = ResourceManager.GetObject("folderSelected", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -156,6 +196,26 @@ namespace catwiftools.Properties {
         internal static System.Drawing.Bitmap tasksSelected {
             get {
                 object obj = ResourceManager.GetObject("tasksSelected", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap volume {
+            get {
+                object obj = ResourceManager.GetObject("volume", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap volumeSelected {
+            get {
+                object obj = ResourceManager.GetObject("volumeSelected", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

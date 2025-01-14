@@ -35,7 +35,7 @@
             // 
             lblProxiesTitle.AutoSize = true;
             lblProxiesTitle.Font = new Font("Segoe UI", 15F);
-            lblProxiesTitle.ForeColor = Color.FromArgb(153, 153, 153);
+            lblProxiesTitle.ForeColor = Color.White;
             lblProxiesTitle.Location = new Point(10, 5);
             lblProxiesTitle.Name = "lblProxiesTitle";
             lblProxiesTitle.Size = new Size(74, 28);

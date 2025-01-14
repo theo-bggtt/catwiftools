@@ -112,3 +112,5 @@ D:\crypto\catwiftools\bin\Debug\net8.0-windows\catwiftools.dll.config
 D:\crypto\catwiftools\obj\Debug\net8.0-windows\catwiftools.bundler.bundlerMainPage.resources
 D:\crypto\catwiftools\obj\Debug\net8.0-windows\catwiftools.tasks.tasksMainPage.resources
 D:\crypto\catwiftools\obj\Debug\net8.0-windows\catwiftools.proxies.proxiesMainPage.resources
+D:\crypto\catwiftools\obj\Debug\net8.0-windows\catwiftools.settings.settingsGeneral.resources
+D:\crypto\catwiftools\obj\Debug\net8.0-windows\catwiftools.wallet.walletVolume.resources

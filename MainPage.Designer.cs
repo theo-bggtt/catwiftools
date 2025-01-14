@@ -60,6 +60,7 @@
             btnMinimise = new Button();
             tasksMainPage1 = new tasks.tasksMainPage();
             proxiesMainPage1 = new proxies.proxiesMainPage();
+            walletVolume1 = new wallet.walletVolume();
             ((System.ComponentModel.ISupportInitialize)pbxLogo).BeginInit();
             gbxMainNavBar.SuspendLayout();
             gbxWalletNav.SuspendLayout();
@@ -78,7 +79,7 @@
             btnSettings.Name = "btnSettings";
             btnSettings.UseMnemonic = false;
             btnSettings.UseVisualStyleBackColor = false;
-            btnSettings.Click += btnSettings_Click;
+            btnSettings.Click += Button_Click;
             // 
             // btnBundler
             // 
@@ -90,7 +91,7 @@
             btnBundler.Name = "btnBundler";
             btnBundler.UseMnemonic = false;
             btnBundler.UseVisualStyleBackColor = false;
-            btnBundler.Click += btnBundler_Click;
+            btnBundler.Click += Button_Click;
             // 
             // btnWallets
             // 
@@ -102,7 +103,7 @@
             btnWallets.Name = "btnWallets";
             btnWallets.UseMnemonic = false;
             btnWallets.UseVisualStyleBackColor = false;
-            btnWallets.Click += btnWallets_Click;
+            btnWallets.Click += Button_Click;
             // 
             // btnProxies
             // 
@@ -114,7 +115,7 @@
             btnProxies.Name = "btnProxies";
             btnProxies.UseMnemonic = false;
             btnProxies.UseVisualStyleBackColor = false;
-            btnProxies.Click += btnProxies_Click;
+            btnProxies.Click += Button_Click;
             // 
             // btnTasks
             // 
@@ -126,7 +127,7 @@
             btnTasks.Name = "btnTasks";
             btnTasks.UseMnemonic = false;
             btnTasks.UseVisualStyleBackColor = false;
-            btnTasks.Click += btnTasks_Click;
+            btnTasks.Click += Button_Click;
             // 
             // pbxLogo
             // 
@@ -145,7 +146,7 @@
             // lblTitle
             // 
             resources.ApplyResources(lblTitle, "lblTitle");
-            lblTitle.ForeColor = Color.FromArgb(153, 153, 153);
+            lblTitle.ForeColor = Color.White;
             lblTitle.Name = "lblTitle";
             // 
             // gbxMainNavBar
@@ -177,9 +178,11 @@
             btnWalletsVolume.BackColor = Color.Transparent;
             btnWalletsVolume.FlatAppearance.BorderSize = 0;
             btnWalletsVolume.ForeColor = Color.FromArgb(153, 153, 153);
+            btnWalletsVolume.Image = Properties.Resources.folder;
             btnWalletsVolume.Name = "btnWalletsVolume";
             btnWalletsVolume.UseMnemonic = false;
             btnWalletsVolume.UseVisualStyleBackColor = false;
+            btnWalletsVolume.Click += Button_Click;
             // 
             // btnWalletsBundler
             // 
@@ -187,6 +190,7 @@
             btnWalletsBundler.BackColor = Color.Transparent;
             btnWalletsBundler.FlatAppearance.BorderSize = 0;
             btnWalletsBundler.ForeColor = Color.FromArgb(153, 153, 153);
+            btnWalletsBundler.Image = Properties.Resources.folder;
             btnWalletsBundler.Name = "btnWalletsBundler";
             btnWalletsBundler.UseMnemonic = false;
             btnWalletsBundler.UseVisualStyleBackColor = false;
@@ -197,7 +201,7 @@
             btnWalletsBumpIt.BackColor = Color.Transparent;
             btnWalletsBumpIt.FlatAppearance.BorderSize = 0;
             btnWalletsBumpIt.ForeColor = Color.FromArgb(153, 153, 153);
-            btnWalletsBumpIt.Image = Properties.Resources.tasks;
+            btnWalletsBumpIt.Image = Properties.Resources.folder;
             btnWalletsBumpIt.Name = "btnWalletsBumpIt";
             btnWalletsBumpIt.UseMnemonic = false;
             btnWalletsBumpIt.UseVisualStyleBackColor = false;
@@ -205,7 +209,7 @@
             // label1
             // 
             resources.ApplyResources(label1, "label1");
-            label1.ForeColor = Color.FromArgb(153, 153, 153);
+            label1.ForeColor = Color.White;
             label1.Name = "label1";
             // 
             // bundlerMainPage1
@@ -230,8 +234,9 @@
             // 
             resources.ApplyResources(btnSettingsBumpIt, "btnSettingsBumpIt");
             btnSettingsBumpIt.BackColor = Color.Transparent;
-            btnSettingsBumpIt.FlatAppearance.BorderSize = 0;
+            btnSettingsBumpIt.FlatAppearance.BorderColor = Color.FromArgb(153, 153, 153);
             btnSettingsBumpIt.ForeColor = Color.FromArgb(153, 153, 153);
+            btnSettingsBumpIt.Image = Properties.Resources.bumpIt;
             btnSettingsBumpIt.Name = "btnSettingsBumpIt";
             btnSettingsBumpIt.UseMnemonic = false;
             btnSettingsBumpIt.UseVisualStyleBackColor = false;
@@ -240,8 +245,9 @@
             // 
             resources.ApplyResources(btnSettingsGeneral, "btnSettingsGeneral");
             btnSettingsGeneral.BackColor = Color.Transparent;
-            btnSettingsGeneral.FlatAppearance.BorderSize = 0;
+            btnSettingsGeneral.FlatAppearance.BorderColor = Color.FromArgb(153, 153, 153);
             btnSettingsGeneral.ForeColor = Color.FromArgb(153, 153, 153);
+            btnSettingsGeneral.Image = Properties.Resources.settings;
             btnSettingsGeneral.Name = "btnSettingsGeneral";
             btnSettingsGeneral.UseMnemonic = false;
             btnSettingsGeneral.UseVisualStyleBackColor = false;
@@ -250,8 +256,9 @@
             // 
             resources.ApplyResources(btnSettingsVolume, "btnSettingsVolume");
             btnSettingsVolume.BackColor = Color.Transparent;
-            btnSettingsVolume.FlatAppearance.BorderSize = 0;
+            btnSettingsVolume.FlatAppearance.BorderColor = Color.FromArgb(153, 153, 153);
             btnSettingsVolume.ForeColor = Color.FromArgb(153, 153, 153);
+            btnSettingsVolume.Image = Properties.Resources.volume;
             btnSettingsVolume.Name = "btnSettingsVolume";
             btnSettingsVolume.UseMnemonic = false;
             btnSettingsVolume.UseVisualStyleBackColor = false;
@@ -260,8 +267,9 @@
             // 
             resources.ApplyResources(btnSettingsBundler, "btnSettingsBundler");
             btnSettingsBundler.BackColor = Color.Transparent;
-            btnSettingsBundler.FlatAppearance.BorderSize = 0;
+            btnSettingsBundler.FlatAppearance.BorderColor = Color.FromArgb(153, 153, 153);
             btnSettingsBundler.ForeColor = Color.FromArgb(153, 153, 153);
+            btnSettingsBundler.Image = Properties.Resources.bundler;
             btnSettingsBundler.Name = "btnSettingsBundler";
             btnSettingsBundler.UseMnemonic = false;
             btnSettingsBundler.UseVisualStyleBackColor = false;
@@ -269,7 +277,7 @@
             // lblSettings
             // 
             resources.ApplyResources(lblSettings, "lblSettings");
-            lblSettings.ForeColor = Color.FromArgb(153, 153, 153);
+            lblSettings.ForeColor = Color.White;
             lblSettings.Name = "lblSettings";
             // 
             // gbxBackground
@@ -292,7 +300,7 @@
             // lblBackground
             // 
             resources.ApplyResources(lblBackground, "lblBackground");
-            lblBackground.ForeColor = Color.FromArgb(153, 153, 153);
+            lblBackground.ForeColor = Color.White;
             lblBackground.Name = "lblBackground";
             // 
             // tmrClock
@@ -334,6 +342,12 @@
             proxiesMainPage1.BackColor = Color.Transparent;
             proxiesMainPage1.Name = "proxiesMainPage1";
             // 
+            // walletVolume1
+            // 
+            resources.ApplyResources(walletVolume1, "walletVolume1");
+            walletVolume1.BackColor = Color.Transparent;
+            walletVolume1.Name = "walletVolume1";
+            // 
             // CatWifTools
             // 
             resources.ApplyResources(this, "$this");
@@ -348,11 +362,12 @@
             Controls.Add(gbxMainNavBar);
             Controls.Add(lblAuthor);
             Controls.Add(gbxWalletNav);
-            Controls.Add(gbxSettingsNav);
+            Controls.Add(walletVolume1);
+            Controls.Add(gbxBackground);
             Controls.Add(bundlerMainPage1);
             Controls.Add(tasksMainPage1);
             Controls.Add(proxiesMainPage1);
-            Controls.Add(gbxBackground);
+            Controls.Add(gbxSettingsNav);
             FormBorderStyle = FormBorderStyle.None;
             MaximizeBox = false;
             MinimizeBox = false;
@@ -404,5 +419,6 @@
         private bundler.bundlerMainPage bundlerMainPage1;
         private tasks.tasksMainPage tasksMainPage1;
         private proxies.proxiesMainPage proxiesMainPage1;
+        private wallet.walletVolume walletVolume1;
     }
 }

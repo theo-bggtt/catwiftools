@@ -3,72 +3,121 @@
     public partial class CatWifTools : Form
     {
         Functions functions = new Functions();
+        private Dictionary<Button, Control> buttonControlMap;
 
         public CatWifTools()
         {
             InitializeComponent();
             DraggingHelper.EnableDragging(this);
             this.Paint += Form_Paint;
+            InitializeButtonControlMap();
+
         }
 
         private void CatWifTools_Load(object sender, EventArgs e)
         {
             // Set the default view
-            ShowOneControl(null);
+            ShowControls(null);
             tmrClock.Enabled = true;
+
         }
 
-        // Main buttons
-        public void btnTasks_Click(object sender, EventArgs e)
-        {
-            HandleButtonClick(btnTasks, tasksMainPage1, btnBundler, btnProxies, btnWallets, btnSettings);
-        }
-
-        private void btnBundler_Click(object sender, EventArgs e)
-        {
-            HandleButtonClick(btnBundler, bundlerMainPage1, btnProxies, btnWallets, btnTasks, btnSettings);
-        }
-
-        private void btnWallets_Click(object sender, EventArgs e)
-        {
-            HandleButtonClick(btnWallets, gbxWalletNav, btnProxies, btnSettings, btnTasks, btnBundler);
-        }
-
-        private void btnProxies_Click(object sender, EventArgs e)
-        {
-            HandleButtonClick(btnProxies, proxiesMainPage1, btnSettings, btnWallets, btnTasks, btnBundler);
-        }
-
-        private void btnSettings_Click(object sender, EventArgs e)
-        {
-            HandleButtonClick(btnSettings, gbxSettingsNav, btnProxies, btnWallets, btnTasks, btnBundler);
-        }
 
         // Main button events
-        private void HandleButtonClick(Button selectedButton, Control controlToShow, params Button[] otherButtons)
+        
+
+        private void InitializeButtonControlMap()
         {
-            functions.SelectButton(selectedButton);
-            foreach (var button in otherButtons)
+            buttonControlMap = new Dictionary<Button, Control>
             {
-                functions.DeselectButton(button);
+                { btnTasks, tasksMainPage1 },
+                { btnBundler, bundlerMainPage1 },
+                { btnWallets, gbxWalletNav },
+                { btnProxies, proxiesMainPage1 },
+                { btnSettings, gbxSettingsNav },
+                { btnWalletsVolume, walletVolume1}
+            };
+        }
+        
+        private List<Control> GetControlsForButton(Button button)
+        {
+            if (button == btnTasks)
+            {
+                return new List<Control> { tasksMainPage1 };  
+            }
+            if (button == btnBundler)
+            {
+                return new List<Control> { bundlerMainPage1 };  
+            }
+            if (button == btnWallets)
+            {
+                return new List<Control> { gbxWalletNav };  
+            }
+            if (button == btnWalletsVolume)
+            {
+                return new List<Control> { gbxWalletNav, walletVolume1 }; 
+            }
+            if (button == btnProxies)
+            {
+                return new List<Control> { proxiesMainPage1 };
+            }
+            if (button == btnSettings)
+            {
+                return new List<Control> { gbxSettingsNav };
             }
 
-            ShowOneControl(controlToShow);
+            return new List<Control>();
         }
 
-        private void ShowOneControl(Control controlToShow)
+        private void ShowControls(List<Control> controlsToShow)
         {
-            // Combine GroupBoxes and UserControls into a single list
-            var controls = new List<Control>
-    {
-        gbxWalletNav,     // Replace with actual GroupBoxes
-        gbxSettingsNav,
-        bundlerMainPage1,
-        tasksMainPage1,
-        proxiesMainPage1,
-    };
+            if (controlsToShow == null)
+            {
+                controlsToShow = new List<Control>();
+            }
 
-            HideAllExcept(controls, controlToShow);
+            var allControls = new List<Control>
+            {
+                gbxWalletNav,
+                gbxSettingsNav,
+                bundlerMainPage1,
+                tasksMainPage1,
+                proxiesMainPage1,
+                walletVolume1,
+            };
+
+            foreach (var control in allControls)
+            {
+                control.Visible = controlsToShow.Contains(control);
+            }
+        }
+
+        private void Button_Click(object sender, EventArgs e)
+        {
+            Button clickedButton = sender as Button;
+            if (clickedButton != null && buttonControlMap.ContainsKey(clickedButton))
+            {
+                // List of controls to show when the button is clicked
+                List<Control> controlsToShow = GetControlsForButton(clickedButton);
+
+                // Pass the list of controls to handle showing them
+                HandleButtonClick(clickedButton, controlsToShow);
+            }
+        }
+
+        private void HandleButtonClick(Button selectedButton, List<Control> controlsToShow)
+        {
+            functions.SelectButton(selectedButton);
+
+            foreach (var button in buttonControlMap.Keys)
+            {
+                if (button != selectedButton)
+                {
+                    functions.DeselectButton(button);
+                }
+            }
+
+            ShowControls(controlsToShow);
         }
 
         public static void HideAllExcept(IEnumerable<Control> controls, Control controlToShow)
@@ -81,8 +130,6 @@
                 }
             }
         }
-
-
 
 
         // Draw the separators
@@ -129,6 +176,13 @@
                 using (Pen pen = new Pen(Color.Gray, 2)) // Color.Gray and thickness 2
                 {
                     e.Graphics.DrawLine(pen, 225, 91, 1000, 91);
+                }
+            }
+            if (walletVolume1.Visible)
+            {
+                using (Pen pen = new Pen(Color.Gray, 2)) // Color.Gray and thickness 2
+                {
+                    e.Graphics.DrawLine(pen, 460, 148, 1300, 148);
                 }
             }
         }
