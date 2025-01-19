@@ -36,6 +36,10 @@
             btnProfiles = new Button();
             btnImport = new Button();
             btnExport = new Button();
+            btnGenWallet = new Button();
+            loadWalletsButton = new Button();
+            walletDataGridView = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)walletDataGridView).BeginInit();
             SuspendLayout();
             // 
             // lblVolumeTitle
@@ -164,11 +168,63 @@
             btnExport.UseMnemonic = false;
             btnExport.UseVisualStyleBackColor = false;
             // 
+            // btnGenWallet
+            // 
+            btnGenWallet.BackColor = Color.FromArgb(78, 93, 148);
+            btnGenWallet.BackgroundImageLayout = ImageLayout.None;
+            btnGenWallet.FlatAppearance.BorderSize = 0;
+            btnGenWallet.FlatStyle = FlatStyle.Flat;
+            btnGenWallet.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnGenWallet.ForeColor = Color.White;
+            btnGenWallet.ImageAlign = ContentAlignment.MiddleLeft;
+            btnGenWallet.ImeMode = ImeMode.NoControl;
+            btnGenWallet.Location = new Point(324, 55);
+            btnGenWallet.Name = "btnGenWallet";
+            btnGenWallet.Padding = new Padding(5, 0, 5, 0);
+            btnGenWallet.Size = new Size(120, 30);
+            btnGenWallet.TabIndex = 18;
+            btnGenWallet.Text = "+  Gen Wallets";
+            btnGenWallet.TextAlign = ContentAlignment.MiddleLeft;
+            btnGenWallet.UseMnemonic = false;
+            btnGenWallet.UseVisualStyleBackColor = false;
+            // 
+            // loadWalletsButton
+            // 
+            loadWalletsButton.BackColor = Color.FromArgb(78, 93, 148);
+            loadWalletsButton.BackgroundImageLayout = ImageLayout.None;
+            loadWalletsButton.FlatAppearance.BorderSize = 0;
+            loadWalletsButton.FlatStyle = FlatStyle.Flat;
+            loadWalletsButton.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            loadWalletsButton.ForeColor = Color.White;
+            loadWalletsButton.ImageAlign = ContentAlignment.MiddleLeft;
+            loadWalletsButton.ImeMode = ImeMode.NoControl;
+            loadWalletsButton.Location = new Point(476, 61);
+            loadWalletsButton.Name = "loadWalletsButton";
+            loadWalletsButton.Padding = new Padding(5, 0, 5, 0);
+            loadWalletsButton.Size = new Size(120, 30);
+            loadWalletsButton.TabIndex = 20;
+            loadWalletsButton.Text = "Load wallets";
+            loadWalletsButton.TextAlign = ContentAlignment.MiddleLeft;
+            loadWalletsButton.UseMnemonic = false;
+            loadWalletsButton.UseVisualStyleBackColor = false;
+            loadWalletsButton.Click += loadWalletsButton_Click;
+            // 
+            // walletDataGridView
+            // 
+            walletDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            walletDataGridView.Location = new Point(33, 335);
+            walletDataGridView.Name = "walletDataGridView";
+            walletDataGridView.Size = new Size(924, 289);
+            walletDataGridView.TabIndex = 21;
+            // 
             // walletVolume
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
+            Controls.Add(walletDataGridView);
+            Controls.Add(loadWalletsButton);
+            Controls.Add(btnGenWallet);
             Controls.Add(btnExport);
             Controls.Add(btnImport);
             Controls.Add(btnProfiles);
@@ -179,6 +235,7 @@
             Controls.Add(lblVolumeTitle);
             Name = "walletVolume";
             Size = new Size(990, 762);
+            ((System.ComponentModel.ISupportInitialize)walletDataGridView).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -193,5 +250,8 @@
         public Button btnProfiles;
         public Button btnImport;
         public Button btnExport;
+        public Button btnGenWallet;
+        public Button loadWalletsButton;
+        private DataGridView walletDataGridView;
     }
 }

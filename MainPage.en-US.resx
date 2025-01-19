@@ -280,6 +280,12 @@
   <data name="gbxMainNavBar.Size" type="System.Drawing.Size, System.Drawing">
     <value>200, 800</value>
   </data>
+  <data name="gbxWalletNav.Location" type="System.Drawing.Point, System.Drawing">
+    <value>225, 43</value>
+  </data>
+  <data name="gbxWalletNav.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 762</value>
+  </data>
   <data name="btnWalletsVolume.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
   </data>
@@ -373,14 +379,14 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Wallets</value>
   </data>
-  <data name="gbxWalletNav.Location" type="System.Drawing.Point, System.Drawing">
-    <value>225, 43</value>
-  </data>
-  <data name="gbxWalletNav.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 762</value>
-  </data>
   <data name="bundlerMainPage1.Size" type="System.Drawing.Size, System.Drawing">
     <value>1210, 762</value>
+  </data>
+  <data name="gbxSettingsNav.Location" type="System.Drawing.Point, System.Drawing">
+    <value>225, 43</value>
+  </data>
+  <data name="gbxSettingsNav.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 762</value>
   </data>
   <data name="btnSettingsBumpIt.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
@@ -508,11 +514,11 @@
   <data name="lblSettings.Text" xml:space="preserve">
     <value>Settings</value>
   </data>
-  <data name="gbxSettingsNav.Location" type="System.Drawing.Point, System.Drawing">
-    <value>225, 43</value>
+  <data name="gbxBackground.Location" type="System.Drawing.Point, System.Drawing">
+    <value>700, 350</value>
   </data>
-  <data name="gbxSettingsNav.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 762</value>
+  <data name="gbxBackground.Size" type="System.Drawing.Size, System.Drawing">
+    <value>462, 85</value>
   </data>
   <data name="pictureBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -537,12 +543,6 @@
   </data>
   <data name="lblBackground.Text" xml:space="preserve">
     <value>CatWifTools</value>
-  </data>
-  <data name="gbxBackground.Location" type="System.Drawing.Point, System.Drawing">
-    <value>700, 350</value>
-  </data>
-  <data name="gbxBackground.Size" type="System.Drawing.Size, System.Drawing">
-    <value>462, 85</value>
   </data>
   <data name="lblClock.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>

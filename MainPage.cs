@@ -3,7 +3,8 @@
     public partial class CatWifTools : Form
     {
         Functions functions = new Functions();
-        private Dictionary<Button, Control> buttonControlMap;
+        private Dictionary<Button, Control> buttonControlMap = new Dictionary<Button, Control>();
+        mainNav mainNav = new mainNav();
 
         public CatWifTools()
         {
@@ -11,57 +12,56 @@
             DraggingHelper.EnableDragging(this);
             this.Paint += Form_Paint;
             InitializeButtonControlMap();
-
         }
 
         private void CatWifTools_Load(object sender, EventArgs e)
         {
             // Set the default view
-            ShowControls(null);
+            ShowControls(new List<Control>());
             tmrClock.Enabled = true;
-
         }
 
 
+
         // Main button events
-        
+
 
         private void InitializeButtonControlMap()
         {
             buttonControlMap = new Dictionary<Button, Control>
             {
-                { btnTasks, tasksMainPage1 },
-                { btnBundler, bundlerMainPage1 },
-                { btnWallets, gbxWalletNav },
-                { btnProxies, proxiesMainPage1 },
-                { btnSettings, gbxSettingsNav },
+                { mainNav.btnTasks, tasksMainPage1 },
+                { mainNav.btnBundler, bundlerMainPage1 },
+                { mainNav.btnWallets, gbxWalletNav },
+                { mainNav.btnProxies, proxiesMainPage1 },
+                { mainNav.btnSettings, gbxSettingsNav },
                 { btnWalletsVolume, walletVolume1}
             };
         }
-        
+
         private List<Control> GetControlsForButton(Button button)
         {
-            if (button == btnTasks)
+            if (button == mainNav.btnTasks)
             {
-                return new List<Control> { tasksMainPage1 };  
+                return new List<Control> { tasksMainPage1 };
             }
-            if (button == btnBundler)
+            if (button == mainNav.btnBundler)
             {
-                return new List<Control> { bundlerMainPage1 };  
+                return new List<Control> { bundlerMainPage1 };
             }
-            if (button == btnWallets)
+            if (button == mainNav.btnWallets)
             {
-                return new List<Control> { gbxWalletNav };  
+                return new List<Control> { gbxWalletNav };
             }
             if (button == btnWalletsVolume)
             {
-                return new List<Control> { gbxWalletNav, walletVolume1 }; 
+                return new List<Control> { gbxWalletNav, walletVolume1 };
             }
-            if (button == btnProxies)
+            if (button == mainNav.btnProxies)
             {
                 return new List<Control> { proxiesMainPage1 };
             }
-            if (button == btnSettings)
+            if (button == mainNav.btnSettings)
             {
                 return new List<Control> { gbxSettingsNav };
             }
@@ -84,6 +84,7 @@
                 tasksMainPage1,
                 proxiesMainPage1,
                 walletVolume1,
+                gbxBackground,
             };
 
             foreach (var control in allControls)
@@ -94,8 +95,7 @@
 
         private void Button_Click(object sender, EventArgs e)
         {
-            Button clickedButton = sender as Button;
-            if (clickedButton != null && buttonControlMap.ContainsKey(clickedButton))
+            if (sender is Button clickedButton && buttonControlMap.ContainsKey(clickedButton))
             {
                 // List of controls to show when the button is clicked
                 List<Control> controlsToShow = GetControlsForButton(clickedButton);
@@ -104,6 +104,7 @@
                 HandleButtonClick(clickedButton, controlsToShow);
             }
         }
+
 
         private void HandleButtonClick(Button selectedButton, List<Control> controlsToShow)
         {
@@ -161,7 +162,7 @@
 
 
         // Draw the separator for wallet and settings
-        private void Form_Paint(object sender, PaintEventArgs e)
+        private void Form_Paint(object? sender, PaintEventArgs e)
         {
             // Check if the GroupBox is visible
             if (gbxWalletNav.Visible || gbxSettingsNav.Visible)

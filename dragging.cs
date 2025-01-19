@@ -32,7 +32,7 @@ namespace catwiftools
             }
         }
 
-        private static void Control_MouseDown(object sender, MouseEventArgs e)
+        private static void Control_MouseDown(object? sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -41,12 +41,12 @@ namespace catwiftools
             }
         }
 
-        private static void Control_MouseMove(object sender, MouseEventArgs e)
+        private static void Control_MouseMove(object? sender, MouseEventArgs e)
         {
             if (isDragging)
             {
                 // Get the parent form
-                Form form = (sender as Control)?.FindForm();
+                Form? form = (sender as Control)?.FindForm();
                 if (form != null)
                 {
                     // Calculate the new position of the form
@@ -59,7 +59,7 @@ namespace catwiftools
             }
         }
 
-        private static void Control_MouseUp(object sender, MouseEventArgs e)
+        private static void Control_MouseUp(object? sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
