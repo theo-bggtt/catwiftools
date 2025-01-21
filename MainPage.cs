@@ -4,7 +4,6 @@
     {
         Functions functions = new Functions();
         private Dictionary<Button, Control> buttonControlMap = new Dictionary<Button, Control>();
-        mainNav mainNav = new mainNav();
 
         public CatWifTools()
         {
@@ -30,26 +29,26 @@
         {
             buttonControlMap = new Dictionary<Button, Control>
             {
-                { mainNav.btnTasks, tasksMainPage1 },
-                { mainNav.btnBundler, bundlerMainPage1 },
-                { mainNav.btnWallets, gbxWalletNav },
-                { mainNav.btnProxies, proxiesMainPage1 },
-                { mainNav.btnSettings, gbxSettingsNav },
+                { btnTasks, tasksMainPage1 },
+                { btnBundler, bundlerMainPage1 },
+                { btnWallets, gbxWalletNav },
+                { btnProxies, proxiesMainPage1 },
+                { btnSettings, gbxSettingsNav },
                 { btnWalletsVolume, walletVolume1}
             };
         }
 
         private List<Control> GetControlsForButton(Button button)
         {
-            if (button == mainNav.btnTasks)
+            if (button == btnTasks)
             {
                 return new List<Control> { tasksMainPage1 };
             }
-            if (button == mainNav.btnBundler)
+            if (button == btnBundler)
             {
                 return new List<Control> { bundlerMainPage1 };
             }
-            if (button == mainNav.btnWallets)
+            if (button == btnWallets)
             {
                 return new List<Control> { gbxWalletNav };
             }
@@ -57,11 +56,11 @@
             {
                 return new List<Control> { gbxWalletNav, walletVolume1 };
             }
-            if (button == mainNav.btnProxies)
+            if (button == btnProxies)
             {
                 return new List<Control> { proxiesMainPage1 };
             }
-            if (button == mainNav.btnSettings)
+            if (button == btnSettings)
             {
                 return new List<Control> { gbxSettingsNav };
             }

@@ -117,4 +117,3 @@ D:\crypto\catwiftools\obj\Debug\net8.0-windows\catwiftools.wallet.walletVolume.r
 D:\crypto\catwiftools\bin\Debug\net8.0-windows\en\catwiftools.resources.dll
 D:\crypto\catwiftools\obj\Debug\net8.0-windows\catwiftools.CatWifTools.en.resources
 D:\crypto\catwiftools\obj\Debug\net8.0-windows\en\catwiftools.resources.dll
-D:\crypto\catwiftools\obj\Debug\net8.0-windows\catwiftools.mainNav.resources

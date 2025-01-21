@@ -7,9 +7,6 @@
     <Compile Update="bundler\bundlerMainPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="mainNav.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Update="MainPage.cs">
       <SubType>Form</SubType>
     </Compile>
