@@ -29,12 +29,23 @@
         {
             buttonControlMap = new Dictionary<Button, Control>
             {
+                { btnSettings, gbxSettingsNav },
+                { btnWallets, gbxWalletNav },
                 { btnTasks, tasksMainPage1 },
                 { btnBundler, bundlerMainPage1 },
-                { btnWallets, gbxWalletNav },
                 { btnProxies, proxiesMainPage1 },
-                { btnSettings, gbxSettingsNav },
-                { btnWalletsVolume, walletVolume1}
+
+                
+                { btnWalletsVolume, walletVolume1},
+                { btnWalletsBundler, walletBundler1},
+                { btnWalletsBumpIt, walletBumpIt1},
+
+                
+                { btnSettingsGeneral, settingsGeneral1 },
+                { btnSettingsVolume, settingsVolume1 },
+                { btnSettingsBundler, settingsBundler1 },
+                { btnSettingsBumpIt, settingsBumpIt1 }
+
             };
         }
 
@@ -48,21 +59,47 @@
             {
                 return new List<Control> { bundlerMainPage1 };
             }
-            if (button == btnWallets)
-            {
-                return new List<Control> { gbxWalletNav };
-            }
-            if (button == btnWalletsVolume)
-            {
-                return new List<Control> { gbxWalletNav, walletVolume1 };
-            }
             if (button == btnProxies)
             {
                 return new List<Control> { proxiesMainPage1 };
             }
+            if (button == btnWallets)
+            {
+                return new List<Control> { gbxWalletNav };
+            }
+            // Wallet sub buttons
+            if (button == btnWalletsVolume)
+            {
+                return new List<Control> { gbxWalletNav, walletVolume1 };
+            }
+            if (button == btnWalletsBundler)
+            {
+                return new List<Control> { gbxWalletNav, walletBundler1 };
+            }
+            if (button == btnWalletsBumpIt)
+            {
+                return new List<Control> { gbxWalletNav, walletBumpIt1 };
+            }
+            // Settings sub buttons
             if (button == btnSettings)
             {
                 return new List<Control> { gbxSettingsNav };
+            }
+            if (button == btnSettingsGeneral)
+            {
+                return new List<Control> { gbxSettingsNav, settingsGeneral1 };
+            }
+            if (button == btnSettingsVolume)
+            {
+                return new List<Control> { gbxSettingsNav, settingsVolume1 };
+            }
+            if (button == btnSettingsBundler)
+            {
+                return new List<Control> { gbxSettingsNav, settingsBundler1 };
+            }
+            if (button == btnSettingsBumpIt)
+            {
+                return new List<Control> { gbxSettingsNav, settingsBumpIt1 };
             }
 
             return new List<Control>();
@@ -84,6 +121,12 @@
                 proxiesMainPage1,
                 walletVolume1,
                 gbxBackground,
+                walletBundler1,
+                walletBumpIt1,
+                settingsGeneral1,
+                settingsVolume1,
+                settingsBundler1,
+                settingsBumpIt1,
             };
 
             foreach (var control in allControls)
@@ -107,16 +150,30 @@
 
         private void HandleButtonClick(Button selectedButton, List<Control> controlsToShow)
         {
+            // Select the clicked button
             functions.SelectButton(selectedButton);
 
             foreach (var button in buttonControlMap.Keys)
             {
                 if (button != selectedButton)
                 {
+                    if (button == btnWallets &&
+                        (selectedButton == btnWalletsVolume || selectedButton == btnWalletsBundler || selectedButton == btnWalletsBumpIt))
+                    {
+                        functions.SelectButton(button);
+                        continue;
+                    }
+
+                    if (button == btnSettings &&
+                        (selectedButton == btnSettingsGeneral || selectedButton == btnSettingsVolume || selectedButton == btnSettingsBundler || selectedButton == btnSettingsBumpIt))
+                    {
+                        functions.SelectButton(button);
+                        continue;
+                    }
+
                     functions.DeselectButton(button);
                 }
             }
-
             ShowControls(controlsToShow);
         }
 
@@ -178,7 +235,7 @@
                     e.Graphics.DrawLine(pen, 225, 91, 1000, 91);
                 }
             }
-            if (walletVolume1.Visible)
+            if (walletVolume1.Visible || walletBundler1.Visible || walletBumpIt1.Visible)
             {
                 using (Pen pen = new Pen(Color.Gray, 2)) // Color.Gray and thickness 2
                 {

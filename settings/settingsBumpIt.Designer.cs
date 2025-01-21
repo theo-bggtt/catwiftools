@@ -1,6 +1,6 @@
 ﻿namespace catwiftools.settings
 {
-    partial class settingsGeneral
+    partial class settingsBumpIt
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,27 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lblSettingsGeneral = new Label();
+            lblSettingsBumpIt = new Label();
             SuspendLayout();
             // 
-            // lblSettingsGeneral
+            // lblSettingsBumpIt
             // 
-            lblSettingsGeneral.AutoSize = true;
-            lblSettingsGeneral.Font = new Font("Segoe UI", 15F);
-            lblSettingsGeneral.ForeColor = Color.FromArgb(153, 153, 153);
-            lblSettingsGeneral.Location = new Point(10, 5);
-            lblSettingsGeneral.Name = "lblSettingsGeneral";
-            lblSettingsGeneral.Size = new Size(79, 28);
-            lblSettingsGeneral.TabIndex = 0;
-            lblSettingsGeneral.Text = "General";
+            lblSettingsBumpIt.AutoSize = true;
+            lblSettingsBumpIt.Font = new Font("Segoe UI", 15F);
+            lblSettingsBumpIt.ForeColor = Color.FromArgb(153, 153, 153);
+            lblSettingsBumpIt.Location = new Point(10, 5);
+            lblSettingsBumpIt.Name = "lblSettingsBumpIt";
+            lblSettingsBumpIt.Size = new Size(80, 28);
+            lblSettingsBumpIt.TabIndex = 1;
+            lblSettingsBumpIt.Text = "Bump It";
             // 
-            // settingsGeneral
+            // settingsBumpIt
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
-            Controls.Add(lblSettingsGeneral);
-            Name = "settingsGeneral";
+            Controls.Add(lblSettingsBumpIt);
+            Name = "settingsBumpIt";
             Size = new Size(990, 762);
             ResumeLayout(false);
             PerformLayout();
@@ -56,6 +56,6 @@
 
         #endregion
 
-        private Label lblSettingsGeneral;
+        private Label lblSettingsBumpIt;
     }
 }

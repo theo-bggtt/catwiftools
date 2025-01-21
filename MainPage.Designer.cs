@@ -60,6 +60,12 @@
             btnTasks = new Button();
             btnBundler = new Button();
             btnWallets = new Button();
+            walletBundler1 = new wallet.walletBundler();
+            walletBumpIt1 = new wallet.walletBumpIt();
+            settingsGeneral1 = new settings.settingsGeneral();
+            settingsVolume1 = new settings.settingsVolume();
+            settingsBundler1 = new settings.settingsBundler();
+            settingsBumpIt1 = new settings.settingsBumpIt();
             ((System.ComponentModel.ISupportInitialize)pbxLogo).BeginInit();
             gbxWalletNav.SuspendLayout();
             gbxBackground.SuspendLayout();
@@ -153,6 +159,7 @@
             btnWalletsBundler.Text = "Bundler";
             btnWalletsBundler.UseMnemonic = false;
             btnWalletsBundler.UseVisualStyleBackColor = false;
+            btnWalletsBundler.Click += Button_Click;
             // 
             // btnWalletsBumpIt
             // 
@@ -172,6 +179,7 @@
             btnWalletsBumpIt.Text = "Bump it";
             btnWalletsBumpIt.UseMnemonic = false;
             btnWalletsBumpIt.UseVisualStyleBackColor = false;
+            btnWalletsBumpIt.Click += Button_Click;
             // 
             // label1
             // 
@@ -322,6 +330,7 @@
             btnSettingsBundler.Text = "Bundler";
             btnSettingsBundler.UseMnemonic = false;
             btnSettingsBundler.UseVisualStyleBackColor = false;
+            btnSettingsBundler.Click += Button_Click;
             // 
             // btnSettingsVolume
             // 
@@ -341,6 +350,7 @@
             btnSettingsVolume.Text = "Volume";
             btnSettingsVolume.UseMnemonic = false;
             btnSettingsVolume.UseVisualStyleBackColor = false;
+            btnSettingsVolume.Click += Button_Click;
             // 
             // btnSettingsGeneral
             // 
@@ -360,6 +370,7 @@
             btnSettingsGeneral.Text = "General";
             btnSettingsGeneral.UseMnemonic = false;
             btnSettingsGeneral.UseVisualStyleBackColor = false;
+            btnSettingsGeneral.Click += Button_Click;
             // 
             // btnSettingsBumpIt
             // 
@@ -379,6 +390,7 @@
             btnSettingsBumpIt.Text = "Bump It";
             btnSettingsBumpIt.UseMnemonic = false;
             btnSettingsBumpIt.UseVisualStyleBackColor = false;
+            btnSettingsBumpIt.Click += Button_Click;
             // 
             // gbxSettingsNav
             // 
@@ -512,6 +524,54 @@
             btnWallets.UseVisualStyleBackColor = false;
             btnWallets.Click += Button_Click;
             // 
+            // walletBundler1
+            // 
+            walletBundler1.BackColor = Color.Transparent;
+            walletBundler1.Location = new Point(450, 43);
+            walletBundler1.Name = "walletBundler1";
+            walletBundler1.Size = new Size(990, 762);
+            walletBundler1.TabIndex = 33;
+            // 
+            // walletBumpIt1
+            // 
+            walletBumpIt1.BackColor = Color.Transparent;
+            walletBumpIt1.Location = new Point(450, 43);
+            walletBumpIt1.Name = "walletBumpIt1";
+            walletBumpIt1.Size = new Size(990, 762);
+            walletBumpIt1.TabIndex = 34;
+            // 
+            // settingsGeneral1
+            // 
+            settingsGeneral1.BackColor = Color.Transparent;
+            settingsGeneral1.Location = new Point(450, 43);
+            settingsGeneral1.Name = "settingsGeneral1";
+            settingsGeneral1.Size = new Size(990, 762);
+            settingsGeneral1.TabIndex = 35;
+            // 
+            // settingsVolume1
+            // 
+            settingsVolume1.BackColor = Color.Transparent;
+            settingsVolume1.Location = new Point(450, 43);
+            settingsVolume1.Name = "settingsVolume1";
+            settingsVolume1.Size = new Size(990, 762);
+            settingsVolume1.TabIndex = 36;
+            // 
+            // settingsBundler1
+            // 
+            settingsBundler1.BackColor = Color.Transparent;
+            settingsBundler1.Location = new Point(450, 43);
+            settingsBundler1.Name = "settingsBundler1";
+            settingsBundler1.Size = new Size(990, 762);
+            settingsBundler1.TabIndex = 37;
+            // 
+            // settingsBumpIt1
+            // 
+            settingsBumpIt1.BackColor = Color.Transparent;
+            settingsBumpIt1.Location = new Point(450, 43);
+            settingsBumpIt1.Name = "settingsBumpIt1";
+            settingsBumpIt1.Size = new Size(990, 762);
+            settingsBumpIt1.TabIndex = 38;
+            // 
             // CatWifTools
             // 
             AutoScaleMode = AutoScaleMode.None;
@@ -527,12 +587,18 @@
             Controls.Add(lblClock);
             Controls.Add(lblAuthor);
             Controls.Add(gbxSettingsNav);
-            Controls.Add(walletVolume1);
             Controls.Add(gbxWalletNav);
-            Controls.Add(bundlerMainPage1);
             Controls.Add(tasksMainPage1);
             Controls.Add(proxiesMainPage1);
+            Controls.Add(settingsBumpIt1);
+            Controls.Add(settingsBundler1);
+            Controls.Add(settingsVolume1);
+            Controls.Add(settingsGeneral1);
+            Controls.Add(walletBumpIt1);
+            Controls.Add(walletBundler1);
+            Controls.Add(walletVolume1);
             Controls.Add(gbxBackground);
+            Controls.Add(bundlerMainPage1);
             FormBorderStyle = FormBorderStyle.None;
             MaximizeBox = false;
             MinimizeBox = false;
@@ -587,5 +653,11 @@
         public Button btnTasks;
         public Button btnBundler;
         public Button btnWallets;
+        private wallet.walletBundler walletBundler1;
+        private wallet.walletBumpIt walletBumpIt1;
+        private settings.settingsGeneral settingsGeneral1;
+        private settings.settingsVolume settingsVolume1;
+        private settings.settingsBundler settingsBundler1;
+        private settings.settingsBumpIt settingsBumpIt1;
     }
 }

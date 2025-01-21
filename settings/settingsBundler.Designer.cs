@@ -1,6 +1,6 @@
 ﻿namespace catwiftools.settings
 {
-    partial class settingsGeneral
+    partial class settingsBundler
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,27 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lblSettingsGeneral = new Label();
+            lblSettingsBundler = new Label();
             SuspendLayout();
             // 
-            // lblSettingsGeneral
+            // lblSettingsBundler
             // 
-            lblSettingsGeneral.AutoSize = true;
-            lblSettingsGeneral.Font = new Font("Segoe UI", 15F);
-            lblSettingsGeneral.ForeColor = Color.FromArgb(153, 153, 153);
-            lblSettingsGeneral.Location = new Point(10, 5);
-            lblSettingsGeneral.Name = "lblSettingsGeneral";
-            lblSettingsGeneral.Size = new Size(79, 28);
-            lblSettingsGeneral.TabIndex = 0;
-            lblSettingsGeneral.Text = "General";
+            lblSettingsBundler.AutoSize = true;
+            lblSettingsBundler.Font = new Font("Segoe UI", 15F);
+            lblSettingsBundler.ForeColor = Color.FromArgb(153, 153, 153);
+            lblSettingsBundler.Location = new Point(10, 5);
+            lblSettingsBundler.Name = "lblSettingsBundler";
+            lblSettingsBundler.Size = new Size(79, 28);
+            lblSettingsBundler.TabIndex = 1;
+            lblSettingsBundler.Text = "Bundler";
             // 
-            // settingsGeneral
+            // settingsBundler
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
-            Controls.Add(lblSettingsGeneral);
-            Name = "settingsGeneral";
+            Controls.Add(lblSettingsBundler);
+            Name = "settingsBundler";
             Size = new Size(990, 762);
             ResumeLayout(false);
             PerformLayout();
@@ -56,6 +56,6 @@
 
         #endregion
 
-        private Label lblSettingsGeneral;
+        private Label lblSettingsBundler;
     }
 }

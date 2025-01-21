@@ -13,10 +13,25 @@
     <Compile Update="proxies\proxiesMainPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="settings\settingsBumpIt.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="settings\settingsBundler.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="settings\settingsGeneral.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="settings\settingsVolume.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="tasks\tasksMainPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="wallet\walletBumpIt.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="wallet\walletBundler.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="wallet\walletVolume.cs">

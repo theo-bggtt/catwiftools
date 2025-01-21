@@ -1,6 +1,6 @@
 ﻿namespace catwiftools.settings
 {
-    partial class settingsGeneral
+    partial class settingsVolume
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,27 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lblSettingsGeneral = new Label();
+            lblSettingsVolume = new Label();
             SuspendLayout();
             // 
-            // lblSettingsGeneral
+            // lblSettingsVolume
             // 
-            lblSettingsGeneral.AutoSize = true;
-            lblSettingsGeneral.Font = new Font("Segoe UI", 15F);
-            lblSettingsGeneral.ForeColor = Color.FromArgb(153, 153, 153);
-            lblSettingsGeneral.Location = new Point(10, 5);
-            lblSettingsGeneral.Name = "lblSettingsGeneral";
-            lblSettingsGeneral.Size = new Size(79, 28);
-            lblSettingsGeneral.TabIndex = 0;
-            lblSettingsGeneral.Text = "General";
+            lblSettingsVolume.AutoSize = true;
+            lblSettingsVolume.Font = new Font("Segoe UI", 15F);
+            lblSettingsVolume.ForeColor = Color.FromArgb(153, 153, 153);
+            lblSettingsVolume.Location = new Point(10, 5);
+            lblSettingsVolume.Name = "lblSettingsVolume";
+            lblSettingsVolume.Size = new Size(78, 28);
+            lblSettingsVolume.TabIndex = 1;
+            lblSettingsVolume.Text = "Volume";
             // 
-            // settingsGeneral
+            // settingsVolume
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
-            Controls.Add(lblSettingsGeneral);
-            Name = "settingsGeneral";
+            Controls.Add(lblSettingsVolume);
+            Name = "settingsVolume";
             Size = new Size(990, 762);
             ResumeLayout(false);
             PerformLayout();
@@ -56,6 +56,6 @@
 
         #endregion
 
-        private Label lblSettingsGeneral;
+        private Label lblSettingsVolume;
     }
 }

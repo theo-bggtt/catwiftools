@@ -17,12 +17,9 @@ namespace catwiftools
         // Changes color of text and image to selected
         public void SelectButton(Button button)
         {
-            if (selectedButton != null)
-            {
-                DeselectButton(selectedButton);
-            }
 
-            button.ForeColor = Color.FromArgb(00, 134, 179);
+            // Select the new button
+            button.ForeColor = Color.FromArgb(0, 134, 179);
             string filename = $"{button.Text.ToLower()}Selected";
             string imagePath = $@"D:\crypto\catwiftools\img\icon\{filename}.png";
 
@@ -31,11 +28,10 @@ namespace catwiftools
                 button.Image = Image.FromFile(imagePath);
             }
 
-            button.Invalidate();
-            button.Paint += DrawLeftBorder;
+            button.Paint += DrawLeftBorder; // Add the Paint event handler
             button.Refresh();
 
-            selectedButton = button;
+            selectedButton = button; // Update the selected button reference
         }
 
         // Changes color of text and image to default
@@ -50,8 +46,7 @@ namespace catwiftools
                 button.Image = Image.FromFile(imagePath);
             }
 
-            button.Invalidate();
-            button.Paint -= DrawLeftBorder;
+            button.Paint -= DrawLeftBorder; // Remove the Paint event handler
             button.Refresh();
         }
 
