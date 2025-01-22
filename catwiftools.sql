@@ -2,10 +2,10 @@
 -- version 5.2.1deb3
 -- https://www.phpmyadmin.net/
 --
--- Hôte : localhost:3306
--- Généré le : ven. 10 jan. 2025 à 14:03
--- Version du serveur : 10.11.8-MariaDB-0ubuntu0.24.04.1
--- Version de PHP : 8.3.15
+-- Host: localhost:3306
+-- Generation Time: Jan 22, 2025 at 09:14 PM
+-- Server version: 10.11.8-MariaDB-0ubuntu0.24.04.1
+-- PHP Version: 8.3.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `catwiftools`
+-- Database: `catwiftools`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `wallets`
+-- Table structure for table `wallets`
 --
 
 CREATE TABLE `wallets` (
@@ -37,7 +37,7 @@ CREATE TABLE `wallets` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `wallettypes`
+-- Table structure for table `wallettypes`
 --
 
 CREATE TABLE `wallettypes` (
@@ -46,11 +46,20 @@ CREATE TABLE `wallettypes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Index pour les tables déchargées
+-- Dumping data for table `wallettypes`
+--
+
+INSERT INTO `wallettypes` (`idType`, `typeName`) VALUES
+(2, 'Cold Storage'),
+(1, 'dev'),
+(3, 'Hot Wallet');
+
+--
+-- Indexes for dumped tables
 --
 
 --
--- Index pour la table `wallets`
+-- Indexes for table `wallets`
 --
 ALTER TABLE `wallets`
   ADD PRIMARY KEY (`idWallet`),
@@ -58,34 +67,34 @@ ALTER TABLE `wallets`
   ADD KEY `walletType` (`walletType`);
 
 --
--- Index pour la table `wallettypes`
+-- Indexes for table `wallettypes`
 --
 ALTER TABLE `wallettypes`
   ADD PRIMARY KEY (`idType`),
   ADD UNIQUE KEY `typeName` (`typeName`);
 
 --
--- AUTO_INCREMENT pour les tables déchargées
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT pour la table `wallets`
+-- AUTO_INCREMENT for table `wallets`
 --
 ALTER TABLE `wallets`
-  MODIFY `idWallet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `idWallet` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `wallettypes`
+-- AUTO_INCREMENT for table `wallettypes`
 --
 ALTER TABLE `wallettypes`
-  MODIFY `idType` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `idType` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Contraintes pour les tables déchargées
+-- Constraints for dumped tables
 --
 
 --
--- Contraintes pour la table `wallets`
+-- Constraints for table `wallets`
 --
 ALTER TABLE `wallets`
   ADD CONSTRAINT `fk_walettype` FOREIGN KEY (`walletType`) REFERENCES `wallettypes` (`idType`);
