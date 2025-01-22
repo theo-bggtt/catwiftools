@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using WalletGenerator;
 
 namespace catwiftools.wallet
 {
@@ -15,6 +8,33 @@ namespace catwiftools.wallet
         public walletBundler()
         {
             InitializeComponent();
+        }
+
+
+        private void btnGenWallet_Click(object sender, EventArgs e)
+        {
+            using (var numberInputForm = new walletCreatorForm())
+            {
+                var result = numberInputForm.ShowDialog();
+                if (result == DialogResult.OK && numberInputForm.InputNumber.HasValue)
+                {
+                    MessageBox.Show($"You entered: {numberInputForm.InputNumber.Value}");
+                    WalletCreator.SaveData(numberInputForm.InputNumber.Value, btnGenWallet);
+
+                }
+                else
+                {
+                    MessageBox.Show("Input was canceled.");
+                }
+                
+            }
+            
+
+            
+
+            Console.WriteLine("Data saved successfully!");
+
+
         }
     }
 }

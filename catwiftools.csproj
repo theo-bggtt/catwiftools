@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
@@ -9,7 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MySql.Data" Version="9.1.0" />
+    <PackageReference Include="Microsoft.ClearScript.V8" Version="7.4.5" />
+    <PackageReference Include="MySqlConnector" Version="2.4.0" />
     <PackageReference Include="Solnet.Extensions" Version="6.1.0" />
     <PackageReference Include="Solnet.KeyStore" Version="6.1.0" />
     <PackageReference Include="Solnet.Programs" Version="6.1.0" />

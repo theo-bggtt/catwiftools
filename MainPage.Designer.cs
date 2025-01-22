@@ -49,11 +49,11 @@
             proxiesMainPage1 = new proxies.proxiesMainPage();
             walletVolume1 = new wallet.walletVolume();
             lblSettings = new Label();
-            btnSettingsBundler = new Button();
-            btnSettingsVolume = new Button();
-            btnSettingsGeneral = new Button();
-            btnSettingsBumpIt = new Button();
             gbxSettingsNav = new BorderlessGroupBox();
+            btnSettingsGeneral = new Button();
+            btnSettingsVolume = new Button();
+            btnSettingsBundler = new Button();
+            btnSettingsBumpIt = new Button();
             gbxMainNav = new BorderlessGroupBox();
             btnSettings = new Button();
             btnProxies = new Button();
@@ -129,6 +129,7 @@
             btnWalletsVolume.FlatStyle = FlatStyle.Flat;
             btnWalletsVolume.Font = new Font("Segoe UI", 12F);
             btnWalletsVolume.ForeColor = Color.FromArgb(153, 153, 153);
+            btnWalletsVolume.Image = Properties.Resources.volume;
             btnWalletsVolume.ImageAlign = ContentAlignment.MiddleLeft;
             btnWalletsVolume.ImeMode = ImeMode.NoControl;
             btnWalletsVolume.Location = new Point(10, 71);
@@ -136,6 +137,7 @@
             btnWalletsVolume.Padding = new Padding(5, 0, 5, 0);
             btnWalletsVolume.Size = new Size(180, 40);
             btnWalletsVolume.TabIndex = 10;
+            btnWalletsVolume.Tag = "volume";
             btnWalletsVolume.Text = "Volume";
             btnWalletsVolume.UseMnemonic = false;
             btnWalletsVolume.UseVisualStyleBackColor = false;
@@ -149,6 +151,7 @@
             btnWalletsBundler.FlatStyle = FlatStyle.Flat;
             btnWalletsBundler.Font = new Font("Segoe UI", 12F);
             btnWalletsBundler.ForeColor = Color.FromArgb(153, 153, 153);
+            btnWalletsBundler.Image = Properties.Resources.bundler;
             btnWalletsBundler.ImageAlign = ContentAlignment.MiddleLeft;
             btnWalletsBundler.ImeMode = ImeMode.NoControl;
             btnWalletsBundler.Location = new Point(10, 136);
@@ -156,6 +159,7 @@
             btnWalletsBundler.Padding = new Padding(5, 0, 5, 0);
             btnWalletsBundler.Size = new Size(180, 40);
             btnWalletsBundler.TabIndex = 9;
+            btnWalletsBundler.Tag = "bundler";
             btnWalletsBundler.Text = "Bundler";
             btnWalletsBundler.UseMnemonic = false;
             btnWalletsBundler.UseVisualStyleBackColor = false;
@@ -169,6 +173,7 @@
             btnWalletsBumpIt.FlatStyle = FlatStyle.Flat;
             btnWalletsBumpIt.Font = new Font("Segoe UI", 12F);
             btnWalletsBumpIt.ForeColor = Color.FromArgb(153, 153, 153);
+            btnWalletsBumpIt.Image = Properties.Resources.bumpIt;
             btnWalletsBumpIt.ImageAlign = ContentAlignment.MiddleLeft;
             btnWalletsBumpIt.ImeMode = ImeMode.NoControl;
             btnWalletsBumpIt.Location = new Point(10, 201);
@@ -176,6 +181,7 @@
             btnWalletsBumpIt.Padding = new Padding(5, 0, 5, 0);
             btnWalletsBumpIt.Size = new Size(180, 40);
             btnWalletsBumpIt.TabIndex = 8;
+            btnWalletsBumpIt.Tag = "bumpit";
             btnWalletsBumpIt.Text = "Bump it";
             btnWalletsBumpIt.UseMnemonic = false;
             btnWalletsBumpIt.UseVisualStyleBackColor = false;
@@ -312,92 +318,12 @@
             lblSettings.TabIndex = 11;
             lblSettings.Text = "Settings";
             // 
-            // btnSettingsBundler
-            // 
-            btnSettingsBundler.BackColor = Color.Transparent;
-            btnSettingsBundler.BackgroundImageLayout = ImageLayout.None;
-            btnSettingsBundler.FlatAppearance.BorderColor = Color.FromArgb(153, 153, 153);
-            btnSettingsBundler.FlatStyle = FlatStyle.Flat;
-            btnSettingsBundler.Font = new Font("Segoe UI", 12F);
-            btnSettingsBundler.ForeColor = Color.FromArgb(153, 153, 153);
-            btnSettingsBundler.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSettingsBundler.ImeMode = ImeMode.NoControl;
-            btnSettingsBundler.Location = new Point(10, 201);
-            btnSettingsBundler.Name = "btnSettingsBundler";
-            btnSettingsBundler.Padding = new Padding(5, 0, 5, 0);
-            btnSettingsBundler.Size = new Size(180, 40);
-            btnSettingsBundler.TabIndex = 12;
-            btnSettingsBundler.Text = "Bundler";
-            btnSettingsBundler.UseMnemonic = false;
-            btnSettingsBundler.UseVisualStyleBackColor = false;
-            btnSettingsBundler.Click += Button_Click;
-            // 
-            // btnSettingsVolume
-            // 
-            btnSettingsVolume.BackColor = Color.Transparent;
-            btnSettingsVolume.BackgroundImageLayout = ImageLayout.None;
-            btnSettingsVolume.FlatAppearance.BorderColor = Color.FromArgb(153, 153, 153);
-            btnSettingsVolume.FlatStyle = FlatStyle.Flat;
-            btnSettingsVolume.Font = new Font("Segoe UI", 12F);
-            btnSettingsVolume.ForeColor = Color.FromArgb(153, 153, 153);
-            btnSettingsVolume.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSettingsVolume.ImeMode = ImeMode.NoControl;
-            btnSettingsVolume.Location = new Point(10, 136);
-            btnSettingsVolume.Name = "btnSettingsVolume";
-            btnSettingsVolume.Padding = new Padding(5, 0, 5, 0);
-            btnSettingsVolume.Size = new Size(180, 40);
-            btnSettingsVolume.TabIndex = 13;
-            btnSettingsVolume.Text = "Volume";
-            btnSettingsVolume.UseMnemonic = false;
-            btnSettingsVolume.UseVisualStyleBackColor = false;
-            btnSettingsVolume.Click += Button_Click;
-            // 
-            // btnSettingsGeneral
-            // 
-            btnSettingsGeneral.BackColor = Color.Transparent;
-            btnSettingsGeneral.BackgroundImageLayout = ImageLayout.None;
-            btnSettingsGeneral.FlatAppearance.BorderColor = Color.FromArgb(153, 153, 153);
-            btnSettingsGeneral.FlatStyle = FlatStyle.Flat;
-            btnSettingsGeneral.Font = new Font("Segoe UI", 12F);
-            btnSettingsGeneral.ForeColor = Color.FromArgb(153, 153, 153);
-            btnSettingsGeneral.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSettingsGeneral.ImeMode = ImeMode.NoControl;
-            btnSettingsGeneral.Location = new Point(10, 71);
-            btnSettingsGeneral.Name = "btnSettingsGeneral";
-            btnSettingsGeneral.Padding = new Padding(5, 0, 5, 0);
-            btnSettingsGeneral.Size = new Size(180, 40);
-            btnSettingsGeneral.TabIndex = 14;
-            btnSettingsGeneral.Text = "General";
-            btnSettingsGeneral.UseMnemonic = false;
-            btnSettingsGeneral.UseVisualStyleBackColor = false;
-            btnSettingsGeneral.Click += Button_Click;
-            // 
-            // btnSettingsBumpIt
-            // 
-            btnSettingsBumpIt.BackColor = Color.Transparent;
-            btnSettingsBumpIt.BackgroundImageLayout = ImageLayout.None;
-            btnSettingsBumpIt.FlatAppearance.BorderColor = Color.FromArgb(153, 153, 153);
-            btnSettingsBumpIt.FlatStyle = FlatStyle.Flat;
-            btnSettingsBumpIt.Font = new Font("Segoe UI", 12F);
-            btnSettingsBumpIt.ForeColor = Color.FromArgb(153, 153, 153);
-            btnSettingsBumpIt.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSettingsBumpIt.ImeMode = ImeMode.NoControl;
-            btnSettingsBumpIt.Location = new Point(10, 266);
-            btnSettingsBumpIt.Name = "btnSettingsBumpIt";
-            btnSettingsBumpIt.Padding = new Padding(5, 0, 5, 0);
-            btnSettingsBumpIt.Size = new Size(180, 40);
-            btnSettingsBumpIt.TabIndex = 16;
-            btnSettingsBumpIt.Text = "Bump It";
-            btnSettingsBumpIt.UseMnemonic = false;
-            btnSettingsBumpIt.UseVisualStyleBackColor = false;
-            btnSettingsBumpIt.Click += Button_Click;
-            // 
             // gbxSettingsNav
             // 
-            gbxSettingsNav.Controls.Add(btnSettingsBumpIt);
             gbxSettingsNav.Controls.Add(btnSettingsGeneral);
             gbxSettingsNav.Controls.Add(btnSettingsVolume);
             gbxSettingsNav.Controls.Add(btnSettingsBundler);
+            gbxSettingsNav.Controls.Add(btnSettingsBumpIt);
             gbxSettingsNav.Controls.Add(lblSettings);
             gbxSettingsNav.Location = new Point(225, 43);
             gbxSettingsNav.Name = "gbxSettingsNav";
@@ -405,6 +331,94 @@
             gbxSettingsNav.TabIndex = 22;
             gbxSettingsNav.TabStop = false;
             gbxSettingsNav.VisibleChanged += gbxSettingsNav_VisibleChanged;
+            // 
+            // btnSettingsGeneral
+            // 
+            btnSettingsGeneral.BackColor = Color.Transparent;
+            btnSettingsGeneral.BackgroundImageLayout = ImageLayout.None;
+            btnSettingsGeneral.FlatAppearance.BorderSize = 0;
+            btnSettingsGeneral.FlatStyle = FlatStyle.Flat;
+            btnSettingsGeneral.Font = new Font("Segoe UI", 12F);
+            btnSettingsGeneral.ForeColor = Color.FromArgb(153, 153, 153);
+            btnSettingsGeneral.Image = Properties.Resources.settings;
+            btnSettingsGeneral.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSettingsGeneral.ImeMode = ImeMode.NoControl;
+            btnSettingsGeneral.Location = new Point(14, 71);
+            btnSettingsGeneral.Name = "btnSettingsGeneral";
+            btnSettingsGeneral.Padding = new Padding(5, 0, 5, 0);
+            btnSettingsGeneral.Size = new Size(180, 40);
+            btnSettingsGeneral.TabIndex = 20;
+            btnSettingsGeneral.Tag = "settings";
+            btnSettingsGeneral.Text = "General";
+            btnSettingsGeneral.UseMnemonic = false;
+            btnSettingsGeneral.UseVisualStyleBackColor = false;
+            btnSettingsGeneral.Click += Button_Click;
+            // 
+            // btnSettingsVolume
+            // 
+            btnSettingsVolume.BackColor = Color.Transparent;
+            btnSettingsVolume.BackgroundImageLayout = ImageLayout.None;
+            btnSettingsVolume.FlatAppearance.BorderSize = 0;
+            btnSettingsVolume.FlatStyle = FlatStyle.Flat;
+            btnSettingsVolume.Font = new Font("Segoe UI", 12F);
+            btnSettingsVolume.ForeColor = Color.FromArgb(153, 153, 153);
+            btnSettingsVolume.Image = Properties.Resources.volume;
+            btnSettingsVolume.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSettingsVolume.ImeMode = ImeMode.NoControl;
+            btnSettingsVolume.Location = new Point(14, 136);
+            btnSettingsVolume.Name = "btnSettingsVolume";
+            btnSettingsVolume.Padding = new Padding(5, 0, 5, 0);
+            btnSettingsVolume.Size = new Size(180, 40);
+            btnSettingsVolume.TabIndex = 19;
+            btnSettingsVolume.Tag = "volume";
+            btnSettingsVolume.Text = "Volume";
+            btnSettingsVolume.UseMnemonic = false;
+            btnSettingsVolume.UseVisualStyleBackColor = false;
+            btnSettingsVolume.Click += Button_Click;
+            // 
+            // btnSettingsBundler
+            // 
+            btnSettingsBundler.BackColor = Color.Transparent;
+            btnSettingsBundler.BackgroundImageLayout = ImageLayout.None;
+            btnSettingsBundler.FlatAppearance.BorderSize = 0;
+            btnSettingsBundler.FlatStyle = FlatStyle.Flat;
+            btnSettingsBundler.Font = new Font("Segoe UI", 12F);
+            btnSettingsBundler.ForeColor = Color.FromArgb(153, 153, 153);
+            btnSettingsBundler.Image = Properties.Resources.bundler;
+            btnSettingsBundler.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSettingsBundler.ImeMode = ImeMode.NoControl;
+            btnSettingsBundler.Location = new Point(14, 201);
+            btnSettingsBundler.Name = "btnSettingsBundler";
+            btnSettingsBundler.Padding = new Padding(5, 0, 5, 0);
+            btnSettingsBundler.Size = new Size(180, 40);
+            btnSettingsBundler.TabIndex = 18;
+            btnSettingsBundler.Tag = "bundler";
+            btnSettingsBundler.Text = "Bundler";
+            btnSettingsBundler.UseMnemonic = false;
+            btnSettingsBundler.UseVisualStyleBackColor = false;
+            btnSettingsBundler.Click += Button_Click;
+            // 
+            // btnSettingsBumpIt
+            // 
+            btnSettingsBumpIt.BackColor = Color.Transparent;
+            btnSettingsBumpIt.BackgroundImageLayout = ImageLayout.None;
+            btnSettingsBumpIt.FlatAppearance.BorderSize = 0;
+            btnSettingsBumpIt.FlatStyle = FlatStyle.Flat;
+            btnSettingsBumpIt.Font = new Font("Segoe UI", 12F);
+            btnSettingsBumpIt.ForeColor = Color.FromArgb(153, 153, 153);
+            btnSettingsBumpIt.Image = Properties.Resources.bumpIt;
+            btnSettingsBumpIt.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSettingsBumpIt.ImeMode = ImeMode.NoControl;
+            btnSettingsBumpIt.Location = new Point(14, 266);
+            btnSettingsBumpIt.Name = "btnSettingsBumpIt";
+            btnSettingsBumpIt.Padding = new Padding(5, 0, 5, 0);
+            btnSettingsBumpIt.Size = new Size(180, 40);
+            btnSettingsBumpIt.TabIndex = 17;
+            btnSettingsBumpIt.Tag = "bumpit";
+            btnSettingsBumpIt.Text = "Bump it";
+            btnSettingsBumpIt.UseMnemonic = false;
+            btnSettingsBumpIt.UseVisualStyleBackColor = false;
+            btnSettingsBumpIt.Click += Button_Click;
             // 
             // gbxMainNav
             // 
@@ -435,6 +449,7 @@
             btnSettings.Padding = new Padding(5, 0, 5, 0);
             btnSettings.Size = new Size(180, 40);
             btnSettings.TabIndex = 25;
+            btnSettings.Tag = "settings";
             btnSettings.Text = "Settings";
             btnSettings.UseMnemonic = false;
             btnSettings.UseVisualStyleBackColor = false;
@@ -456,6 +471,7 @@
             btnProxies.Padding = new Padding(5, 0, 5, 0);
             btnProxies.Size = new Size(180, 40);
             btnProxies.TabIndex = 22;
+            btnProxies.Tag = "proxies";
             btnProxies.Text = "Proxies";
             btnProxies.UseMnemonic = false;
             btnProxies.UseVisualStyleBackColor = false;
@@ -477,6 +493,7 @@
             btnTasks.Padding = new Padding(5, 0, 5, 0);
             btnTasks.Size = new Size(180, 40);
             btnTasks.TabIndex = 21;
+            btnTasks.Tag = "tasks";
             btnTasks.Text = "Tasks";
             btnTasks.UseMnemonic = false;
             btnTasks.UseVisualStyleBackColor = false;
@@ -498,6 +515,7 @@
             btnBundler.Padding = new Padding(5, 0, 5, 0);
             btnBundler.Size = new Size(180, 40);
             btnBundler.TabIndex = 24;
+            btnBundler.Tag = "bundler";
             btnBundler.Text = "Bundler";
             btnBundler.UseMnemonic = false;
             btnBundler.UseVisualStyleBackColor = false;
@@ -519,6 +537,7 @@
             btnWallets.Padding = new Padding(5, 0, 5, 0);
             btnWallets.Size = new Size(180, 40);
             btnWallets.TabIndex = 23;
+            btnWallets.Tag = "wallets";
             btnWallets.Text = "Wallets";
             btnWallets.UseMnemonic = false;
             btnWallets.UseVisualStyleBackColor = false;
@@ -586,10 +605,7 @@
             Controls.Add(btnCloseApp);
             Controls.Add(lblClock);
             Controls.Add(lblAuthor);
-            Controls.Add(gbxSettingsNav);
-            Controls.Add(gbxWalletNav);
-            Controls.Add(tasksMainPage1);
-            Controls.Add(proxiesMainPage1);
+            Controls.Add(gbxBackground);
             Controls.Add(settingsBumpIt1);
             Controls.Add(settingsBundler1);
             Controls.Add(settingsVolume1);
@@ -597,7 +613,10 @@
             Controls.Add(walletBumpIt1);
             Controls.Add(walletBundler1);
             Controls.Add(walletVolume1);
-            Controls.Add(gbxBackground);
+            Controls.Add(gbxSettingsNav);
+            Controls.Add(gbxWalletNav);
+            Controls.Add(tasksMainPage1);
+            Controls.Add(proxiesMainPage1);
             Controls.Add(bundlerMainPage1);
             FormBorderStyle = FormBorderStyle.None;
             MaximizeBox = false;
@@ -642,10 +661,6 @@
         private proxies.proxiesMainPage proxiesMainPage1;
         private wallet.walletVolume walletVolume1;
         private Label lblSettings;
-        public Button btnSettingsBundler;
-        public Button btnSettingsVolume;
-        public Button btnSettingsGeneral;
-        public Button btnSettingsBumpIt;
         private BorderlessGroupBox gbxSettingsNav;
         private BorderlessGroupBox gbxMainNav;
         public Button btnSettings;
@@ -659,5 +674,9 @@
         private settings.settingsVolume settingsVolume1;
         private settings.settingsBundler settingsBundler1;
         private settings.settingsBumpIt settingsBumpIt1;
+        public Button btnSettingsGeneral;
+        public Button btnSettingsVolume;
+        public Button btnSettingsBundler;
+        public Button btnSettingsBumpIt;
     }
 }

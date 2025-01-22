@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("catwiftools")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+70c303d4718cc5d2bb98fe0baf7e267c9e34d012")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+80d0de7896c6fa5caabfdadb6dc3f5ce2fb6c96e")]
 [assembly: System.Reflection.AssemblyProductAttribute("catwiftools")]
 [assembly: System.Reflection.AssemblyTitleAttribute("catwiftools")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

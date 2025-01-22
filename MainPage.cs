@@ -18,6 +18,7 @@
             // Set the default view
             ShowControls(new List<Control>());
             tmrClock.Enabled = true;
+            gbxBackground.Visible = true;
         }
 
 

@@ -1,97 +1,50 @@
-﻿using Solnet.Wallet;
+﻿using catwiftools;
+using MySqlConnector;
 using Solnet.Wallet.Bip39;
-using MySql.Data.MySqlClient;
+using Solnet.Wallet;
 using System;
-using System.Text;
+using System.Diagnostics;
+using System.IO;
+using System.Text.Json;
 
-namespace catwiftools.wallet
+namespace WalletGenerator
 {
-    public static class WalletCreatorScript
+    public static class WalletCreator
     {
-        // Utilisation d'une variable d'environnement pour sécuriser la connexion
-        private static string connectionString = "Server=localhost;Database=catwiftools;User ID=root;Password=Theosaussure1;";
-
-
-        public static string CreateWallets(int walletQuantity, int walletType)
+        static string connectionString = "Server=localhost;Database=catwiftools;User ID=root;Password=Theosaussure1;SslMode=none;";
+        public static void SaveData(int amount, Button button)
         {
-            if (walletQuantity <= 0)
-                throw new ArgumentException("Wallet quantity must be greater than 0.");
-
-            StringBuilder wallets = new StringBuilder();
-
-            for (int i = 0; i < walletQuantity; i++)
+            for (int i = 0; i < amount; i++)
             {
-                // Génération du portefeuille
+                int walletType = Convert.ToInt32(button.Tag);
+                // Generate a new mnemonic
                 var newMnemonic = new Mnemonic(WordList.English, WordCount.Twelve);
                 string walletMnemonic = newMnemonic.ToString();
                 string walletAddress = WalletFromMnemonic(walletMnemonic);
 
-                // Vérification et insertion dans la base de données
-                EnsureWalletTypeExists(walletType);
-                StoreWalletInDatabase(walletAddress, walletMnemonic, walletType);
-            }
-
-            return wallets.ToString();
-        }
-
-        private static void EnsureWalletTypeExists(int walletType)
-        {
-            try
-            {
-                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                using (var connection = new MySqlConnection(connectionString))
                 {
-                    conn.Open();
-                    // Requête optimisée avec INSERT IGNORE
-                    string query = "INSERT INTO wallettypes (typeName) VALUES (@walletType)";
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    try
                     {
-                        cmd.Parameters.AddWithValue("@walletType", walletType);
-                        cmd.ExecuteNonQuery();
+                        connection.Open();
+                        string query = "INSERT INTO wallets (idWallet,walletAddress,walletphrase,walletType) VALUES (null,@walletName, @walletMnemonic, @walletType)";
+
+                        using (var command = new MySqlCommand(query, connection))
+                        {
+                            command.Parameters.AddWithValue("@walletName", walletAddress);
+                            command.Parameters.AddWithValue("@walletMnemonic", walletMnemonic);
+                            command.Parameters.AddWithValue("@walletType", walletType);
+
+                            command.ExecuteNonQuery();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error: " + ex.Message);
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                LogError($"Error ensuring wallet type: {ex.Message}");
-            }
-        }
-
-        private static void StoreWalletInDatabase(string walletAddress, string walletMnemonic, int walletType)
-        {
-            try
-            {
-                using (MySqlConnection conn = new MySqlConnection(connectionString))
-                {
-                    conn.Open();
-                    // Requête d'insertion du portefeuille
-                    string query = "INSERT INTO wallets (idWallet, walletName, walletphrase, walletType) VALUES (null, @walletName, @walletMnemonic, @walletType)";
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@walletName", walletAddress);
-                        cmd.Parameters.AddWithValue("@walletMnemonic", Encrypt(walletMnemonic)); // Mnémonique chiffré
-                        cmd.Parameters.AddWithValue("@walletType", walletType);
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                LogError($"Error storing wallet in database: {ex.Message}");
-            }
-        }
-
-        private static string Encrypt(string data)
-        {
-            // Exemple de chiffrement basique (remplacez avec une méthode plus robuste en production)
-            byte[] dataBytes = Encoding.UTF8.GetBytes(data);
-            return Convert.ToBase64String(dataBytes);
-        }
-
-        private static void LogError(string message)
-        {
-            // Utilisation de Serilog pour la gestion des erreurs (ou simple Console.WriteLine si Serilog n'est pas disponible)
-            Console.WriteLine(message);
-            // Si Serilog est configuré : Log.Error(message);
+            
         }
 
         private static string WalletFromMnemonic(string mnemonic)

@@ -20,7 +20,7 @@ namespace catwiftools
 
             // Select the new button
             button.ForeColor = Color.FromArgb(0, 134, 179);
-            string filename = $"{button.Text.ToLower()}Selected";
+            string filename = $"{button.Tag}Selected";
             string imagePath = $@"D:\crypto\catwiftools\img\icon\{filename}.png";
 
             if (File.Exists(imagePath))
@@ -38,7 +38,7 @@ namespace catwiftools
         public void DeselectButton(Button button)
         {
             button.ForeColor = Color.FromArgb(153, 153, 153);
-            string filename = $"{button.Text.ToLower()}";
+            string filename = $"{button.Tag}";
             string imagePath = $@"D:\crypto\catwiftools\img\icon\{filename}.png";
 
             if (File.Exists(imagePath))

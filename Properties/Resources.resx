@@ -127,9 +127,6 @@
   <data name="tasksSelected" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\icon\tasksSelected.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bumpIt" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\icon\bumpIt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="proxiesSelected" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\icon\proxiesSelected.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -151,11 +148,14 @@
   <data name="tasks" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\icon\tasks.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="volumeSelected" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\icon\volumeSelected.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="bundlerSelected" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\icon\bundlerSelected.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bumpItSelected" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\icon\bumpItSelected.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="volume" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\icon\volume.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\icon\settings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -166,10 +166,10 @@
   <data name="settingsSelected" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\icon\settingsSelected.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="volume" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\icon\volume.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bumpIt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\icon\bumpIt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="volumeSelected" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\icon\volumeSelected.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bumpItSelected" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\icon\bumpItSelected.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

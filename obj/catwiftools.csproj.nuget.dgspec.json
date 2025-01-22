@@ -50,9 +50,13 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "dependencies": {
-            "MySql.Data": {
+            "Microsoft.ClearScript.V8": {
               "target": "Package",
-              "version": "[9.1.0, )"
+              "version": "[7.4.5, )"
+            },
+            "MySqlConnector": {
+              "target": "Package",
+              "version": "[2.4.0, )"
             },
             "Solnet.Extensions": {
               "target": "Package",

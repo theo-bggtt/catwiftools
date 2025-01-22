@@ -75,10 +75,12 @@
             btnGenWallet.Padding = new Padding(5, 0, 5, 0);
             btnGenWallet.Size = new Size(120, 30);
             btnGenWallet.TabIndex = 29;
+            btnGenWallet.Tag = "1";
             btnGenWallet.Text = "+  Gen Wallets";
             btnGenWallet.TextAlign = ContentAlignment.MiddleLeft;
             btnGenWallet.UseMnemonic = false;
             btnGenWallet.UseVisualStyleBackColor = false;
+            btnGenWallet.Click += btnGenWallet_Click;
             // 
             // btnExport
             // 
