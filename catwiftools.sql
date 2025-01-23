@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 22, 2025 at 09:14 PM
+-- Generation Time: Jan 23, 2025 at 08:59 PM
 -- Server version: 10.11.8-MariaDB-0ubuntu0.24.04.1
 -- PHP Version: 8.3.15
 
@@ -24,19 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wallets`
---
-
-CREATE TABLE `wallets` (
-  `idWallet` int(11) NOT NULL,
-  `walletAddress` varchar(50) NOT NULL,
-  `walletphrase` varchar(300) NOT NULL,
-  `walletType` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `wallettypes`
 --
 
@@ -50,21 +37,13 @@ CREATE TABLE `wallettypes` (
 --
 
 INSERT INTO `wallettypes` (`idType`, `typeName`) VALUES
-(2, 'Cold Storage'),
-(1, 'dev'),
-(3, 'Hot Wallet');
+(3, 'Bump It'),
+(1, 'Bundler'),
+(2, 'Volume');
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `wallets`
---
-ALTER TABLE `wallets`
-  ADD PRIMARY KEY (`idWallet`),
-  ADD UNIQUE KEY `walletphrase` (`walletphrase`),
-  ADD KEY `walletType` (`walletType`);
 
 --
 -- Indexes for table `wallettypes`
@@ -78,26 +57,10 @@ ALTER TABLE `wallettypes`
 --
 
 --
--- AUTO_INCREMENT for table `wallets`
---
-ALTER TABLE `wallets`
-  MODIFY `idWallet` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `wallettypes`
 --
 ALTER TABLE `wallettypes`
-  MODIFY `idType` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `wallets`
---
-ALTER TABLE `wallets`
-  ADD CONSTRAINT `fk_walettype` FOREIGN KEY (`walletType`) REFERENCES `wallettypes` (`idType`);
+  MODIFY `idType` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

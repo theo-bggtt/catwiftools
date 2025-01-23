@@ -179,6 +179,7 @@
             btnCheckBalances.Text = "Check Balance";
             btnCheckBalances.UseMnemonic = false;
             btnCheckBalances.UseVisualStyleBackColor = false;
+            btnCheckBalances.Click += btnCheckBalances_Click;
             // 
             // lblSolBalance
             // 
@@ -186,7 +187,7 @@
             lblSolBalance.ForeColor = Color.White;
             lblSolBalance.Location = new Point(134, 70);
             lblSolBalance.Name = "lblSolBalance";
-            lblSolBalance.Size = new Size(138, 15);
+            lblSolBalance.Size = new Size(139, 15);
             lblSolBalance.TabIndex = 23;
             lblSolBalance.Text = "Total Balance : NULL SOL";
             // 
