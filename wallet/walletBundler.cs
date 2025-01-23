@@ -1,13 +1,19 @@
-﻿using System;
+﻿using MySqlConnector;
+using System;
+using System.Data;
 using WalletGenerator;
 
 namespace catwiftools.wallet
 {
     public partial class walletBundler : UserControl
     {
+        static string connectionString = "Server=localhost;Database=catwiftools;User ID=root;Password=Theosaussure1;SslMode=none;";
         public walletBundler()
         {
             InitializeComponent();
+            LoadWalletsToGrid();
+
+            StyleDataGridView();
         }
 
 
@@ -25,16 +31,92 @@ namespace catwiftools.wallet
                 else
                 {
                     MessageBox.Show("Input was canceled.");
-                }
-                
+                }   
             }
-            
-
-            
-
             Console.WriteLine("Data saved successfully!");
+            LoadWalletsToGrid();
+        }
+
+        private DataTable GetWallets()
+        {
+            DataTable dataTable = new DataTable();
+
+            string query = "SELECT idWallet, walletAddress, walletphrase FROM wallets";
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    connection.Open();
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                    {
+                        adapter.Fill(dataTable);
+                    }
+                }
+            }
+
+            return dataTable;
+        }
+
+        private void LoadWalletsToGrid()
+        {
+            DataTable wallets = GetWallets();
+            dataGridViewWallets.DataSource = wallets;
+            
+        }
 
 
+        private void StyleDataGridView()
+        {
+            // Set background and grid color
+            dataGridViewWallets.BackgroundColor = Color.FromArgb(45, 45, 48);
+            dataGridViewWallets.GridColor = Color.FromArgb(60, 60, 60);
+
+            // Row style
+            dataGridViewWallets.DefaultCellStyle.BackColor = Color.FromArgb(60, 60, 60);
+            dataGridViewWallets.DefaultCellStyle.ForeColor = Color.WhiteSmoke;
+            dataGridViewWallets.DefaultCellStyle.SelectionBackColor = Color.FromArgb(100, 100, 100);
+            dataGridViewWallets.DefaultCellStyle.SelectionForeColor = Color.White;
+            dataGridViewWallets.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dataGridViewWallets.DefaultCellStyle.Padding = new Padding(5);
+
+            // Alternating rows
+            dataGridViewWallets.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(50, 50, 50);
+            dataGridViewWallets.AlternatingRowsDefaultCellStyle.ForeColor = Color.WhiteSmoke;
+
+            // Column headers
+            dataGridViewWallets.EnableHeadersVisualStyles = false;
+            dataGridViewWallets.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(30, 30, 30);
+            dataGridViewWallets.ColumnHeadersDefaultCellStyle.ForeColor = Color.WhiteSmoke;
+            dataGridViewWallets.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dataGridViewWallets.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewWallets.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+
+            // Grid border and row headers
+            dataGridViewWallets.BorderStyle = BorderStyle.None;
+            dataGridViewWallets.RowHeadersVisible = false;
+
+            // Auto-size columns
+            dataGridViewWallets.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            // Add padding for the header cells
+            dataGridViewWallets.ColumnHeadersDefaultCellStyle.Padding = new Padding(5);
+
+            dataGridViewWallets.ScrollBars = ScrollBars.Horizontal;
+        }
+
+        protected override void OnMouseWheel(MouseEventArgs e)
+        {
+            // Adjust scrolling based on mouse wheel delta
+            int scrollValue = e.Delta > 0 ? -1 : 1; // -1 for up, 1 for down
+            var verticalScroll = dataGridViewWallets.FirstDisplayedScrollingRowIndex;
+
+            // Update scrolling, ensuring it stays within bounds
+            if (verticalScroll + scrollValue >= 0 && verticalScroll + scrollValue < dataGridViewWallets.RowCount)
+            {
+                dataGridViewWallets.FirstDisplayedScrollingRowIndex += scrollValue;
+            }
+
+            base.OnMouseWheel(e);
         }
     }
 }
