@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             lblVolumeTitle = new Label();
             lblWalletQt = new Label();
             lblSolBalance = new Label();
@@ -38,8 +39,8 @@
             btnExport = new Button();
             btnGenWallet = new Button();
             loadWalletsButton = new Button();
-            walletDataGridView = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)walletDataGridView).BeginInit();
+            dataGridViewWallets = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewWallets).BeginInit();
             SuspendLayout();
             // 
             // lblVolumeTitle
@@ -183,10 +184,12 @@
             btnGenWallet.Padding = new Padding(5, 0, 5, 0);
             btnGenWallet.Size = new Size(120, 30);
             btnGenWallet.TabIndex = 18;
+            btnGenWallet.Tag = "2";
             btnGenWallet.Text = "+  Gen Wallets";
             btnGenWallet.TextAlign = ContentAlignment.MiddleLeft;
             btnGenWallet.UseMnemonic = false;
             btnGenWallet.UseVisualStyleBackColor = false;
+            btnGenWallet.Click += btnGenWallet_Click;
             // 
             // loadWalletsButton
             // 
@@ -207,22 +210,37 @@
             loadWalletsButton.TextAlign = ContentAlignment.MiddleLeft;
             loadWalletsButton.UseMnemonic = false;
             loadWalletsButton.UseVisualStyleBackColor = false;
-            loadWalletsButton.Click += loadWalletsButton_Click;
             // 
-            // walletDataGridView
+            // dataGridViewWallets
             // 
-            walletDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            walletDataGridView.Location = new Point(33, 335);
-            walletDataGridView.Name = "walletDataGridView";
-            walletDataGridView.Size = new Size(924, 289);
-            walletDataGridView.TabIndex = 21;
+            dataGridViewWallets.AllowUserToOrderColumns = true;
+            dataGridViewWallets.BackgroundColor = Color.Black;
+            dataGridViewWallets.CellBorderStyle = DataGridViewCellBorderStyle.Sunken;
+            dataGridViewWallets.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.Black;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridViewWallets.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewWallets.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewWallets.GridColor = Color.White;
+            dataGridViewWallets.Location = new Point(11, 179);
+            dataGridViewWallets.Name = "dataGridViewWallets";
+            dataGridViewWallets.RowTemplate.Height = 30;
+            dataGridViewWallets.RowTemplate.ReadOnly = true;
+            dataGridViewWallets.RowTemplate.Resizable = DataGridViewTriState.False;
+            dataGridViewWallets.Size = new Size(815, 540);
+            dataGridViewWallets.TabIndex = 42;
             // 
             // walletVolume
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
-            Controls.Add(walletDataGridView);
+            Controls.Add(dataGridViewWallets);
             Controls.Add(loadWalletsButton);
             Controls.Add(btnGenWallet);
             Controls.Add(btnExport);
@@ -235,7 +253,8 @@
             Controls.Add(lblVolumeTitle);
             Name = "walletVolume";
             Size = new Size(990, 762);
-            ((System.ComponentModel.ISupportInitialize)walletDataGridView).EndInit();
+            Tag = "2";
+            ((System.ComponentModel.ISupportInitialize)dataGridViewWallets).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -252,6 +271,6 @@
         public Button btnExport;
         public Button btnGenWallet;
         public Button loadWalletsButton;
-        private DataGridView walletDataGridView;
+        private DataGridView dataGridViewWallets;
     }
 }

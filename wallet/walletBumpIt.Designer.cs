@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             loadWalletsButton = new Button();
             btnGenWallet = new Button();
             btnExport = new Button();
@@ -38,6 +39,8 @@
             lblSolBalance = new Label();
             lblWalletQt = new Label();
             lblBumpItTitle = new Label();
+            dataGridViewWallets = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewWallets).BeginInit();
             SuspendLayout();
             // 
             // loadWalletsButton
@@ -75,10 +78,12 @@
             btnGenWallet.Padding = new Padding(5, 0, 5, 0);
             btnGenWallet.Size = new Size(120, 30);
             btnGenWallet.TabIndex = 39;
+            btnGenWallet.Tag = "3";
             btnGenWallet.Text = "+  Gen Wallets";
             btnGenWallet.TextAlign = ContentAlignment.MiddleLeft;
             btnGenWallet.UseMnemonic = false;
             btnGenWallet.UseVisualStyleBackColor = false;
+            btnGenWallet.Click += btnGenWallet_Click;
             // 
             // btnExport
             // 
@@ -206,11 +211,36 @@
             lblBumpItTitle.TabIndex = 31;
             lblBumpItTitle.Text = "Bump It";
             // 
+            // dataGridViewWallets
+            // 
+            dataGridViewWallets.AllowUserToOrderColumns = true;
+            dataGridViewWallets.BackgroundColor = Color.Black;
+            dataGridViewWallets.CellBorderStyle = DataGridViewCellBorderStyle.Sunken;
+            dataGridViewWallets.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.Black;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridViewWallets.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewWallets.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewWallets.GridColor = Color.White;
+            dataGridViewWallets.Location = new Point(11, 183);
+            dataGridViewWallets.Name = "dataGridViewWallets";
+            dataGridViewWallets.RowTemplate.Height = 30;
+            dataGridViewWallets.RowTemplate.ReadOnly = true;
+            dataGridViewWallets.RowTemplate.Resizable = DataGridViewTriState.False;
+            dataGridViewWallets.Size = new Size(815, 540);
+            dataGridViewWallets.TabIndex = 41;
+            // 
             // walletBumpIt
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
+            Controls.Add(dataGridViewWallets);
             Controls.Add(loadWalletsButton);
             Controls.Add(btnGenWallet);
             Controls.Add(btnExport);
@@ -223,6 +253,7 @@
             Controls.Add(lblBumpItTitle);
             Name = "walletBumpIt";
             Size = new Size(990, 762);
+            ((System.ComponentModel.ISupportInitialize)dataGridViewWallets).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -239,5 +270,6 @@
         private Label lblSolBalance;
         private Label lblWalletQt;
         private Label lblBumpItTitle;
+        private DataGridView dataGridViewWallets;
     }
 }

@@ -8,50 +8,39 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySqlConnector;
+using WalletGenerator;
 
 namespace catwiftools.wallet
 {
     public partial class walletVolume : UserControl
     {
-        private static string connectionString = "Server=localhost;Database=catwiftools;User ID=root;Password=Theosaussure1;";
+        displayWallets displayWallets = new displayWallets();
 
         public walletVolume()
         {
             InitializeComponent();
+            displayWallets.LoadWalletsToGrid(2, dataGridViewWallets);
         }
 
-        private void LoadWallets()
+
+        private void btnGenWallet_Click(object sender, EventArgs e)
         {
-            try
-            {
-                using (MySqlConnection conn = new MySqlConnection(connectionString))
-                {
-                    conn.Open();
-
-                    string query = @"SELECT * FROM wallets";
-
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
-                    {
-                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
-                        {
-                            DataTable dataTable = new DataTable();
-                            adapter.Fill(dataTable);
-
-                            // Bind the DataTable to the DataGridView
-                            walletDataGridView.DataSource = dataTable;
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Failed to load wallets: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            displayWallets.getwalletqt(btnGenWallet, dataGridViewWallets);
         }
 
-        private void loadWalletsButton_Click(object sender, EventArgs e)
+        protected override void OnMouseWheel(MouseEventArgs e)
         {
-            LoadWallets();
+            // Adjust scrolling based on mouse wheel delta
+            int scrollValue = e.Delta > 0 ? -1 : 1; // -1 for up, 1 for down
+            var verticalScroll = dataGridViewWallets.FirstDisplayedScrollingRowIndex;
+
+            // Update scrolling, ensuring it stays within bounds
+            if (verticalScroll + scrollValue >= 0 && verticalScroll + scrollValue < dataGridViewWallets.RowCount)
+            {
+                dataGridViewWallets.FirstDisplayedScrollingRowIndex += scrollValue;
+            }
+
+            base.OnMouseWheel(e);
         }
     }
 }
