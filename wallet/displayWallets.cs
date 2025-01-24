@@ -17,7 +17,7 @@ namespace catwiftools.wallet
         {
             DataTable dataTable = new DataTable();
 
-            string query = $"SELECT idWallet, walletAddress, walletphrase FROM wallets where walletType = {walletType}";
+            string query = $"SELECT idWallet, walletAddress, walletphrase, balance FROM wallets where walletType = {walletType}";
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 using (MySqlCommand command = new MySqlCommand(query, connection))
@@ -30,6 +30,15 @@ namespace catwiftools.wallet
                 }
             }
             return dataTable;
+        }
+
+        
+
+        public void LoadWalletsToGrid(int walletType, DataGridView dataGridViewWallets)
+        {
+            DataTable wallets = GetWallets(walletType);
+            dataGridViewWallets.DataSource = wallets;
+            StyleDataGridView(dataGridViewWallets);
         }
 
         public void StyleDataGridView(DataGridView dataGridViewWallets)
@@ -69,33 +78,6 @@ namespace catwiftools.wallet
             dataGridViewWallets.ColumnHeadersDefaultCellStyle.Padding = new Padding(5);
 
             dataGridViewWallets.ScrollBars = ScrollBars.Horizontal;
-        }
-
-        public void getwalletqt(Button btnGenWallet, DataGridView dataGridViewWallets)
-        {
-            using (var numberInputForm = new walletCreatorForm())
-            {
-                var result = numberInputForm.ShowDialog();
-                if (result == DialogResult.OK && numberInputForm.InputNumber.HasValue)
-                {
-                    MessageBox.Show($"You entered: {numberInputForm.InputNumber.Value}");
-                    WalletCreator.SaveData(numberInputForm.InputNumber.Value, btnGenWallet);
-
-                }
-                else
-                {
-                    MessageBox.Show("Input was canceled.");
-                }
-            }
-            Console.WriteLine("Data saved successfully!");
-            LoadWalletsToGrid(1, dataGridViewWallets);
-        }
-
-        public void LoadWalletsToGrid(int walletType, DataGridView dataGridViewWallets)
-        {
-            DataTable wallets = GetWallets(walletType);
-            dataGridViewWallets.DataSource = wallets;
-            StyleDataGridView(dataGridViewWallets);
         }
     }
 }

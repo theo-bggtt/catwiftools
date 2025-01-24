@@ -15,6 +15,7 @@ namespace catwiftools.wallet
     public partial class walletVolume : UserControl
     {
         displayWallets displayWallets = new displayWallets();
+        WalletCreator walletCreator = new WalletCreator();
 
         public walletVolume()
         {
@@ -25,7 +26,7 @@ namespace catwiftools.wallet
 
         private void btnGenWallet_Click(object sender, EventArgs e)
         {
-            displayWallets.getwalletqt(btnGenWallet, dataGridViewWallets);
+            walletCreator.getwalletqt(btnGenWallet, dataGridViewWallets);
         }
 
         protected override void OnMouseWheel(MouseEventArgs e)

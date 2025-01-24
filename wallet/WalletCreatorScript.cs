@@ -6,12 +6,34 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
+using catwiftools.wallet;
 
 namespace WalletGenerator
 {
-    public static class WalletCreator
+    public class WalletCreator
     {
         static string connectionString = "Server=localhost;Database=catwiftools;User ID=root;Password=Theosaussure1;SslMode=none;";
+        displayWallets displayWallets = new displayWallets();
+
+        public void getwalletqt(Button btnGenWallet, DataGridView dataGridViewWallets)
+        {
+            using (var numberInputForm = new walletCreatorForm())
+            {
+                var result = numberInputForm.ShowDialog();
+                if (result == DialogResult.OK && numberInputForm.InputNumber.HasValue)
+                {
+                    MessageBox.Show($"You entered: {numberInputForm.InputNumber.Value}");
+                    SaveData(numberInputForm.InputNumber.Value, btnGenWallet);
+                }
+                else
+                {
+                    MessageBox.Show("Input was canceled.");
+                }
+            }
+            Console.WriteLine("Data saved successfully!");
+            displayWallets.LoadWalletsToGrid(1, dataGridViewWallets);
+        }
+
         public static void SaveData(int amount, Button button)
         {
             for (int i = 0; i < amount; i++)
@@ -62,23 +84,6 @@ namespace WalletGenerator
             // Step 4: Print the wallet address (public key)
             Console.WriteLine("Wallet Address (Public Key): " + publicKey);
             return publicKey;
-        }
-
-        private static string PrivateFromMnemonic(string mnemonic)
-        {
-            // Step 1: Generate or load a mnemonic
-            string mnemonicPhrase = mnemonic.ToString();
-
-            // Step 2: Create a wallet using the mnemonic
-            Wallet wallet = new Wallet(mnemonic);
-
-            // Step 3: Get the default account (derivation path m/44'/501'/0'/0')
-            var account = wallet.GetAccount(0); // Account index 0
-            string privateKey = BitConverter.ToString(account.PrivateKey).Replace("-", "");
-
-            // Step 4: Print the wallet address (public key)
-            Console.WriteLine("Private Key: " + privateKey);
-            return privateKey;
         }
     }
 }

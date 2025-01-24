@@ -14,6 +14,7 @@ namespace catwiftools.wallet
 {
     public partial class walletBumpIt : UserControl
     {
+        WalletCreator walletCreator = new WalletCreator();  
         displayWallets displayWallets = new displayWallets();
         public walletBumpIt()
         {
@@ -24,7 +25,7 @@ namespace catwiftools.wallet
 
         private void btnGenWallet_Click(object sender, EventArgs e)
         {
-            displayWallets.getwalletqt(btnGenWallet, dataGridViewWallets);
+            walletCreator.getwalletqt(btnGenWallet, dataGridViewWallets);
         }
 
         protected override void OnMouseWheel(MouseEventArgs e)
