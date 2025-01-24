@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             loadWalletsButton = new Button();
             btnGenWallet = new Button();
             btnExport = new Button();
@@ -40,6 +40,7 @@
             lblWalletQt = new Label();
             lblBundlerTitle = new Label();
             dataGridViewWallets = new DataGridView();
+            txtWalletAddress = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridViewWallets).BeginInit();
             SuspendLayout();
             // 
@@ -218,14 +219,14 @@
             dataGridViewWallets.BackgroundColor = Color.Black;
             dataGridViewWallets.CellBorderStyle = DataGridViewCellBorderStyle.Sunken;
             dataGridViewWallets.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.Black;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataGridViewWallets.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.Black;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dataGridViewWallets.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridViewWallets.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewWallets.GridColor = Color.White;
             dataGridViewWallets.Location = new Point(11, 183);
@@ -236,11 +237,19 @@
             dataGridViewWallets.Size = new Size(815, 540);
             dataGridViewWallets.TabIndex = 31;
             // 
+            // txtWalletAddress
+            // 
+            txtWalletAddress.Location = new Point(685, 70);
+            txtWalletAddress.Name = "txtWalletAddress";
+            txtWalletAddress.Size = new Size(100, 23);
+            txtWalletAddress.TabIndex = 32;
+            // 
             // walletBundler
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
+            Controls.Add(txtWalletAddress);
             Controls.Add(dataGridViewWallets);
             Controls.Add(loadWalletsButton);
             Controls.Add(btnGenWallet);
@@ -272,7 +281,6 @@
         private Label lblWalletQt;
         private Label lblBundlerTitle;
         private DataGridView dataGridViewWallets;
-
-
+        private TextBox txtWalletAddress;
     }
 }
