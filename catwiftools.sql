@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 24, 2025 at 07:12 PM
+-- Generation Time: Jan 26, 2025 at 11:06 PM
 -- Server version: 10.11.8-MariaDB-0ubuntu0.24.04.1
 -- PHP Version: 8.3.15
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `catwiftools`
 --
+CREATE DATABASE IF NOT EXISTS `catwiftools` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `catwiftools`;
 
 -- --------------------------------------------------------
 
@@ -34,6 +36,12 @@ CREATE TABLE `wallets` (
   `walletType` int(11) NOT NULL,
   `balance` double DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- RELATIONSHIPS FOR TABLE `wallets`:
+--   `walletType`
+--       `wallettypes` -> `idType`
+--
 
 --
 -- Dumping data for table `wallets`
@@ -59,7 +67,46 @@ INSERT INTO `wallets` (`idWallet`, `walletAddress`, `walletphrase`, `walletType`
 (17, '3rmMLUytpG8mkX94Lpt4zrRT48nWLwkGfixBt9W5QgbH', 'purpose ask pluck alarm drill act merry snow upper payment adult student', 1, 0),
 (18, 'J6NAYaiSQo4xWVhqTcAemYeavtRiKMEog9eCJ4NKutT6', 'obscure uncle cherry fence visa awful race wisdom crew dolphin merge chef', 1, 0),
 (19, 'E3pvci92XT9ZwC6y7R34pa9SJWeGDUr5szpgScTXGLo1', 'biology cinnamon wave pizza space stumble popular popular blade trick program will', 1, 0),
-(20, 'Ge4EkaccAUaiw5aq9EQL5GavCeSUujAhURznZFdiKqqv', 'like rate fatal wood glimpse end large plate tag suffer country income', 1, 0);
+(20, 'Ge4EkaccAUaiw5aq9EQL5GavCeSUujAhURznZFdiKqqv', 'like rate fatal wood glimpse end large plate tag suffer country income', 1, 5),
+(21, '5oBSmok8N9gNFE2YPsMqBk43oN3x3iC7uFUxaks7PAvu', 'zone feature tongue pledge bracket stay chaos secret photo joy first vicious', 2, 0),
+(22, 'HbbXcPUDjUp9coxmpscydn2q7ureJZShRf9cWKEXVuUf', 'sheriff attract camp power point snack floor subway lizard tribe hybrid crunch', 2, 0),
+(23, '3FtYSvqKq5NAZTvZSbahUnj2MsvuPgJ1TZqhnSXSzsBR', 'inflict walnut pottery captain claim reform skull capable random record weather breeze', 2, 0),
+(24, '2K92TvyMc76mn9Aw3JLb7beNKQUhhWosU2bRu5QhVJ4X', 'cash piece rebel useful donkey cable impulse discover mouse that harbor kingdom', 2, 0),
+(25, '7C9RVBa1wBewwGJ8NQLCBNfG8QNi9srPvRCRgmk3spqt', 'vital defy rail grape party trophy profit bamboo elegant dice grid fiber', 2, 0),
+(26, '7BFKeCchZ9s5vVjad8oLW2UYueSDuR97gHyqhgizWegd', 'own miracle shine audit field stumble shuffle general congress patch congress wisdom', 2, 0),
+(27, '6rMG9pBgUX6CTWrtkwunSXpUsuLeuXJiisUtCURaDEJ6', 'hobby alcohol congress hen mirror praise oven shock tank razor govern inner', 2, 0),
+(28, 'GU8fFpT4iXXXvaWXPiphNkbveJcrQo7DhaXSDah31PEH', 'negative trap recipe apple miss napkin toss palm dizzy element duty fashion', 2, 0),
+(29, '2akF2nAZKaL41PsN7U3VNfZBnHyUojJcbuDQNUgWraZp', 'two kid life hospital supreme impact barely elevator monitor credit abstract ladder', 2, 0),
+(30, '8SoLU5Ayhtu3qmwnCDgTjZwMQGT7cSpELERiZUsmnTeM', 'among reduce happy equip outdoor emotion fit stick release swallow scrub flip', 2, 0),
+(31, 'J2jKkW5S2WbPpWHcBkPs6E6c3VgXGspn8veRNC9KAYVk', 'hurry expose magic law lab use violin permit strong close mind gift', 3, 0),
+(32, '2XQNcCNWWWbZ67aBZacdVHLGEVf1B9xo61QgDhVUvHPq', 'retreat license what merge sample pony purity good people shadow long tired', 3, 0),
+(33, 'CkNUqMN3vfZg6UyfXxLyJskSxUshtB8GDCGEkiKfj46t', 'wrap noble number sibling inner proof win loyal sibling grape clever fly', 3, 0),
+(34, 'GJkxtdXQXJRcU44xahYBBQu3tKhffcoeRz4NkriFwjwB', 'churn omit grunt become sand rigid brand vivid praise dynamic life body', 3, 0),
+(35, '5YTiCNYfnzrcyR6x5CutLdsvPwxX6vPP5BGdpYbs6nes', 'milk plastic resist lyrics volume connect clock tank eye laundry smart kite', 3, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wallettypes`
+--
+
+CREATE TABLE `wallettypes` (
+  `idType` int(11) NOT NULL,
+  `typeName` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- RELATIONSHIPS FOR TABLE `wallettypes`:
+--
+
+--
+-- Dumping data for table `wallettypes`
+--
+
+INSERT INTO `wallettypes` (`idType`, `typeName`) VALUES
+(3, 'Bump It'),
+(1, 'Bundle'),
+(2, 'Volume');
 
 --
 -- Indexes for dumped tables
@@ -74,6 +121,13 @@ ALTER TABLE `wallets`
   ADD KEY `walletType` (`walletType`);
 
 --
+-- Indexes for table `wallettypes`
+--
+ALTER TABLE `wallettypes`
+  ADD PRIMARY KEY (`idType`),
+  ADD UNIQUE KEY `typeName` (`typeName`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -81,7 +135,13 @@ ALTER TABLE `wallets`
 -- AUTO_INCREMENT for table `wallets`
 --
 ALTER TABLE `wallets`
-  MODIFY `idWallet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `idWallet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- AUTO_INCREMENT for table `wallettypes`
+--
+ALTER TABLE `wallettypes`
+  MODIFY `idType` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

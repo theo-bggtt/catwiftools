@@ -227,13 +227,13 @@
             dataGridViewWallets.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewWallets.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewWallets.GridColor = Color.White;
-            dataGridViewWallets.Location = new Point(11, 183);
+            dataGridViewWallets.Location = new Point(20, 174);
             dataGridViewWallets.Name = "dataGridViewWallets";
             dataGridViewWallets.RowTemplate.Height = 30;
             dataGridViewWallets.RowTemplate.ReadOnly = true;
             dataGridViewWallets.RowTemplate.Resizable = DataGridViewTriState.False;
             dataGridViewWallets.Size = new Size(815, 540);
-            dataGridViewWallets.TabIndex = 41;
+            dataGridViewWallets.TabIndex = 43;
             // 
             // walletBumpIt
             // 
