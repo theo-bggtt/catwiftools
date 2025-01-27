@@ -68,15 +68,32 @@ namespace catwiftools.wallet
             return dataTable;
         }
 
-        public async Task GetAllWalletBalances(int walletType)
+        public void GetAllWalletBalances(int walletType)
         {
             DataTable wallets = GetWallets(walletType);
-
             foreach (DataRow row in wallets.Rows)
             {
                 string walletAddress = row["walletAddress"].ToString();
-                double balance = await GetWalletBalance(walletAddress, walletType);
-                await Task.Run(() => SaveBalanceToDatabase(walletAddress, balance));
+                double balance = GetWalletBalance(walletAddress, walletType).Result;
+                SaveBalanceToDatabase(walletAddress, balance);
+            }
+        }
+
+        public async Task<double> GetTotalBalance(int walletType)
+        {
+            // Create a query to sum up balances from the wallets table
+            string query = $"SELECT SUM(balance) FROM wallets WHERE walletType = {walletType}";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                await connection.OpenAsync(); // Ensure we open the connection asynchronously
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    object result = await command.ExecuteScalarAsync(); // Get the sum directly
+                                                                        // Check if the result is null and parse to double
+                    return result != DBNull.Value ? Convert.ToDouble(result) : 0.0;
+                }
             }
         }
 

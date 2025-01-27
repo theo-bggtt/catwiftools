@@ -24,6 +24,11 @@ namespace catwiftools.wallet
             displayWallets.LoadWalletsToGrid(1, dataGridViewWallets);
         }
 
+        private void walletBundler_Load(object sender, EventArgs e)
+        {
+            UpdateSolBalanceLabel();
+        }
+
         private void btnGenWallet_Click(object sender, EventArgs e)
         {
             walletCreator.getwalletqt(btnGenWallet, dataGridViewWallets);
@@ -47,6 +52,39 @@ namespace catwiftools.wallet
         {
             retrieveBalance.GetAllWalletBalances(1);
             displayWallets.LoadWalletsToGrid(1, dataGridViewWallets);
+            //UpdateSolBalanceLabel();
         }
+
+        //private async void btnCheckBalances_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        // Show loading message (optional)
+        //        lblSolBalance.Text = "Loading...";
+
+        //        // Asynchronously retrieve wallet balances
+        //        await retrieveBalance.GetAllWalletBalancesAsync(1);
+
+        //        // Load wallets into the DataGridView (if it's not asynchronous, leave as-is)
+        //        displayWallets.LoadWalletsToGrid(1, dataGridViewWallets);
+
+        //        // Update the balance label asynchronously
+        //        await UpdateSolBalanceLabelAsync();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Display error message
+        //        lblSolBalance.Text = "Error retrieving balances";
+        //        Console.WriteLine($"Error: {ex.Message}");
+        //    }
+        //}
+
+        private async void UpdateSolBalanceLabel()
+        {
+            double totalBalance = await retrieveBalance.GetTotalBalance(1);
+            lblSolBalance.Text = totalBalance.ToString("N2"); // Format as needed
+        }
+
+
     }
 }
