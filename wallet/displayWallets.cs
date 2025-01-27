@@ -45,32 +45,6 @@ namespace catwiftools.wallet
         // Style le DataGridView
         public void StyleDataGridView(DataGridView dataGridViewWallets)
         {
-            // Style du header
-            dataGridViewWallets.EnableHeadersVisualStyles = false;
-            dataGridViewWallets.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(30, 30, 30);
-            dataGridViewWallets.ColumnHeadersDefaultCellStyle.ForeColor = Color.WhiteSmoke;
-            dataGridViewWallets.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewWallets.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewWallets.ColumnHeadersDefaultCellStyle.Padding = new Padding(25);
-            dataGridViewWallets.RowHeadersVisible = false;
-
-
-            // Style les lignes de base
-            dataGridViewWallets.DefaultCellStyle.BackColor = Color.FromArgb(25, 25, 25);
-            dataGridViewWallets.DefaultCellStyle.ForeColor = Color.White;
-            dataGridViewWallets.DefaultCellStyle.SelectionBackColor = Color.FromArgb(100, 100, 100);
-            dataGridViewWallets.DefaultCellStyle.SelectionForeColor = Color.White;
-            dataGridViewWallets.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewWallets.RowTemplate.Height = 40;
-
-            // Style les lignes secondaires
-            dataGridViewWallets.AlternatingRowsDefaultCellStyle.ForeColor = Color.WhiteSmoke;
-
-            // Réparti horizontalement la largeur des colonnes
-            dataGridViewWallets.ScrollBars = ScrollBars.Horizontal;
-
-            dataGridViewWallets.AllowUserToAddRows = false;
-
             // Permet d'avoir le bon formatage pour le balance (Reddit, stackoverflow, Chat GPT)
             dataGridViewWallets.CellFormatting += (s, e) =>
             {
