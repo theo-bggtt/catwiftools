@@ -252,6 +252,7 @@
             Controls.Add(lblBumpItTitle);
             Name = "walletBumpIt";
             Size = new Size(990, 762);
+            Load += walletBumpIt_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridViewWallets).EndInit();
             ResumeLayout(false);
             PerformLayout();

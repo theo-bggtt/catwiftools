@@ -253,6 +253,7 @@
             Name = "walletVolume";
             Size = new Size(990, 762);
             Tag = "2";
+            Load += walletVolume_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridViewWallets).EndInit();
             ResumeLayout(false);
             PerformLayout();

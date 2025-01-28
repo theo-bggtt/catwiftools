@@ -21,6 +21,7 @@ namespace catwiftools.wallet
         {
             InitializeComponent();
             displayWallets.LoadWalletsToGrid(3, dataGridViewWallets);
+            lblSolBalance.Text = "Total Balance: " + retrieveBalance.GetTotalBalance(3).ToString("N2") + " SOL";
         }
 
 
@@ -48,10 +49,10 @@ namespace catwiftools.wallet
         {
             retrieveBalance.GetAllWalletBalances(3);
             displayWallets.LoadWalletsToGrid(3, dataGridViewWallets);
-            UpdateSolBalanceLabel();
+            lblSolBalance.Text = "Total Balance: " + retrieveBalance.GetTotalBalance(3).ToString("N2") + " SOL";
         }
 
-        private async void UpdateSolBalanceLabel()
+        private void walletBumpIt_Load(object sender, EventArgs e)
         {
             lblSolBalance.Text = "Total Balance: " + retrieveBalance.GetTotalBalance(3).ToString("N2") + " SOL";
         }
