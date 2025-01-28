@@ -1,8 +1,10 @@
 ﻿using MySqlConnector;
 using Newtonsoft.Json.Linq;
+using Solnet.Wallet;
 using System;
 using System.Data;
 using System.Net.Http;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,6 +15,9 @@ namespace catwiftools.wallet
         private const string HeliusApiKey = "300e94e7-9909-4a9d-9a4e-24088e7c065b";
         private static readonly string heliusUrl = $"https://devnet.helius-rpc.com/?api-key={HeliusApiKey}";
         static string connectionString = "Server=localhost;Database=catwiftools;User ID=root;Password=Theosaussure1;SslMode=none;";
+
+        int walletAmount = 0;
+
 
         public static async Task<double> GetWalletBalance(string walletAddress, int walletType)
         {
@@ -68,33 +73,32 @@ namespace catwiftools.wallet
             return dataTable;
         }
 
-        public void GetAllWalletBalances(int walletType)
+        public async Task GetAllWalletBalances(int walletType)
         {
             DataTable wallets = GetWallets(walletType);
             foreach (DataRow row in wallets.Rows)
             {
-                string walletAddress = row["walletAddress"].ToString();
-                double balance = GetWalletBalance(walletAddress, walletType).Result;
-                SaveBalanceToDatabase(walletAddress, balance);
+                //string walletAddress = row["walletAddress"].ToString();
+                //double balance = await GetWalletBalance(walletAddress, walletType);
+                //await Task.Run(() => SaveBalanceToDatabase(walletAddress, balance));
             }
         }
 
-        public async Task<double> GetTotalBalance(int walletType)
+        public double GetTotalBalance(int walletType)
         {
-            // Create a query to sum up balances from the wallets table
+            DataTable dataTable = new DataTable();
+            double totalbalance;
             string query = $"SELECT SUM(balance) FROM wallets WHERE walletType = {walletType}";
-
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                await connection.OpenAsync(); // Ensure we open the connection asynchronously
-
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
-                    object result = await command.ExecuteScalarAsync(); // Get the sum directly
-                                                                        // Check if the result is null and parse to double
-                    return result != DBNull.Value ? Convert.ToDouble(result) : 0.0;
+                    connection.Open();
+                    var result = command.ExecuteScalar();
+                    totalbalance = Convert.ToDouble(result);
                 }
             }
+            return totalbalance;
         }
 
         public async Task SaveBalanceToDatabase(string walletAddress, double balance)

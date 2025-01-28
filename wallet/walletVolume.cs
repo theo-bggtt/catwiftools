@@ -16,11 +16,13 @@ namespace catwiftools.wallet
     {
         displayWallets displayWallets = new displayWallets();
         WalletCreator walletCreator = new WalletCreator();
+        RetrieveBalance retrieveBalance = new RetrieveBalance();
 
         public walletVolume()
         {
             InitializeComponent();
             displayWallets.LoadWalletsToGrid(2, dataGridViewWallets);
+            UpdateSolBalanceLabel();
         }
 
 
@@ -42,6 +44,18 @@ namespace catwiftools.wallet
             }
 
             base.OnMouseWheel(e);
+        }
+
+        private void btnCheckBalances_Click(object sender, EventArgs e)
+        {
+            retrieveBalance.GetAllWalletBalances(2);
+            displayWallets.LoadWalletsToGrid(2, dataGridViewWallets);
+            UpdateSolBalanceLabel();
+        }
+
+        private async void UpdateSolBalanceLabel()
+        {
+            lblSolBalance.Text = "Total Balance: " + retrieveBalance.GetTotalBalance(2).ToString("N2") + " SOL";
         }
     }
 }

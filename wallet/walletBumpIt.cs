@@ -14,8 +14,9 @@ namespace catwiftools.wallet
 {
     public partial class walletBumpIt : UserControl
     {
-        WalletCreator walletCreator = new WalletCreator();  
+        WalletCreator walletCreator = new WalletCreator();
         displayWallets displayWallets = new displayWallets();
+        RetrieveBalance retrieveBalance = new RetrieveBalance();
         public walletBumpIt()
         {
             InitializeComponent();
@@ -41,6 +42,18 @@ namespace catwiftools.wallet
             }
 
             base.OnMouseWheel(e);
+        }
+
+        private void btnCheckBalances_Click(object sender, EventArgs e)
+        {
+            retrieveBalance.GetAllWalletBalances(3);
+            displayWallets.LoadWalletsToGrid(3, dataGridViewWallets);
+            UpdateSolBalanceLabel();
+        }
+
+        private async void UpdateSolBalanceLabel()
+        {
+            lblSolBalance.Text = "Total Balance: " + retrieveBalance.GetTotalBalance(3).ToString("N2") + " SOL";
         }
     }
 }

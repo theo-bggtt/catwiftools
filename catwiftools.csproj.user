@@ -49,4 +49,9 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <None Update=".env">
+      <SubType>Component</SubType>
+    </None>
+  </ItemGroup>
 </Project>
