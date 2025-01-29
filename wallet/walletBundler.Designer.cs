@@ -54,7 +54,7 @@
             btnGenWallet.ForeColor = Color.White;
             btnGenWallet.ImageAlign = ContentAlignment.MiddleLeft;
             btnGenWallet.ImeMode = ImeMode.NoControl;
-            btnGenWallet.Location = new Point(331, 25);
+            btnGenWallet.Location = new Point(324, 55);
             btnGenWallet.Name = "btnGenWallet";
             btnGenWallet.Padding = new Padding(5, 0, 5, 0);
             btnGenWallet.Size = new Size(120, 30);

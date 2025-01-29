@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySqlConnector;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySqlConnector;
 using WalletGenerator;
 
 namespace catwiftools.wallet
@@ -23,12 +23,20 @@ namespace catwiftools.wallet
             InitializeComponent();
             displayWallets.LoadWalletsToGrid(2, dataGridViewWallets);
             lblSolBalance.Text = "Total Balance: " + retrieveBalance.GetTotalBalance(2).ToString("N2") + " SOL";
+            lblWalletQt.Text = "Wallet amount: " + displayWallets.GetWallets(2).Rows.Count;
+        }
+
+        private void walletVolume_Load(object sender, EventArgs e)
+        {
+            lblSolBalance.Text = "Total Balance: " + retrieveBalance.GetTotalBalance(2).ToString("N2") + " SOL";
+            lblWalletQt.Text = "Wallet amount: " + displayWallets.GetWallets(2).Rows.Count;
         }
 
 
         private void btnGenWallet_Click(object sender, EventArgs e)
         {
             walletCreator.getwalletqt(btnGenWallet, dataGridViewWallets);
+            lblWalletQt.Text = "Wallet amount: " + displayWallets.GetWallets(2).Rows.Count;
         }
 
         protected override void OnMouseWheel(MouseEventArgs e)
@@ -46,16 +54,12 @@ namespace catwiftools.wallet
             base.OnMouseWheel(e);
         }
 
-        private void btnCheckBalances_Click(object sender, EventArgs e)
+        private async void btnCheckBalances_Click(object sender, EventArgs e)
         {
-            retrieveBalance.GetAllWalletBalances(2);
+            await retrieveBalance.GetAllWalletBalances(2);
             displayWallets.LoadWalletsToGrid(2, dataGridViewWallets);
             lblSolBalance.Text = "Total Balance: " + retrieveBalance.GetTotalBalance(2).ToString("N2") + " SOL";
-        }
-
-        private void walletVolume_Load(object sender, EventArgs e)
-        {
-            lblSolBalance.Text = "Total Balance: " + retrieveBalance.GetTotalBalance(2).ToString("N2") + " SOL";
+            lblWalletQt.Text = "Wallet amount: " + displayWallets.GetWallets(2).Rows.Count;
         }
     }
 }

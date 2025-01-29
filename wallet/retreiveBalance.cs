@@ -12,12 +12,9 @@ namespace catwiftools.wallet
 {
     internal class RetrieveBalance
     {
-        private const string HeliusApiKey = "300e94e7-9909-4a9d-9a4e-24088e7c065b";
-        private static readonly string heliusUrl = $"https://devnet.helius-rpc.com/?api-key={HeliusApiKey}";
-        static string connectionString = "Server=localhost;Database=catwiftools;User ID=root;Password=Theosaussure1;SslMode=none;";
-
-        int walletAmount = 0;
-
+        string connectionString = Functions.GetConnectionString();
+        static string HeliusApiKey = Functions.GetAPIKEY();
+        static string heliusUrl = $"https://devnet.helius-rpc.com/?api-key={HeliusApiKey}";
 
         public static async Task<double> GetWalletBalance(string walletAddress, int walletType)
         {
@@ -78,9 +75,9 @@ namespace catwiftools.wallet
             DataTable wallets = GetWallets(walletType);
             foreach (DataRow row in wallets.Rows)
             {
-                //string walletAddress = row["walletAddress"].ToString();
-                //double balance = await GetWalletBalance(walletAddress, walletType);
-                //await Task.Run(() => SaveBalanceToDatabase(walletAddress, balance));
+                string walletAddress = row["walletAddress"].ToString();
+                double balance = await GetWalletBalance(walletAddress, walletType);
+                await Task.Run(() => SaveBalanceToDatabase(walletAddress, balance));
             }
         }
 

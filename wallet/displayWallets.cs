@@ -12,7 +12,8 @@ namespace catwiftools.wallet
 {
     internal class displayWallets
     {
-        static string connectionString = "Server=localhost;Database=catwiftools;User ID=root;Password=Theosaussure1;SslMode=none;";
+        Functions functions = new Functions();
+        static string connectionString = Functions.GetConnectionString();
 
         public DataTable GetWallets(int walletType)
         {

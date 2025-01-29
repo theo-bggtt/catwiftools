@@ -1,4 +1,5 @@
 ﻿using catwiftools.tasks;
+using DotNetEnv;
 using System;
 using System.Collections.Generic;
 using System.Drawing.Drawing2D;
@@ -60,6 +61,25 @@ namespace catwiftools
                     e.Graphics.DrawLine(borderPen, 0, 0, 0, button.Height);
                 }
             }
+        }
+
+        public static string GetConnectionString()
+        {
+            Env.Load();
+            string dbServer = Environment.GetEnvironmentVariable("DB_SERVER");
+            string dbName = Environment.GetEnvironmentVariable("DB_NAME");
+            string dbUser = Environment.GetEnvironmentVariable("DB_USER");
+            string dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
+            string dbSslMode = Environment.GetEnvironmentVariable("DB_SSL_MODE");
+
+            // Build the connection string
+            return $"Server={dbServer};Database={dbName};User ID={dbUser};Password={dbPassword};SslMode={dbSslMode};";
+        }
+        public static string GetAPIKEY()
+        {
+            Env.Load();
+            string apiKey = Environment.GetEnvironmentVariable("API_KEY");
+            return apiKey;
         }
     }
 }

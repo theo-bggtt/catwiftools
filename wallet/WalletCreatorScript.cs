@@ -12,10 +12,12 @@ namespace WalletGenerator
 {
     public class WalletCreator
     {
-        static string connectionString = "Server=localhost;Database=catwiftools;User ID=root;Password=Theosaussure1;SslMode=none;";
+        Functions functions = new Functions();
+        static string connectionString = Functions.GetConnectionString();
+
         displayWallets displayWallets = new displayWallets();
 
-        public void getwalletqt(Button btnGenWallet, DataGridView dataGridViewWallets)
+        public async void getwalletqt(Button btnGenWallet, DataGridView dataGridViewWallets)
         {
             using (var numberInputForm = new walletCreatorForm())
             {
@@ -66,7 +68,6 @@ namespace WalletGenerator
                     }
                 }
             }
-            
         }
 
         private static string WalletFromMnemonic(string mnemonic)
