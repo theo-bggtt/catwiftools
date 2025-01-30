@@ -55,9 +55,9 @@ namespace catwiftools.wallet
         }
 
         // Réparti verticalement la largeur des colonnes
-        private void DataGridViewWallets_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        private void DataGridViewWallets_DataBindingComplete(object? sender, DataGridViewBindingCompleteEventArgs e)
         {
-            DataGridView dataGridViewWallets = sender as DataGridView;
+            DataGridView? dataGridViewWallets = sender as DataGridView;
             if (dataGridViewWallets != null && dataGridViewWallets.Columns.Count > 1)
             {
                 dataGridViewWallets.Columns[1].Width = 200;

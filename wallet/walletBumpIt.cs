@@ -32,9 +32,9 @@ namespace catwiftools.wallet
         }
 
 
-        private void btnGenWallet_Click(object sender, EventArgs e)
+        private async void btnGenWallet_Click(object sender, EventArgs e)
         {
-            walletCreator.getwalletqt(btnGenWallet, dataGridViewWallets);
+            await walletCreator.getwalletqt(btnGenWallet, dataGridViewWallets);
             lblWalletQt.Text = "Wallet amount: " + displayWallets.GetWallets(3).Rows.Count;
         }
 

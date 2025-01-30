@@ -18,7 +18,7 @@ namespace WalletGenerator
 
         displayWallets displayWallets = new displayWallets();
 
-        public async void getwalletqt(Button btnGenWallet, DataGridView dataGridViewWallets)
+        public async Task getwalletqt(Button btnGenWallet, DataGridView dataGridViewWallets)
         {
             using (var numberInputForm = new walletCreatorForm())
             {
@@ -26,7 +26,7 @@ namespace WalletGenerator
                 if (result == DialogResult.OK && numberInputForm.InputNumber.HasValue)
                 {
                     MessageBox.Show($"You entered: {numberInputForm.InputNumber.Value}");
-                    SaveData(numberInputForm.InputNumber.Value, btnGenWallet);
+                    await Task.Run(() => SaveData(numberInputForm.InputNumber.Value, btnGenWallet));
                 }
                 else
                 {

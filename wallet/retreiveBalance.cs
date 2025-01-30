@@ -77,7 +77,7 @@ namespace catwiftools.wallet
             DataTable wallets = GetWallets(walletType);
             foreach (DataRow row in wallets.Rows)
             {
-                string walletAddress = row["walletAddress"].ToString();
+                string walletAddress = row["walletAddress"]?.ToString() ?? string.Empty;
                 double balance = await GetWalletBalance(walletAddress, walletType);
                 await Task.Run(() => SaveBalanceToDatabase(walletAddress, balance));
             }

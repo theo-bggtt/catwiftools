@@ -14,7 +14,6 @@ namespace catwiftools.wallet
     public partial class walletBundler : UserControl
     {
         displayWallets displayWallets = new displayWallets();
-        private List<Wallet> wallets;
         RetrieveBalance retrieveBalance = new RetrieveBalance();
         WalletCreator walletCreator = new WalletCreator();
 
@@ -34,9 +33,9 @@ namespace catwiftools.wallet
             lblWalletQt.Text = "Wallet amount: " + displayWallets.GetWallets(3).Rows.Count;
         }
 
-        private void btnGenWallet_Click(object sender, EventArgs e)
+        private async void btnGenWallet_Click(object sender, EventArgs e)
         {
-            walletCreator.getwalletqt(btnGenWallet, dataGridViewWallets);
+            await walletCreator.getwalletqt(btnGenWallet, dataGridViewWallets);
             lblWalletQt.Text = "Wallet amount: " + displayWallets.GetWallets(1).Rows.Count;
         }
 
