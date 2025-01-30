@@ -1,19 +1,15 @@
 ﻿using MySqlConnector;
-using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WalletGenerator;
+using System.Windows.Forms;
+using DotNetEnv;
 
 namespace catwiftools.wallet
 {
     internal class displayWallets
     {
-        Functions functions = new Functions();
-        static string connectionString = Functions.GetConnectionString();
+        private static readonly (string ConnectionString, string HeliusUrl) envVariables = Functions.LoadEnvVariables();
+        private static readonly string connectionString = envVariables.ConnectionString;
 
         public DataTable GetWallets(int walletType)
         {
@@ -34,7 +30,6 @@ namespace catwiftools.wallet
             return dataTable;
         }
 
-        // Rempli le DataGridView
         public void LoadWalletsToGrid(int walletType, DataGridView dataGridViewWallets)
         {
             DataTable wallets = GetWallets(walletType);
@@ -43,7 +38,6 @@ namespace catwiftools.wallet
             StyleDataGridView(dataGridViewWallets);
         }
 
-        // Style le DataGridView
         public void StyleDataGridView(DataGridView dataGridViewWallets)
         {
             // Permet d'avoir le bon formatage pour le balance (Reddit, stackoverflow, Chat GPT)
@@ -51,20 +45,13 @@ namespace catwiftools.wallet
             {
                 if (e.ColumnIndex == 2 && e.Value != null)
                 {
-                    dataGridViewWallets.CellFormatting += (s, e) =>
+                    if (decimal.TryParse(e.Value.ToString(), out decimal balance))
                     {
-                        if (e.ColumnIndex == 2 && e.Value != null)
-                        {
-                            if (decimal.TryParse(e.Value.ToString(), out decimal balance))
-                            {
-                                e.Value = balance.ToString("F2") + " SOL";
-                            }
-                            e.FormattingApplied = true;
-                        }
-                    };
+                        e.Value = balance.ToString("F2") + " SOL";
+                    }
+                    e.FormattingApplied = true;
                 }
             };
-
         }
 
         // Réparti verticalement la largeur des colonnes

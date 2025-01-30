@@ -15,39 +15,37 @@ namespace catwiftools
     {
         private Button? selectedButton = null;
 
-        // Changes color of text and image to selected
         public void SelectButton(Button button)
         {
-
-            // Select the new button
             button.ForeColor = Color.FromArgb(0, 134, 179);
             string filename = $"{button.Tag}Selected";
-            string imagePath = $@"D:\crypto\catwiftools\img\icon\{filename}.png";
+            string basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "catwiftools", "img", "icon");
+            string imagePath = Path.Combine(basePath, $"{filename}.png");
 
             if (File.Exists(imagePath))
             {
                 button.Image = Image.FromFile(imagePath);
             }
 
-            button.Paint += DrawLeftBorder; // Add the Paint event handler
+            button.Paint += DrawLeftBorder;
             button.Refresh();
 
-            selectedButton = button; // Update the selected button reference
+            selectedButton = button;
         }
 
-        // Changes color of text and image to default
         public void DeselectButton(Button button)
         {
             button.ForeColor = Color.FromArgb(153, 153, 153);
             string filename = $"{button.Tag}";
-            string imagePath = $@"D:\crypto\catwiftools\img\icon\{filename}.png";
+            string basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "catwiftools", "img", "icon");
+            string imagePath = Path.Combine(basePath, $"{filename}.png");
 
             if (File.Exists(imagePath))
             {
                 button.Image = Image.FromFile(imagePath);
             }
 
-            button.Paint -= DrawLeftBorder; // Remove the Paint event handler
+            button.Paint -= DrawLeftBorder;
             button.Refresh();
         }
 
@@ -63,23 +61,20 @@ namespace catwiftools
             }
         }
 
-        public static string GetConnectionString()
+        public static (string ConnectionString, string HeliusUrl) LoadEnvVariables()
         {
             Env.Load();
-            string dbServer = Environment.GetEnvironmentVariable("DB_SERVER");
-            string dbName = Environment.GetEnvironmentVariable("DB_NAME");
-            string dbUser = Environment.GetEnvironmentVariable("DB_USER");
-            string dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
-            string dbSslMode = Environment.GetEnvironmentVariable("DB_SSL_MODE");
 
-            // Build the connection string
-            return $"Server={dbServer};Database={dbName};User ID={dbUser};Password={dbPassword};SslMode={dbSslMode};";
-        }
-        public static string GetAPIKEY()
-        {
-            Env.Load();
-            string apiKey = Environment.GetEnvironmentVariable("API_KEY");
-            return apiKey;
+            string server = Env.GetString("DB_SERVER");
+            int port = Env.GetInt("DB_PORT");
+            string database = Env.GetString("DB_NAME");
+            string user = Env.GetString("DB_USER");
+            string password = Env.GetString("DB_PASSWORD");
+            string heliusApiKey = Env.GetString("API_KEY");
+
+            string connectionString = $"Server={server};Port={port};Database={database};Uid={user};Pwd={password};";
+            string heliusUrl = $"https://devnet.helius-rpc.com/?api-key={heliusApiKey}";
+            return (connectionString, heliusUrl);
         }
     }
-}
+}   

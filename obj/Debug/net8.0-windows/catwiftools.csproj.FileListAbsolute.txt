@@ -189,3 +189,6 @@ C:\Users\theo.bggtt\Documents\2024-2025\Atelier_Programmation\sem2\cwt2\obj\Debu
 C:\Users\theo.bggtt\Documents\2024-2025\Atelier_Programmation\sem2\cwt2\obj\Debug\net8.0-windows\ref\catwiftools.dll
 D:\crypto\catwiftools\bin\Debug\net8.0-windows\DotNetEnv.dll
 D:\crypto\catwiftools\bin\Debug\net8.0-windows\Sprache.dll
+C:\Users\theo.bggtt\Documents\2024-2025\Atelier_Programmation\sem2\catwiftools\bin\Debug\net8.0-windows\DotNetEnv.dll
+C:\Users\theo.bggtt\Documents\2024-2025\Atelier_Programmation\sem2\catwiftools\bin\Debug\net8.0-windows\Sprache.dll
+C:\Users\theo.bggtt\Documents\2024-2025\Atelier_Programmation\sem2\catwiftools\bin\Debug\net8.0-windows\.env

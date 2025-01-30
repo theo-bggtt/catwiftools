@@ -1,4 +1,5 @@
-﻿using MySqlConnector;
+﻿using DotNetEnv;
+using MySqlConnector;
 using Newtonsoft.Json.Linq;
 using Solnet.Wallet;
 using System;
@@ -12,9 +13,10 @@ namespace catwiftools.wallet
 {
     internal class RetrieveBalance
     {
-        string connectionString = Functions.GetConnectionString();
-        static string HeliusApiKey = Functions.GetAPIKEY();
-        static string heliusUrl = $"https://devnet.helius-rpc.com/?api-key={HeliusApiKey}";
+        
+        private static readonly (string ConnectionString, string HeliusUrl) envVariables = Functions.LoadEnvVariables();
+        private static readonly string connectionString = envVariables.ConnectionString;
+        private static readonly string heliusUrl = envVariables.HeliusUrl;
 
         public static async Task<double> GetWalletBalance(string walletAddress, int walletType)
         {
@@ -106,7 +108,6 @@ namespace catwiftools.wallet
             {
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
-                    // Add parameters to prevent SQL injection
                     command.Parameters.AddWithValue("@balance", balance);
                     command.Parameters.AddWithValue("@walletAddress", walletAddress);
 

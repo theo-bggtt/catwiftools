@@ -40,11 +40,9 @@ namespace catwiftools.wallet
 
         protected override void OnMouseWheel(MouseEventArgs e)
         {
-            // Adjust scrolling based on mouse wheel delta
-            int scrollValue = e.Delta > 0 ? -1 : 1; // -1 for up, 1 for down
+            int scrollValue = e.Delta > 0 ? -1 : 1;
             var verticalScroll = dataGridViewWallets.FirstDisplayedScrollingRowIndex;
 
-            // Update scrolling, ensuring it stays within bounds
             if (verticalScroll + scrollValue >= 0 && verticalScroll + scrollValue < dataGridViewWallets.RowCount)
             {
                 dataGridViewWallets.FirstDisplayedScrollingRowIndex += scrollValue;

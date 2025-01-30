@@ -7,13 +7,14 @@ using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
 using catwiftools.wallet;
+using DotNetEnv;
 
 namespace WalletGenerator
 {
     public class WalletCreator
     {
-        Functions functions = new Functions();
-        static string connectionString = Functions.GetConnectionString();
+        private static readonly (string ConnectionString, string HeliusUrl) envVariables = Functions.LoadEnvVariables();
+        private static readonly string connectionString = envVariables.ConnectionString;
 
         displayWallets displayWallets = new displayWallets();
 
@@ -41,7 +42,6 @@ namespace WalletGenerator
             for (int i = 0; i < amount; i++)
             {
                 int walletType = Convert.ToInt32(button.Tag);
-                // Generate a new mnemonic
                 var newMnemonic = new Mnemonic(WordList.English, WordCount.Twelve);
                 string walletMnemonic = newMnemonic.ToString();
                 string walletAddress = WalletFromMnemonic(walletMnemonic);
@@ -72,17 +72,13 @@ namespace WalletGenerator
 
         private static string WalletFromMnemonic(string mnemonic)
         {
-            // Step 1: Generate or load a mnemonic
             string mnemonicPhrase = mnemonic.ToString();
 
-            // Step 2: Create a wallet using the mnemonic
             Wallet wallet = new Wallet(mnemonic);
 
-            // Step 3: Get the default account (derivation path m/44'/501'/0'/0')
-            var account = wallet.GetAccount(0); // Account index 0
+            var account = wallet.GetAccount(0);
             string publicKey = account.PublicKey;
 
-            // Step 4: Print the wallet address (public key)
             Console.WriteLine("Wallet Address (Public Key): " + publicKey);
             return publicKey;
         }
