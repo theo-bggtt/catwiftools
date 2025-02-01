@@ -1,6 +1,11 @@
 # Test App for Solana Wallet and CA Manager  
 *A sleek, minimalist hub for managing Solana wallets and bundle buying.*  
 
+## **How To Use**  
+*The .exe is located in the "\bin\Debug\net8.0-windows"  
+
+- Run the .exe file and enjoy the app.
+
 ✨ **ALL WALLETS ARE EMPTY** ✨  
 Everything is on devnet.  
 
