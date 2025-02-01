@@ -1,4 +1,5 @@
 ﻿using DotNetEnv;
+using Microsoft.Data.Sqlite;
 using MySqlConnector;
 using Newtonsoft.Json.Linq;
 using Solnet.Wallet;
@@ -14,14 +15,18 @@ namespace catwiftools.wallet
     internal class RetrieveBalance
     {
         
-        private static readonly (string ConnectionString, string HeliusUrl) envVariables = Functions.LoadEnvVariables();
-        private static readonly string connectionString = envVariables.ConnectionString;
+        private static readonly (string ConnectionString, string HeliusUrl, string ApiKey) envVariables = Functions.LoadEnvVariables();
+        private static string connectionString = envVariables.ConnectionString;
         private static readonly string heliusUrl = envVariables.HeliusUrl;
+        private static readonly string apiKey = envVariables.ApiKey;
 
         public static async Task<double> GetWalletBalance(string walletAddress, int walletType)
         {
             using (var httpClient = new HttpClient())
             {
+                // Add the API key to the request headers
+                httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
+
                 var requestPayload = new
                 {
                     jsonrpc = "2.0",
@@ -36,14 +41,19 @@ namespace catwiftools.wallet
                 try
                 {
                     var response = await httpClient.PostAsync(heliusUrl, content);
-                    response.EnsureSuccessStatusCode();
+                    response.EnsureSuccessStatusCode(); // Throws an exception if the status code is not successful
 
                     var jsonResponse = await response.Content.ReadAsStringAsync();
                     var result = JObject.Parse(jsonResponse);
 
                     var balanceInLamports = result["result"]?["value"]?.Value<long>() ?? 0;
 
-                    return balanceInLamports / 1_000_000_000.0;
+                    return balanceInLamports / 1_000_000_000.0; // Convert lamports to SOL
+                }
+                catch (HttpRequestException ex)
+                {
+                    Console.WriteLine($"HTTP Error retrieving wallet balance for {walletAddress}: {ex.Message}");
+                    return 0;
                 }
                 catch (Exception ex)
                 {
@@ -58,14 +68,25 @@ namespace catwiftools.wallet
             DataTable dataTable = new DataTable();
 
             string query = $"SELECT idWallet, walletAddress FROM wallets WHERE walletType = {walletType}";
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
-                using (MySqlCommand command = new MySqlCommand(query, connection))
+                using (SqliteCommand command = new SqliteCommand(query, connection))
                 {
                     connection.Open();
-                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                    using (SqliteDataReader reader = command.ExecuteReader())
                     {
-                        adapter.Fill(dataTable);
+                        // Create columns in the DataTable
+                        dataTable.Columns.Add("idWallet", typeof(int));
+                        dataTable.Columns.Add("walletAddress", typeof(string));
+
+                        // Fill the DataTable with data from the reader
+                        while (reader.Read())
+                        {
+                            DataRow row = dataTable.NewRow();
+                            row["idWallet"] = reader.GetInt32(0);
+                            row["walletAddress"] = reader.GetString(1);
+                            dataTable.Rows.Add(row);
+                        }
                     }
                 }
             }
@@ -85,16 +106,18 @@ namespace catwiftools.wallet
 
         public double GetTotalBalance(int walletType)
         {
-            DataTable dataTable = new DataTable();
-            double totalbalance;
+            double totalbalance = 0;
             string query = $"SELECT SUM(balance) FROM wallets WHERE walletType = {walletType}";
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
-                using (MySqlCommand command = new MySqlCommand(query, connection))
+                using (SqliteCommand command = new SqliteCommand(query, connection))
                 {
                     connection.Open();
                     var result = command.ExecuteScalar();
-                    totalbalance = Convert.ToDouble(result);
+                    if (result != null && result != DBNull.Value)
+                    {
+                        totalbalance = Convert.ToDouble(result);
+                    }
                 }
             }
             return totalbalance;
@@ -104,9 +127,9 @@ namespace catwiftools.wallet
         {
             string query = "UPDATE wallets SET balance = @balance WHERE walletAddress = @walletAddress";
 
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
-                using (MySqlCommand command = new MySqlCommand(query, connection))
+                using (SqliteCommand command = new SqliteCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@balance", balance);
                     command.Parameters.AddWithValue("@walletAddress", walletAddress);

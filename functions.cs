@@ -61,20 +61,13 @@ namespace catwiftools
             }
         }
 
-        public static (string ConnectionString, string HeliusUrl) LoadEnvVariables()
+        public static (string ConnectionString, string HeliusUrl, string ApiKey) LoadEnvVariables()
         {
             Env.Load();
-
-            string server = Env.GetString("DB_SERVER");
-            int port = Env.GetInt("DB_PORT");
-            string database = Env.GetString("DB_NAME");
-            string user = Env.GetString("DB_USER");
-            string password = Env.GetString("DB_PASSWORD");
             string heliusApiKey = Env.GetString("API_KEY");
-
-            string connectionString = $"Server={server};Port={port};Database={database};Uid={user};Pwd={password};";
+            string connectionString = "Data Source=catwiftools.db;";
             string heliusUrl = $"https://devnet.helius-rpc.com/?api-key={heliusApiKey}";
-            return (connectionString, heliusUrl);
+            return (connectionString, heliusUrl, heliusApiKey);
         }
     }
-}   
+}

@@ -8,13 +8,14 @@ using System.IO;
 using System.Text.Json;
 using catwiftools.wallet;
 using DotNetEnv;
+using Microsoft.Data.Sqlite;
 
 namespace WalletGenerator
 {
     public class WalletCreator
     {
-        private static readonly (string ConnectionString, string HeliusUrl) envVariables = Functions.LoadEnvVariables();
-        private static readonly string connectionString = envVariables.ConnectionString;
+        private static readonly (string ConnectionString, string HeliusUrl, string ApiKey) envVariables = Functions.LoadEnvVariables();
+        private static string connectionString = envVariables.ConnectionString;
 
         displayWallets displayWallets = new displayWallets();
 
@@ -46,16 +47,16 @@ namespace WalletGenerator
                 string walletMnemonic = newMnemonic.ToString();
                 string walletAddress = WalletFromMnemonic(walletMnemonic);
 
-                using (var connection = new MySqlConnection(connectionString))
+                using (var connection = new SqliteConnection(connectionString)) // Now accessible
                 {
                     try
                     {
                         connection.Open();
-                        string query = "INSERT INTO wallets (idWallet,walletAddress,walletphrase,walletType) VALUES (null,@walletName, @walletMnemonic, @walletType)";
+                        string query = "INSERT INTO wallets (walletAddress, walletphrase, walletType) VALUES (@walletAddress, @walletMnemonic, @walletType)";
 
-                        using (var command = new MySqlCommand(query, connection))
+                        using (var command = new SqliteCommand(query, connection))
                         {
-                            command.Parameters.AddWithValue("@walletName", walletAddress);
+                            command.Parameters.AddWithValue("@walletAddress", walletAddress);
                             command.Parameters.AddWithValue("@walletMnemonic", walletMnemonic);
                             command.Parameters.AddWithValue("@walletType", walletType);
 

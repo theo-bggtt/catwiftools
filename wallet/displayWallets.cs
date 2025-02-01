@@ -3,27 +3,41 @@ using System;
 using System.Data;
 using System.Windows.Forms;
 using DotNetEnv;
+using Microsoft.Data.Sqlite;
 
 namespace catwiftools.wallet
 {
     internal class displayWallets
     {
-        private static readonly (string ConnectionString, string HeliusUrl) envVariables = Functions.LoadEnvVariables();
-        private static readonly string connectionString = envVariables.ConnectionString;
+        private static readonly (string ConnectionString, string HeliusUrl, string ApiKey) envVariables = Functions.LoadEnvVariables();
+        private static string connectionString = envVariables.ConnectionString;
 
         public DataTable GetWallets(int walletType)
         {
             DataTable dataTable = new DataTable();
 
-            string query = $"SELECT idWallet AS `ID`, walletAddress AS `Address`, balance AS `Balance` FROM wallets where walletType = {walletType}";
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            string query = $"SELECT idWallet AS `ID`, walletAddress AS `Address`, balance AS `Balance` FROM wallets WHERE walletType = {walletType}";
+            using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
-                using (MySqlCommand command = new MySqlCommand(query, connection))
+                using (SqliteCommand command = new SqliteCommand(query, connection))
                 {
                     connection.Open();
-                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                    using (SqliteDataReader reader = command.ExecuteReader())
                     {
-                        adapter.Fill(dataTable);
+                        // Create columns in the DataTable
+                        dataTable.Columns.Add("ID", typeof(int));
+                        dataTable.Columns.Add("Address", typeof(string));
+                        dataTable.Columns.Add("Balance", typeof(decimal));
+
+                        // Fill the DataTable with data from the reader
+                        while (reader.Read())
+                        {
+                            DataRow row = dataTable.NewRow();
+                            row["ID"] = reader.GetInt32(0);
+                            row["Address"] = reader.GetString(1);
+                            row["Balance"] = reader.GetDecimal(2);
+                            dataTable.Rows.Add(row);
+                        }
                     }
                 }
             }
