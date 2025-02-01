@@ -32,4 +32,4 @@ Everything is on devnet.
 ### **Open to Recommendations**  
 I’m always open to suggestions and ideas! If you have any feature requests or recommendations, feel free to share them. As time goes on, I’ll continue to add more functionalities to make this tool even more powerful and user-friendly.  
 
-![Main Menu Preview](https://imgur.com/a/nENW2zR)
+![Main Menu Preview](https://i.imgur.com/K7JaCAp.png)
