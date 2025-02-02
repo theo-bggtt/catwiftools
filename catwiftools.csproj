@@ -10,10 +10,86 @@
 
   <ItemGroup>
     <None Remove=".env" />
+    <None Remove="catwiftools.db" />
+    <None Remove="img\icon\bumpIt.png" />
+    <None Remove="img\icon\bumpItSelected.png" />
+    <None Remove="img\icon\bundler.png" />
+    <None Remove="img\icon\bundlerSelected.png" />
+    <None Remove="img\icon\folder.png" />
+    <None Remove="img\icon\folderSelected.png" />
+    <None Remove="img\icon\proxies.png" />
+    <None Remove="img\icon\proxiesSelected.png" />
+    <None Remove="img\icon\settings.png" />
+    <None Remove="img\icon\settingsSelected.png" />
+    <None Remove="img\icon\tasks.png" />
+    <None Remove="img\icon\tasksSelected.png" />
+    <None Remove="img\icon\volume.png" />
+    <None Remove="img\icon\volumeSelected.png" />
+    <None Remove="img\icon\wallets.png" />
+    <None Remove="img\icon\walletsSelected.png" />
+    <None Remove="img\logo\1.png" />
+    <None Remove="img\logo\2.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include=".env">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="catwiftools.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\icon\bumpIt.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\icon\bumpItSelected.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\icon\bundler.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\icon\bundlerSelected.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\icon\folder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\icon\folderSelected.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\icon\proxies.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\icon\proxiesSelected.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\icon\settings.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\icon\settingsSelected.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\icon\tasks.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\icon\tasksSelected.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\icon\volume.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\icon\volumeSelected.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\icon\wallets.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\icon\walletsSelected.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\logo\1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="img\logo\2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

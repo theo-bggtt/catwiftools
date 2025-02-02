@@ -24,7 +24,6 @@ namespace catwiftools.wallet
         {
             using (var httpClient = new HttpClient())
             {
-                // Add the API key to the request headers
                 httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
 
                 var requestPayload = new
@@ -38,28 +37,15 @@ namespace catwiftools.wallet
                 var jsonPayload = Newtonsoft.Json.JsonConvert.SerializeObject(requestPayload);
                 var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
 
-                try
-                {
-                    var response = await httpClient.PostAsync(heliusUrl, content);
-                    response.EnsureSuccessStatusCode(); // Throws an exception if the status code is not successful
+                var response = await httpClient.PostAsync(heliusUrl, content);
+                response.EnsureSuccessStatusCode();
 
-                    var jsonResponse = await response.Content.ReadAsStringAsync();
-                    var result = JObject.Parse(jsonResponse);
+                var jsonResponse = await response.Content.ReadAsStringAsync();
+                var result = JObject.Parse(jsonResponse);
 
-                    var balanceInLamports = result["result"]?["value"]?.Value<long>() ?? 0;
+                var balanceInLamports = result["result"]?["value"]?.Value<long>() ?? 0;
 
-                    return balanceInLamports / 1_000_000_000.0; // Convert lamports to SOL
-                }
-                catch (HttpRequestException ex)
-                {
-                    Console.WriteLine($"HTTP Error retrieving wallet balance for {walletAddress}: {ex.Message}");
-                    return 0;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Error retrieving wallet balance for {walletAddress}: {ex.Message}");
-                    return 0;
-                }
+                return balanceInLamports / 1_000_000_000.0;
             }
         }
 
