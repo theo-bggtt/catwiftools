@@ -15,16 +15,10 @@
 
         private void CatWifTools_Load(object sender, EventArgs e)
         {
-            // Set the default view
             ShowControls(new List<Control>());
             tmrClock.Enabled = true;
             gbxBackground.Visible = true;
         }
-
-
-
-        // Main button events
-
 
         private void InitializeButtonControlMap()
         {
@@ -132,7 +126,10 @@
 
             foreach (var control in allControls)
             {
-                control.Visible = controlsToShow.Contains(control);
+                if (control != null)
+                {
+                    control.Visible = controlsToShow.Contains(control);
+                }
             }
         }
 
@@ -140,10 +137,7 @@
         {
             if (sender is Button clickedButton && buttonControlMap.ContainsKey(clickedButton))
             {
-                // List of controls to show when the button is clicked
                 List<Control> controlsToShow = GetControlsForButton(clickedButton);
-
-                // Pass the list of controls to handle showing them
                 HandleButtonClick(clickedButton, controlsToShow);
             }
         }
@@ -151,7 +145,6 @@
 
         private void HandleButtonClick(Button selectedButton, List<Control> controlsToShow)
         {
-            // Select the clicked button
             functions.SelectButton(selectedButton);
 
             foreach (var button in buttonControlMap.Keys)
@@ -189,8 +182,6 @@
             }
         }
 
-
-        // Draw the separators
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
@@ -217,11 +208,8 @@
             this.WindowState = FormWindowState.Minimized;
         }
 
-
-        // Draw the separator for wallet and settings
         private void Form_Paint(object? sender, PaintEventArgs e)
         {
-            // Check if the GroupBox is visible
             if (gbxWalletNav.Visible || gbxSettingsNav.Visible)
             {
                 using (Pen pen = new Pen(Color.Gray, 2)) // Color.Gray and thickness 2
@@ -240,7 +228,7 @@
             {
                 using (Pen pen = new Pen(Color.Gray, 2)) // Color.Gray and thickness 2
                 {
-                    e.Graphics.DrawLine(pen, 460, 148, 1300, 148);
+                    e.Graphics.DrawLine(pen, 460, 154, 1276, 154);
                 }
             }
         }

@@ -58,6 +58,10 @@
               "target": "Package",
               "version": "[7.4.5, )"
             },
+            "Microsoft.Data.Sqlite": {
+              "target": "Package",
+              "version": "[9.0.1, )"
+            },
             "MySqlConnector": {
               "target": "Package",
               "version": "[2.4.0, )"

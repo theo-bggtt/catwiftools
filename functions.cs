@@ -17,33 +17,29 @@ namespace catwiftools
 
         public void SelectButton(Button button)
         {
+            if (selectedButton != null)
+            {
+                selectedButton.Paint -= DrawLeftBorder;
+                selectedButton.Invalidate();
+            }
+            selectedButton = button;
             button.ForeColor = Color.FromArgb(0, 134, 179);
             string filename = $"{button.Tag}Selected";
-            string basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "catwiftools", "img", "icon");
+            string basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "img", "icon");
             string imagePath = Path.Combine(basePath, $"{filename}.png");
-
-            if (File.Exists(imagePath))
-            {
-                button.Image = Image.FromFile(imagePath);
-            }
+            button.Image = Image.FromFile(imagePath);
 
             button.Paint += DrawLeftBorder;
-            button.Refresh();
-
-            selectedButton = button;
+            button.Invalidate();
         }
 
         public void DeselectButton(Button button)
         {
             button.ForeColor = Color.FromArgb(153, 153, 153);
             string filename = $"{button.Tag}";
-            string basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "catwiftools", "img", "icon");
+            string basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "img", "icon");
             string imagePath = Path.Combine(basePath, $"{filename}.png");
-
-            if (File.Exists(imagePath))
-            {
-                button.Image = Image.FromFile(imagePath);
-            }
+            button.Image = Image.FromFile(imagePath);
 
             button.Paint -= DrawLeftBorder;
             button.Refresh();
@@ -55,26 +51,18 @@ namespace catwiftools
             {
                 using (Pen borderPen = new Pen(Color.FromArgb(0, 134, 179), 2)) //(0,134,179) = color, 2 = thickness
                 {
-                    // Left border
                     e.Graphics.DrawLine(borderPen, 0, 0, 0, button.Height);
                 }
             }
         }
 
-        public static (string ConnectionString, string HeliusUrl) LoadEnvVariables()
+        public static (string ConnectionString, string HeliusUrl, string ApiKey) LoadEnvVariables()
         {
             Env.Load();
-
-            string server = Env.GetString("DB_SERVER");
-            int port = Env.GetInt("DB_PORT");
-            string database = Env.GetString("DB_NAME");
-            string user = Env.GetString("DB_USER");
-            string password = Env.GetString("DB_PASSWORD");
             string heliusApiKey = Env.GetString("API_KEY");
-
-            string connectionString = $"Server={server};Port={port};Database={database};Uid={user};Pwd={password};";
+            string connectionString = "Data Source=catwiftools.db;";
             string heliusUrl = $"https://devnet.helius-rpc.com/?api-key={heliusApiKey}";
-            return (connectionString, heliusUrl);
+            return (connectionString, heliusUrl, heliusApiKey);
         }
     }
-}   
+}

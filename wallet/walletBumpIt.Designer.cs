@@ -41,6 +41,9 @@
             lblWalletQt = new Label();
             lblBumpItTitle = new Label();
             dataGridViewWallets = new DataGridView();
+            CheckBoxColumn = new DataGridViewCheckBoxColumn();
+            btnSplyWall = new Button();
+            btnRecallWall = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridViewWallets).BeginInit();
             SuspendLayout();
             // 
@@ -54,14 +57,13 @@
             btnGenWallet.ForeColor = Color.White;
             btnGenWallet.ImageAlign = ContentAlignment.MiddleLeft;
             btnGenWallet.ImeMode = ImeMode.NoControl;
-            btnGenWallet.Location = new Point(324, 55);
+            btnGenWallet.Location = new Point(391, 61);
             btnGenWallet.Name = "btnGenWallet";
             btnGenWallet.Padding = new Padding(5, 0, 5, 0);
-            btnGenWallet.Size = new Size(120, 30);
+            btnGenWallet.Size = new Size(150, 30);
             btnGenWallet.TabIndex = 39;
             btnGenWallet.Tag = "3";
             btnGenWallet.Text = "+  Gen Wallets";
-            btnGenWallet.TextAlign = ContentAlignment.MiddleLeft;
             btnGenWallet.UseMnemonic = false;
             btnGenWallet.UseVisualStyleBackColor = false;
             btnGenWallet.Click += btnGenWallet_Click;
@@ -76,7 +78,7 @@
             btnExport.ForeColor = Color.White;
             btnExport.ImageAlign = ContentAlignment.MiddleLeft;
             btnExport.ImeMode = ImeMode.NoControl;
-            btnExport.Location = new Point(706, 125);
+            btnExport.Location = new Point(706, 131);
             btnExport.Name = "btnExport";
             btnExport.Padding = new Padding(5, 0, 5, 0);
             btnExport.Size = new Size(120, 30);
@@ -95,7 +97,7 @@
             btnImport.ForeColor = Color.White;
             btnImport.ImageAlign = ContentAlignment.MiddleLeft;
             btnImport.ImeMode = ImeMode.NoControl;
-            btnImport.Location = new Point(571, 125);
+            btnImport.Location = new Point(571, 131);
             btnImport.Name = "btnImport";
             btnImport.Padding = new Padding(5, 0, 5, 0);
             btnImport.Size = new Size(120, 30);
@@ -114,7 +116,7 @@
             btnProfiles.ForeColor = Color.White;
             btnProfiles.ImageAlign = ContentAlignment.MiddleLeft;
             btnProfiles.ImeMode = ImeMode.NoControl;
-            btnProfiles.Location = new Point(391, 125);
+            btnProfiles.Location = new Point(391, 131);
             btnProfiles.Name = "btnProfiles";
             btnProfiles.Padding = new Padding(5, 0, 5, 0);
             btnProfiles.Size = new Size(150, 30);
@@ -133,7 +135,7 @@
             btnCloseAccount.ForeColor = Color.White;
             btnCloseAccount.ImageAlign = ContentAlignment.MiddleLeft;
             btnCloseAccount.ImeMode = ImeMode.NoControl;
-            btnCloseAccount.Location = new Point(176, 125);
+            btnCloseAccount.Location = new Point(176, 131);
             btnCloseAccount.Name = "btnCloseAccount";
             btnCloseAccount.Padding = new Padding(5, 0, 5, 0);
             btnCloseAccount.Size = new Size(200, 30);
@@ -152,11 +154,12 @@
             btnCheckBalances.ForeColor = Color.White;
             btnCheckBalances.ImageAlign = ContentAlignment.MiddleLeft;
             btnCheckBalances.ImeMode = ImeMode.NoControl;
-            btnCheckBalances.Location = new Point(11, 125);
+            btnCheckBalances.Location = new Point(11, 131);
             btnCheckBalances.Name = "btnCheckBalances";
             btnCheckBalances.Padding = new Padding(5, 0, 5, 0);
             btnCheckBalances.Size = new Size(150, 30);
             btnCheckBalances.TabIndex = 34;
+            btnCheckBalances.Tag = "3";
             btnCheckBalances.Text = "Check Balance";
             btnCheckBalances.UseMnemonic = false;
             btnCheckBalances.UseVisualStyleBackColor = false;
@@ -166,11 +169,12 @@
             // 
             lblSolBalance.AutoSize = true;
             lblSolBalance.ForeColor = Color.White;
-            lblSolBalance.Location = new Point(134, 70);
+            lblSolBalance.Location = new Point(176, 70);
             lblSolBalance.Name = "lblSolBalance";
-            lblSolBalance.Size = new Size(138, 15);
+            lblSolBalance.Size = new Size(139, 15);
             lblSolBalance.TabIndex = 33;
             lblSolBalance.Text = "Total Balance : NULL SOL";
+            lblSolBalance.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblWalletQt
             // 
@@ -178,9 +182,10 @@
             lblWalletQt.ForeColor = Color.White;
             lblWalletQt.Location = new Point(11, 70);
             lblWalletQt.Name = "lblWalletQt";
-            lblWalletQt.Size = new Size(52, 15);
+            lblWalletQt.Size = new Size(120, 15);
             lblWalletQt.TabIndex = 32;
-            lblWalletQt.Text = "0 wallets";
+            lblWalletQt.Text = "Wallet amount: NULL";
+            lblWalletQt.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblBumpItTitle
             // 
@@ -215,6 +220,7 @@
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             dataGridViewWallets.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridViewWallets.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewWallets.Columns.AddRange(new DataGridViewColumn[] { CheckBoxColumn });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = Color.FromArgb(25, 25, 25);
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
@@ -227,19 +233,68 @@
             dataGridViewWallets.GridColor = Color.White;
             dataGridViewWallets.Location = new Point(11, 183);
             dataGridViewWallets.Name = "dataGridViewWallets";
+            dataGridViewWallets.RightToLeft = RightToLeft.No;
             dataGridViewWallets.RowHeadersVisible = false;
             dataGridViewWallets.RowTemplate.Height = 40;
-            dataGridViewWallets.RowTemplate.ReadOnly = true;
             dataGridViewWallets.RowTemplate.Resizable = DataGridViewTriState.False;
             dataGridViewWallets.ScrollBars = ScrollBars.Horizontal;
+            dataGridViewWallets.SelectionMode = DataGridViewSelectionMode.CellSelect;
             dataGridViewWallets.Size = new Size(815, 540);
             dataGridViewWallets.TabIndex = 45;
+            dataGridViewWallets.CellValueChanged += dataGridViewWallets_CellValueChanged;
+            // 
+            // CheckBoxColumn
+            // 
+            CheckBoxColumn.HeaderText = "Select";
+            CheckBoxColumn.Name = "CheckBoxColumn";
+            // 
+            // btnSplyWall
+            // 
+            btnSplyWall.BackColor = Color.FromArgb(78, 93, 148);
+            btnSplyWall.BackgroundImageLayout = ImageLayout.None;
+            btnSplyWall.FlatAppearance.BorderSize = 0;
+            btnSplyWall.FlatStyle = FlatStyle.Flat;
+            btnSplyWall.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSplyWall.ForeColor = Color.White;
+            btnSplyWall.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSplyWall.ImeMode = ImeMode.NoControl;
+            btnSplyWall.Location = new Point(706, 61);
+            btnSplyWall.Name = "btnSplyWall";
+            btnSplyWall.Padding = new Padding(5, 0, 5, 0);
+            btnSplyWall.Size = new Size(120, 30);
+            btnSplyWall.TabIndex = 46;
+            btnSplyWall.Tag = "3";
+            btnSplyWall.Text = "Supply Wallets";
+            btnSplyWall.UseMnemonic = false;
+            btnSplyWall.UseVisualStyleBackColor = false;
+            // 
+            // btnRecallWall
+            // 
+            btnRecallWall.BackColor = Color.FromArgb(78, 93, 148);
+            btnRecallWall.BackgroundImageLayout = ImageLayout.None;
+            btnRecallWall.FlatAppearance.BorderSize = 0;
+            btnRecallWall.FlatStyle = FlatStyle.Flat;
+            btnRecallWall.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnRecallWall.ForeColor = Color.White;
+            btnRecallWall.ImageAlign = ContentAlignment.MiddleLeft;
+            btnRecallWall.ImeMode = ImeMode.NoControl;
+            btnRecallWall.Location = new Point(571, 61);
+            btnRecallWall.Name = "btnRecallWall";
+            btnRecallWall.Padding = new Padding(5, 0, 5, 0);
+            btnRecallWall.Size = new Size(120, 30);
+            btnRecallWall.TabIndex = 47;
+            btnRecallWall.Tag = "3";
+            btnRecallWall.Text = "Recall Wallets";
+            btnRecallWall.UseMnemonic = false;
+            btnRecallWall.UseVisualStyleBackColor = false;
             // 
             // walletBumpIt
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
+            Controls.Add(btnRecallWall);
+            Controls.Add(btnSplyWall);
             Controls.Add(dataGridViewWallets);
             Controls.Add(btnGenWallet);
             Controls.Add(btnExport);
@@ -269,5 +324,8 @@
         private Label lblWalletQt;
         private Label lblBumpItTitle;
         private DataGridView dataGridViewWallets;
+        public Button btnSplyWall;
+        public Button btnRecallWall;
+        private DataGridViewCheckBoxColumn CheckBoxColumn;
     }
 }
