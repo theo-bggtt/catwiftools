@@ -35,7 +35,7 @@ namespace WalletGenerator
                 }
             }
             Console.WriteLine("Data saved successfully!");
-            displayWallets.LoadWalletsToGrid(1, dataGridViewWallets);
+            displayWallets.LoadWalletsToGrid(Convert.ToInt32(btnGenWallet.Tag), dataGridViewWallets);
         }
 
         public static void SaveData(int amount, Button button)
@@ -47,7 +47,7 @@ namespace WalletGenerator
                 string walletMnemonic = newMnemonic.ToString();
                 string walletAddress = WalletFromMnemonic(walletMnemonic);
 
-                using (var connection = new SqliteConnection(connectionString)) // Now accessible
+                using (var connection = new SqliteConnection(connectionString))
                 {
                     try
                     {

@@ -241,7 +241,9 @@
             dataGridViewWallets.SelectionMode = DataGridViewSelectionMode.CellSelect;
             dataGridViewWallets.Size = new Size(815, 540);
             dataGridViewWallets.TabIndex = 45;
+            dataGridViewWallets.Tag = "3";
             dataGridViewWallets.CellValueChanged += dataGridViewWallets_CellValueChanged;
+            dataGridViewWallets.CurrentCellDirtyStateChanged += dataGridViewWallets_CurrentCellDirtyStateChanged;
             // 
             // CheckBoxColumn
             // 
@@ -267,6 +269,7 @@
             btnSplyWall.Text = "Supply Wallets";
             btnSplyWall.UseMnemonic = false;
             btnSplyWall.UseVisualStyleBackColor = false;
+            btnSplyWall.Click += btnSplyWall_Click;
             // 
             // btnRecallWall
             // 

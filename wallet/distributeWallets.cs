@@ -10,7 +10,16 @@ namespace catwiftools.wallet
     internal class DistributeWallets
     {
         // These private keys and public keys are all empty and the solana used is on DevNet, no harm can be done to these wallets, they are used for TEST ONLY!
-        public static async Task DistributeAsync()
+        public static async Task Distribute(List<String>selectedAddresses)
+        {
+
+            for (int i = 0; i < selectedAddresses.Count; i++)
+            {
+                await new DistributeWallets().SendSol(selectedAddresses[i]);
+            }
+        }
+
+        private async Task SendSol(string address)
         {
             try
             {
@@ -18,7 +27,7 @@ namespace catwiftools.wallet
                 string privateKey = "gloom like bronze helmet team zone drill version polar glare firm silk";
                 Wallet wallet = new Wallet(privateKey);
                 PublicKey fromAccount = wallet.Account.PublicKey;
-                PublicKey toAccount = new PublicKey("EeWYhK3AzXy47DToJZjphu4o69tMoQrXT9ZA1LJzVctF");
+                PublicKey toAccount = new PublicKey(address);
 
                 var balanceResponse = await rpcClient.GetBalanceAsync(fromAccount);
                 Console.WriteLine($"🔎 Wallet Balance: {balanceResponse.Result.Value / 1_000_000_000.0} SOL");

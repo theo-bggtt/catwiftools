@@ -36,11 +36,6 @@ namespace catwiftools.wallet
                     column.ReadOnly = true;
                 }
             }
-
-            dataGridViewWallets.CellValueChanged += dataGridViewWallets_CellValueChanged;
-            dataGridViewWallets.CurrentCellDirtyStateChanged += dataGridViewWallets_CurrentCellDirtyStateChanged;
-
-            btnSplyWall.Click += btnSplyWall_Click;
         }
 
         private void dataGridViewWallets_CurrentCellDirtyStateChanged(object? sender, EventArgs e)
@@ -53,18 +48,25 @@ namespace catwiftools.wallet
 
         private void dataGridViewWallets_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 0)
+            if (e.RowIndex >= 0 && e.ColumnIndex == 0)
             {
-                foreach (DataGridViewRow row in dataGridViewWallets.Rows)
+                var row = dataGridViewWallets.Rows[e.RowIndex];
+                var address = row.Cells[2].Value.ToString();
+
+                if (Convert.ToBoolean(row.Cells[0].Value))
                 {
-                    if (Convert.ToBoolean(row.Cells[0].Value))
+                    if (!selectedAddresses.Contains(address))
                     {
-                        selectedAddresses.Add(row.Cells[1].Value.ToString());
-                        Console.WriteLine(selectedAddresses[0]);
+                        selectedAddresses.Add(address);
                     }
                 }
+                else
+                {
+                    selectedAddresses.Remove(address);
+                }
+
+                Console.WriteLine(address);
             }
-            
         }
 
         private void walletBumpIt_Load(object sender, EventArgs e)
@@ -102,7 +104,8 @@ namespace catwiftools.wallet
 
         private async void btnSplyWall_Click(object sender, EventArgs e)
         {
-            await DistributeWallets.DistributeAsync();
+            Console.WriteLine(selectedAddresses.Count);
+            await DistributeWallets.Distribute(selectedAddresses);
             Console.WriteLine("Clicked");
             //supplyWalletForm supplyWalletForm = new supplyWalletForm();
             //double minAmount = await supplyWalletForm.getMinAmount(btnSplyWall);
