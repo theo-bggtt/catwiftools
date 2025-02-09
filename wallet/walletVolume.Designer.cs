@@ -92,6 +92,7 @@
             btnCheckBalances.Padding = new Padding(5, 0, 5, 0);
             btnCheckBalances.Size = new Size(150, 30);
             btnCheckBalances.TabIndex = 13;
+            btnCheckBalances.Tag = "2";
             btnCheckBalances.Text = "Check Balance";
             btnCheckBalances.UseMnemonic = false;
             btnCheckBalances.UseVisualStyleBackColor = false;

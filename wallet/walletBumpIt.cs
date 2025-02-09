@@ -23,9 +23,9 @@ namespace catwiftools.wallet
         public walletBumpIt()
         {
             InitializeComponent();
-            displayWallets.LoadWalletsToGrid(3, dataGridViewWallets);
-            lblSolBalance.Text = "Total Balance: " + retrieveBalance.GetTotalBalance(3).ToString("N2") + " SOL";
-            lblWalletQt.Text = "Wallet amount: " + displayWallets.GetWallets(3).Rows.Count;
+            displayWallets.LoadWalletsToGrid(4, dataGridViewWallets);
+            lblSolBalance.Text = "Total Balance: " + retrieveBalance.GetTotalBalance(4).ToString("N2") + " SOL";
+            lblWalletQt.Text = "Wallet amount: " + displayWallets.GetWallets(4).Rows.Count;
 
             dataGridViewWallets.ReadOnly = false;
 
@@ -71,14 +71,14 @@ namespace catwiftools.wallet
 
         private void walletBumpIt_Load(object sender, EventArgs e)
         {
-            lblSolBalance.Text = "Total Balance: " + retrieveBalance.GetTotalBalance(3).ToString("N2") + " SOL";
-            lblWalletQt.Text = "Wallet amount: " + displayWallets.GetWallets(3).Rows.Count;
+            lblSolBalance.Text = "Total Balance: " + retrieveBalance.GetTotalBalance(4).ToString("N2") + " SOL";
+            lblWalletQt.Text = "Wallet amount: " + displayWallets.GetWallets(4).Rows.Count;
         }
 
         private async void btnGenWallet_Click(object sender, EventArgs e)
         {
             await walletCreator.getwalletqt(btnGenWallet, dataGridViewWallets);
-            lblWalletQt.Text = "Wallet amount: " + displayWallets.GetWallets(3).Rows.Count;
+            lblWalletQt.Text = "Wallet amount: " + displayWallets.GetWallets(4).Rows.Count;
         }
 
         protected override void OnMouseWheel(MouseEventArgs e)
@@ -96,10 +96,10 @@ namespace catwiftools.wallet
 
         private async void btnCheckBalances_Click(object sender, EventArgs e)
         {
-            await retrieveBalance.GetAllWalletBalances(3);
-            displayWallets.LoadWalletsToGrid(3, dataGridViewWallets);
-            lblSolBalance.Text = "Total Balance: " + retrieveBalance.GetTotalBalance(3).ToString("N2") + " SOL";
-            lblWalletQt.Text = "Wallet amount: " + displayWallets.GetWallets(3).Rows.Count;
+            await retrieveBalance.GetAllWalletBalances(4);
+            displayWallets.LoadWalletsToGrid(4, dataGridViewWallets);
+            lblSolBalance.Text = "Total Balance: " + retrieveBalance.GetTotalBalance(4).ToString("N2") + " SOL";
+            lblWalletQt.Text = "Wallet amount: " + displayWallets.GetWallets(4).Rows.Count;
         }
 
         private async void btnSplyWall_Click(object sender, EventArgs e)
@@ -107,11 +107,6 @@ namespace catwiftools.wallet
             Console.WriteLine(selectedAddresses.Count);
             await DistributeWallets.Distribute(selectedAddresses);
             Console.WriteLine("Clicked");
-            //supplyWalletForm supplyWalletForm = new supplyWalletForm();
-            //double minAmount = await supplyWalletForm.getMinAmount(btnSplyWall);
-            //MessageBox.Show($"Minimum amount entered: {minAmount}");
-            //Console.Write(minAmount);
-            //distributeWallets.Distribute(selectedAddresses, 1);
         }
     }
 }

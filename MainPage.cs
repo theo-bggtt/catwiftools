@@ -1,9 +1,11 @@
-﻿namespace catwiftools
+﻿using Microsoft.Data.Sqlite;
+namespace catwiftools
 {
     public partial class CatWifTools : Form
     {
         Functions functions = new Functions();
         private Dictionary<Button, Control> buttonControlMap = new Dictionary<Button, Control>();
+        public string fundWallet = "";
 
         public CatWifTools()
         {
@@ -11,6 +13,7 @@
             DraggingHelper.EnableDragging(this);
             this.Paint += Form_Paint;
             InitializeButtonControlMap();
+            fundWallet = functions.CheckForFundWallet();
         }
 
         private void CatWifTools_Load(object sender, EventArgs e)
@@ -18,6 +21,7 @@
             ShowControls(new List<Control>());
             tmrClock.Enabled = true;
             gbxBackground.Visible = true;
+            fundWallet = functions.CheckForFundWallet();
         }
 
         private void InitializeButtonControlMap()
@@ -30,12 +34,12 @@
                 { btnBundler, bundlerMainPage1 },
                 { btnProxies, proxiesMainPage1 },
 
-                
+
                 { btnWalletsVolume, walletVolume1},
                 { btnWalletsBundler, walletBundler1},
                 { btnWalletsBumpIt, walletBumpIt1},
 
-                
+
                 { btnSettingsGeneral, settingsGeneral1 },
                 { btnSettingsVolume, settingsVolume1 },
                 { btnSettingsBundler, settingsBundler1 },

@@ -1,14 +1,13 @@
-﻿using MySqlConnector;
-using System;
+﻿using System;
 using System.Data;
 using System.Windows.Forms;
-using DotNetEnv;
 using Microsoft.Data.Sqlite;
 
 namespace catwiftools.wallet
 {
     internal class displayWallets
     {
+        
         private static readonly (string ConnectionString, string HeliusUrl, string ApiKey) envVariables = Functions.LoadEnvVariables();
         private static string connectionString = envVariables.ConnectionString;
 

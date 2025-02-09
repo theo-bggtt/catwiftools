@@ -17,26 +17,26 @@ namespace catwiftools.wallet
         RetrieveBalance retrieveBalance = new RetrieveBalance();
         WalletCreator walletCreator = new WalletCreator();
 
-        
 
         public walletBundler()
         {
             InitializeComponent();
-            displayWallets.LoadWalletsToGrid(1, dataGridViewWallets);
-            lblSolBalance.Text = "Total Balance: " + retrieveBalance.GetTotalBalance(1).ToString("N2") + " SOL";
-            lblWalletQt.Text = "Wallet amount: " + displayWallets.GetWallets(1).Rows.Count;
+            displayWallets.LoadWalletsToGrid(3, dataGridViewWallets);
+            lblSolBalance.Text = "Total Balance: " + retrieveBalance.GetTotalBalance(3).ToString("N2") + " SOL";
+            lblWalletQt.Text = "Wallet amount: " + displayWallets.GetWallets(3).Rows.Count;
+            
         }
 
         private void walletBundler_Load(object sender, EventArgs e)
         {
-            lblSolBalance.Text = "Total Balance: " + retrieveBalance.GetTotalBalance(1).ToString("N2") + " SOL";
-            lblWalletQt.Text = "Wallet amount: " + displayWallets.GetWallets(1).Rows.Count;
+            lblSolBalance.Text = "Total Balance: " + retrieveBalance.GetTotalBalance(3).ToString("N2") + " SOL";
+            lblWalletQt.Text = "Wallet amount: " + displayWallets.GetWallets(3).Rows.Count;
         }
 
         private async void btnGenWallet_Click(object sender, EventArgs e)
         {
             await walletCreator.getwalletqt(btnGenWallet, dataGridViewWallets);
-            lblWalletQt.Text = "Wallet amount: " + displayWallets.GetWallets(1).Rows.Count;
+            lblWalletQt.Text = "Wallet amount: " + displayWallets.GetWallets(3).Rows.Count;
         }
 
         protected override void OnMouseWheel(MouseEventArgs e)
@@ -55,10 +55,10 @@ namespace catwiftools.wallet
 
         private async void btnCheckBalances_Click(object sender, EventArgs e)
         {
-            await retrieveBalance.GetAllWalletBalances(1);
-            displayWallets.LoadWalletsToGrid(1, dataGridViewWallets);
-            lblSolBalance.Text = "Total Balance: " + retrieveBalance.GetTotalBalance(1).ToString("N2") + " SOL";
-            lblWalletQt.Text = "Wallet amount: " + displayWallets.GetWallets(1).Rows.Count;
+            await retrieveBalance.GetAllWalletBalances(3);
+            lblSolBalance.Text = "Total Balance: " + retrieveBalance.GetTotalBalance(3).ToString("N2") + " SOL";
+            lblWalletQt.Text = "Wallet amount: " + displayWallets.GetWallets(3).Rows.Count;
+            displayWallets.LoadWalletsToGrid(3, dataGridViewWallets);
         }
     }
 }

@@ -137,6 +137,7 @@
             btnCheckBalances.Padding = new Padding(5, 0, 5, 0);
             btnCheckBalances.Size = new Size(150, 30);
             btnCheckBalances.TabIndex = 24;
+            btnCheckBalances.Tag = "3";
             btnCheckBalances.Text = "Check Balance";
             btnCheckBalances.UseMnemonic = false;
             btnCheckBalances.UseVisualStyleBackColor = false;
@@ -171,6 +172,7 @@
             lblBundlerTitle.Name = "lblBundlerTitle";
             lblBundlerTitle.Size = new Size(56, 17);
             lblBundlerTitle.TabIndex = 21;
+            lblBundlerTitle.Tag = "3";
             lblBundlerTitle.Text = "Bundler";
             // 
             // dataGridViewWallets
@@ -214,6 +216,7 @@
             dataGridViewWallets.ScrollBars = ScrollBars.Horizontal;
             dataGridViewWallets.Size = new Size(815, 540);
             dataGridViewWallets.TabIndex = 44;
+            dataGridViewWallets.Tag = "3";
             // 
             // btnRecallWall
             // 
@@ -230,7 +233,7 @@
             btnRecallWall.Padding = new Padding(5, 0, 5, 0);
             btnRecallWall.Size = new Size(120, 30);
             btnRecallWall.TabIndex = 50;
-            btnRecallWall.Tag = "2";
+            btnRecallWall.Tag = "3";
             btnRecallWall.Text = "Recall Wallets";
             btnRecallWall.UseMnemonic = false;
             btnRecallWall.UseVisualStyleBackColor = false;
@@ -250,7 +253,7 @@
             btnSplyWall.Padding = new Padding(5, 0, 5, 0);
             btnSplyWall.Size = new Size(120, 30);
             btnSplyWall.TabIndex = 49;
-            btnSplyWall.Tag = "2";
+            btnSplyWall.Tag = "3";
             btnSplyWall.Text = "Supply Wallets";
             btnSplyWall.UseMnemonic = false;
             btnSplyWall.UseVisualStyleBackColor = false;
@@ -270,7 +273,7 @@
             btnGenWallet.Padding = new Padding(5, 0, 5, 0);
             btnGenWallet.Size = new Size(150, 30);
             btnGenWallet.TabIndex = 48;
-            btnGenWallet.Tag = "2";
+            btnGenWallet.Tag = "3";
             btnGenWallet.Text = "+  Gen Wallets";
             btnGenWallet.UseMnemonic = false;
             btnGenWallet.UseVisualStyleBackColor = false;

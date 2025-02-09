@@ -62,7 +62,7 @@
             btnGenWallet.Padding = new Padding(5, 0, 5, 0);
             btnGenWallet.Size = new Size(150, 30);
             btnGenWallet.TabIndex = 39;
-            btnGenWallet.Tag = "3";
+            btnGenWallet.Tag = "4";
             btnGenWallet.Text = "+  Gen Wallets";
             btnGenWallet.UseMnemonic = false;
             btnGenWallet.UseVisualStyleBackColor = false;
@@ -159,7 +159,7 @@
             btnCheckBalances.Padding = new Padding(5, 0, 5, 0);
             btnCheckBalances.Size = new Size(150, 30);
             btnCheckBalances.TabIndex = 34;
-            btnCheckBalances.Tag = "3";
+            btnCheckBalances.Tag = "4";
             btnCheckBalances.Text = "Check Balance";
             btnCheckBalances.UseMnemonic = false;
             btnCheckBalances.UseVisualStyleBackColor = false;
@@ -241,7 +241,7 @@
             dataGridViewWallets.SelectionMode = DataGridViewSelectionMode.CellSelect;
             dataGridViewWallets.Size = new Size(815, 540);
             dataGridViewWallets.TabIndex = 45;
-            dataGridViewWallets.Tag = "3";
+            dataGridViewWallets.Tag = "4";
             dataGridViewWallets.CellValueChanged += dataGridViewWallets_CellValueChanged;
             dataGridViewWallets.CurrentCellDirtyStateChanged += dataGridViewWallets_CurrentCellDirtyStateChanged;
             // 
@@ -265,7 +265,7 @@
             btnSplyWall.Padding = new Padding(5, 0, 5, 0);
             btnSplyWall.Size = new Size(120, 30);
             btnSplyWall.TabIndex = 46;
-            btnSplyWall.Tag = "3";
+            btnSplyWall.Tag = "4";
             btnSplyWall.Text = "Supply Wallets";
             btnSplyWall.UseMnemonic = false;
             btnSplyWall.UseVisualStyleBackColor = false;
@@ -286,7 +286,7 @@
             btnRecallWall.Padding = new Padding(5, 0, 5, 0);
             btnRecallWall.Size = new Size(120, 30);
             btnRecallWall.TabIndex = 47;
-            btnRecallWall.Tag = "3";
+            btnRecallWall.Tag = "4";
             btnRecallWall.Text = "Recall Wallets";
             btnRecallWall.UseMnemonic = false;
             btnRecallWall.UseVisualStyleBackColor = false;
