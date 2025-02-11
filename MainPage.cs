@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.Sqlite;
+﻿using catwiftools.settings;
+using Microsoft.Data.Sqlite;
 namespace catwiftools
 {
     public partial class CatWifTools : Form
@@ -22,6 +23,8 @@ namespace catwiftools
             tmrClock.Enabled = true;
             gbxBackground.Visible = true;
             fundWallet = functions.CheckForFundWallet();
+            settingsGeneral settingsGeneral = new settingsGeneral();
+            settingsGeneral.fundWalletSetup();
         }
 
         private void InitializeButtonControlMap()

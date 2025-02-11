@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Data.Sqlite;
+using Solnet.Wallet.Bip39;
+using Solnet.Wallet;
 
 namespace catwiftools
 {
@@ -69,7 +71,7 @@ namespace catwiftools
         }
 
         
-        public int GetWalletId(string? walletAddress, string? walletphrase)
+        public int GetWalletId(string? walletAddress, string? walletphrase) // Prends l'Id d'un wallet à travers son addresse ou sa phrase, à travers la bdd
         {
             int idWallet = 0;
             if (!string.IsNullOrEmpty(walletAddress))
@@ -110,7 +112,7 @@ namespace catwiftools
             }
             return idWallet;
         }
-        public string GetWalletAddress(int? idWallet, string? walletphrase)
+        public string GetWalletAddress(int? idWallet, string? walletphrase) // Prends l'addresse d'un walletId ou d'une phrase de wallet
         {
             string WalletAddress = "";
             if (idWallet.HasValue)
@@ -133,25 +135,17 @@ namespace catwiftools
             }
             else if (!string.IsNullOrEmpty(walletphrase))
             {
-                string query = $"SELECT walletAddress FROM wallets WHERE walletphrase = '{walletphrase}'";
-                using (SqliteConnection connection = new SqliteConnection(connectionString))
-                {
-                    using (SqliteCommand command = new SqliteCommand(query, connection))
-                    {
-                        connection.Open();
-                        using (SqliteDataReader reader = command.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                WalletAddress = reader.GetString(0);
-                            }
-                        }
-                    }
-                }
+                string mnemonicPhrase = walletphrase.ToString();
+
+                Wallet wallet = new Wallet(walletphrase);
+
+                var account = wallet.GetAccount(0);
+                string publicKey = account.PublicKey;
+                return publicKey;
             }
             return WalletAddress;
         }
-        public string GetWalletphrase(int? idWallet, string? walletAddress)
+        public string GetWalletphrase(int? idWallet, string? walletAddress) // Prends la phrase mnemonic d'un walletId ou d'une addresse, à travers la bdd
         {
             string Walletphrase = "";
             if (idWallet.HasValue)
@@ -205,9 +199,9 @@ namespace catwiftools
                     {
                         if (reader.Read() && !reader.IsDBNull(0))
                         {
-                            // Return the walletAddress
-                            return reader.GetString(0);
                             Console.WriteLine(reader.GetString(0));
+                            return reader.GetString(0);
+                            
                         }
                         else
                         {

@@ -21,48 +21,40 @@ namespace catwiftools.settings
         public settingsGeneral()
         {
             InitializeComponent();
-            
-
+            fundWallet = functions.CheckForFundWallet();
         }
 
         private void settingsGeneral_Load(object sender, EventArgs e)
         {
             fundWallet = functions.CheckForFundWallet();
-            Console.WriteLine(fundWallet);
-
-            if (fundWallet != "")
-            {
-                lblFundWallAddr.Visible = true;
-                tbxFundWallet.Visible = false;
-            }
-            else
-            {
-                tbxFundWallet.Visible = true;
-                lblFundWallAddr.Visible = false;
-            }
+            fundWalletSetup();
         }
 
         private void btnGenFundWall_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(fundWallet);
-            WalletCreator.SaveWallet(1, btnGenFundWall);
-            fundWallet = functions.CheckForFundWallet();
-            Console.WriteLine(fundWallet);
+            List<string> wallets = new List<string>();
+            wallets = WalletCreator.GenWallet(null);
+            fundWallet = wallets[0];
+            walletCreator.SaveWallets(wallets, btnGenFundWall);
+            string walletAddress = functions.CheckForFundWallet();
+            lblFundWallAddr.Text = walletAddress;
+            Console.WriteLine(walletAddress);
             lblFundWallAddr.Visible = true;
             tbxFundWallet.Visible = false;
         }
 
+
         private void btnDelFundWall_Click(object sender, EventArgs e)
         {
-            fundWallet = functions.CheckForFundWallet();
-            walletCreator.DelWallet(fundWallet, null);
-            fundWallet = functions.CheckForFundWallet();
-            Console.WriteLine(fundWallet);
-            tbxFundWallet.Visible = true;
+            walletCreator.DelWallet(null, null, 1);
             lblFundWallAddr.Visible = false;
-
+            tbxFundWallet.Visible = true;
         }
 
-        
+        public void fundWalletSetup()
+        {
+            fundWallet = functions.CheckForFundWallet();
+            Console.WriteLine(fundWallet);
+        }
     }
 }
