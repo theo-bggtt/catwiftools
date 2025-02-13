@@ -27,7 +27,11 @@ namespace catwiftools.settings
         private void settingsGeneral_Load(object sender, EventArgs e)
         {
             fundWallet = functions.CheckForFundWallet();
-            fundWalletSetup();
+            string walletAddress = functions.CheckForFundWallet();
+            lblFundWallAddr.Text = walletAddress;
+            Console.WriteLine(walletAddress);
+            lblFundWallAddr.Visible = true;
+            tbxFundWallet.Visible = false;
         }
 
         private void btnGenFundWall_Click(object sender, EventArgs e)

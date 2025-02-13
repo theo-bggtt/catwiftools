@@ -108,5 +108,10 @@ namespace catwiftools.wallet
             await DistributeWallets.Distribute(selectedAddresses);
             Console.WriteLine("Clicked");
         }
+
+        private async void btnRecallWall_Click(object sender, EventArgs e)
+        {
+            await DistributeWallets.Recall(selectedAddresses);
+        }
     }
 }

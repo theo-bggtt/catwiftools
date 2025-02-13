@@ -9,7 +9,7 @@ namespace catwiftools.wallet
 {
     internal class DistributeWallets
     {
-        Functions functions = new Functions();
+        Functions Functions = new Functions();
         // These private keys and public keys are all empty and the solana used is on DevNet, no harm can be done to these wallets, they are used for TEST ONLY!
         public static async Task Distribute(List<String>selectedAddresses)
         {
@@ -20,77 +20,94 @@ namespace catwiftools.wallet
             }
         }
 
-        //private async Task RecallSol(string address)
-        //{
-        //    try
-        //    {
-        //        var rpcClient = ClientFactory.GetClient(Cluster.DevNet);
+        public static async Task Recall(List<String> selectedAddresses)
+        {
 
-        //        // Get the wallet mnemonic or private key from the database
-        //        string privateKeyString = functions.GetWalletphrase(null,address);
+            for (int i = 0; i < selectedAddresses.Count; i++)
+            {
+                await new DistributeWallets().RecallSol(selectedAddresses[i]);
+            }
+        }
 
-        //        // Ensure correct wallet initialization
-        //        Wallet wallet;
-        //        if (privateKeyString.Contains(" ")) // Check if it's a mnemonic
-        //        {
-        //            wallet = new Wallet(privateKeyString);
-        //        }
-        //        else
-        //        {
-        //            byte[] privateKeyBytes = Convert.FromBase64String(privateKeyString); // Ensure correct format
-        //            wallet = new Wallet(privateKeyBytes);
-        //        }
+        private async Task RecallSol(string address)
+        {
+            try
+            {
+                var rpcClient = ClientFactory.GetClient(Cluster.DevNet);
 
-        //        PublicKey fromAccount = wallet.Account.PublicKey;
-        //        PublicKey toAccount = new PublicKey("3k6XVaNMmUHP97SZKQibU2dyVgMGvYr9abs8WNVXepsp");
+                // Get the wallet mnemonic or private key from the database
+                string privateKeyString = Functions.GetWalletphrase(null, address);
 
-        //        // Check balance
-        //        var balanceResponse = await rpcClient.GetBalanceAsync(fromAccount);
-        //        double balanceSol = balanceResponse.Result.Value / 1_000_000_000.0;
-        //        Console.WriteLine($"🔎 Wallet Balance: {balanceSol} SOL");
+                // Ensure correct wallet initialization
+                Wallet wallet;
+                if (privateKeyString.Contains(" ")) // Check if it's a mnemonic
+                {
+                    wallet = new Wallet(privateKeyString);
+                }
+                else
+                {
+                    byte[] privateKeyBytes = Convert.FromBase64String(privateKeyString); // Ensure correct format
+                    wallet = new Wallet(privateKeyBytes);
+                }
 
-        //        if (balanceSol < 0.002) // Ensure sufficient balance for fees
-        //        {
-        //            Console.WriteLine("❌ Not enough SOL to send.");
-        //            return;
-        //        }
+                PublicKey fromAccount = wallet.Account.PublicKey;
+                PublicKey toAccount = new PublicKey(Functions.CheckForFundWallet());
 
-        //        // Fetch latest block hash
-        //        var blockHashResponse = await rpcClient.GetLatestBlockHashAsync();
-        //        if (!blockHashResponse.WasSuccessful)
-        //        {
-        //            Console.WriteLine("❌ Failed to fetch latest block hash.");
-        //            return;
-        //        }
-        //        string blockHash = blockHashResponse.Result.Value.Blockhash;
-        //        Console.WriteLine($"🔎 Blockhash: {blockHash}");
+                // Check balance
+                var balanceResponse = await rpcClient.GetBalanceAsync(fromAccount);
+                double balanceSol = balanceResponse.Result.Value / 1_000_000_000.0;
+                Console.WriteLine($"🔎 Wallet Balance: {balanceSol} SOL");
 
-        //        // Amount to send (adjust as needed)
-        //        ulong amountLamports = 200_000_000; // 0.2 SOL
+                if (balanceSol < 0.002) // Ensure sufficient balance for fees
+                {
+                    Console.WriteLine("❌ Not enough SOL to send.");
+                    return;
+                }
 
-        //        // Build transaction
-        //        var tx = new TransactionBuilder()
-        //            .SetRecentBlockHash(blockHash)
-        //            .SetFeePayer(fromAccount)
-        //            .AddInstruction(MemoProgram.NewMemo(fromAccount, "Hello from Sol.Net :)"))
-        //            .AddInstruction(SystemProgram.Transfer(fromAccount, toAccount, amountLamports))
-        //            .Build(wallet.Account); // Ensure proper signing
+                // Fetch latest block hash
+                var blockHashResponse = await rpcClient.GetLatestBlockHashAsync();
+                if (!blockHashResponse.WasSuccessful)
+                {
+                    Console.WriteLine("❌ Failed to fetch latest block hash.");
+                    return;
+                }
+                string blockHash = blockHashResponse.Result.Value.Blockhash;
+                Console.WriteLine($"🔎 Blockhash: {blockHash}");
 
-        //        // Send transaction
-        //        var firstSig = await rpcClient.SendTransactionAsync(tx);
-        //        Console.WriteLine($"✅ Transaction Sent! Signature: {firstSig.Result}");
+                ulong amountLamports = 200_000_000; // 0.2 SOL
 
-        //        if (!firstSig.WasSuccessful)
-        //        {
-        //            Console.WriteLine($"❌ Transaction Failed: {firstSig.Reason}");
-        //            Console.WriteLine($"❌ Full Response: {firstSig.RawRpcResponse}");
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine($"❌ Error: {ex.Message}");
-        //    }
-        //}
+                if (balanceResponse.Result.Value >= 200005000)
+                {
+                    amountLamports = 200_000_000; // 0.2 SOL
+                }
+                else
+                {
+                    amountLamports = balanceResponse.Result.Value - 5000;
+                }
+
+                // Build transaction
+                var tx = new TransactionBuilder()
+                    .SetRecentBlockHash(blockHash)
+                    .SetFeePayer(fromAccount)
+                    .AddInstruction(MemoProgram.NewMemo(fromAccount, "Hello from Sol.Net :)"))
+                    .AddInstruction(SystemProgram.Transfer(fromAccount, toAccount, amountLamports))
+                    .Build(wallet.Account); // Ensure proper signing
+
+                // Send transaction
+                var firstSig = await rpcClient.SendTransactionAsync(tx);
+                Console.WriteLine($"✅ Transaction Sent! Signature: {firstSig.Result}");
+
+                if (!firstSig.WasSuccessful)
+                {
+                    Console.WriteLine($"❌ Transaction Failed: {firstSig.Reason}");
+                    Console.WriteLine($"❌ Full Response: {firstSig.RawRpcResponse}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"❌ Error: {ex.Message}");
+            }
+        }
 
 
         private async Task SendSol(string address)
@@ -98,13 +115,25 @@ namespace catwiftools.wallet
             try
             {
                 var rpcClient = ClientFactory.GetClient(Cluster.DevNet);
-                string privateKey = "gloom like bronze helmet team zone drill version polar glare firm silk";
+                string privateKey = Functions.GetWalletphrase(null, Functions.CheckForFundWallet());
                 Wallet wallet = new Wallet(privateKey);
                 PublicKey fromAccount = wallet.Account.PublicKey;
                 PublicKey toAccount = new PublicKey(address);
 
                 var balanceResponse = await rpcClient.GetBalanceAsync(fromAccount);
                 Console.WriteLine($"🔎 Wallet Balance: {balanceResponse.Result.Value / 1_000_000_000.0} SOL");
+
+                ulong amountLamports = balanceResponse.Result.Value - 5000; // 0.2 SOL
+
+                //if (balanceResponse.Result.Value >= 200005000)
+                //{
+                //    amountLamports = 200_000_000; // 0.2 SOL
+                //}
+                //else
+                //{
+                //    amountLamports = balanceResponse.Result.Value - 5000;
+                //}
+
 
                 var blockHashResponse = await rpcClient.GetLatestBlockHashAsync();
                 if (!blockHashResponse.WasSuccessful)
@@ -119,7 +148,7 @@ namespace catwiftools.wallet
                     .SetRecentBlockHash(blockHash)
                     .SetFeePayer(fromAccount)
                     .AddInstruction(MemoProgram.NewMemo(fromAccount, "Hello from Sol.Net :)"))
-                    .AddInstruction(SystemProgram.Transfer(fromAccount, toAccount, 200000000)) // 0.2 SOL
+                    .AddInstruction(SystemProgram.Transfer(fromAccount, toAccount, amountLamports)) // 0.2 SOL
                     .Build(wallet.Account);
 
                 var firstSig = await rpcClient.SendTransactionAsync(tx);

@@ -114,7 +114,8 @@
             // lblFundWallAddr
             // 
             lblFundWallAddr.AutoSize = true;
-            lblFundWallAddr.Location = new Point(572, 53);
+            lblFundWallAddr.ForeColor = Color.White;
+            lblFundWallAddr.Location = new Point(439, 53);
             lblFundWallAddr.Name = "lblFundWallAddr";
             lblFundWallAddr.Size = new Size(85, 15);
             lblFundWallAddr.TabIndex = 41;

@@ -171,7 +171,7 @@
             lblSolBalance.ForeColor = Color.White;
             lblSolBalance.Location = new Point(176, 70);
             lblSolBalance.Name = "lblSolBalance";
-            lblSolBalance.Size = new Size(139, 15);
+            lblSolBalance.Size = new Size(138, 15);
             lblSolBalance.TabIndex = 33;
             lblSolBalance.Text = "Total Balance : NULL SOL";
             lblSolBalance.TextAlign = ContentAlignment.MiddleCenter;
@@ -290,6 +290,7 @@
             btnRecallWall.Text = "Recall Wallets";
             btnRecallWall.UseMnemonic = false;
             btnRecallWall.UseVisualStyleBackColor = false;
+            btnRecallWall.Click += btnRecallWall_Click;
             // 
             // walletBumpIt
             // 
