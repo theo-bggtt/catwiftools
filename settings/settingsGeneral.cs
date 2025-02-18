@@ -21,17 +21,12 @@ namespace catwiftools.settings
         public settingsGeneral()
         {
             InitializeComponent();
-            fundWallet = functions.CheckForFundWallet();
+            fundWalletSetup();
         }
 
         private void settingsGeneral_Load(object sender, EventArgs e)
         {
-            fundWallet = functions.CheckForFundWallet();
-            string walletAddress = functions.CheckForFundWallet();
-            lblFundWallAddr.Text = walletAddress;
-            Console.WriteLine(walletAddress);
-            lblFundWallAddr.Visible = true;
-            tbxFundWallet.Visible = false;
+            fundWalletSetup();
         }
 
         private void btnGenFundWall_Click(object sender, EventArgs e)
@@ -40,25 +35,34 @@ namespace catwiftools.settings
             wallets = WalletCreator.GenWallet(null);
             fundWallet = wallets[0];
             walletCreator.SaveWallets(wallets, btnGenFundWall);
-            string walletAddress = functions.CheckForFundWallet();
-            lblFundWallAddr.Text = walletAddress;
-            Console.WriteLine(walletAddress);
-            lblFundWallAddr.Visible = true;
-            tbxFundWallet.Visible = false;
+            fundWalletSetup();
         }
 
 
         private void btnDelFundWall_Click(object sender, EventArgs e)
         {
             walletCreator.DelWallet(null, null, 1);
-            lblFundWallAddr.Visible = false;
-            tbxFundWallet.Visible = true;
+            fundWalletSetup();
         }
 
         public void fundWalletSetup()
         {
             fundWallet = functions.CheckForFundWallet();
-            Console.WriteLine(fundWallet);
+            if (fundWallet != "")
+            {
+                lblFundWallAddr.Text = fundWallet;
+                lblFundWallAddr.Visible = true;
+                tbxFundWallet.Visible = false;
+                btnDelFundWall.Visible = true;
+                btnGenFundWall.Visible = false;
+            }
+            else
+            {
+                lblFundWallAddr.Visible = false;
+                tbxFundWallet.Visible = true;
+                btnDelFundWall.Visible = false;
+                btnGenFundWall.Visible = true;
+            }
         }
     }
 }

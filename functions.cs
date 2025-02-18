@@ -199,7 +199,6 @@ namespace catwiftools
                     {
                         if (reader.Read() && !reader.IsDBNull(0))
                         {
-                            Console.WriteLine(reader.GetString(0));
                             return reader.GetString(0);
                             
                         }

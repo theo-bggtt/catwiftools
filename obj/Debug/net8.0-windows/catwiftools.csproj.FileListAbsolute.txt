@@ -283,3 +283,4 @@ C:\Users\theo.bggtt\Documents\2024-2025\Atelier_Programmation\sem2\catwiftools\b
 C:\Users\theo.bggtt\Documents\2024-2025\Atelier_Programmation\sem2\catwiftools\bin\Debug\net8.0-windows\runtimes\win-x86\native\e_sqlite3.dll
 C:\Users\theo.bggtt\Documents\2024-2025\Atelier_Programmation\sem2\catwiftools\obj\Debug\net8.0-windows\catwiftools.wallet.supplyWalletForm.resources
 C:\Users\theo.bggtt\Documents\2024-2025\Atelier_Programmation\sem2\catwiftools\bin\Debug\net8.0-windows\.env
+D:\crypto\catwiftools\obj\Debug\net8.0-windows\catwiftools.wallet.walletGroup.resources

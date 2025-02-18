@@ -59,9 +59,9 @@
             // 
             // tbxFundWallet
             // 
-            tbxFundWallet.Location = new Point(491, 49);
+            tbxFundWallet.Location = new Point(439, 49);
             tbxFundWallet.Name = "tbxFundWallet";
-            tbxFundWallet.Size = new Size(247, 23);
+            tbxFundWallet.Size = new Size(299, 23);
             tbxFundWallet.TabIndex = 2;
             tbxFundWallet.TextAlign = HorizontalAlignment.Center;
             // 
