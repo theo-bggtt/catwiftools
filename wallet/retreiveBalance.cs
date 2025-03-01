@@ -2,6 +2,7 @@
 using Microsoft.Data.Sqlite;
 using MySqlConnector;
 using Newtonsoft.Json.Linq;
+using Solnet.Rpc;
 using Solnet.Wallet;
 using System;
 using System.Data;
@@ -22,32 +23,41 @@ namespace catwiftools.wallet
 
         public static async Task<double> GetWalletBalance(string walletAddress, int walletType)
         {
-            using (var httpClient = new HttpClient())
-            {
-                httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
+            var rpcClient = ClientFactory.GetClient(Cluster.DevNet);
+            var balanceResponse = await rpcClient.GetBalanceAsync(walletAddress);
+            double balanceSol = balanceResponse.Result.Value / 1_000_000_000.0;
 
-                var requestPayload = new
-                {
-                    jsonrpc = "2.0",
-                    id = 1,
-                    method = "getBalance",
-                    @params = new object[] { walletAddress }
-                };
-
-                var jsonPayload = Newtonsoft.Json.JsonConvert.SerializeObject(requestPayload);
-                var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
-
-                var response = await httpClient.PostAsync(heliusUrl, content);
-                response.EnsureSuccessStatusCode();
-
-                var jsonResponse = await response.Content.ReadAsStringAsync();
-                var result = JObject.Parse(jsonResponse);
-
-                var balanceInLamports = result["result"]?["value"]?.Value<long>() ?? 0;
-
-                return balanceInLamports / 1_000_000_000.0;
-            }
+            return balanceSol;
         }
+
+        //public static async Task<double> GetWalletBalance(string walletAddress, int walletType)
+        //{
+        //    using (var httpClient = new HttpClient())
+        //    {
+        //        httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
+
+        //        var requestPayload = new
+        //        {
+        //            jsonrpc = "2.0",
+        //            id = 1,
+        //            method = "getBalance",
+        //            @params = new object[] { walletAddress }
+        //        };
+
+        //        var jsonPayload = Newtonsoft.Json.JsonConvert.SerializeObject(requestPayload);
+        //        var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+
+        //        var response = await httpClient.PostAsync(heliusUrl, content);
+        //        response.EnsureSuccessStatusCode();
+
+        //        var jsonResponse = await response.Content.ReadAsStringAsync();
+        //        var result = JObject.Parse(jsonResponse);
+
+        //        var balanceInLamports = result["result"]?["value"]?.Value<long>() ?? 0;
+
+        //        return balanceInLamports / 1_000_000_000.0;
+        //    }
+        //}
 
         public DataTable GetWallets(int walletType)
         {

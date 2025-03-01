@@ -33,7 +33,7 @@
 
   <ItemGroup>
     <Content Include=".env">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="catwiftools.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
