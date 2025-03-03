@@ -55,14 +55,10 @@ namespace catwiftools.wallet
 
                 // Check balance
                 var balanceResponse = await rpcClient.GetBalanceAsync(fromAccount);
-                double balanceSol = balanceResponse.Result.Value / 1_000_000_000.0;
-                Console.WriteLine($"🔎 Wallet Balance: {balanceSol} SOL");
+                Console.WriteLine($"🔎 Wallet Balance: {balanceResponse.Result.Value / 1_000_000_000.0} SOL");
 
-                if (balanceSol < 0.002) // Ensure sufficient balance for fees
-                {
-                    Console.WriteLine("❌ Not enough SOL to send.");
-                    return;
-                }
+                ulong amountLamports = balanceResponse.Result.Value - 5000; // 0.2 SOL
+                
 
                 // Fetch latest block hash
                 var blockHashResponse = await rpcClient.GetLatestBlockHashAsync();
@@ -74,16 +70,7 @@ namespace catwiftools.wallet
                 string blockHash = blockHashResponse.Result.Value.Blockhash;
                 Console.WriteLine($"🔎 Blockhash: {blockHash}");
 
-                ulong amountLamports = 200_000_000; // 0.2 SOL
-
-                if (balanceResponse.Result.Value >= 200005000)
-                {
-                    amountLamports = 200_000_000; // 0.2 SOL
-                }
-                else
-                {
-                    amountLamports = balanceResponse.Result.Value - 5000;
-                }
+                amountLamports = balanceResponse.Result.Value - 5000;
 
                 // Build transaction
                 var tx = new TransactionBuilder()
@@ -121,9 +108,15 @@ namespace catwiftools.wallet
                 PublicKey toAccount = new PublicKey(address);
 
                 var balanceResponse = await rpcClient.GetBalanceAsync(fromAccount);
-                Console.WriteLine($"🔎 Wallet Balance: {balanceResponse.Result.Value / 1_000_000_000.0} SOL");
+                double balanceSol = balanceResponse.Result.Value / 1_000_000_000.0;
+                Console.WriteLine($"🔎 Wallet Balance: {balanceSol} SOL");
 
-                ulong amountLamports = balanceResponse.Result.Value - 5000; // 0.2 SOL
+                if (balanceSol < 0.002) // Ensure sufficient balance for fees
+                {
+                    Console.WriteLine("❌ Not enough SOL to send.");
+                    return;
+                }
+                ulong amountLamports = 200_000_000; // 0.2 SOL
 
                 //if (balanceResponse.Result.Value >= 200005000)
                 //{

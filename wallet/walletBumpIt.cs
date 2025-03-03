@@ -105,13 +105,27 @@ namespace catwiftools.wallet
         private async void btnSplyWall_Click(object sender, EventArgs e)
         {
             Console.WriteLine(selectedAddresses.Count);
-            await DistributeWallets.Distribute(selectedAddresses);
+            if (selectedAddresses.Count > 0)
+            {
+                await DistributeWallets.Distribute(selectedAddresses);
+            }
+            else
+            {
+                MessageBox.Show("Please select at least one wallet.");
+            }
             Console.WriteLine("Clicked");
         }
 
         private async void btnRecallWall_Click(object sender, EventArgs e)
         {
-            await DistributeWallets.Recall(selectedAddresses);
+            if (selectedAddresses.Count > 0)
+            {
+                await DistributeWallets.Recall(selectedAddresses);
+            }
+            else
+            {
+                MessageBox.Show("Please select at least one wallet.");
+            }
         }
     }
 }
