@@ -9,7 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove=".env" />
     <None Remove=".env.template" />
     <None Remove="catwiftools.db" />
     <None Remove="img\icon\bumpIt.png" />
@@ -40,7 +39,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="catwiftools.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="img\icon\bumpIt.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

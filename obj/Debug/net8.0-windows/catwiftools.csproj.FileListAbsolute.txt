@@ -217,7 +217,6 @@ D:\crypto\catwiftools\bin\Debug\net8.0-windows\runtimes\win-arm64\native\e_sqlit
 D:\crypto\catwiftools\bin\Debug\net8.0-windows\runtimes\win-x64\native\e_sqlite3.dll
 D:\crypto\catwiftools\bin\Debug\net8.0-windows\runtimes\win-x86\native\e_sqlite3.dll
 D:\crypto\catwiftools\bin\Debug\net8.0-windows\.env
-D:\crypto\catwiftools\bin\Debug\net8.0-windows\catwiftools.db
 D:\crypto\catwiftools\bin\Debug\net8.0-windows\img\icon\bumpIt.png
 D:\crypto\catwiftools\bin\Debug\net8.0-windows\img\icon\bumpItSelected.png
 D:\crypto\catwiftools\bin\Debug\net8.0-windows\img\icon\bundler.png
@@ -286,3 +285,6 @@ C:\Users\theo.bggtt\Documents\2024-2025\Atelier_Programmation\sem2\catwiftools\b
 D:\crypto\catwiftools\obj\Debug\net8.0-windows\catwiftools.wallet.walletGroup.resources
 C:\Users\theo.bggtt\Documents\2024-2025\Atelier_Programmation\sem2\catwiftools\obj\Debug\net8.0-windows\catwiftools.wallet.walletGroup.resources
 C:\Users\theo.bggtt\Documents\2024-2025\Atelier_Programmation\sem2\catwiftools\bin\Debug\net8.0-windows\.env.template
+D:\crypto\catwiftools\bin\Debug\net8.0-windows\.env.template
+D:\crypto\catwiftools\bin\Debug\net8.0-windows\catwiftools.db
+D:\crypto\catwiftools\obj\Debug\net8.0-windows\catwiftools.wallet.WalletGroupForm.resources

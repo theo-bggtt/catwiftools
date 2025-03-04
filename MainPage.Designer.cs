@@ -64,7 +64,7 @@
             settingsBumpIt1 = new catwiftools.settings.settingsBumpIt();
             walletBumpIt1 = new catwiftools.wallet.walletBumpIt();
             walletBundler1 = new catwiftools.wallet.walletBundler();
-            walletVolume1 = new catwiftools.wallet.walletVolume();
+            walletVolume1 = new catwiftools.wallet.walletGroup();
             ((System.ComponentModel.ISupportInitialize)pbxLogo).BeginInit();
             gbxWalletNav.SuspendLayout();
             gbxBackground.SuspendLayout();
@@ -582,7 +582,6 @@
             walletVolume1.Name = "walletVolume1";
             walletVolume1.Size = new Size(990, 762);
             walletVolume1.TabIndex = 41;
-            walletVolume1.Tag = "2";
             // 
             // CatWifTools
             // 
@@ -669,6 +668,6 @@
         public Button btnSettingsBumpIt;
         private wallet.walletBumpIt walletBumpIt1;
         private wallet.walletBundler walletBundler1;
-        private wallet.walletVolume walletVolume1;
+        private wallet.walletGroup walletVolume1;
     }
 }
