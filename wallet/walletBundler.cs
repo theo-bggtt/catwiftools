@@ -17,6 +17,7 @@ namespace catwiftools.wallet
         RetrieveBalance retrieveBalance = new RetrieveBalance();
         WalletCreator walletCreator = new WalletCreator();
 
+        public List<string> selectedAddresses = new List<string>();
 
         public walletBundler()
         {
@@ -28,6 +29,37 @@ namespace catwiftools.wallet
             displayWallets.LoadWalletsToGrid(3, dataGridViewWallets);
             lblSolBalance.Text = "Total Balance: " + retrieveBalance.GetTotalBalance(3).ToString("N2") + " SOL";
             lblWalletQt.Text = "Wallet amount: " + displayWallets.GetWallets(3).Rows.Count;
+        }
+
+        private void dataGridViewWallets_CurrentCellDirtyStateChanged(object? sender, EventArgs e)
+        {
+            if (dataGridViewWallets.IsCurrentCellDirty)
+            {
+                dataGridViewWallets.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
+
+        private void dataGridViewWallets_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == 0)
+            {
+                var row = dataGridViewWallets.Rows[e.RowIndex];
+                var address = row.Cells[2].Value.ToString();
+
+                if (Convert.ToBoolean(row.Cells[0].Value))
+                {
+                    if (!selectedAddresses.Contains(address))
+                    {
+                        selectedAddresses.Add(address);
+                    }
+                }
+                else
+                {
+                    selectedAddresses.Remove(address);
+                }
+
+                Console.WriteLine(address);
+            }
         }
 
         private async void btnGenWallet_Click(object sender, EventArgs e)

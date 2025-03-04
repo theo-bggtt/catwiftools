@@ -25,6 +25,13 @@ namespace catwiftools.wallet
             InitializeComponent();
         }
 
+        private void walletBumpIt_Load(object sender, EventArgs e)
+        {
+            displayWallets.LoadWalletsToGrid(4, dataGridViewWallets);
+            lblSolBalance.Text = "Total Balance: " + retrieveBalance.GetTotalBalance(4).ToString("N2") + " SOL";
+            lblWalletQt.Text = "Wallet amount: " + displayWallets.GetWallets(4).Rows.Count;
+        }
+
         private void dataGridViewWallets_CurrentCellDirtyStateChanged(object? sender, EventArgs e)
         {
             if (dataGridViewWallets.IsCurrentCellDirty)
@@ -54,13 +61,6 @@ namespace catwiftools.wallet
 
                 Console.WriteLine(address);
             }
-        }
-
-        private void walletBumpIt_Load(object sender, EventArgs e)
-        {
-            displayWallets.LoadWalletsToGrid(4, dataGridViewWallets);
-            lblSolBalance.Text = "Total Balance: " + retrieveBalance.GetTotalBalance(4).ToString("N2") + " SOL";
-            lblWalletQt.Text = "Wallet amount: " + displayWallets.GetWallets(4).Rows.Count;
         }
 
         private async void btnGenWallet_Click(object sender, EventArgs e)
