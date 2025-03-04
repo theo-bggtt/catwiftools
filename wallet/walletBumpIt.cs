@@ -23,19 +23,6 @@ namespace catwiftools.wallet
         public walletBumpIt()
         {
             InitializeComponent();
-            displayWallets.LoadWalletsToGrid(4, dataGridViewWallets);
-            lblSolBalance.Text = "Total Balance: " + retrieveBalance.GetTotalBalance(4).ToString("N2") + " SOL";
-            lblWalletQt.Text = "Wallet amount: " + displayWallets.GetWallets(4).Rows.Count;
-
-            dataGridViewWallets.ReadOnly = false;
-
-            foreach (DataGridViewColumn column in dataGridViewWallets.Columns)
-            {
-                if (!(column is DataGridViewCheckBoxColumn))
-                {
-                    column.ReadOnly = true;
-                }
-            }
         }
 
         private void dataGridViewWallets_CurrentCellDirtyStateChanged(object? sender, EventArgs e)
@@ -71,6 +58,7 @@ namespace catwiftools.wallet
 
         private void walletBumpIt_Load(object sender, EventArgs e)
         {
+            displayWallets.LoadWalletsToGrid(4, dataGridViewWallets);
             lblSolBalance.Text = "Total Balance: " + retrieveBalance.GetTotalBalance(4).ToString("N2") + " SOL";
             lblWalletQt.Text = "Wallet amount: " + displayWallets.GetWallets(4).Rows.Count;
         }

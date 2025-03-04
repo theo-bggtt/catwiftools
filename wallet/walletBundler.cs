@@ -20,15 +20,12 @@ namespace catwiftools.wallet
 
         public walletBundler()
         {
-            InitializeComponent();
-            displayWallets.LoadWalletsToGrid(3, dataGridViewWallets);
-            lblSolBalance.Text = "Total Balance: " + retrieveBalance.GetTotalBalance(3).ToString("N2") + " SOL";
-            lblWalletQt.Text = "Wallet amount: " + displayWallets.GetWallets(3).Rows.Count;
-            
+            InitializeComponent();            
         }
 
         private void walletBundler_Load(object sender, EventArgs e)
         {
+            displayWallets.LoadWalletsToGrid(3, dataGridViewWallets);
             lblSolBalance.Text = "Total Balance: " + retrieveBalance.GetTotalBalance(3).ToString("N2") + " SOL";
             lblWalletQt.Text = "Wallet amount: " + displayWallets.GetWallets(3).Rows.Count;
         }

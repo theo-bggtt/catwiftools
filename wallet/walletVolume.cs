@@ -21,13 +21,11 @@ namespace catwiftools.wallet
         public walletVolume()
         {
             InitializeComponent();
-            displayWallets.LoadWalletsToGrid(2, dataGridViewWallets);
-            lblSolBalance.Text = "Total Balance: " + retrieveBalance.GetTotalBalance(2).ToString("N2") + " SOL";
-            lblWalletQt.Text = "Wallet amount: " + displayWallets.GetWallets(2).Rows.Count;
         }
 
         private void walletVolume_Load(object sender, EventArgs e)
         {
+            displayWallets.LoadWalletsToGrid(2, dataGridViewWallets);
             lblSolBalance.Text = "Total Balance: " + retrieveBalance.GetTotalBalance(2).ToString("N2") + " SOL";
             lblWalletQt.Text = "Wallet amount: " + displayWallets.GetWallets(2).Rows.Count;
         }

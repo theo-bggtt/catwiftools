@@ -1,4 +1,5 @@
 ﻿using catwiftools.settings;
+using catwiftools.wallet;
 using Microsoft.Data.Sqlite;
 namespace catwiftools
 {
@@ -121,8 +122,8 @@ namespace catwiftools
                 bundlerMainPage1,
                 tasksMainPage1,
                 proxiesMainPage1,
-                walletVolume1,
                 gbxBackground,
+                walletVolume1,
                 walletBundler1,
                 walletBumpIt1,
                 settingsGeneral1,

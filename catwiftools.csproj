@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <None Remove=".env" />
+    <None Remove=".env.template" />
     <None Remove="catwiftools.db" />
     <None Remove="img\icon\bumpIt.png" />
     <None Remove="img\icon\bumpItSelected.png" />
@@ -33,7 +34,10 @@
 
   <ItemGroup>
     <Content Include=".env">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include=".env.template">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="catwiftools.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

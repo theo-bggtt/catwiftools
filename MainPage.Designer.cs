@@ -37,7 +37,7 @@
             btnWalletsBundler = new Button();
             btnWalletsBumpIt = new Button();
             label1 = new Label();
-            bundlerMainPage1 = new bundler.bundlerMainPage();
+            bundlerMainPage1 = new catwiftools.bundler.bundlerMainPage();
             gbxBackground = new BorderlessGroupBox();
             pictureBox1 = new PictureBox();
             lblBackground = new Label();
@@ -45,9 +45,8 @@
             lblClock = new Label();
             btnCloseApp = new Button();
             btnMinimise = new Button();
-            tasksMainPage1 = new tasks.tasksMainPage();
-            proxiesMainPage1 = new proxies.proxiesMainPage();
-            walletVolume1 = new wallet.walletVolume();
+            tasksMainPage1 = new catwiftools.tasks.tasksMainPage();
+            proxiesMainPage1 = new catwiftools.proxies.proxiesMainPage();
             lblSettings = new Label();
             gbxSettingsNav = new BorderlessGroupBox();
             btnSettingsGeneral = new Button();
@@ -60,12 +59,12 @@
             btnTasks = new Button();
             btnBundler = new Button();
             btnWallets = new Button();
-            walletBundler1 = new wallet.walletBundler();
-            walletBumpIt1 = new wallet.walletBumpIt();
-            settingsGeneral1 = new settings.settingsGeneral();
-            settingsVolume1 = new settings.settingsVolume();
-            settingsBundler1 = new settings.settingsBundler();
-            settingsBumpIt1 = new settings.settingsBumpIt();
+            settingsVolume1 = new catwiftools.settings.settingsVolume();
+            settingsBundler1 = new catwiftools.settings.settingsBundler();
+            settingsBumpIt1 = new catwiftools.settings.settingsBumpIt();
+            walletBumpIt1 = new catwiftools.wallet.walletBumpIt();
+            walletBundler1 = new catwiftools.wallet.walletBundler();
+            walletVolume1 = new catwiftools.wallet.walletVolume();
             ((System.ComponentModel.ISupportInitialize)pbxLogo).BeginInit();
             gbxWalletNav.SuspendLayout();
             gbxBackground.SuspendLayout();
@@ -297,14 +296,6 @@
             proxiesMainPage1.Name = "proxiesMainPage1";
             proxiesMainPage1.Size = new Size(1210, 762);
             proxiesMainPage1.TabIndex = 29;
-            // 
-            // walletVolume1
-            // 
-            walletVolume1.BackColor = Color.Transparent;
-            walletVolume1.Location = new Point(450, 43);
-            walletVolume1.Name = "walletVolume1";
-            walletVolume1.Size = new Size(990, 762);
-            walletVolume1.TabIndex = 30;
             // 
             // lblSettings
             // 
@@ -543,30 +534,6 @@
             btnWallets.UseVisualStyleBackColor = false;
             btnWallets.Click += Button_Click;
             // 
-            // walletBundler1
-            // 
-            walletBundler1.BackColor = Color.Transparent;
-            walletBundler1.Location = new Point(450, 43);
-            walletBundler1.Name = "walletBundler1";
-            walletBundler1.Size = new Size(990, 762);
-            walletBundler1.TabIndex = 33;
-            // 
-            // walletBumpIt1
-            // 
-            walletBumpIt1.BackColor = Color.Transparent;
-            walletBumpIt1.Location = new Point(450, 43);
-            walletBumpIt1.Name = "walletBumpIt1";
-            walletBumpIt1.Size = new Size(990, 762);
-            walletBumpIt1.TabIndex = 34;
-            // 
-            // settingsGeneral1
-            // 
-            settingsGeneral1.BackColor = Color.Transparent;
-            settingsGeneral1.Location = new Point(450, 43);
-            settingsGeneral1.Name = "settingsGeneral1";
-            settingsGeneral1.Size = new Size(990, 762);
-            settingsGeneral1.TabIndex = 35;
-            // 
             // settingsVolume1
             // 
             settingsVolume1.BackColor = Color.Transparent;
@@ -591,6 +558,32 @@
             settingsBumpIt1.Size = new Size(990, 762);
             settingsBumpIt1.TabIndex = 38;
             // 
+            // walletBumpIt1
+            // 
+            walletBumpIt1.BackColor = Color.Transparent;
+            walletBumpIt1.Location = new Point(450, 43);
+            walletBumpIt1.Name = "walletBumpIt1";
+            walletBumpIt1.Size = new Size(990, 762);
+            walletBumpIt1.TabIndex = 39;
+            // 
+            // walletBundler1
+            // 
+            walletBundler1.BackColor = Color.Transparent;
+            walletBundler1.Location = new Point(450, 43);
+            walletBundler1.Name = "walletBundler1";
+            walletBundler1.Size = new Size(990, 762);
+            walletBundler1.TabIndex = 40;
+            walletBundler1.Tag = "1";
+            // 
+            // walletVolume1
+            // 
+            walletVolume1.BackColor = Color.Transparent;
+            walletVolume1.Location = new Point(450, 43);
+            walletVolume1.Name = "walletVolume1";
+            walletVolume1.Size = new Size(990, 762);
+            walletVolume1.TabIndex = 41;
+            walletVolume1.Tag = "2";
+            // 
             // CatWifTools
             // 
             AutoScaleMode = AutoScaleMode.None;
@@ -598,6 +591,9 @@
             BackColor = Color.FromArgb(25, 25, 25);
             ClientSize = new Size(1440, 810);
             ControlBox = false;
+            Controls.Add(walletVolume1);
+            Controls.Add(walletBundler1);
+            Controls.Add(walletBumpIt1);
             Controls.Add(gbxMainNav);
             Controls.Add(pbxLogo);
             Controls.Add(btnMinimise);
@@ -609,10 +605,6 @@
             Controls.Add(settingsBumpIt1);
             Controls.Add(settingsBundler1);
             Controls.Add(settingsVolume1);
-            Controls.Add(settingsGeneral1);
-            Controls.Add(walletBumpIt1);
-            Controls.Add(walletBundler1);
-            Controls.Add(walletVolume1);
             Controls.Add(gbxSettingsNav);
             Controls.Add(gbxWalletNav);
             Controls.Add(tasksMainPage1);
@@ -659,7 +651,6 @@
         private bundler.bundlerMainPage bundlerMainPage1;
         private tasks.tasksMainPage tasksMainPage1;
         private proxies.proxiesMainPage proxiesMainPage1;
-        private wallet.walletVolume walletVolume1;
         private Label lblSettings;
         private BorderlessGroupBox gbxSettingsNav;
         private BorderlessGroupBox gbxMainNav;
@@ -668,8 +659,6 @@
         public Button btnTasks;
         public Button btnBundler;
         public Button btnWallets;
-        private wallet.walletBundler walletBundler1;
-        private wallet.walletBumpIt walletBumpIt1;
         private settings.settingsGeneral settingsGeneral1;
         private settings.settingsVolume settingsVolume1;
         private settings.settingsBundler settingsBundler1;
@@ -678,5 +667,8 @@
         public Button btnSettingsVolume;
         public Button btnSettingsBundler;
         public Button btnSettingsBumpIt;
+        private wallet.walletBumpIt walletBumpIt1;
+        private wallet.walletBundler walletBundler1;
+        private wallet.walletVolume walletVolume1;
     }
 }
