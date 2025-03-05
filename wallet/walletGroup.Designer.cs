@@ -30,7 +30,7 @@
         {
             lblVolumeTitle = new Label();
             flpWalletGroup = new FlowLayoutPanel();
-            button1 = new Button();
+            btnCreateGroup = new Button();
             SuspendLayout();
             // 
             // lblVolumeTitle
@@ -48,32 +48,32 @@
             // 
             flpWalletGroup.AutoScroll = true;
             flpWalletGroup.BorderStyle = BorderStyle.FixedSingle;
-            flpWalletGroup.Location = new Point(0, 160);
+            flpWalletGroup.Location = new Point(10, 160);
             flpWalletGroup.Margin = new Padding(0);
             flpWalletGroup.Name = "flpWalletGroup";
-            flpWalletGroup.Size = new Size(975, 587);
+            flpWalletGroup.Size = new Size(969, 587);
             flpWalletGroup.TabIndex = 3;
             // 
-            // button1
+            // btnCreateGroup
             // 
-            button1.BackColor = Color.FromArgb(78, 93, 148);
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(684, 38);
-            button1.Name = "button1";
-            button1.Size = new Size(136, 23);
-            button1.TabIndex = 4;
-            button1.Text = "Create Group";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            btnCreateGroup.BackColor = Color.FromArgb(78, 93, 148);
+            btnCreateGroup.FlatAppearance.BorderSize = 0;
+            btnCreateGroup.FlatStyle = FlatStyle.Flat;
+            btnCreateGroup.ForeColor = Color.White;
+            btnCreateGroup.Location = new Point(684, 38);
+            btnCreateGroup.Name = "btnCreateGroup";
+            btnCreateGroup.Size = new Size(136, 23);
+            btnCreateGroup.TabIndex = 4;
+            btnCreateGroup.Text = "Create Group";
+            btnCreateGroup.UseVisualStyleBackColor = false;
+            btnCreateGroup.Click += btnCreateGroup_Click;
             // 
             // walletGroup
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
-            Controls.Add(button1);
+            Controls.Add(btnCreateGroup);
             Controls.Add(flpWalletGroup);
             Controls.Add(lblVolumeTitle);
             Name = "walletGroup";
@@ -93,6 +93,6 @@
         private BorderlessGroupBox borderlessGroupBox7;
         private BorderlessGroupBox borderlessGroupBox8;
         private BorderlessGroupBox borderlessGroupBox9;
-        private Button button1;
+        private Button btnCreateGroup;
     }
 }

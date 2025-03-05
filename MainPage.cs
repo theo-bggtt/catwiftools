@@ -40,8 +40,6 @@ namespace catwiftools
 
 
                 { btnWalletsVolume, walletVolume1},
-                { btnWalletsBundler, walletBundler1},
-                { btnWalletsBumpIt, walletBumpIt1},
 
 
                 { btnSettingsGeneral, settingsGeneral1 },
@@ -74,14 +72,6 @@ namespace catwiftools
             if (button == btnWalletsVolume)
             {
                 return new List<Control> { gbxWalletNav, walletVolume1 };
-            }
-            if (button == btnWalletsBundler)
-            {
-                return new List<Control> { gbxWalletNav, walletBundler1 };
-            }
-            if (button == btnWalletsBumpIt)
-            {
-                return new List<Control> { gbxWalletNav, walletBumpIt1 };
             }
             // Settings sub buttons
             if (button == btnSettings)
@@ -124,8 +114,6 @@ namespace catwiftools
                 proxiesMainPage1,
                 gbxBackground,
                 walletVolume1,
-                walletBundler1,
-                walletBumpIt1,
                 settingsGeneral1,
                 settingsVolume1,
                 settingsBundler1,
@@ -232,7 +220,7 @@ namespace catwiftools
                     e.Graphics.DrawLine(pen, 225, 91, 1000, 91);
                 }
             }
-            if (walletVolume1.Visible || walletBundler1.Visible || walletBumpIt1.Visible)
+            if (walletVolume1.Visible)
             {
                 using (Pen pen = new Pen(Color.Gray, 2)) // Color.Gray and thickness 2
                 {

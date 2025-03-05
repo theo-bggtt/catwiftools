@@ -21,7 +21,7 @@ namespace catwiftools.wallet
         {
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnCreateGroup_Click(object sender, EventArgs e)
         {
             // Create and show the WalletOptionsForm as a dialog
             using (WalletGroupForm optionsForm = new WalletGroupForm())

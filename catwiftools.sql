@@ -34,15 +34,16 @@ CREATE TABLE `wallets` (
   `idWallet` int(11) NOT NULL,
   `walletAddress` varchar(50) NOT NULL,
   `walletphrase` varchar(300) NOT NULL,
-  `walletType` int(11) NOT NULL,
-  `balance` decimal(6,2) DEFAULT 0.00
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `group_id` INTEGER NOT NULL,
+  `balance` decimal(6,2) DEFAULT 0.00,
+  FOREIGN KEY (group_id) REFERENCES "group" (group_id)
+);
 
 --
 -- Dumping data for table `wallets`
 --
 
-INSERT INTO `wallets` (`idWallet`, `walletAddress`, `walletphrase`, `walletType`, `balance`) VALUES
+INSERT INTO `wallets` (`idWallet`, `walletAddress`, `walletphrase`, `group_id`, `balance`) VALUES
 (1, '3k6XVaNMmUHP97SZKQibU2dyVgMGvYr9abs8WNVXepsp', 'gloom like bronze helmet team zone drill version polar glare firm silk', 1, 5.00),
 (2, '81EXmNXxaQZ6BHsyrvJRdor22hedhHN5uB24fpHiwW2y', 'carpet yellow pet sock upgrade suggest usual machine thrive entry ticket post', 1, 2.50),
 (3, '5BS6SeUFu4wX2mL7YW3Absi7nxWfAwjg88HAyS9i6Q12', 'afford about proof celery knife task pigeon key scan brisk say dune', 1, 0.50),

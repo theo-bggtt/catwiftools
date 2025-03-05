@@ -62,8 +62,6 @@
             settingsVolume1 = new catwiftools.settings.settingsVolume();
             settingsBundler1 = new catwiftools.settings.settingsBundler();
             settingsBumpIt1 = new catwiftools.settings.settingsBumpIt();
-            walletBumpIt1 = new catwiftools.wallet.walletBumpIt();
-            walletBundler1 = new catwiftools.wallet.walletBundler();
             walletVolume1 = new catwiftools.wallet.walletGroup();
             ((System.ComponentModel.ISupportInitialize)pbxLogo).BeginInit();
             gbxWalletNav.SuspendLayout();
@@ -558,23 +556,6 @@
             settingsBumpIt1.Size = new Size(990, 762);
             settingsBumpIt1.TabIndex = 38;
             // 
-            // walletBumpIt1
-            // 
-            walletBumpIt1.BackColor = Color.Transparent;
-            walletBumpIt1.Location = new Point(450, 43);
-            walletBumpIt1.Name = "walletBumpIt1";
-            walletBumpIt1.Size = new Size(990, 762);
-            walletBumpIt1.TabIndex = 39;
-            // 
-            // walletBundler1
-            // 
-            walletBundler1.BackColor = Color.Transparent;
-            walletBundler1.Location = new Point(450, 43);
-            walletBundler1.Name = "walletBundler1";
-            walletBundler1.Size = new Size(990, 762);
-            walletBundler1.TabIndex = 40;
-            walletBundler1.Tag = "1";
-            // 
             // walletVolume1
             // 
             walletVolume1.BackColor = Color.Transparent;
@@ -590,9 +571,6 @@
             BackColor = Color.FromArgb(25, 25, 25);
             ClientSize = new Size(1440, 810);
             ControlBox = false;
-            Controls.Add(walletVolume1);
-            Controls.Add(walletBundler1);
-            Controls.Add(walletBumpIt1);
             Controls.Add(gbxMainNav);
             Controls.Add(pbxLogo);
             Controls.Add(btnMinimise);
@@ -609,6 +587,7 @@
             Controls.Add(tasksMainPage1);
             Controls.Add(proxiesMainPage1);
             Controls.Add(bundlerMainPage1);
+            Controls.Add(walletVolume1);
             FormBorderStyle = FormBorderStyle.None;
             MaximizeBox = false;
             MinimizeBox = false;
@@ -666,8 +645,6 @@
         public Button btnSettingsVolume;
         public Button btnSettingsBundler;
         public Button btnSettingsBumpIt;
-        private wallet.walletBumpIt walletBumpIt1;
-        private wallet.walletBundler walletBundler1;
         private wallet.walletGroup walletVolume1;
     }
 }

@@ -194,7 +194,7 @@ namespace catwiftools
                 connection.Open();
                 using (var command = connection.CreateCommand())
                 {
-                    command.CommandText = "SELECT walletAddress FROM Wallets WHERE walletType = 1";
+                    command.CommandText = "SELECT walletAddress FROM wallet WHERE walletType = 1";
                     using (var reader = command.ExecuteReader())
                     {
                         if (reader.Read() && !reader.IsDBNull(0))
