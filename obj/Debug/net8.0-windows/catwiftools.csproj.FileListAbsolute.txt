@@ -97,7 +97,6 @@ D:\crypto\catwiftools\bin\Debug\net8.0-windows\ClearScript.Core.dll
 D:\crypto\catwiftools\bin\Debug\net8.0-windows\ClearScript.V8.dll
 D:\crypto\catwiftools\bin\Debug\net8.0-windows\ClearScript.V8.ICUData.dll
 D:\crypto\catwiftools\bin\Debug\net8.0-windows\Newtonsoft.Json.dll
-D:\crypto\catwiftools\bin\Debug\net8.0-windows\MySqlConnector.dll
 D:\crypto\catwiftools\obj\Debug\net8.0-windows\catwiftools.wallet.walletCreatorForm.resources
 C:\Users\theo.bggtt\Documents\2024-2025\Atelier_Programmation\sem2\catwiftools\bin\Debug\net8.0-windows\catwiftools.dll.config
 C:\Users\theo.bggtt\Documents\2024-2025\Atelier_Programmation\sem2\catwiftools\bin\Debug\net8.0-windows\en-US\catwiftools.resources.dll

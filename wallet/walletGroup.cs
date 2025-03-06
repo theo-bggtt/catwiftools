@@ -7,11 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Data.Sqlite;
 
 namespace catwiftools.wallet
 {
     public partial class walletGroup : UserControl
     {
+        private static readonly (string ConnectionString, string HeliusUrl, string ApiKey) envVariables = Functions.LoadEnvVariables();
+        private static string connectionString = envVariables.ConnectionString;
+
         public walletGroup()
         {
             InitializeComponent();
@@ -29,8 +33,19 @@ namespace catwiftools.wallet
                 if (optionsForm.ShowDialog() == DialogResult.OK)
                 {
                     // Retrieve the values entered in the pop-up form
-                    string walletAmount = optionsForm.walletAmount;
+                    int walletAmount = Convert.ToInt32(optionsForm.walletAmount);
                     string groupName = optionsForm.groupName;
+
+                    string query = $"INSERT INTO 'group' (group_name) VALUES (@groupName)";
+                    using (SqliteConnection connection = new SqliteConnection(connectionString))
+                    {
+                        using (SqliteCommand command = new SqliteCommand(query, connection))
+                        {
+                            command.Parameters.AddWithValue("@groupName", groupName);
+                            connection.Open();
+                            command.ExecuteNonQuery();
+                        }
+                    }
 
                     // Create a new GroupbBox with 2 labels (one for walletAmount and one with groupName) and add that groupbox to flpWalletGroup
                     BorderlessGroupBox borderlessGroupBox = new BorderlessGroupBox();
@@ -51,11 +66,42 @@ namespace catwiftools.wallet
                     lbName.Location = new Point(10, 20);
                     lbName.AutoSize = true;
 
+                    Button delButton = new Button();
+                    delButton.Text = "Delete";
+                    delButton.Location = new Point(170, 120);
+                    delButton.ForeColor = Color.White;
+                    delButton.BackColor = Color.DarkRed;
+                    delButton.AutoSize = true;
+                    //delButton.Click += (s, ev) => flpWalletGroup.Controls.Remove(borderlessGroupBox);
+                    delButton.Click += (s, ev) => delGroup(borderlessGroupBox);
+
+                    Button viewButton = new Button();
+                    viewButton.Text = "View";
+                    viewButton.Location = new Point(100, 120);
+                    viewButton.ForeColor = Color.White;
+                    viewButton.BackColor = Color.FromArgb(78, 93, 148);
+                    viewButton.AutoSize = true;
+                    //viewButton.Click += (s, ev) =>;
+
                     borderlessGroupBox.Controls.Add(lbAmount);
                     borderlessGroupBox.Controls.Add(lbName);
+                    borderlessGroupBox.Controls.Add(delButton);
+                    borderlessGroupBox.Controls.Add(viewButton);
 
                     flpWalletGroup.Controls.Add(borderlessGroupBox);
+
+                    
+
                 }
+            }
+        }
+
+        private void delGroup(BorderlessGroupBox borderlessGroupBox)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to delete this group?", "Delete Group", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                flpWalletGroup.Controls.Remove(borderlessGroupBox);
             }
         }
     }

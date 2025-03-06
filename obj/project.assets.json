@@ -6040,23 +6040,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\theo.bggtt\\.nuget\\packages\\": {},
+    "C:\\Users\\leroy\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\theo.bggtt\\Documents\\2024-2025\\Atelier_Programmation\\sem2\\catwiftools\\catwiftools.csproj",
+      "projectUniqueName": "D:\\crypto\\catwiftools\\catwiftools.csproj",
       "projectName": "catwiftools",
-      "projectPath": "C:\\Users\\theo.bggtt\\Documents\\2024-2025\\Atelier_Programmation\\sem2\\catwiftools\\catwiftools.csproj",
-      "packagesPath": "C:\\Users\\theo.bggtt\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\theo.bggtt\\Documents\\2024-2025\\Atelier_Programmation\\sem2\\catwiftools\\obj\\",
+      "projectPath": "D:\\crypto\\catwiftools\\catwiftools.csproj",
+      "packagesPath": "C:\\Users\\leroy\\.nuget\\packages\\",
+      "outputPath": "D:\\crypto\\catwiftools\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\theo.bggtt\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\leroy\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
