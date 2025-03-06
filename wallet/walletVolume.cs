@@ -1,5 +1,4 @@
-﻿using MySqlConnector;
-using Solnet.Rpc;
+﻿using Solnet.Rpc;
 using Solnet.Wallet;
 using System;
 using System.Data;

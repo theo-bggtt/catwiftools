@@ -33,14 +33,10 @@ namespace catwiftools
             buttonControlMap = new Dictionary<Button, Control>
             {
                 { btnSettings, gbxSettingsNav },
-                { btnWallets, gbxWalletNav },
+                { btnWallets, walletVolume1 },
                 { btnTasks, tasksMainPage1 },
                 { btnBundler, bundlerMainPage1 },
                 { btnProxies, proxiesMainPage1 },
-
-
-                { btnWalletsVolume, walletVolume1},
-
 
                 { btnSettingsGeneral, settingsGeneral1 },
                 { btnSettingsVolume, settingsVolume1 },
@@ -66,12 +62,7 @@ namespace catwiftools
             }
             if (button == btnWallets)
             {
-                return new List<Control> { gbxWalletNav };
-            }
-            // Wallet sub buttons
-            if (button == btnWalletsVolume)
-            {
-                return new List<Control> { gbxWalletNav, walletVolume1 };
+                return new List<Control> { walletVolume1 };
             }
             // Settings sub buttons
             if (button == btnSettings)
@@ -107,7 +98,6 @@ namespace catwiftools
 
             var allControls = new List<Control>
             {
-                gbxWalletNav,
                 gbxSettingsNav,
                 bundlerMainPage1,
                 tasksMainPage1,
@@ -147,8 +137,7 @@ namespace catwiftools
             {
                 if (button != selectedButton)
                 {
-                    if (button == btnWallets &&
-                        (selectedButton == btnWalletsVolume || selectedButton == btnWalletsBundler || selectedButton == btnWalletsBumpIt))
+                    if (button == btnWallets)
                     {
                         functions.SelectButton(button);
                         continue;
@@ -206,7 +195,7 @@ namespace catwiftools
 
         private void Form_Paint(object? sender, PaintEventArgs e)
         {
-            if (gbxWalletNav.Visible || gbxSettingsNav.Visible)
+            if (gbxSettingsNav.Visible)
             {
                 using (Pen pen = new Pen(Color.Gray, 2)) // Color.Gray and thickness 2
                 {

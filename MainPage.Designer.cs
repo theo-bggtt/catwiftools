@@ -32,11 +32,6 @@
             pbxLogo = new PictureBox();
             lblAuthor = new Label();
             lblTitle = new Label();
-            gbxWalletNav = new BorderlessGroupBox();
-            btnWalletsVolume = new Button();
-            btnWalletsBundler = new Button();
-            btnWalletsBumpIt = new Button();
-            label1 = new Label();
             bundlerMainPage1 = new catwiftools.bundler.bundlerMainPage();
             gbxBackground = new BorderlessGroupBox();
             pictureBox1 = new PictureBox();
@@ -64,7 +59,6 @@
             settingsBumpIt1 = new catwiftools.settings.settingsBumpIt();
             walletVolume1 = new catwiftools.wallet.walletGroup();
             ((System.ComponentModel.ISupportInitialize)pbxLogo).BeginInit();
-            gbxWalletNav.SuspendLayout();
             gbxBackground.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             gbxSettingsNav.SuspendLayout();
@@ -104,97 +98,6 @@
             lblTitle.Size = new Size(116, 28);
             lblTitle.TabIndex = 8;
             lblTitle.Text = "CatWifTools";
-            // 
-            // gbxWalletNav
-            // 
-            gbxWalletNav.Controls.Add(btnWalletsVolume);
-            gbxWalletNav.Controls.Add(btnWalletsBundler);
-            gbxWalletNav.Controls.Add(btnWalletsBumpIt);
-            gbxWalletNav.Controls.Add(label1);
-            gbxWalletNav.Location = new Point(225, 43);
-            gbxWalletNav.Name = "gbxWalletNav";
-            gbxWalletNav.Size = new Size(200, 762);
-            gbxWalletNav.TabIndex = 18;
-            gbxWalletNav.TabStop = false;
-            gbxWalletNav.VisibleChanged += gbxWalletNav_VisibleChanged;
-            // 
-            // btnWalletsVolume
-            // 
-            btnWalletsVolume.BackColor = Color.Transparent;
-            btnWalletsVolume.BackgroundImageLayout = ImageLayout.None;
-            btnWalletsVolume.FlatAppearance.BorderSize = 0;
-            btnWalletsVolume.FlatStyle = FlatStyle.Flat;
-            btnWalletsVolume.Font = new Font("Segoe UI", 12F);
-            btnWalletsVolume.ForeColor = Color.FromArgb(153, 153, 153);
-            btnWalletsVolume.Image = Properties.Resources.volume;
-            btnWalletsVolume.ImageAlign = ContentAlignment.MiddleLeft;
-            btnWalletsVolume.ImeMode = ImeMode.NoControl;
-            btnWalletsVolume.Location = new Point(10, 71);
-            btnWalletsVolume.Name = "btnWalletsVolume";
-            btnWalletsVolume.Padding = new Padding(5, 0, 5, 0);
-            btnWalletsVolume.Size = new Size(180, 40);
-            btnWalletsVolume.TabIndex = 10;
-            btnWalletsVolume.Tag = "volume";
-            btnWalletsVolume.Text = "Volume";
-            btnWalletsVolume.UseMnemonic = false;
-            btnWalletsVolume.UseVisualStyleBackColor = false;
-            btnWalletsVolume.Click += Button_Click;
-            // 
-            // btnWalletsBundler
-            // 
-            btnWalletsBundler.BackColor = Color.Transparent;
-            btnWalletsBundler.BackgroundImageLayout = ImageLayout.None;
-            btnWalletsBundler.FlatAppearance.BorderSize = 0;
-            btnWalletsBundler.FlatStyle = FlatStyle.Flat;
-            btnWalletsBundler.Font = new Font("Segoe UI", 12F);
-            btnWalletsBundler.ForeColor = Color.FromArgb(153, 153, 153);
-            btnWalletsBundler.Image = Properties.Resources.bundler;
-            btnWalletsBundler.ImageAlign = ContentAlignment.MiddleLeft;
-            btnWalletsBundler.ImeMode = ImeMode.NoControl;
-            btnWalletsBundler.Location = new Point(10, 136);
-            btnWalletsBundler.Name = "btnWalletsBundler";
-            btnWalletsBundler.Padding = new Padding(5, 0, 5, 0);
-            btnWalletsBundler.Size = new Size(180, 40);
-            btnWalletsBundler.TabIndex = 9;
-            btnWalletsBundler.Tag = "bundler";
-            btnWalletsBundler.Text = "Bundler";
-            btnWalletsBundler.UseMnemonic = false;
-            btnWalletsBundler.UseVisualStyleBackColor = false;
-            btnWalletsBundler.Click += Button_Click;
-            // 
-            // btnWalletsBumpIt
-            // 
-            btnWalletsBumpIt.BackColor = Color.Transparent;
-            btnWalletsBumpIt.BackgroundImageLayout = ImageLayout.None;
-            btnWalletsBumpIt.FlatAppearance.BorderSize = 0;
-            btnWalletsBumpIt.FlatStyle = FlatStyle.Flat;
-            btnWalletsBumpIt.Font = new Font("Segoe UI", 12F);
-            btnWalletsBumpIt.ForeColor = Color.FromArgb(153, 153, 153);
-            btnWalletsBumpIt.Image = Properties.Resources.bumpIt;
-            btnWalletsBumpIt.ImageAlign = ContentAlignment.MiddleLeft;
-            btnWalletsBumpIt.ImeMode = ImeMode.NoControl;
-            btnWalletsBumpIt.Location = new Point(10, 201);
-            btnWalletsBumpIt.Name = "btnWalletsBumpIt";
-            btnWalletsBumpIt.Padding = new Padding(5, 0, 5, 0);
-            btnWalletsBumpIt.Size = new Size(180, 40);
-            btnWalletsBumpIt.TabIndex = 8;
-            btnWalletsBumpIt.Tag = "bumpit";
-            btnWalletsBumpIt.Text = "Bump it";
-            btnWalletsBumpIt.UseMnemonic = false;
-            btnWalletsBumpIt.UseVisualStyleBackColor = false;
-            btnWalletsBumpIt.Click += Button_Click;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 15F);
-            label1.ForeColor = Color.White;
-            label1.ImeMode = ImeMode.NoControl;
-            label1.Location = new Point(10, 5);
-            label1.Name = "label1";
-            label1.Size = new Size(75, 28);
-            label1.TabIndex = 7;
-            label1.Text = "Wallets";
             // 
             // bundlerMainPage1
             // 
@@ -559,9 +462,9 @@
             // walletVolume1
             // 
             walletVolume1.BackColor = Color.Transparent;
-            walletVolume1.Location = new Point(450, 43);
+            walletVolume1.Location = new Point(225, 43);
             walletVolume1.Name = "walletVolume1";
-            walletVolume1.Size = new Size(990, 762);
+            walletVolume1.Size = new Size(1210, 762);
             walletVolume1.TabIndex = 41;
             // 
             // CatWifTools
@@ -579,12 +482,11 @@
             Controls.Add(lblClock);
             Controls.Add(lblAuthor);
             Controls.Add(gbxBackground);
+            Controls.Add(gbxSettingsNav);
+            Controls.Add(tasksMainPage1);
             Controls.Add(settingsBumpIt1);
             Controls.Add(settingsBundler1);
             Controls.Add(settingsVolume1);
-            Controls.Add(gbxSettingsNav);
-            Controls.Add(gbxWalletNav);
-            Controls.Add(tasksMainPage1);
             Controls.Add(proxiesMainPage1);
             Controls.Add(bundlerMainPage1);
             Controls.Add(walletVolume1);
@@ -598,8 +500,6 @@
             Text = "MainPage";
             Load += CatWifTools_Load;
             ((System.ComponentModel.ISupportInitialize)pbxLogo).EndInit();
-            gbxWalletNav.ResumeLayout(false);
-            gbxWalletNav.PerformLayout();
             gbxBackground.ResumeLayout(false);
             gbxBackground.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -614,11 +514,6 @@
         private PictureBox pbxLogo;
         private Label lblAuthor;
         private Label lblTitle;
-        private BorderlessGroupBox gbxWalletNav;
-        public Button btnWalletsVolume;
-        public Button btnWalletsBundler;
-        public Button btnWalletsBumpIt;
-        private Label label1;
         private BorderlessGroupBox gbxBackground;
         private PictureBox pictureBox1;
         private Label lblBackground;

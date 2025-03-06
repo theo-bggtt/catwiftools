@@ -28,21 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lblVolumeTitle = new Label();
+            lb = new Label();
             flpWalletGroup = new FlowLayoutPanel();
             btnCreateGroup = new Button();
+            lblSettings = new Label();
             SuspendLayout();
             // 
-            // lblVolumeTitle
+            // lb
             // 
-            lblVolumeTitle.AutoSize = true;
-            lblVolumeTitle.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblVolumeTitle.ForeColor = Color.White;
-            lblVolumeTitle.Location = new Point(10, 38);
-            lblVolumeTitle.Name = "lblVolumeTitle";
-            lblVolumeTitle.Size = new Size(89, 17);
-            lblVolumeTitle.TabIndex = 2;
-            lblVolumeTitle.Text = "Wallet Group";
+            lb.AutoSize = true;
+            lb.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lb.ForeColor = Color.White;
+            lb.Location = new Point(10, 67);
+            lb.Name = "lb";
+            lb.Size = new Size(89, 17);
+            lb.TabIndex = 2;
+            lb.Text = "Wallet Group";
             // 
             // flpWalletGroup
             // 
@@ -51,7 +52,7 @@
             flpWalletGroup.Location = new Point(10, 160);
             flpWalletGroup.Margin = new Padding(0);
             flpWalletGroup.Name = "flpWalletGroup";
-            flpWalletGroup.Size = new Size(969, 587);
+            flpWalletGroup.Size = new Size(1140, 587);
             flpWalletGroup.TabIndex = 3;
             // 
             // btnCreateGroup
@@ -60,7 +61,7 @@
             btnCreateGroup.FlatAppearance.BorderSize = 0;
             btnCreateGroup.FlatStyle = FlatStyle.Flat;
             btnCreateGroup.ForeColor = Color.White;
-            btnCreateGroup.Location = new Point(684, 38);
+            btnCreateGroup.Location = new Point(1014, 65);
             btnCreateGroup.Name = "btnCreateGroup";
             btnCreateGroup.Size = new Size(136, 23);
             btnCreateGroup.TabIndex = 4;
@@ -68,16 +69,29 @@
             btnCreateGroup.UseVisualStyleBackColor = false;
             btnCreateGroup.Click += btnCreateGroup_Click;
             // 
+            // lblSettings
+            // 
+            lblSettings.AutoSize = true;
+            lblSettings.Font = new Font("Segoe UI", 15F);
+            lblSettings.ForeColor = Color.White;
+            lblSettings.ImeMode = ImeMode.NoControl;
+            lblSettings.Location = new Point(10, 5);
+            lblSettings.Name = "lblSettings";
+            lblSettings.Size = new Size(83, 28);
+            lblSettings.TabIndex = 12;
+            lblSettings.Text = "Settings";
+            // 
             // walletGroup
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
+            Controls.Add(lblSettings);
             Controls.Add(btnCreateGroup);
             Controls.Add(flpWalletGroup);
-            Controls.Add(lblVolumeTitle);
+            Controls.Add(lb);
             Name = "walletGroup";
-            Size = new Size(990, 762);
+            Size = new Size(1210, 762);
             Load += walletGroup_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -85,7 +99,7 @@
 
         #endregion
 
-        private Label lblVolumeTitle;
+        private Label lb;
         private FlowLayoutPanel flpWalletGroup;
         private BorderlessGroupBox borderlessGroupBox4;
         private BorderlessGroupBox borderlessGroupBox5;
@@ -94,5 +108,6 @@
         private BorderlessGroupBox borderlessGroupBox8;
         private BorderlessGroupBox borderlessGroupBox9;
         private Button btnCreateGroup;
+        private Label lblSettings;
     }
 }

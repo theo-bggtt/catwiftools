@@ -1,6 +1,5 @@
 ﻿using DotNetEnv;
 using Microsoft.Data.Sqlite;
-using MySqlConnector;
 using Newtonsoft.Json.Linq;
 using Solnet.Rpc;
 using Solnet.Wallet;

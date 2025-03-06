@@ -1,5 +1,4 @@
 ﻿using catwiftools;
-using MySqlConnector;
 using Solnet.Wallet.Bip39;
 using Solnet.Wallet;
 using System;
