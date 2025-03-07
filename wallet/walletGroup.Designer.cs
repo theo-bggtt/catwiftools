@@ -127,12 +127,6 @@
 
         private Label lb;
         private FlowLayoutPanel flpWalletGroup;
-        private BorderlessGroupBox borderlessGroupBox4;
-        private BorderlessGroupBox borderlessGroupBox5;
-        private BorderlessGroupBox borderlessGroupBox6;
-        private BorderlessGroupBox borderlessGroupBox7;
-        private BorderlessGroupBox borderlessGroupBox8;
-        private BorderlessGroupBox borderlessGroupBox9;
         private Button btnCreateGroup;
         private Label lblSettings;
         private Label label1;
