@@ -86,13 +86,6 @@ namespace catwiftools.wallet
                         }
                         else
                         {
-                            // Insert the new group in the database
-                            query = $"INSERT INTO 'group' (group_name) VALUES (@groupName)";
-                            using (SqliteCommand command2 = new SqliteCommand(query, connection))
-                            {
-                                command2.Parameters.AddWithValue("@groupName", tbxName.Text);
-                                command2.ExecuteNonQuery();
-                            }
                             walletAmount = tbxAmount.Text;
                             groupName = tbxName.Text;
                             this.DialogResult = DialogResult.OK;

@@ -34,12 +34,6 @@
     <Compile Update="wallet\supplyWalletForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="wallet\walletBumpIt.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="wallet\walletBundler.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Update="wallet\walletCreatorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -48,9 +42,6 @@
     </Compile>
     <Compile Update="wallet\WalletGroupForm.cs">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="wallet\walletVolume.cs">
-      <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>

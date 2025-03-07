@@ -11,11 +11,11 @@ namespace catwiftools.wallet
         private static readonly (string ConnectionString, string HeliusUrl, string ApiKey) envVariables = Functions.LoadEnvVariables();
         private static string connectionString = envVariables.ConnectionString;
 
-        public DataTable GetWallets(int walletType)
+        public DataTable GetWallets(int group_id)
         {
             DataTable dataTable = new DataTable();
 
-            string query = $"SELECT idWallet AS `ID`, walletAddress AS `Address`, balance AS `Balance` FROM wallets WHERE walletType = {walletType}";
+            string query = $"SELECT walletAddress AS `Address`, balance AS `Balance` FROM wallets WHERE group_id = {group_id}";
             using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))

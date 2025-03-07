@@ -19,26 +19,6 @@ namespace WalletGenerator
         displayWallets displayWallets = new displayWallets();
         Functions functions = new Functions();
 
-        public async Task getwalletqt(Button btnGenWallet, DataGridView dataGridViewWallets) // Ouvre le petit formulaire et en prends la quantité
-        {
-            using (var numberInputForm = new walletCreatorForm())
-            {
-                var result = numberInputForm.ShowDialog();
-                if (result == DialogResult.OK && numberInputForm.InputNumber.HasValue)
-                {
-
-                    MessageBox.Show($"You entered: {numberInputForm.InputNumber.Value}");
-                    await Task.Run(() => SaveWallets(GenWallet(numberInputForm.InputNumber.Value), btnGenWallet));
-                }
-                else
-                {
-                    MessageBox.Show("Input was canceled.");
-                }
-            }
-            Console.WriteLine("Data saved successfully!");
-            displayWallets.LoadWalletsToGrid(Convert.ToInt32(btnGenWallet.Tag), dataGridViewWallets);
-        }
-
         public static List<String> GenWallet(int? qt) // Génère 1, ou la quantité mentionnée de wallet et en retourne une liste de mnemonic
         {
             if (qt == null)
@@ -55,20 +35,11 @@ namespace WalletGenerator
             return wallets;
         }
 
-        public void SaveWallets(List<String> wallets, Button? button) // Savegarde la liste de wallet avec comme type, le tag du boutton
+        public void SaveWallets(List<String> wallets, int group_id) // Savegarde la liste de wallet avec comme type, le tag du boutton
         {
-
             foreach (string walletMnemonic in wallets)
             {
-                int walletType = 0;
                 var rpcClient = ClientFactory.GetClient(Cluster.DevNet);
-                if (button.Tag != null)
-                {
-                    walletType = Convert.ToInt32(button.Tag);
-                } else
-                {
-                    walletType = 1;
-                }
                 string walletAddress = functions.GetWalletAddress(null, walletMnemonic);
 
                 using (var connection = new SqliteConnection(connectionString))
@@ -76,13 +47,13 @@ namespace WalletGenerator
                     try
                     {
                         connection.Open();
-                        string query = "INSERT INTO wallets (walletAddress, walletphrase, walletType) VALUES (@walletAddress, @walletMnemonic, @walletType)";
+                        string query = "INSERT INTO wallets (walletAddress, walletphrase, group_id) VALUES (@walletAddress, @walletMnemonic, @group_id)";
 
                         using (var command = new SqliteCommand(query, connection))
                         {
                             command.Parameters.AddWithValue("@walletAddress", walletAddress);
                             command.Parameters.AddWithValue("@walletMnemonic", walletMnemonic);
-                            command.Parameters.AddWithValue("@walletType", walletType);
+                            command.Parameters.AddWithValue("@group_id", group_id);
 
                             command.ExecuteNonQuery();
                         }
@@ -95,7 +66,7 @@ namespace WalletGenerator
             }
         }
 
-        public void DelWallet(string? walletAddress, int? walletId, int? walletType)
+        public void DelWallet(string? walletAddress, int? walletId, int? group_id)
         {
             using (var connection = new SqliteConnection(connectionString))
             {
@@ -110,9 +81,9 @@ namespace WalletGenerator
                     {
                         query = "DELETE FROM wallets WHERE walletId = @walletId";
                     }
-                    else if (walletType != null)
+                    else if (group_id != null)
                     {
-                        query = "DELETE FROM wallets WHERE walletType = @walletType";
+                        query = "DELETE FROM wallets WHERE group_id = @group_id";
                     }
 
 
@@ -124,9 +95,9 @@ namespace WalletGenerator
                         } else if (walletId != null)
                         {
                             command.Parameters.AddWithValue("@idWallet", walletId);
-                        } else if (walletType != null)
+                        } else if (group_id != null)
                         {
-                            command.Parameters.AddWithValue("@walletType", walletType);
+                            command.Parameters.AddWithValue("@group_id", group_id);
                         }
                         
 

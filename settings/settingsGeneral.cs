@@ -34,7 +34,7 @@ namespace catwiftools.settings
             List<string> wallets = new List<string>();
             wallets = WalletCreator.GenWallet(null);
             fundWallet = wallets[0];
-            walletCreator.SaveWallets(wallets, btnGenFundWall);
+            walletCreator.SaveWallets(wallets, 0);
             fundWalletSetup();
         }
 
