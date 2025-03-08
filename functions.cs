@@ -184,6 +184,7 @@ namespace catwiftools
                     }
                 }
             }
+            Console.WriteLine(Walletphrase);
             return Walletphrase;
         }
 

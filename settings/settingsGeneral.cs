@@ -21,7 +21,6 @@ namespace catwiftools.settings
         public settingsGeneral()
         {
             InitializeComponent();
-            fundWalletSetup();
         }
 
         private void settingsGeneral_Load(object sender, EventArgs e)

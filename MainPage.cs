@@ -137,12 +137,6 @@ namespace catwiftools
             {
                 if (button != selectedButton)
                 {
-                    if (button == btnWallets)
-                    {
-                        functions.SelectButton(button);
-                        continue;
-                    }
-
                     if (button == btnSettings &&
                         (selectedButton == btnSettingsGeneral || selectedButton == btnSettingsVolume || selectedButton == btnSettingsBundler || selectedButton == btnSettingsBumpIt))
                     {
@@ -207,13 +201,6 @@ namespace catwiftools
                 using (Pen pen = new Pen(Color.Gray, 2)) // Color.Gray and thickness 2
                 {
                     e.Graphics.DrawLine(pen, 225, 91, 1000, 91);
-                }
-            }
-            if (walletVolume1.Visible)
-            {
-                using (Pen pen = new Pen(Color.Gray, 2)) // Color.Gray and thickness 2
-                {
-                    e.Graphics.DrawLine(pen, 460, 154, 1276, 154);
                 }
             }
         }

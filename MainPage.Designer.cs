@@ -483,13 +483,13 @@
             Controls.Add(lblAuthor);
             Controls.Add(gbxBackground);
             Controls.Add(gbxSettingsNav);
+            Controls.Add(proxiesMainPage1);
+            Controls.Add(bundlerMainPage1);
+            Controls.Add(walletVolume1);
             Controls.Add(tasksMainPage1);
             Controls.Add(settingsBumpIt1);
             Controls.Add(settingsBundler1);
             Controls.Add(settingsVolume1);
-            Controls.Add(proxiesMainPage1);
-            Controls.Add(bundlerMainPage1);
-            Controls.Add(walletVolume1);
             FormBorderStyle = FormBorderStyle.None;
             MaximizeBox = false;
             MinimizeBox = false;

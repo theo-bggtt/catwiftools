@@ -34,6 +34,7 @@
             lblSettings = new Label();
             label1 = new Label();
             label2 = new Label();
+            btnUpdateGroup = new Button();
             SuspendLayout();
             // 
             // lb
@@ -41,7 +42,7 @@
             lb.AutoSize = true;
             lb.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lb.ForeColor = Color.White;
-            lb.Location = new Point(40, 65);
+            lb.Location = new Point(10, 57);
             lb.Name = "lb";
             lb.Size = new Size(108, 17);
             lb.TabIndex = 2;
@@ -63,7 +64,7 @@
             btnCreateGroup.FlatAppearance.BorderSize = 0;
             btnCreateGroup.FlatStyle = FlatStyle.Flat;
             btnCreateGroup.ForeColor = Color.White;
-            btnCreateGroup.Location = new Point(1014, 65);
+            btnCreateGroup.Location = new Point(1014, 54);
             btnCreateGroup.Name = "btnCreateGroup";
             btnCreateGroup.Size = new Size(136, 23);
             btnCreateGroup.TabIndex = 4;
@@ -88,7 +89,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(40, 123);
+            label1.Location = new Point(10, 115);
             label1.Name = "label1";
             label1.Size = new Size(96, 17);
             label1.TabIndex = 13;
@@ -99,17 +100,31 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(40, 94);
+            label2.Location = new Point(10, 86);
             label2.Name = "label2";
             label2.Size = new Size(75, 17);
             label2.TabIndex = 14;
             label2.Text = "Total SOL :";
+            // 
+            // btnUpdateGroup
+            // 
+            btnUpdateGroup.BackColor = Color.FromArgb(78, 93, 148);
+            btnUpdateGroup.FlatAppearance.BorderSize = 0;
+            btnUpdateGroup.FlatStyle = FlatStyle.Flat;
+            btnUpdateGroup.ForeColor = Color.White;
+            btnUpdateGroup.Location = new Point(841, 55);
+            btnUpdateGroup.Name = "btnUpdateGroup";
+            btnUpdateGroup.Size = new Size(136, 23);
+            btnUpdateGroup.TabIndex = 15;
+            btnUpdateGroup.Text = "Update Group Info";
+            btnUpdateGroup.UseVisualStyleBackColor = false;
             // 
             // walletGroup
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
+            Controls.Add(btnUpdateGroup);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(lblSettings);
@@ -131,5 +146,6 @@
         private Label lblSettings;
         private Label label1;
         private Label label2;
+        private Button btnUpdateGroup;
     }
 }

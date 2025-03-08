@@ -16,7 +16,6 @@ namespace WalletGenerator
     {
         private static readonly (string ConnectionString, string HeliusUrl, string ApiKey) envVariables = Functions.LoadEnvVariables();
         private static string connectionString = envVariables.ConnectionString;
-        displayWallets displayWallets = new displayWallets();
         Functions functions = new Functions();
 
         public static List<String> GenWallet(int? qt) // Génère 1, ou la quantité mentionnée de wallet et en retourne une liste de mnemonic

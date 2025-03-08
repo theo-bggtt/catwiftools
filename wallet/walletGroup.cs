@@ -102,13 +102,58 @@ namespace catwiftools.wallet
             return group_id;
         }
 
-        private void delGroup(BorderlessGroupBox borderlessGroupBox)
+        private async void delGroup(BorderlessGroupBox borderlessGroupBox)
         {
             DialogResult result = MessageBox.Show("Are you sure you want to delete this group?", "Delete Group", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                string group_id = borderlessGroupBox.Tag.ToString();
-                string query = $"DELETE FROM 'group' WHERE group_id = @group_id";
+                if (borderlessGroupBox.Tag == null)
+                {
+                    MessageBox.Show("Group ID is missing.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                string group_id = borderlessGroupBox.Tag?.ToString() ?? string.Empty;
+
+                if (string.IsNullOrEmpty(group_id))
+                {
+                    MessageBox.Show("Group ID is missing.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Recall the wallets
+                List<String> selectedAddresses = new List<string>();
+                string query = $"SELECT walletAddress FROM wallets WHERE group_id = {group_id}";
+                using (SqliteConnection connection = new SqliteConnection(connectionString))
+                {
+                    using (SqliteCommand command = new SqliteCommand(query, connection))
+                    {
+                        connection.Open();
+                        using (SqliteDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                selectedAddresses.Add(reader.GetString(0));
+                            }
+                        }
+                    }
+                }
+
+                await DistributeWallets.Recall(selectedAddresses);
+
+                // Delete the wallets of the group
+                query = $"DELETE FROM wallets WHERE group_id = @group_id";
+                using (SqliteConnection connection = new SqliteConnection(connectionString))
+                {
+                    using (SqliteCommand command = new SqliteCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@group_id", group_id);
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                }
+
+                query = $"DELETE FROM 'group' WHERE group_id = @group_id";
                 using (SqliteConnection connection = new SqliteConnection(connectionString))
                 {
                     using (SqliteCommand command = new SqliteCommand(query, connection))
@@ -130,9 +175,24 @@ namespace catwiftools.wallet
                     }
                 }
 
+                // Update the new group_id of each wallets
+                query = $"UPDATE wallets SET group_id = group_id - 1 WHERE group_id > @group_id";
+                using (SqliteConnection connection = new SqliteConnection(connectionString))
+                {
+                    using (SqliteCommand command = new SqliteCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@group_id", group_id);
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                }
+
                 flpWalletGroup.Controls.Remove(borderlessGroupBox);
             }
         }
+
+
+
         private void createBorderlessGroupBox(int group_id, int walletAmount, string groupName)
         {
             // Create a new GroupbBox with 2 labels (one for walletAmount and one with groupName) and add that groupbox to flpWalletGroup
