@@ -105,7 +105,7 @@ namespace catwiftools.tasks
             lblGroupName.AutoSize = true;
             lblGroupName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblGroupName.ForeColor = Color.White;
-            lblGroupName.Location = new Point(6, 11);
+            lblGroupName.Location = new Point(10, 15);
             lblGroupName.Name = "lblGroupName";
             lblGroupName.Size = new Size(107, 21);
             lblGroupName.TabIndex = 0;
