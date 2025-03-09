@@ -95,14 +95,13 @@ namespace catwiftools.wallet
                 }
             }
 
-            
+
         }
 
-        private void button1_Click(object sender, EventArgs e) // Cancel and close
+        private void btnCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
-
         }
     }
 }

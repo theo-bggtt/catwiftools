@@ -30,16 +30,17 @@
         {
             lblTasksTitle = new Label();
             flpTaskList = new FlowLayoutPanel();
+            borderlessGroupBox1 = new BorderlessGroupBox();
             btnCreateTask = new Button();
             flpTaskGroupList = new FlowLayoutPanel();
-            borderlessGroupBox1 = new BorderlessGroupBox();
-            borderlessGroupBox2 = new BorderlessGroupBox();
-            borderlessGroupBox3 = new BorderlessGroupBox();
-            borderlessGroupBox4 = new BorderlessGroupBox();
-            borderlessGroupBox5 = new BorderlessGroupBox();
-            borderlessGroupBox6 = new BorderlessGroupBox();
+            gbxTaskGroup = new BorderlessGroupBox();
+            btnViewGroup = new Button();
+            btnDeleteGroup = new Button();
+            lblGroupName = new Label();
             btnCreateTaskGroup = new Button();
+            flpTaskList.SuspendLayout();
             flpTaskGroupList.SuspendLayout();
+            gbxTaskGroup.SuspendLayout();
             SuspendLayout();
             // 
             // lblTasksTitle
@@ -55,10 +56,21 @@
             // 
             // flpTaskList
             // 
+            flpTaskList.Controls.Add(borderlessGroupBox1);
             flpTaskList.Location = new Point(240, 150);
             flpTaskList.Name = "flpTaskList";
             flpTaskList.Size = new Size(910, 602);
             flpTaskList.TabIndex = 3;
+            // 
+            // borderlessGroupBox1
+            // 
+            borderlessGroupBox1.Location = new Point(10, 5);
+            borderlessGroupBox1.Margin = new Padding(10, 5, 10, 5);
+            borderlessGroupBox1.Name = "borderlessGroupBox1";
+            borderlessGroupBox1.Size = new Size(890, 100);
+            borderlessGroupBox1.TabIndex = 42;
+            borderlessGroupBox1.TabStop = false;
+            borderlessGroupBox1.Text = "borderlessGroupBox1";
             // 
             // btnCreateTask
             // 
@@ -84,76 +96,61 @@
             // 
             flpTaskGroupList.Anchor = AnchorStyles.Top;
             flpTaskGroupList.BorderStyle = BorderStyle.FixedSingle;
-            flpTaskGroupList.Controls.Add(borderlessGroupBox1);
-            flpTaskGroupList.Controls.Add(borderlessGroupBox2);
-            flpTaskGroupList.Controls.Add(borderlessGroupBox3);
-            flpTaskGroupList.Controls.Add(borderlessGroupBox4);
-            flpTaskGroupList.Controls.Add(borderlessGroupBox5);
-            flpTaskGroupList.Controls.Add(borderlessGroupBox6);
+            flpTaskGroupList.Controls.Add(gbxTaskGroup);
             flpTaskGroupList.Location = new Point(10, 50);
             flpTaskGroupList.Name = "flpTaskGroupList";
             flpTaskGroupList.Size = new Size(200, 702);
             flpTaskGroupList.TabIndex = 4;
             // 
-            // borderlessGroupBox1
+            // gbxTaskGroup
             // 
-            borderlessGroupBox1.Anchor = AnchorStyles.Top;
-            borderlessGroupBox1.Location = new Point(10, 5);
-            borderlessGroupBox1.Margin = new Padding(10, 5, 10, 5);
-            borderlessGroupBox1.Name = "borderlessGroupBox1";
-            borderlessGroupBox1.Size = new Size(180, 65);
-            borderlessGroupBox1.TabIndex = 0;
-            borderlessGroupBox1.TabStop = false;
+            gbxTaskGroup.Anchor = AnchorStyles.Top;
+            gbxTaskGroup.BackColor = Color.Transparent;
+            gbxTaskGroup.Controls.Add(btnViewGroup);
+            gbxTaskGroup.Controls.Add(btnDeleteGroup);
+            gbxTaskGroup.Controls.Add(lblGroupName);
+            gbxTaskGroup.FlatStyle = FlatStyle.Flat;
+            gbxTaskGroup.Location = new Point(10, 5);
+            gbxTaskGroup.Margin = new Padding(10, 5, 10, 5);
+            gbxTaskGroup.Name = "gbxTaskGroup";
+            gbxTaskGroup.Size = new Size(180, 78);
+            gbxTaskGroup.TabIndex = 4;
+            gbxTaskGroup.TabStop = false;
             // 
-            // borderlessGroupBox2
+            // btnViewGroup
             // 
-            borderlessGroupBox2.Anchor = AnchorStyles.Top;
-            borderlessGroupBox2.Location = new Point(10, 80);
-            borderlessGroupBox2.Margin = new Padding(10, 5, 10, 5);
-            borderlessGroupBox2.Name = "borderlessGroupBox2";
-            borderlessGroupBox2.Size = new Size(180, 65);
-            borderlessGroupBox2.TabIndex = 1;
-            borderlessGroupBox2.TabStop = false;
+            btnViewGroup.BackColor = Color.FromArgb(78, 93, 148);
+            btnViewGroup.FlatStyle = FlatStyle.Flat;
+            btnViewGroup.Location = new Point(10, 45);
+            btnViewGroup.Name = "btnViewGroup";
+            btnViewGroup.Size = new Size(69, 24);
+            btnViewGroup.TabIndex = 43;
+            btnViewGroup.Text = "View";
+            btnViewGroup.UseVisualStyleBackColor = false;
+            btnViewGroup.Click += btnViewGroup_Click;
             // 
-            // borderlessGroupBox3
+            // btnDeleteGroup
             // 
-            borderlessGroupBox3.Anchor = AnchorStyles.Top;
-            borderlessGroupBox3.Location = new Point(10, 155);
-            borderlessGroupBox3.Margin = new Padding(10, 5, 10, 5);
-            borderlessGroupBox3.Name = "borderlessGroupBox3";
-            borderlessGroupBox3.Size = new Size(180, 65);
-            borderlessGroupBox3.TabIndex = 2;
-            borderlessGroupBox3.TabStop = false;
+            btnDeleteGroup.BackColor = Color.DarkRed;
+            btnDeleteGroup.FlatStyle = FlatStyle.Flat;
+            btnDeleteGroup.Location = new Point(100, 45);
+            btnDeleteGroup.Name = "btnDeleteGroup";
+            btnDeleteGroup.Size = new Size(69, 24);
+            btnDeleteGroup.TabIndex = 42;
+            btnDeleteGroup.Text = "Delete";
+            btnDeleteGroup.UseVisualStyleBackColor = false;
+            btnDeleteGroup.Click += btnDeleteGroup_Click;
             // 
-            // borderlessGroupBox4
+            // lblGroupName
             // 
-            borderlessGroupBox4.Anchor = AnchorStyles.Top;
-            borderlessGroupBox4.Location = new Point(10, 230);
-            borderlessGroupBox4.Margin = new Padding(10, 5, 10, 5);
-            borderlessGroupBox4.Name = "borderlessGroupBox4";
-            borderlessGroupBox4.Size = new Size(180, 65);
-            borderlessGroupBox4.TabIndex = 3;
-            borderlessGroupBox4.TabStop = false;
-            // 
-            // borderlessGroupBox5
-            // 
-            borderlessGroupBox5.Anchor = AnchorStyles.Top;
-            borderlessGroupBox5.Location = new Point(10, 305);
-            borderlessGroupBox5.Margin = new Padding(10, 5, 10, 5);
-            borderlessGroupBox5.Name = "borderlessGroupBox5";
-            borderlessGroupBox5.Size = new Size(180, 65);
-            borderlessGroupBox5.TabIndex = 4;
-            borderlessGroupBox5.TabStop = false;
-            // 
-            // borderlessGroupBox6
-            // 
-            borderlessGroupBox6.Anchor = AnchorStyles.Top;
-            borderlessGroupBox6.Location = new Point(10, 380);
-            borderlessGroupBox6.Margin = new Padding(10, 5, 10, 5);
-            borderlessGroupBox6.Name = "borderlessGroupBox6";
-            borderlessGroupBox6.Size = new Size(180, 65);
-            borderlessGroupBox6.TabIndex = 5;
-            borderlessGroupBox6.TabStop = false;
+            lblGroupName.AutoSize = true;
+            lblGroupName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblGroupName.ForeColor = Color.White;
+            lblGroupName.Location = new Point(6, 11);
+            lblGroupName.Name = "lblGroupName";
+            lblGroupName.Size = new Size(107, 21);
+            lblGroupName.TabIndex = 0;
+            lblGroupName.Text = "Group Name";
             // 
             // btnCreateTaskGroup
             // 
@@ -161,11 +158,12 @@
             btnCreateTaskGroup.BackgroundImageLayout = ImageLayout.Center;
             btnCreateTaskGroup.FlatAppearance.BorderSize = 0;
             btnCreateTaskGroup.FlatStyle = FlatStyle.Flat;
-            btnCreateTaskGroup.Location = new Point(172, 3);
+            btnCreateTaskGroup.Location = new Point(173, 9);
             btnCreateTaskGroup.Name = "btnCreateTaskGroup";
             btnCreateTaskGroup.Size = new Size(28, 28);
             btnCreateTaskGroup.TabIndex = 41;
             btnCreateTaskGroup.UseVisualStyleBackColor = true;
+            btnCreateTaskGroup.Click += btnCreateTaskGroup_Click;
             // 
             // tasksMainPage
             // 
@@ -179,7 +177,11 @@
             Controls.Add(lblTasksTitle);
             Name = "tasksMainPage";
             Size = new Size(1210, 762);
+            Load += tasksMainPage_Load;
+            flpTaskList.ResumeLayout(false);
             flpTaskGroupList.ResumeLayout(false);
+            gbxTaskGroup.ResumeLayout(false);
+            gbxTaskGroup.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -191,11 +193,10 @@
         public Button btnCreateTask;
         private FlowLayoutPanel flpTaskGroupList;
         private Button btnCreateTaskGroup;
+        private BorderlessGroupBox gbxTaskGroup;
+        private Label lblGroupName;
+        private Button btnDeleteGroup;
+        private Button btnViewGroup;
         private BorderlessGroupBox borderlessGroupBox1;
-        private BorderlessGroupBox borderlessGroupBox2;
-        private BorderlessGroupBox borderlessGroupBox3;
-        private BorderlessGroupBox borderlessGroupBox4;
-        private BorderlessGroupBox borderlessGroupBox5;
-        private BorderlessGroupBox borderlessGroupBox6;
     }
 }

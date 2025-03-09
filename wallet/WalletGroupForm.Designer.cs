@@ -34,7 +34,7 @@
             tbxAmount = new TextBox();
             btnCreate = new Button();
             lbTitle = new Label();
-            button1 = new Button();
+            btnCancel = new Button();
             SuspendLayout();
             // 
             // lbAmount
@@ -99,19 +99,19 @@
             lbTitle.TabIndex = 5;
             lbTitle.Text = "Create Wallet Group";
             // 
-            // button1
+            // btnCancel
             // 
-            button1.BackColor = Color.DarkRed;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(156, 163);
-            button1.Name = "button1";
-            button1.Size = new Size(90, 25);
-            button1.TabIndex = 6;
-            button1.Text = "Cancel";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            btnCancel.BackColor = Color.DarkRed;
+            btnCancel.FlatAppearance.BorderSize = 0;
+            btnCancel.FlatStyle = FlatStyle.Flat;
+            btnCancel.ForeColor = Color.White;
+            btnCancel.Location = new Point(156, 163);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(90, 25);
+            btnCancel.TabIndex = 6;
+            btnCancel.Text = "Cancel";
+            btnCancel.UseVisualStyleBackColor = false;
+            btnCancel.Click += btnCancel_Click;
             // 
             // WalletGroupForm
             // 
@@ -120,7 +120,7 @@
             BackColor = Color.FromArgb(25, 25, 25);
             ClientSize = new Size(280, 200);
             ControlBox = false;
-            Controls.Add(button1);
+            Controls.Add(btnCancel);
             Controls.Add(lbTitle);
             Controls.Add(btnCreate);
             Controls.Add(tbxAmount);
@@ -128,6 +128,7 @@
             Controls.Add(lbName);
             Controls.Add(lbAmount);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "WalletGroupForm";
             StartPosition = FormStartPosition.CenterParent;
             ResumeLayout(false);
@@ -142,6 +143,6 @@
         private TextBox tbxAmount;
         private Button btnCreate;
         private Label lbTitle;
-        private Button button1;
+        private Button btnCancel;
     }
 }
