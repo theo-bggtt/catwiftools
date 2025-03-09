@@ -58,6 +58,7 @@
             settingsBundler1 = new catwiftools.settings.settingsBundler();
             settingsBumpIt1 = new catwiftools.settings.settingsBumpIt();
             walletVolume1 = new catwiftools.wallet.walletGroup();
+            settingsGeneral1 = new catwiftools.settings.settingsGeneral();
             ((System.ComponentModel.ISupportInitialize)pbxLogo).BeginInit();
             gbxBackground.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -201,12 +202,12 @@
             // lblSettings
             // 
             lblSettings.AutoSize = true;
-            lblSettings.Font = new Font("Segoe UI", 15F);
+            lblSettings.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblSettings.ForeColor = Color.White;
             lblSettings.ImeMode = ImeMode.NoControl;
             lblSettings.Location = new Point(10, 5);
             lblSettings.Name = "lblSettings";
-            lblSettings.Size = new Size(83, 28);
+            lblSettings.Size = new Size(89, 28);
             lblSettings.TabIndex = 11;
             lblSettings.Text = "Settings";
             // 
@@ -467,6 +468,14 @@
             walletVolume1.Size = new Size(1210, 762);
             walletVolume1.TabIndex = 41;
             // 
+            // settingsGeneral1
+            // 
+            settingsGeneral1.BackColor = Color.Transparent;
+            settingsGeneral1.Location = new Point(450, 43);
+            settingsGeneral1.Name = "settingsGeneral1";
+            settingsGeneral1.Size = new Size(990, 762);
+            settingsGeneral1.TabIndex = 42;
+            // 
             // CatWifTools
             // 
             AutoScaleMode = AutoScaleMode.None;
@@ -474,6 +483,7 @@
             BackColor = Color.FromArgb(25, 25, 25);
             ClientSize = new Size(1440, 810);
             ControlBox = false;
+            Controls.Add(settingsGeneral1);
             Controls.Add(gbxMainNav);
             Controls.Add(pbxLogo);
             Controls.Add(btnMinimise);
@@ -482,14 +492,14 @@
             Controls.Add(lblClock);
             Controls.Add(lblAuthor);
             Controls.Add(gbxBackground);
-            Controls.Add(gbxSettingsNav);
+            Controls.Add(settingsBumpIt1);
+            Controls.Add(settingsBundler1);
+            Controls.Add(settingsVolume1);
             Controls.Add(proxiesMainPage1);
             Controls.Add(bundlerMainPage1);
             Controls.Add(walletVolume1);
             Controls.Add(tasksMainPage1);
-            Controls.Add(settingsBumpIt1);
-            Controls.Add(settingsBundler1);
-            Controls.Add(settingsVolume1);
+            Controls.Add(gbxSettingsNav);
             FormBorderStyle = FormBorderStyle.None;
             MaximizeBox = false;
             MinimizeBox = false;
@@ -532,7 +542,6 @@
         public Button btnTasks;
         public Button btnBundler;
         public Button btnWallets;
-        private settings.settingsGeneral settingsGeneral1;
         private settings.settingsVolume settingsVolume1;
         private settings.settingsBundler settingsBundler1;
         private settings.settingsBumpIt settingsBumpIt1;
@@ -541,5 +550,6 @@
         public Button btnSettingsBundler;
         public Button btnSettingsBumpIt;
         private wallet.walletGroup walletVolume1;
+        private settings.settingsGeneral settingsGeneral1;
     }
 }

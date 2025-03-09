@@ -34,11 +34,11 @@
             // lblProxiesTitle
             // 
             lblProxiesTitle.AutoSize = true;
-            lblProxiesTitle.Font = new Font("Segoe UI", 15F);
+            lblProxiesTitle.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblProxiesTitle.ForeColor = Color.White;
             lblProxiesTitle.Location = new Point(10, 5);
             lblProxiesTitle.Name = "lblProxiesTitle";
-            lblProxiesTitle.Size = new Size(74, 28);
+            lblProxiesTitle.Size = new Size(81, 28);
             lblProxiesTitle.TabIndex = 1;
             lblProxiesTitle.Text = "Proxies";
             // 

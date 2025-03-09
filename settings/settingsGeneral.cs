@@ -40,8 +40,13 @@ namespace catwiftools.settings
 
         private void btnDelFundWall_Click(object sender, EventArgs e)
         {
-            walletCreator.DelWallet(null, null, 1);
-            fundWalletSetup();
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the fund wallet?", "Delete Fund Wallet", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                walletCreator.DelWallet(null, null, 0);
+                fundWalletSetup();
+            }
+
         }
 
         public void fundWalletSetup()

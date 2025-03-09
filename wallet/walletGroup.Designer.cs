@@ -75,12 +75,12 @@
             // lblSettings
             // 
             lblSettings.AutoSize = true;
-            lblSettings.Font = new Font("Segoe UI", 15F);
+            lblSettings.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblSettings.ForeColor = Color.White;
             lblSettings.ImeMode = ImeMode.NoControl;
             lblSettings.Location = new Point(10, 5);
             lblSettings.Name = "lblSettings";
-            lblSettings.Size = new Size(128, 28);
+            lblSettings.Size = new Size(137, 28);
             lblSettings.TabIndex = 12;
             lblSettings.Text = "Wallet Group";
             // 

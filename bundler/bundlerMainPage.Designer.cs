@@ -40,11 +40,11 @@
             // lblBundlerTitle
             // 
             lblBundlerTitle.AutoSize = true;
-            lblBundlerTitle.Font = new Font("Segoe UI", 15F);
+            lblBundlerTitle.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblBundlerTitle.ForeColor = Color.White;
             lblBundlerTitle.Location = new Point(10, 5);
             lblBundlerTitle.Name = "lblBundlerTitle";
-            lblBundlerTitle.Size = new Size(79, 28);
+            lblBundlerTitle.Size = new Size(86, 28);
             lblBundlerTitle.TabIndex = 0;
             lblBundlerTitle.Text = "Bundler";
             // 

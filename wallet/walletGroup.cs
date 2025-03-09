@@ -45,7 +45,8 @@ namespace catwiftools.wallet
             foreach (string groupName in groupNames)
             {
                 int group_id = GetGroupId(groupName);
-                createBorderlessGroupBox(group_id, group_id, groupName);
+                int walletAmount = GetWalletAmount(group_id);
+                createBorderlessGroupBox(group_id, walletAmount, groupName);
             }
         }
 
@@ -78,6 +79,27 @@ namespace catwiftools.wallet
                     walletCreator.SaveWallets(walletMnemonics, group_id);
                 }
             }
+        }
+
+        private int GetWalletAmount(int group_id)
+        {
+            int walletAmount = 0;
+            string query = $"SELECT COUNT(walletAddress) FROM wallets WHERE group_id = {group_id}";
+            using (SqliteConnection connection = new SqliteConnection(connectionString))
+            {
+                using (SqliteCommand command = new SqliteCommand(query, connection))
+                {
+                    connection.Open();
+                    using (SqliteDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            walletAmount = reader.GetInt32(0);
+                        }
+                    }
+                }
+            }
+            return walletAmount;
         }
 
         private int GetGroupId(string groupName)
@@ -120,6 +142,8 @@ namespace catwiftools.wallet
                     MessageBox.Show("Group ID is missing.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+
+                flpWalletGroup.Controls.Remove(borderlessGroupBox);
 
                 // Recall the wallets
                 List<String> selectedAddresses = new List<string>();
@@ -164,30 +188,7 @@ namespace catwiftools.wallet
                     }
                 }
 
-                query = $"UPDATE 'group' SET group_id = group_id - 1 WHERE group_id > @group_id";
-                using (SqliteConnection connection = new SqliteConnection(connectionString))
-                {
-                    using (SqliteCommand command = new SqliteCommand(query, connection))
-                    {
-                        command.Parameters.AddWithValue("@group_id", group_id);
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                    }
-                }
-
-                // Update the new group_id of each wallets
-                query = $"UPDATE wallets SET group_id = group_id - 1 WHERE group_id > @group_id";
-                using (SqliteConnection connection = new SqliteConnection(connectionString))
-                {
-                    using (SqliteCommand command = new SqliteCommand(query, connection))
-                    {
-                        command.Parameters.AddWithValue("@group_id", group_id);
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                    }
-                }
-
-                flpWalletGroup.Controls.Remove(borderlessGroupBox);
+                
             }
         }
 
