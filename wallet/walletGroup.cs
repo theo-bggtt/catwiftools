@@ -26,7 +26,7 @@ namespace catwiftools.wallet
 
         private void walletGroup_Load(object sender, EventArgs e)
         {
-            string query = "SELECT group_name FROM 'group'";
+            string query = "SELECT group_name FROM 'wallet_groups'";
             using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
@@ -62,7 +62,7 @@ namespace catwiftools.wallet
                     string groupName = optionsForm.groupName;
 
                     // Insert into database
-                    string query = "INSERT INTO 'group' (group_name) VALUES (@groupName)";
+                    string query = "INSERT INTO 'wallet_groups' (group_name) VALUES (@groupName)";
                     using (SqliteConnection connection = new SqliteConnection(connectionString))
                     {
                         using (SqliteCommand command = new SqliteCommand(query, connection))
@@ -105,7 +105,7 @@ namespace catwiftools.wallet
         private int GetGroupId(string groupName)
         {
             int group_id = 0;
-            string query = $"SELECT group_id FROM 'group' WHERE group_name = @groupName";
+            string query = $"SELECT group_id FROM 'wallet_groups' WHERE group_name = @groupName";
             using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
@@ -177,7 +177,7 @@ namespace catwiftools.wallet
                     }
                 }
 
-                query = $"DELETE FROM 'group' WHERE group_id = @group_id";
+                query = $"DELETE FROM 'wallet_groups' WHERE group_id = @group_id";
                 using (SqliteConnection connection = new SqliteConnection(connectionString))
                 {
                     using (SqliteCommand command = new SqliteCommand(query, connection))

@@ -18,7 +18,7 @@ namespace catwiftools.tasks
     {
         private static readonly (string ConnectionString, string HeliusUrl, string ApiKey) envVariables = Functions.LoadEnvVariables();
         private static string connectionString = envVariables.ConnectionString;
-        public string active_group;
+        public int active_group;
 
         public tasksMainPage()
         {
@@ -169,18 +169,53 @@ namespace catwiftools.tasks
         private void btnViewGroup_Click(object sender, EventArgs e)
         {
             Button btnViewGroup = (Button)sender;
-            active_group = btnViewGroup.Name;
+            Functions functions = new Functions();
+            active_group = functions.GetTaskGroupId(btnViewGroup.Name);
             Console.WriteLine($"Group Box Clicked: {active_group}");
             LoadTasks(active_group);
         }
 
-        private void LoadTasks(string active_group)
+        
+
+        private void btnCreateTask_Click(object sender, EventArgs e)
+        {
+            using (formTaskCreation formTaskCreation = new formTaskCreation())
+            {
+                if (formTaskCreation.ShowDialog() == DialogResult.OK)
+                {
+                    string task_name = formTaskCreation.task_name;
+                    string task_type = "Test";
+                    CreateTask(active_group, task_name, task_type);
+                }
+            }
+            LoadTasks(active_group);
+        }
+
+        private void CreateTask(int group_id, string task_name, string task_type)
+        {
+            string query = "INSERT INTO 'tasks' (group_id, task_name, task_type) VALUES (@group_id, @task_name, @task_type)";
+            using (SqliteConnection connection = new SqliteConnection(connectionString))
+            {
+                using (SqliteCommand command = new SqliteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@group_id", group_id);
+                    command.Parameters.AddWithValue("@task_name", task_name);
+                    command.Parameters.AddWithValue("@task_type", task_type);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+        private void CreateTaskBox(int task_id)
+        {
+
+        }
+
+        private void LoadTasks(int active_group)
         {
             flpTaskList.Controls.Clear();
             List<int> loaded_tasks = new List<int>();
-            Functions functions = new Functions();
-            int group_id = functions.GetTaskGroupId(active_group);
-            string query = $"SELECT task_id FROM tasks WHERE group_id = '{group_id}'";
+            string query = $"SELECT task_id FROM tasks WHERE group_id = '{active_group}'";
             using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
@@ -202,24 +237,6 @@ namespace catwiftools.tasks
             Console.WriteLine(loaded_tasks);
         }
 
-        private void btnCreateTask_Click(object sender, EventArgs e)
-        {
-            
-            CreateTask();
-        }
 
-        private void CreateTask()
-        {
-            Functions functions = new Functions();
-            task_id = functions.GetGroupId
-            CreateTaskBox(task_id);
-            LoadTasks(active_group);
-        }
-        private void CreateTaskBox(int task_id)
-        {
-
-        }
-
-        
     }
 }

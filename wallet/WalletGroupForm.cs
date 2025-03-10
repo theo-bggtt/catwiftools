@@ -71,7 +71,7 @@ namespace catwiftools.wallet
         private void btnCreate_Click(object sender, EventArgs e) // Confirm and close
         {
             // Check if the name of the group already exists in the database
-            string query = $"SELECT group_name FROM 'group' WHERE group_name = '{tbxName.Text}'";
+            string query = $"SELECT group_name FROM 'wallet_groups' WHERE group_name = '{tbxName.Text}'";
             using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
