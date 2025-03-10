@@ -70,7 +70,7 @@ namespace catwiftools
             return (connectionString, heliusUrl, heliusApiKey);
         }
 
-        public int GetGroupId(string groupName)
+        public int GetTaskGroupId(string groupName)
         {
             int groupId = 0;
             string query = $"SELECT group_id FROM 'task_groups' WHERE group_name = '{groupName}'";

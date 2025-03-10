@@ -82,7 +82,7 @@ namespace catwiftools.tasks
         {
 
             Functions functions = new Functions();
-            int group_id = functions.GetGroupId(groupName);
+            int group_id = functions.GetTaskGroupId(groupName);
             BorderlessGroupBox gbxTaskGroup = new BorderlessGroupBox();
             Label lblGroupName = new Label();
             Button btnDeleteGroup = new Button();
@@ -141,7 +141,7 @@ namespace catwiftools.tasks
             flpTaskGroupList.Controls.Add(gbxTaskGroup);
         }
 
-        
+
 
         private void btnDeleteGroup_Click(object sender, EventArgs e)
         {
@@ -151,7 +151,7 @@ namespace catwiftools.tasks
                 Button btnDeleteGroup = (Button)sender;
                 string groupName = btnDeleteGroup.Name;
                 Functions functions = new Functions();
-                int group_id = functions.GetGroupId(groupName);
+                int group_id = functions.GetTaskGroupId(groupName);
                 string query = $"DELETE FROM 'task_groups' WHERE group_id = {group_id}";
                 using (SqliteConnection connection = new SqliteConnection(connectionString))
                 {
@@ -176,9 +176,10 @@ namespace catwiftools.tasks
 
         private void LoadTasks(string active_group)
         {
+            flpTaskList.Controls.Clear();
             List<int> loaded_tasks = new List<int>();
             Functions functions = new Functions();
-            int group_id = functions.GetGroupId(active_group);
+            int group_id = functions.GetTaskGroupId(active_group);
             string query = $"SELECT task_id FROM tasks WHERE group_id = '{group_id}'";
             using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
@@ -194,7 +195,31 @@ namespace catwiftools.tasks
                     }
                 }
             }
+            foreach (int task_id in loaded_tasks)
+            {
+                CreateTaskBox(task_id);
+            }
             Console.WriteLine(loaded_tasks);
         }
+
+        private void btnCreateTask_Click(object sender, EventArgs e)
+        {
+            
+            CreateTask();
+        }
+
+        private void CreateTask()
+        {
+            Functions functions = new Functions();
+            task_id = functions.GetGroupId
+            CreateTaskBox(task_id);
+            LoadTasks(active_group);
+        }
+        private void CreateTaskBox(int task_id)
+        {
+
+        }
+
+        
     }
 }

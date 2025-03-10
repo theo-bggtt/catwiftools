@@ -28,6 +28,9 @@
     <Compile Update="settings\settingsVolume.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="tasks\formTaskCreation.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="tasks\formTaskGroupCreation.cs">
       <SubType>Form</SubType>
     </Compile>
