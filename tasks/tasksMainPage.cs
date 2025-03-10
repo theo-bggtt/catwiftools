@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,6 +18,7 @@ namespace catwiftools.tasks
     {
         private static readonly (string ConnectionString, string HeliusUrl, string ApiKey) envVariables = Functions.LoadEnvVariables();
         private static string connectionString = envVariables.ConnectionString;
+        public string active_group;
 
         public tasksMainPage()
         {
@@ -69,17 +71,18 @@ namespace catwiftools.tasks
                         while (reader.Read())
                         {
                             string groupName = reader.GetString(0);
-                            CreateGroupBox(groupName);
+                            CreateTaskGroupBox(groupName);
                         }
                     }
                 }
             }
         }
 
-        private void CreateGroupBox(string groupName)
+        private void CreateTaskGroupBox(string groupName)
         {
 
-            int groupId = GetGroupId(groupName);
+            Functions functions = new Functions();
+            int group_id = functions.GetGroupId(groupName);
             BorderlessGroupBox gbxTaskGroup = new BorderlessGroupBox();
             Label lblGroupName = new Label();
             Button btnDeleteGroup = new Button();
@@ -128,7 +131,7 @@ namespace catwiftools.tasks
             btnViewGroup.BackColor = Color.FromArgb(78, 93, 148);
             btnViewGroup.FlatStyle = FlatStyle.Flat;
             btnViewGroup.Location = new Point(10, 45);
-            btnViewGroup.Name = "btnViewGroup";
+            btnViewGroup.Name = groupName;
             btnViewGroup.Size = new Size(69, 24);
             btnViewGroup.TabIndex = 43;
             btnViewGroup.Text = "View";
@@ -138,10 +141,45 @@ namespace catwiftools.tasks
             flpTaskGroupList.Controls.Add(gbxTaskGroup);
         }
 
-        private int GetGroupId(string groupName)
+        
+
+        private void btnDeleteGroup_Click(object sender, EventArgs e)
         {
-            int groupId = 0;
-            string query = $"SELECT group_id FROM 'task_groups' WHERE group_name = '{groupName}'";
+            DialogResult result = MessageBox.Show("Are you sure you want to delete this group?", "Delete Group", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                Button btnDeleteGroup = (Button)sender;
+                string groupName = btnDeleteGroup.Name;
+                Functions functions = new Functions();
+                int group_id = functions.GetGroupId(groupName);
+                string query = $"DELETE FROM 'task_groups' WHERE group_id = {group_id}";
+                using (SqliteConnection connection = new SqliteConnection(connectionString))
+                {
+                    using (SqliteCommand command = new SqliteCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@group_id", group_id);
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                }
+                LoadTaskGroups();
+            }
+        }
+
+        private void btnViewGroup_Click(object sender, EventArgs e)
+        {
+            Button btnViewGroup = (Button)sender;
+            active_group = btnViewGroup.Name;
+            Console.WriteLine($"Group Box Clicked: {active_group}");
+            LoadTasks(active_group);
+        }
+
+        private void LoadTasks(string active_group)
+        {
+            List<int> loaded_tasks = new List<int>();
+            Functions functions = new Functions();
+            int group_id = functions.GetGroupId(active_group);
+            string query = $"SELECT task_id FROM tasks WHERE group_id = '{group_id}'";
             using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
@@ -149,37 +187,14 @@ namespace catwiftools.tasks
                     connection.Open();
                     using (SqliteDataReader reader = command.ExecuteReader())
                     {
-                        if (reader.Read())
+                        while (reader.Read())
                         {
-                            groupId = reader.GetInt32(0);
+                            loaded_tasks.Add(reader.GetInt32(0));
                         }
                     }
                 }
             }
-            return groupId;
-        }
-
-        private void btnDeleteGroup_Click(object sender, EventArgs e)
-        {
-            Button btnDeleteGroup = (Button)sender;
-            string groupName = btnDeleteGroup.Name;
-            int group_id = GetGroupId(groupName);
-            string query = $"DELETE FROM 'task_groups' WHERE group_id = {group_id}";
-            using (SqliteConnection connection = new SqliteConnection(connectionString))
-            {
-                using (SqliteCommand command = new SqliteCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@group_id", group_id);
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                }
-            }
-            LoadTaskGroups();
-        }
-
-        private void btnViewGroup_Click(object sender, EventArgs e)
-        {
-            Console.WriteLine("Group Box Clicked");
+            Console.WriteLine(loaded_tasks);
         }
     }
 }

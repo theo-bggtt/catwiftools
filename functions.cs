@@ -70,7 +70,27 @@ namespace catwiftools
             return (connectionString, heliusUrl, heliusApiKey);
         }
 
-        
+        public int GetGroupId(string groupName)
+        {
+            int groupId = 0;
+            string query = $"SELECT group_id FROM 'task_groups' WHERE group_name = '{groupName}'";
+            using (SqliteConnection connection = new SqliteConnection(connectionString))
+            {
+                using (SqliteCommand command = new SqliteCommand(query, connection))
+                {
+                    connection.Open();
+                    using (SqliteDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            groupId = reader.GetInt32(0);
+                        }
+                    }
+                }
+            }
+            return groupId;
+        }
+
         public int GetWalletId(string? walletAddress, string? walletphrase) // Prends l'Id d'un wallet à travers son addresse ou sa phrase, à travers la bdd
         {
             int idWallet = 0;
