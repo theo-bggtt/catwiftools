@@ -24,29 +24,17 @@ namespace catwiftools.tasks
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            string query = $"SELECT group_name FROM 'task_groups' WHERE group_name = '{tbxName.Text}'";
-            using (SqliteConnection connection = new SqliteConnection(connectionString))
+            if (DatabaseHelper.GroupNameExists(tbxName.Text))
             {
-                using (SqliteCommand command = new SqliteCommand(query, connection))
-                {
-                    connection.Open();
-                    using (SqliteDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            MessageBox.Show("This group name already exists", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }
-                        else
-                        {
-                            // Return the group_name to the main form
-                            groupName = tbxName.Text;
-
-                            this.DialogResult = DialogResult.OK;
-                            this.Close();
-                        }
-                    }
-                }
+                MessageBox.Show("This group name already exists", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                // Return the group_name to the main form
+                groupName = tbxName.Text;
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
         }
 

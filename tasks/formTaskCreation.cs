@@ -42,29 +42,17 @@ namespace catwiftools.tasks
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            string query = $"SELECT task_name FROM 'tasks' WHERE task_name = '{tbxTaskName.Text}'";
-            using (SqliteConnection connection = new SqliteConnection(connectionString))
+            if (DatabaseHelper.TaskNameExists(tbxTaskName.Text))
             {
-                using (SqliteCommand command = new SqliteCommand(query, connection))
-                {
-                    connection.Open();
-                    using (SqliteDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            MessageBox.Show("This Task name already exists", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }
-                        else
-                        {
-                            task_name = tbxTaskName.Text;
-                            task_type = cbxTaskType.SelectedItem.ToString();
-
-                            this.DialogResult = DialogResult.OK;
-                            this.Close();
-                        }
-                    }
-                }
+                MessageBox.Show("This Task name already exists", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                task_name = tbxTaskName.Text;
+                task_type = cbxTaskType.SelectedItem.ToString();
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
         }
     }

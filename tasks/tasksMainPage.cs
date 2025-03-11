@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace catwiftools.tasks
 {
@@ -28,36 +29,6 @@ namespace catwiftools.tasks
         private void tasksMainPage_Load(object sender, EventArgs e)
         {
             LoadTaskGroups();
-        }
-
-        private void btnCreateTaskGroup_Click(object sender, EventArgs e)
-        {
-            using (formTaskGroupCreation formTaskGroupCreation = new formTaskGroupCreation())
-            {
-                string groupName = formTaskGroupCreation.groupName;
-                if (formTaskGroupCreation.ShowDialog() == DialogResult.OK)
-                {
-                    Functions functions = new Functions();
-                    createTaskGroup(formTaskGroupCreation.groupName);
-                    active_group = functions.GetTaskGroupId(formTaskGroupCreation.groupName);
-                }
-            }
-            LoadTaskGroups();
-        }
-
-        private void createTaskGroup(string groupName)
-        {
-            string query = "INSERT INTO 'task_groups' (group_name) VALUES (@groupName)";
-            using (SqliteConnection connection = new SqliteConnection(connectionString))
-            {
-                using (SqliteCommand command = new SqliteCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@groupName", groupName);
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                }
-            }
-
         }
 
         private void LoadTaskGroups()
@@ -188,15 +159,27 @@ namespace catwiftools.tasks
             LoadTasks(active_group);
         }
 
+        private void btnCreateTaskGroup_Click(object sender, EventArgs e)
+        {
+            using (formTaskGroupCreation formTaskGroupCreation = new formTaskGroupCreation())
+            {
+                if (formTaskGroupCreation.ShowDialog() == DialogResult.OK)
+                {
+                    DatabaseHelper.InsertTaskGroup(formTaskGroupCreation.groupName);
+                    Functions functions = new Functions();
+                    active_group = functions.GetTaskGroupId(formTaskGroupCreation.groupName);
+                }
+            }
+            LoadTaskGroups();
+        }
+
         private void btnCreateTask_Click(object sender, EventArgs e)
         {
             using (formTaskCreation formTaskCreation = new formTaskCreation())
             {
                 if (formTaskCreation.ShowDialog() == DialogResult.OK)
                 {
-                    string task_name = formTaskCreation.task_name;
-                    string task_type = formTaskCreation.task_type;
-                    CreateTask(active_group, task_name, task_type);
+                    DatabaseHelper.InsertTask(active_group, formTaskCreation.task_name, formTaskCreation.task_type);
                 }
             }
             LoadTasks(active_group);

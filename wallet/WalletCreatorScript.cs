@@ -40,7 +40,6 @@ namespace WalletGenerator
             {
                 var rpcClient = ClientFactory.GetClient(Cluster.DevNet);
                 string walletAddress = functions.GetWalletAddress(null, walletMnemonic);
-
                 using (var connection = new SqliteConnection(connectionString))
                 {
                     try
