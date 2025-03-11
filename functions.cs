@@ -208,6 +208,47 @@ namespace catwiftools
             return Walletphrase;
         }
 
+        public string GetTaskName(int task_id)
+        {
+            string task_name = "";
+            string query = $"SELECT task_name FROM 'tasks' WHERE task_id = {task_id}";
+            using (SqliteConnection connection = new SqliteConnection(connectionString))
+            {
+                using (SqliteCommand command = new SqliteCommand(query, connection))
+                {
+                    connection.Open();
+                    using (SqliteDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            task_name = reader.GetString(0);
+                        }
+                    }
+                }
+            }
+            return task_name;
+        }
+
+        public string GetTaskType(int task_id)
+        {
+            string task_type = "";
+            string query = $"SELECT task_type FROM 'tasks' WHERE task_id = {task_id}";
+            using (SqliteConnection connection = new SqliteConnection(connectionString))
+            {
+                using (SqliteCommand command = new SqliteCommand(query, connection))
+                {
+                    connection.Open();
+                    using (SqliteDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            task_type = reader.GetString(0);
+                        }
+                    }
+                }
+            }
+            return task_type;
+        }
         public string CheckForFundWallet()
         {
             using (var connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))

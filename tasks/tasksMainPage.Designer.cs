@@ -98,6 +98,7 @@
             gbxTask.Size = new Size(890, 100);
             gbxTask.TabIndex = 42;
             gbxTask.TabStop = false;
+            gbxTask.Visible = false;
             // 
             // lblParamValue4
             // 
@@ -172,6 +173,7 @@
             btnEditTask.TabIndex = 44;
             btnEditTask.Text = "Edit";
             btnEditTask.UseVisualStyleBackColor = false;
+            btnEditTask.Click += btnEditTask_Click;
             // 
             // btnDeleteTask
             // 
@@ -183,6 +185,7 @@
             btnDeleteTask.TabIndex = 44;
             btnDeleteTask.Text = "Delete";
             btnDeleteTask.UseVisualStyleBackColor = false;
+            btnDeleteTask.Click += btnDeleteTask_Click;
             // 
             // lblParamValue1
             // 

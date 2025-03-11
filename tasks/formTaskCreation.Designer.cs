@@ -41,7 +41,7 @@
             lblTaskType.AutoSize = true;
             lblTaskType.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblTaskType.ForeColor = Color.White;
-            lblTaskType.Location = new Point(240, 24);
+            lblTaskType.Location = new Point(258, 24);
             lblTaskType.Name = "lblTaskType";
             lblTaskType.Size = new Size(92, 28);
             lblTaskType.TabIndex = 1;
@@ -52,7 +52,7 @@
             lblTaskName.AutoSize = true;
             lblTaskName.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblTaskName.ForeColor = Color.White;
-            lblTaskName.Location = new Point(26, 24);
+            lblTaskName.Location = new Point(43, 24);
             lblTaskName.Name = "lblTaskName";
             lblTaskName.Size = new Size(105, 28);
             lblTaskName.TabIndex = 2;
@@ -60,7 +60,7 @@
             // 
             // tbxTaskName
             // 
-            tbxTaskName.Location = new Point(26, 93);
+            tbxTaskName.Location = new Point(45, 93);
             tbxTaskName.Name = "tbxTaskName";
             tbxTaskName.Size = new Size(100, 23);
             tbxTaskName.TabIndex = 3;
@@ -72,7 +72,7 @@
             btnCancel.FlatAppearance.BorderSize = 0;
             btnCancel.FlatStyle = FlatStyle.Flat;
             btnCancel.ForeColor = Color.White;
-            btnCancel.Location = new Point(216, 200);
+            btnCancel.Location = new Point(220, 200);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(90, 25);
             btnCancel.TabIndex = 15;
@@ -87,7 +87,7 @@
             btnCreate.FlatAppearance.BorderSize = 0;
             btnCreate.FlatStyle = FlatStyle.Flat;
             btnCreate.ForeColor = Color.White;
-            btnCreate.Location = new Point(101, 200);
+            btnCreate.Location = new Point(105, 200);
             btnCreate.Name = "btnCreate";
             btnCreate.Size = new Size(90, 25);
             btnCreate.TabIndex = 14;
@@ -97,9 +97,10 @@
             // 
             // comboBox1
             // 
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "Test1", "Test2", "Test3" });
-            comboBox1.Location = new Point(211, 93);
+            comboBox1.Location = new Point(244, 93);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(121, 23);
             comboBox1.TabIndex = 16;
@@ -117,10 +118,9 @@
             Controls.Add(tbxTaskName);
             Controls.Add(lblTaskName);
             Controls.Add(lblTaskType);
-            FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "formTaskCreation";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "formTaskCreation";
             Load += formTaskCreation_Load;
             ResumeLayout(false);
             PerformLayout();

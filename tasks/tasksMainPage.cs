@@ -18,7 +18,7 @@ namespace catwiftools.tasks
     {
         private static readonly (string ConnectionString, string HeliusUrl, string ApiKey) envVariables = Functions.LoadEnvVariables();
         private static string connectionString = envVariables.ConnectionString;
-        public int active_group;
+        private int active_group = 0;
 
         public tasksMainPage()
         {
@@ -141,8 +141,6 @@ namespace catwiftools.tasks
             flpTaskGroupList.Controls.Add(gbxTaskGroup);
         }
 
-
-
         private void btnDeleteGroup_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Are you sure you want to delete this group?", "Delete Group", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -162,6 +160,17 @@ namespace catwiftools.tasks
                         command.ExecuteNonQuery();
                     }
                 }
+                query = $"DELETE FROM 'tasks' WHERE group_id = {group_id}";
+                using (SqliteConnection connection = new SqliteConnection(connectionString))
+                {
+                    using (SqliteCommand command = new SqliteCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@group_id", group_id);
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                }
+                active_group = 0;
                 LoadTaskGroups();
             }
         }
@@ -175,7 +184,7 @@ namespace catwiftools.tasks
             LoadTasks(active_group);
         }
 
-        
+
 
         private void btnCreateTask_Click(object sender, EventArgs e)
         {
@@ -205,10 +214,200 @@ namespace catwiftools.tasks
                     command.ExecuteNonQuery();
                 }
             }
+            LoadTasks(active_group);
         }
         private void CreateTaskBox(int task_id)
         {
+            Functions functions = new Functions();
 
+            GroupBox gbxTask = new GroupBox();
+            Label lblParamValue4 = new Label();
+            Label lblParamValue3 = new Label();
+            Label lblParamValue2 = new Label();
+            Label lblParamValue1 = new Label();
+            Label lblParamName4 = new Label();
+            Label lblParamName3 = new Label();
+            Label lblParamName2 = new Label();
+            Label lblParamName1 = new Label();
+            Label lblTaskName = new Label();
+            Label lblTaskType = new Label();
+            Button btnEditTask = new Button();
+            Button btnDeleteTask = new Button();
+            // 
+            // gbxTask
+            // 
+            gbxTask.BackColor = Color.FromArgb(40, 40, 40);
+            gbxTask.Controls.Add(lblParamValue4);
+            gbxTask.Controls.Add(lblParamName4);
+            gbxTask.Controls.Add(lblParamValue3);
+            gbxTask.Controls.Add(lblParamName3);
+            gbxTask.Controls.Add(lblParamValue2);
+            gbxTask.Controls.Add(lblParamName2);
+            gbxTask.Controls.Add(btnEditTask);
+            gbxTask.Controls.Add(btnDeleteTask);
+            gbxTask.Controls.Add(lblParamValue1);
+            gbxTask.Controls.Add(lblParamName1);
+            gbxTask.Controls.Add(lblTaskName);
+            gbxTask.Controls.Add(lblTaskType);
+            gbxTask.FlatStyle = FlatStyle.Flat;
+            gbxTask.Location = new Point(10, 5);
+            gbxTask.Margin = new Padding(10, 5, 10, 5);
+            gbxTask.Name = "gbxTask";
+            gbxTask.Size = new Size(890, 100);
+            gbxTask.TabIndex = 42;
+            gbxTask.TabStop = false;
+            // 
+            // lblParamValue4
+            // 
+            lblParamValue4.AutoSize = true;
+            lblParamValue4.ForeColor = Color.White;
+            lblParamValue4.Location = new Point(554, 56);
+            lblParamValue4.Name = "lblParamValue4";
+            lblParamValue4.Size = new Size(72, 15);
+            lblParamValue4.TabIndex = 52;
+            lblParamValue4.Text = "Param Value";
+            // 
+            // lblParamName4
+            // 
+            lblParamName4.AutoSize = true;
+            lblParamName4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblParamName4.ForeColor = Color.White;
+            lblParamName4.Location = new Point(443, 56);
+            lblParamName4.Name = "lblParamName4";
+            lblParamName4.Size = new Size(78, 15);
+            lblParamName4.TabIndex = 51;
+            lblParamName4.Text = "Param Name";
+            // 
+            // lblParamValue3
+            // 
+            lblParamValue3.AutoSize = true;
+            lblParamValue3.ForeColor = Color.White;
+            lblParamValue3.Location = new Point(554, 26);
+            lblParamValue3.Name = "lblParamValue3";
+            lblParamValue3.Size = new Size(72, 15);
+            lblParamValue3.TabIndex = 50;
+            lblParamValue3.Text = "Param Value";
+            // 
+            // lblParamName3
+            // 
+            lblParamName3.AutoSize = true;
+            lblParamName3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblParamName3.ForeColor = Color.White;
+            lblParamName3.Location = new Point(443, 26);
+            lblParamName3.Name = "lblParamName3";
+            lblParamName3.Size = new Size(78, 15);
+            lblParamName3.TabIndex = 49;
+            lblParamName3.Text = "Param Name";
+            // 
+            // lblParamValue2
+            // 
+            lblParamValue2.AutoSize = true;
+            lblParamValue2.ForeColor = Color.White;
+            lblParamValue2.Location = new Point(308, 56);
+            lblParamValue2.Name = "lblParamValue2";
+            lblParamValue2.Size = new Size(72, 15);
+            lblParamValue2.TabIndex = 48;
+            lblParamValue2.Text = "Param Value";
+            // 
+            // lblParamName2
+            // 
+            lblParamName2.AutoSize = true;
+            lblParamName2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblParamName2.ForeColor = Color.White;
+            lblParamName2.Location = new Point(197, 56);
+            lblParamName2.Name = "lblParamName2";
+            lblParamName2.Size = new Size(78, 15);
+            lblParamName2.TabIndex = 47;
+            lblParamName2.Text = "Param Name";
+            // 
+            // btnEditTask
+            // 
+            btnEditTask.BackColor = Color.FromArgb(78, 93, 148);
+            btnEditTask.FlatStyle = FlatStyle.Flat;
+            btnEditTask.Location = new Point(789, 21);
+            btnEditTask.Name = "btnEditTask";
+            btnEditTask.Size = new Size(69, 24);
+            btnEditTask.TabIndex = 44;
+            btnEditTask.Text = "Edit";
+            btnEditTask.UseVisualStyleBackColor = false;
+            btnEditTask.Click += btnEditTask_Click;
+            // 
+            // btnDeleteTask
+            // 
+            btnDeleteTask.BackColor = Color.DarkRed;
+            btnDeleteTask.FlatStyle = FlatStyle.Flat;
+            btnDeleteTask.Location = new Point(789, 51);
+            btnDeleteTask.Name = Convert.ToString(task_id);
+            btnDeleteTask.Size = new Size(69, 24);
+            btnDeleteTask.TabIndex = 44;
+            btnDeleteTask.Text = "Delete";
+            btnDeleteTask.UseVisualStyleBackColor = false;
+            btnDeleteTask.Click += btnDeleteTask_Click;
+            // 
+            // lblParamValue1
+            // 
+            lblParamValue1.AutoSize = true;
+            lblParamValue1.ForeColor = Color.White;
+            lblParamValue1.Location = new Point(308, 26);
+            lblParamValue1.Name = "lblParamValue1";
+            lblParamValue1.Size = new Size(72, 15);
+            lblParamValue1.TabIndex = 46;
+            lblParamValue1.Text = "Param Value";
+            // 
+            // lblParamName1
+            // 
+            lblParamName1.AutoSize = true;
+            lblParamName1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblParamName1.ForeColor = Color.White;
+            lblParamName1.Location = new Point(197, 26);
+            lblParamName1.Name = "lblParamName1";
+            lblParamName1.Size = new Size(78, 15);
+            lblParamName1.TabIndex = 45;
+            lblParamName1.Text = "Param Name";
+            // 
+            // lblTaskName
+            // 
+            lblTaskName.AutoSize = true;
+            lblTaskName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTaskName.ForeColor = Color.White;
+            lblTaskName.Location = new Point(6, 9);
+            lblTaskName.Name = "lblTaskName";
+            lblTaskName.Size = new Size(93, 21);
+            lblTaskName.TabIndex = 44;
+            lblTaskName.Text = functions.GetTaskName(task_id);
+            // 
+            // lblTaskType
+            // 
+            lblTaskType.AutoSize = true;
+            lblTaskType.ForeColor = Color.White;
+            lblTaskType.Location = new Point(9, 43);
+            lblTaskType.Name = "lblTaskType";
+            lblTaskType.Size = new Size(56, 15);
+            lblTaskType.TabIndex = 1;
+            lblTaskType.Text = functions.GetTaskType(task_id);
+
+            flpTaskList.Controls.Add(gbxTask);
+        }
+
+        private void btnDeleteTask_Click(object? sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to delete this task?", "Delete Task", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                Button btnDeleteTask = (Button)sender;
+                int task_id = int.Parse(btnDeleteTask.Name);
+                string query = "DELETE FROM tasks WHERE task_id = @task_id";
+                using (SqliteConnection connection = new SqliteConnection(connectionString))
+                {
+                    using (SqliteCommand command = new SqliteCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@task_id", task_id);
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                }
+                LoadTasks(active_group);
+            }
         }
 
         private void LoadTasks(int active_group)
@@ -237,6 +436,9 @@ namespace catwiftools.tasks
             Console.WriteLine(loaded_tasks);
         }
 
+        private void btnEditTask_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }
