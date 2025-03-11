@@ -16,7 +16,7 @@ namespace catwiftools.tasks
     {
         private static readonly (string ConnectionString, string HeliusUrl, string ApiKey) envVariables = Functions.LoadEnvVariables();
         private static string connectionString = envVariables.ConnectionString;
-        public string task_name;
+        public string task_name, task_type;
 
         public formTaskCreation()
         {
@@ -58,6 +58,7 @@ namespace catwiftools.tasks
                         else
                         {
                             task_name = tbxTaskName.Text;
+                            task_type = cbxTaskType.SelectedItem.ToString();
 
                             this.DialogResult = DialogResult.OK;
                             this.Close();

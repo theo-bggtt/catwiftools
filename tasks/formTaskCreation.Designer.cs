@@ -33,7 +33,7 @@
             tbxTaskName = new TextBox();
             btnCancel = new Button();
             btnCreate = new Button();
-            comboBox1 = new ComboBox();
+            cbxTaskType = new ComboBox();
             SuspendLayout();
             // 
             // lblTaskType
@@ -95,15 +95,15 @@
             btnCreate.UseVisualStyleBackColor = false;
             btnCreate.Click += btnCreate_Click;
             // 
-            // comboBox1
+            // cbxTaskType
             // 
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Test1", "Test2", "Test3" });
-            comboBox1.Location = new Point(244, 93);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(121, 23);
-            comboBox1.TabIndex = 16;
+            cbxTaskType.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxTaskType.FormattingEnabled = true;
+            cbxTaskType.Items.AddRange(new object[] { "Volume", "BumpIt", "Bundle" });
+            cbxTaskType.Location = new Point(244, 93);
+            cbxTaskType.Name = "cbxTaskType";
+            cbxTaskType.Size = new Size(121, 23);
+            cbxTaskType.TabIndex = 16;
             // 
             // formTaskCreation
             // 
@@ -112,7 +112,7 @@
             BackColor = Color.FromArgb(25, 25, 25);
             ClientSize = new Size(417, 270);
             ControlBox = false;
-            Controls.Add(comboBox1);
+            Controls.Add(cbxTaskType);
             Controls.Add(btnCancel);
             Controls.Add(btnCreate);
             Controls.Add(tbxTaskName);
@@ -132,6 +132,6 @@
         private TextBox tbxTaskName;
         private Button btnCancel;
         private Button btnCreate;
-        private ComboBox comboBox1;
+        private ComboBox cbxTaskType;
     }
 }

@@ -37,7 +37,9 @@ namespace catwiftools.tasks
                 string groupName = formTaskGroupCreation.groupName;
                 if (formTaskGroupCreation.ShowDialog() == DialogResult.OK)
                 {
+                    Functions functions = new Functions();
                     createTaskGroup(formTaskGroupCreation.groupName);
+                    active_group = functions.GetTaskGroupId(formTaskGroupCreation.groupName);
                 }
             }
             LoadTaskGroups();
@@ -55,6 +57,7 @@ namespace catwiftools.tasks
                     command.ExecuteNonQuery();
                 }
             }
+
         }
 
         private void LoadTaskGroups()
@@ -173,6 +176,7 @@ namespace catwiftools.tasks
                 active_group = 0;
                 LoadTaskGroups();
             }
+            LoadTasks(active_group);
         }
 
         private void btnViewGroup_Click(object sender, EventArgs e)
@@ -184,8 +188,6 @@ namespace catwiftools.tasks
             LoadTasks(active_group);
         }
 
-
-
         private void btnCreateTask_Click(object sender, EventArgs e)
         {
             using (formTaskCreation formTaskCreation = new formTaskCreation())
@@ -193,7 +195,7 @@ namespace catwiftools.tasks
                 if (formTaskCreation.ShowDialog() == DialogResult.OK)
                 {
                     string task_name = formTaskCreation.task_name;
-                    string task_type = "Test";
+                    string task_type = formTaskCreation.task_type;
                     CreateTask(active_group, task_name, task_type);
                 }
             }
@@ -406,8 +408,8 @@ namespace catwiftools.tasks
                         command.ExecuteNonQuery();
                     }
                 }
-                LoadTasks(active_group);
             }
+            LoadTasks(active_group);
         }
 
         private void LoadTasks(int active_group)
