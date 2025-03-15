@@ -28,25 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lb = new Label();
+            lbGroupAmount = new Label();
             flpWalletGroup = new FlowLayoutPanel();
             btnCreateGroup = new Button();
             lblSettings = new Label();
-            label1 = new Label();
+            lbTotalWallet = new Label();
             label2 = new Label();
             btnUpdateGroup = new Button();
             SuspendLayout();
             // 
-            // lb
+            // lbGroupAmount
             // 
-            lb.AutoSize = true;
-            lb.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lb.ForeColor = Color.White;
-            lb.Location = new Point(10, 57);
-            lb.Name = "lb";
-            lb.Size = new Size(108, 17);
-            lb.TabIndex = 2;
-            lb.Text = "Group Amount :";
+            lbGroupAmount.AutoSize = true;
+            lbGroupAmount.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbGroupAmount.ForeColor = Color.White;
+            lbGroupAmount.Location = new Point(10, 57);
+            lbGroupAmount.Name = "lbGroupAmount";
+            lbGroupAmount.Size = new Size(108, 17);
+            lbGroupAmount.TabIndex = 2;
+            lbGroupAmount.Text = "Group Amount :";
             // 
             // flpWalletGroup
             // 
@@ -84,16 +84,16 @@
             lblSettings.TabIndex = 12;
             lblSettings.Text = "Wallet Group";
             // 
-            // label1
+            // lbTotalWallet
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(10, 115);
-            label1.Name = "label1";
-            label1.Size = new Size(96, 17);
-            label1.TabIndex = 13;
-            label1.Text = "Total Wallets: ";
+            lbTotalWallet.AutoSize = true;
+            lbTotalWallet.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbTotalWallet.ForeColor = Color.White;
+            lbTotalWallet.Location = new Point(10, 115);
+            lbTotalWallet.Name = "lbTotalWallet";
+            lbTotalWallet.Size = new Size(96, 17);
+            lbTotalWallet.TabIndex = 13;
+            lbTotalWallet.Text = "Total Wallets: ";
             // 
             // label2
             // 
@@ -126,11 +126,11 @@
             BackColor = Color.Transparent;
             Controls.Add(btnUpdateGroup);
             Controls.Add(label2);
-            Controls.Add(label1);
+            Controls.Add(lbTotalWallet);
             Controls.Add(lblSettings);
             Controls.Add(btnCreateGroup);
             Controls.Add(flpWalletGroup);
-            Controls.Add(lb);
+            Controls.Add(lbGroupAmount);
             Name = "walletGroup";
             Size = new Size(1210, 762);
             Load += walletGroup_Load;
@@ -140,11 +140,11 @@
 
         #endregion
 
-        private Label lb;
+        private Label lbGroupAmount;
         private FlowLayoutPanel flpWalletGroup;
         private Button btnCreateGroup;
         private Label lblSettings;
-        private Label label1;
+        private Label lbTotalWallet;
         private Label label2;
         private Button btnUpdateGroup;
     }

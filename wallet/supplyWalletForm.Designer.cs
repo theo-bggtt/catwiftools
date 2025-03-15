@@ -57,7 +57,6 @@
             btnSubmit.TabIndex = 3;
             btnSubmit.Text = "Distribute";
             btnSubmit.UseVisualStyleBackColor = true;
-            btnSubmit.Click += btnGetMinAmount_Click;
             // 
             // supplyWalletForm
             // 

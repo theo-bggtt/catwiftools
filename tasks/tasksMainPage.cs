@@ -17,8 +17,6 @@ namespace catwiftools.tasks
 {
     public partial class tasksMainPage : UserControl
     {
-        private static readonly (string ConnectionString, string HeliusUrl, string ApiKey) envVariables = Functions.LoadEnvVariables();
-        private static string connectionString = envVariables.ConnectionString;
         private int active_group = 0;
 
         public tasksMainPage()
@@ -29,13 +27,139 @@ namespace catwiftools.tasks
         private void tasksMainPage_Load(object sender, EventArgs e)
         {
             LoadTaskGroups();
+            LoadTasks(active_group);
         }
 
-        private void LoadTaskGroups()
+        private void btnCreateTaskGroup_Click(object sender, EventArgs e)
+        {
+            using (formTaskGroupCreation formTaskGroupCreation = new formTaskGroupCreation())
+            {
+                if (formTaskGroupCreation.ShowDialog() == DialogResult.OK)
+                {
+                    TaskHelper.InsertTaskGroup(formTaskGroupCreation.groupName);
+                    active_group = TaskHelper.GetTaskGroupId(formTaskGroupCreation.groupName);
+                }
+            }
+            LoadTaskGroups();
+            LoadTasks(active_group);
+        }
+
+        private void btnDeleteGroup_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to delete this group?", "Delete Group", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                Button btnDeleteGroup = (Button)sender;
+                string groupName = btnDeleteGroup.Name;
+                int group_id = TaskHelper.GetTaskGroupId(groupName);
+                string query = $"DELETE FROM 'task_groups' WHERE group_id = {group_id}";
+                using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+                {
+                    using (SqliteCommand command = new SqliteCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@group_id", group_id);
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                }
+                query = $"DELETE FROM 'tasks' WHERE group_id = {group_id}";
+                using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+                {
+                    using (SqliteCommand command = new SqliteCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@group_id", group_id);
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                }
+                active_group = 0;
+            }
+            LoadTaskGroups();
+            LoadTasks(active_group);
+        }
+
+        private void btnViewGroup_Click(object sender, EventArgs e)
+        {
+            Button btnViewGroup = (Button)sender;
+            active_group = TaskHelper.GetTaskGroupId(btnViewGroup.Name);
+            Console.WriteLine($"Group Box Clicked: {active_group}");
+            LoadTaskGroups();
+            LoadTasks(active_group);
+        }
+
+        private void btnCreateTask_Click(object sender, EventArgs e)
+        {
+            using (formTaskCreation formTaskCreation = new formTaskCreation())
+            {
+                if (formTaskCreation.ShowDialog() == DialogResult.OK)
+                {
+                    TaskHelper.InsertTask(active_group, formTaskCreation.task_name, formTaskCreation.task_type);
+                }
+            }
+            LoadTaskGroups();
+            LoadTasks(active_group);
+        }
+
+        private void btnDeleteTask_Click(object? sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to delete this task?", "Delete Task", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                Button btnDeleteTask = (Button)sender;
+                int task_id = int.Parse(btnDeleteTask.Name);
+                string query = "DELETE FROM tasks WHERE task_id = @task_id";
+                using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+                {
+                    using (SqliteCommand command = new SqliteCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@task_id", task_id);
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            LoadTaskGroups();
+            LoadTasks(active_group);
+        }
+
+        private void btnEditTask_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LoadTasks(int active_group) // Gets the task_ids and creates a task box for each task
+        {
+            flpTaskList.Controls.Clear();
+            List<int> loaded_tasks = new List<int>();
+            string query = $"SELECT task_id FROM tasks WHERE group_id = '{active_group}'";
+            using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+            {
+                using (SqliteCommand command = new SqliteCommand(query, connection))
+                {
+                    connection.Open();
+                    using (SqliteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            loaded_tasks.Add(reader.GetInt32(0));
+                        }
+                    }
+                }
+            }
+            foreach (int task_id in loaded_tasks)
+            {
+                CreateTaskBox(task_id);
+            }
+            lblGroupAmount.Text = "Total Groups: " + TaskHelper.GetGroupCount();
+            lblTaskAmount.Text = "Total Tasks: " + TaskHelper.GetTaskCount();
+            Console.WriteLine(loaded_tasks);
+        }
+
+        private void LoadTaskGroups() // Gets the group_names and creates a group box for each group
         {
             flpTaskGroupList.Controls.Clear();
             string query = "SELECT group_name FROM 'task_groups'";
-            using (SqliteConnection connection = new SqliteConnection(connectionString))
+            using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
                 {
@@ -55,8 +179,7 @@ namespace catwiftools.tasks
         private void CreateTaskGroupBox(string groupName)
         {
 
-            Functions functions = new Functions();
-            int group_id = functions.GetTaskGroupId(groupName);
+            int group_id = TaskHelper.GetTaskGroupId(groupName);
             BorderlessGroupBox gbxTaskGroup = new BorderlessGroupBox();
             Label lblGroupName = new Label();
             Button btnDeleteGroup = new Button();
@@ -113,97 +236,11 @@ namespace catwiftools.tasks
             btnViewGroup.Click += btnViewGroup_Click;
 
             flpTaskGroupList.Controls.Add(gbxTaskGroup);
-        }
+        }        
 
-        private void btnDeleteGroup_Click(object sender, EventArgs e)
+        private void CreateTaskBox(int task_id) // Method to create a task box
         {
-            DialogResult result = MessageBox.Show("Are you sure you want to delete this group?", "Delete Group", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
-            {
-                Button btnDeleteGroup = (Button)sender;
-                string groupName = btnDeleteGroup.Name;
-                Functions functions = new Functions();
-                int group_id = functions.GetTaskGroupId(groupName);
-                string query = $"DELETE FROM 'task_groups' WHERE group_id = {group_id}";
-                using (SqliteConnection connection = new SqliteConnection(connectionString))
-                {
-                    using (SqliteCommand command = new SqliteCommand(query, connection))
-                    {
-                        command.Parameters.AddWithValue("@group_id", group_id);
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                    }
-                }
-                query = $"DELETE FROM 'tasks' WHERE group_id = {group_id}";
-                using (SqliteConnection connection = new SqliteConnection(connectionString))
-                {
-                    using (SqliteCommand command = new SqliteCommand(query, connection))
-                    {
-                        command.Parameters.AddWithValue("@group_id", group_id);
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                    }
-                }
-                active_group = 0;
-                LoadTaskGroups();
-            }
-            LoadTasks(active_group);
-        }
-
-        private void btnViewGroup_Click(object sender, EventArgs e)
-        {
-            Button btnViewGroup = (Button)sender;
-            Functions functions = new Functions();
-            active_group = functions.GetTaskGroupId(btnViewGroup.Name);
-            Console.WriteLine($"Group Box Clicked: {active_group}");
-            LoadTasks(active_group);
-        }
-
-        private void btnCreateTaskGroup_Click(object sender, EventArgs e)
-        {
-            using (formTaskGroupCreation formTaskGroupCreation = new formTaskGroupCreation())
-            {
-                if (formTaskGroupCreation.ShowDialog() == DialogResult.OK)
-                {
-                    DatabaseHelper.InsertTaskGroup(formTaskGroupCreation.groupName);
-                    Functions functions = new Functions();
-                    active_group = functions.GetTaskGroupId(formTaskGroupCreation.groupName);
-                }
-            }
-            LoadTaskGroups();
-        }
-
-        private void btnCreateTask_Click(object sender, EventArgs e)
-        {
-            using (formTaskCreation formTaskCreation = new formTaskCreation())
-            {
-                if (formTaskCreation.ShowDialog() == DialogResult.OK)
-                {
-                    DatabaseHelper.InsertTask(active_group, formTaskCreation.task_name, formTaskCreation.task_type);
-                }
-            }
-            LoadTasks(active_group);
-        }
-
-        private void CreateTask(int group_id, string task_name, string task_type)
-        {
-            string query = "INSERT INTO 'tasks' (group_id, task_name, task_type) VALUES (@group_id, @task_name, @task_type)";
-            using (SqliteConnection connection = new SqliteConnection(connectionString))
-            {
-                using (SqliteCommand command = new SqliteCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@group_id", group_id);
-                    command.Parameters.AddWithValue("@task_name", task_name);
-                    command.Parameters.AddWithValue("@task_type", task_type);
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                }
-            }
-            LoadTasks(active_group);
-        }
-        private void CreateTaskBox(int task_id)
-        {
-            Functions functions = new Functions();
+            TaskHelper taskHelper = new TaskHelper();
 
             GroupBox gbxTask = new GroupBox();
             Label lblParamValue4 = new Label();
@@ -359,7 +396,7 @@ namespace catwiftools.tasks
             lblTaskName.Name = "lblTaskName";
             lblTaskName.Size = new Size(93, 21);
             lblTaskName.TabIndex = 44;
-            lblTaskName.Text = functions.GetTaskName(task_id);
+            lblTaskName.Text = TaskHelper.GetTaskName(task_id);
             // 
             // lblTaskType
             // 
@@ -369,61 +406,10 @@ namespace catwiftools.tasks
             lblTaskType.Name = "lblTaskType";
             lblTaskType.Size = new Size(56, 15);
             lblTaskType.TabIndex = 1;
-            lblTaskType.Text = functions.GetTaskType(task_id);
+            lblTaskType.Text = TaskHelper.GetTaskType(task_id);
 
             flpTaskList.Controls.Add(gbxTask);
         }
-
-        private void btnDeleteTask_Click(object? sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show("Are you sure you want to delete this task?", "Delete Task", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
-            {
-                Button btnDeleteTask = (Button)sender;
-                int task_id = int.Parse(btnDeleteTask.Name);
-                string query = "DELETE FROM tasks WHERE task_id = @task_id";
-                using (SqliteConnection connection = new SqliteConnection(connectionString))
-                {
-                    using (SqliteCommand command = new SqliteCommand(query, connection))
-                    {
-                        command.Parameters.AddWithValue("@task_id", task_id);
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                    }
-                }
-            }
-            LoadTasks(active_group);
-        }
-
-        private void LoadTasks(int active_group)
-        {
-            flpTaskList.Controls.Clear();
-            List<int> loaded_tasks = new List<int>();
-            string query = $"SELECT task_id FROM tasks WHERE group_id = '{active_group}'";
-            using (SqliteConnection connection = new SqliteConnection(connectionString))
-            {
-                using (SqliteCommand command = new SqliteCommand(query, connection))
-                {
-                    connection.Open();
-                    using (SqliteDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            loaded_tasks.Add(reader.GetInt32(0));
-                        }
-                    }
-                }
-            }
-            foreach (int task_id in loaded_tasks)
-            {
-                CreateTaskBox(task_id);
-            }
-            Console.WriteLine(loaded_tasks);
-        }
-
-        private void btnEditTask_Click(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }

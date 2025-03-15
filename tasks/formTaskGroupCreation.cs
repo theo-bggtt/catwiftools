@@ -24,7 +24,7 @@ namespace catwiftools.tasks
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            if (DatabaseHelper.GroupNameExists(tbxName.Text))
+            if (TaskHelper.GroupNameExists(tbxName.Text))
             {
                 MessageBox.Show("This group name already exists", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;

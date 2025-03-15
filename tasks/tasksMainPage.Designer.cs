@@ -50,6 +50,8 @@
             btnDeleteGroup = new Button();
             lblGroupName = new Label();
             btnCreateTaskGroup = new Button();
+            lblTaskAmount = new Label();
+            lblGroupAmount = new Label();
             flpTaskList.SuspendLayout();
             gbxTask.SuspendLayout();
             flpTaskGroupList.SuspendLayout();
@@ -225,7 +227,7 @@
             lblTaskType.ForeColor = Color.White;
             lblTaskType.Location = new Point(9, 43);
             lblTaskType.Name = "lblTaskType";
-            lblTaskType.Size = new Size(56, 15);
+            lblTaskType.Size = new Size(58, 15);
             lblTaskType.TabIndex = 1;
             lblTaskType.Text = "Task Type";
             // 
@@ -323,11 +325,35 @@
             btnCreateTaskGroup.UseVisualStyleBackColor = true;
             btnCreateTaskGroup.Click += btnCreateTaskGroup_Click;
             // 
+            // lblTaskAmount
+            // 
+            lblTaskAmount.AutoSize = true;
+            lblTaskAmount.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTaskAmount.ForeColor = Color.White;
+            lblTaskAmount.Location = new Point(251, 67);
+            lblTaskAmount.Name = "lblTaskAmount";
+            lblTaskAmount.Size = new Size(117, 21);
+            lblTaskAmount.TabIndex = 53;
+            lblTaskAmount.Text = "Task Amount :";
+            // 
+            // lblGroupAmount
+            // 
+            lblGroupAmount.AutoSize = true;
+            lblGroupAmount.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblGroupAmount.ForeColor = Color.White;
+            lblGroupAmount.Location = new Point(251, 99);
+            lblGroupAmount.Name = "lblGroupAmount";
+            lblGroupAmount.Size = new Size(131, 21);
+            lblGroupAmount.TabIndex = 54;
+            lblGroupAmount.Text = "Group Amount :";
+            // 
             // tasksMainPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
+            Controls.Add(lblGroupAmount);
+            Controls.Add(lblTaskAmount);
             Controls.Add(btnCreateTaskGroup);
             Controls.Add(flpTaskGroupList);
             Controls.Add(btnCreateTask);
@@ -370,5 +396,7 @@
         private Label lblParamName3;
         private Label lblParamValue2;
         private Label lblParamName2;
+        private Label lblTaskAmount;
+        private Label lblGroupAmount;
     }
 }

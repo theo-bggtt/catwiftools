@@ -19,17 +19,13 @@ namespace catwiftools.wallet
             InitializeComponent();
         }
 
-        private async void btnGetMinAmount_Click(object sender, EventArgs e)
-        {
-        }
-
         public async Task<double> getMinAmount(System.Windows.Forms.Button pressedButton)
         {
             double min = 0;
             using (var numberInputForm = new supplyWalletForm())
             {
                 var result = numberInputForm.ShowDialog();
-                btnSubmit.Click += (sender, e) =>
+                btnSubmit.Click += async (sender, e) =>
                 {
                     if (double.TryParse(tbxAmount.Text, out double number))
                     {
@@ -42,9 +38,10 @@ namespace catwiftools.wallet
                         MessageBox.Show("Input was canceled or invalid.");
                         Close();
                     }
+                    await Task.CompletedTask; // Added to avoid CS1998 warning
                 };
             }
-            return min;
+            return await Task.FromResult(min);
         }
     }
 }

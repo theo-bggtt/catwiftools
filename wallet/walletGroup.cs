@@ -26,6 +26,20 @@ namespace catwiftools.wallet
 
         private void walletGroup_Load(object sender, EventArgs e)
         {
+
+            GetGroups();
+            
+            foreach (string groupName in groupNames)
+            {
+                group_id = GetGroupId(groupName);
+                int walletAmount = GetWalletAmount(group_id);
+                createBorderlessGroupBox(group_id, walletAmount, groupName);
+            }
+            UpdateInfo();
+        }
+
+        private void GetGroups()
+        {
             string query = "SELECT group_name FROM 'wallet_groups'";
             using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
@@ -41,13 +55,19 @@ namespace catwiftools.wallet
                     }
                 }
             }
+        }
 
+        private void UpdateInfo()
+        {
+            int TotalWallet = 0;
             foreach (string groupName in groupNames)
             {
                 int group_id = GetGroupId(groupName);
-                int walletAmount = GetWalletAmount(group_id);
-                createBorderlessGroupBox(group_id, walletAmount, groupName);
+                TotalWallet += GetWalletAmount(group_id);
             }
+
+            lbGroupAmount.Text = "Group Amount: " + groupNames.Count;
+            lbTotalWallet.Text = "Total Wallet: " + TotalWallet;
         }
 
         private void btnCreateGroup_Click(object sender, EventArgs e)
@@ -77,6 +97,7 @@ namespace catwiftools.wallet
                     walletMnemonics = WalletGenerator.WalletCreator.GenWallet(walletAmount);
                     WalletGenerator.WalletCreator walletCreator = new WalletGenerator.WalletCreator();
                     walletCreator.SaveWallets(walletMnemonics, group_id);
+                    UpdateInfo();
                 }
             }
         }
@@ -186,10 +207,9 @@ namespace catwiftools.wallet
                         connection.Open();
                         command.ExecuteNonQuery();
                     }
-                }
-
-                
+                }          
             }
+            UpdateInfo();
         }
 
 

@@ -18,7 +18,7 @@ namespace catwiftools
     {
         private Button? selectedButton = null;
         private static readonly (string ConnectionString, string HeliusUrl, string ApiKey) envVariables = Functions.LoadEnvVariables();
-        private static string connectionString = envVariables.ConnectionString;
+        public static string connectionString = envVariables.ConnectionString;
 
         public void SelectButton(Button button)
         {
@@ -68,27 +68,6 @@ namespace catwiftools
             string connectionString = "Data Source=catwiftools.db;";
             string heliusUrl = $"https://devnet.helius-rpc.com/?api-key={heliusApiKey}";
             return (connectionString, heliusUrl, heliusApiKey);
-        }
-
-        public int GetTaskGroupId(string groupName)
-        {
-            int groupId = 0;
-            string query = $"SELECT group_id FROM 'task_groups' WHERE group_name = '{groupName}'";
-            using (SqliteConnection connection = new SqliteConnection(connectionString))
-            {
-                using (SqliteCommand command = new SqliteCommand(query, connection))
-                {
-                    connection.Open();
-                    using (SqliteDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            groupId = reader.GetInt32(0);
-                        }
-                    }
-                }
-            }
-            return groupId;
         }
 
         public int GetWalletId(string? walletAddress, string? walletphrase) // Prends l'Id d'un wallet à travers son addresse ou sa phrase, à travers la bdd
@@ -208,47 +187,6 @@ namespace catwiftools
             return Walletphrase;
         }
 
-        public string GetTaskName(int task_id)
-        {
-            string task_name = "";
-            string query = $"SELECT task_name FROM 'tasks' WHERE task_id = {task_id}";
-            using (SqliteConnection connection = new SqliteConnection(connectionString))
-            {
-                using (SqliteCommand command = new SqliteCommand(query, connection))
-                {
-                    connection.Open();
-                    using (SqliteDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            task_name = reader.GetString(0);
-                        }
-                    }
-                }
-            }
-            return task_name;
-        }
-
-        public string GetTaskType(int task_id)
-        {
-            string task_type = "";
-            string query = $"SELECT task_type FROM 'tasks' WHERE task_id = {task_id}";
-            using (SqliteConnection connection = new SqliteConnection(connectionString))
-            {
-                using (SqliteCommand command = new SqliteCommand(query, connection))
-                {
-                    connection.Open();
-                    using (SqliteDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            task_type = reader.GetString(0);
-                        }
-                    }
-                }
-            }
-            return task_type;
-        }
         public string CheckForFundWallet()
         {
             using (var connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
@@ -271,6 +209,27 @@ namespace catwiftools
                     }
                 }
             }
+        }
+
+        public List<string> GetWalletsInGroup(int group_id)
+        {
+            List<string> wallets = new List<string>();
+            string query = $"SELECT walletAddress FROM 'wallets' WHERE group_id = {group_id}";
+            using (SqliteConnection connection = new SqliteConnection(connectionString))
+            {
+                using (SqliteCommand command = new SqliteCommand(query, connection))
+                {
+                    connection.Open();
+                    using (SqliteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            wallets.Add(reader.GetString(0));
+                        }
+                    }
+                }
+            }
+            return wallets;
         }
     }
 }
