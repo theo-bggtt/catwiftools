@@ -118,6 +118,7 @@ namespace catwiftools.tasks
                         command.ExecuteNonQuery();
                     }
                 }
+                TaskHelper.deleteParameters(task_id);
             }
             LoadTaskGroups();
             LoadTasks(active_group);
@@ -153,7 +154,6 @@ namespace catwiftools.tasks
             }
             lblGroupAmount.Text = "Total Groups: " + TaskHelper.GetGroupCount();
             lblTaskAmount.Text = "Total Tasks: " + TaskHelper.GetTaskCount();
-            Console.WriteLine(loaded_tasks);
         }
 
         private void LoadTaskGroups() // Gets the group_names and creates a group box for each group

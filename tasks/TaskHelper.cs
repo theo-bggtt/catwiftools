@@ -228,5 +228,18 @@ namespace catwiftools.tasks
                 }
             }
         }
+
+        public static void deleteParameters(int task_id)
+        {
+            string query = $"DELETE FROM 'task_parameters' WHERE task_id = {task_id}";
+            using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+            {
+                using (SqliteCommand command = new SqliteCommand(query, connection))
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
