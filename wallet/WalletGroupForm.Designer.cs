@@ -71,7 +71,6 @@
             tbxAmount.Name = "tbxAmount";
             tbxAmount.Size = new Size(100, 23);
             tbxAmount.TabIndex = 3;
-            tbxAmount.TextChanged += tbxAmount_TextChanged;
             tbxAmount.KeyPress += tbxAmount_KeyPress;
             // 
             // btnCreate

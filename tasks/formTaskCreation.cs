@@ -15,24 +15,13 @@ namespace catwiftools.tasks
 {
     public partial class formTaskCreation : Form
     {
-        private static readonly (string ConnectionString, string HeliusUrl, string ApiKey) envVariables = Functions.LoadEnvVariables();
-        private static string connectionString = envVariables.ConnectionString;
-        public string task_name, task_type;
+        public string task_name, task_type, token_contract, buy_amount, minimum_buy, maximum_buy, delay, comments, wallet;
+        private Dictionary<string, string> parameters = new Dictionary<string, string>();
+        private Panel active_panel;
 
         public formTaskCreation()
         {
             InitializeComponent();
-        }
-
-        private void tbxTaskName_TextChanged(object sender, EventArgs e)
-        {
-            task_name = tbxTaskName.Text;
-            btnCreate.Enabled = !string.IsNullOrEmpty(task_name);
-
-        }
-
-        private void formTaskCreation_Load(object sender, EventArgs e)
-        {
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -50,49 +39,223 @@ namespace catwiftools.tasks
             }
             else
             {
-                task_name = tbxTaskName.Text;
-                task_type = cbxTaskType.SelectedItem.ToString();
+                parameters.Add("task_name", tbxTaskName.Text);
+                parameters.Add("task_type", cbxTaskType.SelectedItem.ToString());
+                parameters.Add("token_contract", token_contract);
+
+                if (active_panel == pnlBuyParameters)
+                {
+                    if (!string.IsNullOrEmpty(minimum_buy))
+                    {
+                        parameters.Add("minimum_buy", minimum_buy);
+                    }
+                    if (!string.IsNullOrEmpty(maximum_buy))
+                    {
+                        parameters.Add("maximum_buy", maximum_buy);
+                    }
+                    if (!string.IsNullOrEmpty(delay))
+                    {
+                        parameters.Add("delay", delay);
+                    }
+                }
+                else if (active_panel == pnlSellAll)
+                {
+                    if (!string.IsNullOrEmpty(delay))
+                    {
+                        parameters.Add("delay", delay);
+                    }
+                }
+                else if (active_panel == pnlSingleSell)
+                {
+                    if (!string.IsNullOrEmpty(wallet))
+                    {
+                        parameters.Add("wallet", wallet);
+                    }
+                }
+                else if (active_panel == pnlCommentBot)
+                {
+                    if (!string.IsNullOrEmpty(comments))
+                    {
+                        parameters.Add("comments", comments);
+                    }
+                }
+                else if (active_panel == pnlBumpIt)
+                {
+                    if (!string.IsNullOrEmpty(buy_amount))
+                    {
+                        parameters.Add("buy_amount", buy_amount);
+                    }
+                    if (!string.IsNullOrEmpty(delay))
+                    {
+                        parameters.Add("delay", delay);
+                    }
+                    if (!string.IsNullOrEmpty(wallet))
+                    {
+                        parameters.Add("wallet", wallet);
+                    }
+                }
+
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
         }
 
+        private void tbxDelay_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+        }
+
         private void cbxTaskType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            parameters.Clear();
+            
             string selectedTaskType = cbxTaskType.SelectedItem.ToString();
-            RefreshParameters(selectedTaskType);
+
+            List<Panel> parameters_panel = new List<Panel> { pnlBuyParameters, pnlSellAll, pnlSingleSell, pnlCommentBot, pnlBumpIt };
+            foreach (Panel panel in parameters_panel)
+            {
+                panel.Visible = false;
+            }
+            switch (selectedTaskType)
+            {
+                case "Micro-Buy":
+                    pnlBuyParameters.Visible = true;
+                    active_panel = pnlBuyParameters;
+                    break;
+                case "Generate Volume":
+                    pnlBuyParameters.Visible = true;
+                    active_panel = pnlBuyParameters;
+                    break;
+                case "Sell All":
+                    pnlSellAll.Visible = true;
+                    active_panel = pnlSellAll;
+                    break;
+                case "Single Sell":
+                    pnlSingleSell.Visible = true;
+                    active_panel = pnlSingleSell;
+                    break;
+                case "Comment Bot":
+                    pnlCommentBot.Visible = true;
+                    active_panel = pnlCommentBot;
+                    break;
+                case "Bump It":
+                    pnlBumpIt.Visible = true;
+                    active_panel = pnlBumpIt;
+                    break;
+            }
+            checkRequisit();
         }
 
-        private void RefreshParameters(string taskType)
+        private void tbxTaskName_TextChanged(object sender, EventArgs e)
         {
-            // Clear existing parameter fields
-            pnlTaskParameters.Controls.Clear();
+            task_name = tbxTaskName.Text;
+            checkRequisit();
+        }
 
-            // Add parameter fields based on the selected task type
-            if (taskType == "Volume")
+        private void token_contract_TextChanged(object sender, EventArgs e)
+        {
+            if (sender is TextBox textBox)
             {
-                // Add fields for TypeA
-                pnlTaskParameters.Controls.Add(new Label { Text = "Parameter1" });
-                pnlTaskParameters.Controls.Add(new TextBox { Name = "Parameter1TextBox" });
-            }
-            else if (taskType == "BumpIt")
-            {
-                // Add fields for TypeB
-                pnlTaskParameters.Controls.Add(new Label { Text = "Parameter2" });
-                pnlTaskParameters.Controls.Add(new TextBox { Name = "Parameter2TextBox" });
-            }
-            else if (taskType == "Bundle")
-
-            {
-                // Add fields for TypeC
-                pnlTaskParameters.Controls.Add(new Label { Text = "Parameter3" });
-                pnlTaskParameters.Controls.Add(new TextBox { Name = "Parameter3TextBox" });
+                token_contract = textBox.Text;
+                checkRequisit();
             }
         }
 
-        private void pnlTaskParameters_Paint(object sender, PaintEventArgs e)
+        private void tbxDelay_TextChanged(object sender, EventArgs e)
         {
+            if (sender is TextBox textBox)
+            {
+                delay = textBox.Text;
+                checkRequisit();
+            }
+        }
 
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (sender is TextBox textBox)
+            {
+                minimum_buy = textBox.Text;
+                checkRequisit();
+            }
+        }
+
+        private void tbxMaximumBuy_TextChanged(object sender, EventArgs e)
+        {
+            if (sender is TextBox textBox)
+            {
+                maximum_buy = textBox.Text;
+                checkRequisit();
+            }
+        }
+
+        private void checkRequisit()
+        {
+            if (active_panel == pnlBuyParameters)
+            {
+                if (string.IsNullOrEmpty(token_contract) || string.IsNullOrEmpty(minimum_buy) || string.IsNullOrEmpty(maximum_buy) || string.IsNullOrEmpty(delay))
+                {
+                    btnCreate.Enabled = false;
+                }
+                else
+                {
+                    btnCreate.Enabled = true;
+                }
+            }
+            else if (active_panel == pnlSellAll)
+            {
+                if (string.IsNullOrEmpty(token_contract) || string.IsNullOrEmpty(delay))
+                {
+                    btnCreate.Enabled = false;
+                }
+                else
+                {
+                    btnCreate.Enabled = true;
+                }
+            }
+            else if (active_panel == pnlSingleSell)
+            {
+                if (string.IsNullOrEmpty(token_contract) || string.IsNullOrEmpty(wallet))
+                {
+                    btnCreate.Enabled = false;
+                }
+                else
+                {
+                    btnCreate.Enabled = true;
+                }
+            }
+            else if (active_panel == pnlCommentBot)
+            {
+                if (string.IsNullOrEmpty(token_contract) || string.IsNullOrEmpty(comments))
+                {
+                    btnCreate.Enabled = false;
+                }
+                else
+                {
+                    btnCreate.Enabled = true;
+                }
+            }
+            else if (active_panel == pnlBumpIt)
+            {
+                if (string.IsNullOrEmpty(token_contract) || string.IsNullOrEmpty(buy_amount) || string.IsNullOrEmpty(delay) || string.IsNullOrEmpty(wallet))
+                {
+                    btnCreate.Enabled = false;
+                }
+                else
+                {
+                    btnCreate.Enabled = true;
+                }
+            }
+            else if (active_panel == null)
+            {
+                btnCreate.Enabled = false;
+            }
+            else
+            {
+                btnCreate.Enabled = false;
+            }
         }
     }
 }

@@ -13,8 +13,6 @@ namespace catwiftools.wallet
 {
     public partial class walletGroup : UserControl
     {
-        private static readonly (string ConnectionString, string HeliusUrl, string ApiKey) envVariables = Functions.LoadEnvVariables();
-        private static string connectionString = envVariables.ConnectionString;
         private List<String> groupNames = new List<String>();
         private int group_id = 0;
         private List<String> walletMnemonics = new List<string>();
@@ -41,7 +39,7 @@ namespace catwiftools.wallet
         private void GetGroups()
         {
             string query = "SELECT group_name FROM 'wallet_groups'";
-            using (SqliteConnection connection = new SqliteConnection(connectionString))
+            using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
                 {
@@ -83,7 +81,7 @@ namespace catwiftools.wallet
 
                     // Insert into database
                     string query = "INSERT INTO 'wallet_groups' (group_name) VALUES (@groupName)";
-                    using (SqliteConnection connection = new SqliteConnection(connectionString))
+                    using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
                     {
                         using (SqliteCommand command = new SqliteCommand(query, connection))
                         {
@@ -106,7 +104,7 @@ namespace catwiftools.wallet
         {
             int walletAmount = 0;
             string query = $"SELECT COUNT(walletAddress) FROM wallets WHERE group_id = {group_id}";
-            using (SqliteConnection connection = new SqliteConnection(connectionString))
+            using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
                 {
@@ -127,7 +125,7 @@ namespace catwiftools.wallet
         {
             int group_id = 0;
             string query = $"SELECT group_id FROM 'wallet_groups' WHERE group_name = @groupName";
-            using (SqliteConnection connection = new SqliteConnection(connectionString))
+            using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
                 {
@@ -169,7 +167,7 @@ namespace catwiftools.wallet
                 // Recall the wallets
                 List<String> selectedAddresses = new List<string>();
                 string query = $"SELECT walletAddress FROM wallets WHERE group_id = {group_id}";
-                using (SqliteConnection connection = new SqliteConnection(connectionString))
+                using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
                 {
                     using (SqliteCommand command = new SqliteCommand(query, connection))
                     {
@@ -188,7 +186,7 @@ namespace catwiftools.wallet
 
                 // Delete the wallets of the group
                 query = $"DELETE FROM wallets WHERE group_id = @group_id";
-                using (SqliteConnection connection = new SqliteConnection(connectionString))
+                using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
                 {
                     using (SqliteCommand command = new SqliteCommand(query, connection))
                     {
@@ -199,7 +197,7 @@ namespace catwiftools.wallet
                 }
 
                 query = $"DELETE FROM 'wallet_groups' WHERE group_id = @group_id";
-                using (SqliteConnection connection = new SqliteConnection(connectionString))
+                using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
                 {
                     using (SqliteCommand command = new SqliteCommand(query, connection))
                     {
@@ -211,8 +209,6 @@ namespace catwiftools.wallet
             }
             UpdateInfo();
         }
-
-
 
         private void createBorderlessGroupBox(int group_id, int walletAmount, string groupName)
         {
