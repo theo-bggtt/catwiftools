@@ -94,6 +94,7 @@ namespace catwiftools.tasks
                 if (formTaskCreation.ShowDialog() == DialogResult.OK)
                 {
                     TaskHelper.InsertTask(active_group, formTaskCreation.task_name, formTaskCreation.task_type);
+                    TaskHelper.saveParameters(formTaskCreation.task_name, formTaskCreation.parameters);
                 }
             }
             LoadTaskGroups();

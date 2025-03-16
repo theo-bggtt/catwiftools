@@ -16,7 +16,7 @@ namespace catwiftools.tasks
     public partial class formTaskCreation : Form
     {
         public string task_name, task_type, token_contract, buy_amount, minimum_buy, maximum_buy, delay, comments, wallet;
-        private Dictionary<string, string> parameters = new Dictionary<string, string>();
+        public Dictionary<string, string> parameters = [];
         private Panel active_panel;
 
         public formTaskCreation()
@@ -39,61 +39,7 @@ namespace catwiftools.tasks
             }
             else
             {
-                parameters.Add("task_name", tbxTaskName.Text);
-                parameters.Add("task_type", cbxTaskType.SelectedItem.ToString());
-                parameters.Add("token_contract", token_contract);
-
-                if (active_panel == pnlBuyParameters)
-                {
-                    if (!string.IsNullOrEmpty(minimum_buy))
-                    {
-                        parameters.Add("minimum_buy", minimum_buy);
-                    }
-                    if (!string.IsNullOrEmpty(maximum_buy))
-                    {
-                        parameters.Add("maximum_buy", maximum_buy);
-                    }
-                    if (!string.IsNullOrEmpty(delay))
-                    {
-                        parameters.Add("delay", delay);
-                    }
-                }
-                else if (active_panel == pnlSellAll)
-                {
-                    if (!string.IsNullOrEmpty(delay))
-                    {
-                        parameters.Add("delay", delay);
-                    }
-                }
-                else if (active_panel == pnlSingleSell)
-                {
-                    if (!string.IsNullOrEmpty(wallet))
-                    {
-                        parameters.Add("wallet", wallet);
-                    }
-                }
-                else if (active_panel == pnlCommentBot)
-                {
-                    if (!string.IsNullOrEmpty(comments))
-                    {
-                        parameters.Add("comments", comments);
-                    }
-                }
-                else if (active_panel == pnlBumpIt)
-                {
-                    if (!string.IsNullOrEmpty(buy_amount))
-                    {
-                        parameters.Add("buy_amount", buy_amount);
-                    }
-                    if (!string.IsNullOrEmpty(delay))
-                    {
-                        parameters.Add("delay", delay);
-                    }
-                    if (!string.IsNullOrEmpty(wallet))
-                    {
-                        parameters.Add("wallet", wallet);
-                    }
-                }
+                updateParameters();
 
                 this.DialogResult = DialogResult.OK;
                 this.Close();
@@ -112,14 +58,14 @@ namespace catwiftools.tasks
         {
             parameters.Clear();
             
-            string selectedTaskType = cbxTaskType.SelectedItem.ToString();
+            task_type = cbxTaskType.SelectedItem.ToString();
 
-            List<Panel> parameters_panel = new List<Panel> { pnlBuyParameters, pnlSellAll, pnlSingleSell, pnlCommentBot, pnlBumpIt };
+            List<Panel> parameters_panel = [pnlBuyParameters, pnlSellAll, pnlSingleSell, pnlCommentBot, pnlBumpIt];
             foreach (Panel panel in parameters_panel)
             {
                 panel.Visible = false;
             }
-            switch (selectedTaskType)
+            switch (task_type)
             {
                 case "Micro-Buy":
                     pnlBuyParameters.Visible = true;
@@ -195,6 +141,10 @@ namespace catwiftools.tasks
         {
             if (active_panel == pnlBuyParameters)
             {
+                token_contract = tbxContracttbxContract.Text;
+                minimum_buy = tbxMinimumBuy.Text;
+                delay = textBox4.Text;
+                maximum_buy = tbxMaximumBuy.Text;
                 if (string.IsNullOrEmpty(token_contract) || string.IsNullOrEmpty(minimum_buy) || string.IsNullOrEmpty(maximum_buy) || string.IsNullOrEmpty(delay))
                 {
                     btnCreate.Enabled = false;
@@ -206,6 +156,8 @@ namespace catwiftools.tasks
             }
             else if (active_panel == pnlSellAll)
             {
+                token_contract = textBox8.Text;
+                delay = textBox5.Text;
                 if (string.IsNullOrEmpty(token_contract) || string.IsNullOrEmpty(delay))
                 {
                     btnCreate.Enabled = false;
@@ -217,7 +169,10 @@ namespace catwiftools.tasks
             }
             else if (active_panel == pnlSingleSell)
             {
-                if (string.IsNullOrEmpty(token_contract) || string.IsNullOrEmpty(wallet))
+                token_contract = textBox7.Text;
+                delay = cbxWallet.SelectedItem.ToString();
+                // Add wallet
+                if (string.IsNullOrEmpty(token_contract) || string.IsNullOrEmpty(delay))
                 {
                     btnCreate.Enabled = false;
                 }
@@ -228,7 +183,10 @@ namespace catwiftools.tasks
             }
             else if (active_panel == pnlCommentBot)
             {
-                if (string.IsNullOrEmpty(token_contract) || string.IsNullOrEmpty(comments))
+                token_contract = tbxContract.Text;
+                delay = tbxComments.Text;
+                // Add comments
+                if (string.IsNullOrEmpty(token_contract))
                 {
                     btnCreate.Enabled = false;
                 }
@@ -239,7 +197,11 @@ namespace catwiftools.tasks
             }
             else if (active_panel == pnlBumpIt)
             {
-                if (string.IsNullOrEmpty(token_contract) || string.IsNullOrEmpty(buy_amount) || string.IsNullOrEmpty(delay) || string.IsNullOrEmpty(wallet))
+                token_contract = textBox12.Text;
+                buy_amount = textBox3.Text;
+                delay = textBox2.Text;
+                // Add wallet
+                if (string.IsNullOrEmpty(token_contract) || string.IsNullOrEmpty(buy_amount) || string.IsNullOrEmpty(delay))
                 {
                     btnCreate.Enabled = false;
                 }
@@ -248,13 +210,71 @@ namespace catwiftools.tasks
                     btnCreate.Enabled = true;
                 }
             }
-            else if (active_panel == null)
-            {
-                btnCreate.Enabled = false;
-            }
             else
             {
                 btnCreate.Enabled = false;
+            }
+        }
+
+        private void updateParameters()
+        {
+            parameters.Add("token_contract", token_contract);
+
+            if (active_panel == pnlBuyParameters)
+            {
+                if (!string.IsNullOrEmpty(minimum_buy))
+                {
+                    parameters.Add("minimum_buy", minimum_buy);
+                }
+                if (!string.IsNullOrEmpty(maximum_buy))
+                {
+                    parameters.Add("maximum_buy", maximum_buy);
+                }
+                if (!string.IsNullOrEmpty(delay))
+                {
+                    parameters.Add("delay", delay);
+                }
+            }
+            else if (active_panel == pnlSellAll)
+            {
+                if (!string.IsNullOrEmpty(delay))
+                {
+                    parameters.Add("delay", delay);
+                }
+            }
+            else if (active_panel == pnlSingleSell)
+            {
+                if (!string.IsNullOrEmpty(wallet))
+                {
+                    parameters.Add("wallet", wallet);
+                }
+
+            }
+            else if (active_panel == pnlCommentBot)
+            {
+                if (!string.IsNullOrEmpty(comments))
+                {
+                    parameters.Add("comments", comments);
+                }
+                if (!string.IsNullOrEmpty(comments))
+                {
+                    parameters.Add("comments", comments);
+                }
+            }
+            else if (active_panel == pnlBumpIt)
+            {
+                if (!string.IsNullOrEmpty(buy_amount))
+                {
+                    parameters.Add("buy_amount", buy_amount);
+                }
+                if (!string.IsNullOrEmpty(delay))
+                {
+                    parameters.Add("delay", delay);
+                }
+                if (!string.IsNullOrEmpty(wallet))
+                {
+                    parameters.Add("wallet", wallet);
+                }
             }
         }
     }

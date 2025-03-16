@@ -186,5 +186,47 @@ namespace catwiftools.tasks
             }
             return groupId;
         }
+
+        public static int GetTaskId(string task_name) // Gets the task_id of a task task name
+        {
+            int task_id = 0;
+            string query = $"SELECT task_id FROM 'tasks' WHERE task_name = '{task_name}'";
+            using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+            {
+                using (SqliteCommand command = new SqliteCommand(query, connection))
+                {
+                    connection.Open();
+                    using (SqliteDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            task_id = reader.GetInt32(0);
+                        }
+                    }
+                }
+            }
+            return task_id;
+        }
+
+        public static void saveParameters(string task_name, Dictionary<String, String> parameters)
+        {
+            int task_id = GetTaskId(task_name);
+            string query = "INSERT INTO 'task_parameters' (task_id, parameter_name, parameter_value) VALUES (@taskId, @parameterName, @parameterValue)";
+            using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+            {
+                using (SqliteCommand command = new SqliteCommand(query, connection))
+                {
+                    connection.Open();
+                    foreach (KeyValuePair<string, string> parameter in parameters)
+                    {
+                        command.Parameters.Clear(); // Clear parameters before adding new ones
+                        command.Parameters.AddWithValue("@taskId", task_id);
+                        command.Parameters.AddWithValue("@parameterName", parameter.Key);
+                        command.Parameters.AddWithValue("@parameterValue", parameter.Value);
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
     }
 }

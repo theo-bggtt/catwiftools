@@ -49,22 +49,22 @@
             textBox8 = new TextBox();
             label14 = new Label();
             pnlSingleSell = new Panel();
-            textBox6 = new TextBox();
+            cbxWallet = new ComboBox();
             label11 = new Label();
             textBox7 = new TextBox();
             label12 = new Label();
             pnlCommentBot = new Panel();
-            tbxDelay = new TextBox();
-            label15 = new Label();
+            tbxComments = new TextBox();
+            lblComments = new Label();
             tbxContract = new TextBox();
             label17 = new Label();
             pnlBumpIt = new Panel();
-            textBox12 = new TextBox();
-            label19 = new Label();
             textBox2 = new TextBox();
             label2 = new Label();
             textBox3 = new TextBox();
             label3 = new Label();
+            textBox12 = new TextBox();
+            label19 = new Label();
             pnlBuyParameters.SuspendLayout();
             pnlSellAll.SuspendLayout();
             pnlSingleSell.SuspendLayout();
@@ -290,7 +290,7 @@
             // 
             // pnlSingleSell
             // 
-            pnlSingleSell.Controls.Add(textBox6);
+            pnlSingleSell.Controls.Add(cbxWallet);
             pnlSingleSell.Controls.Add(label11);
             pnlSingleSell.Controls.Add(textBox7);
             pnlSingleSell.Controls.Add(label12);
@@ -300,25 +300,24 @@
             pnlSingleSell.TabIndex = 72;
             pnlSingleSell.Visible = false;
             // 
-            // textBox6
+            // cbxWallet
             // 
-            textBox6.Location = new Point(144, 156);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(81, 23);
-            textBox6.TabIndex = 70;
-            textBox6.TextChanged += tbxDelay_TextChanged;
-            textBox6.KeyPress += tbxDelay_KeyPress;
+            cbxWallet.FormattingEnabled = true;
+            cbxWallet.Location = new Point(88, 166);
+            cbxWallet.Name = "cbxWallet";
+            cbxWallet.Size = new Size(192, 23);
+            cbxWallet.TabIndex = 70;
             // 
             // label11
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label11.ForeColor = Color.White;
-            label11.Location = new Point(157, 130);
+            label11.Location = new Point(163, 131);
             label11.Name = "label11";
-            label11.Size = new Size(56, 15);
+            label11.Size = new Size(43, 15);
             label11.TabIndex = 69;
-            label11.Text = "Delay (S)";
+            label11.Text = "Wallet";
             // 
             // textBox7
             // 
@@ -341,8 +340,8 @@
             // 
             // pnlCommentBot
             // 
-            pnlCommentBot.Controls.Add(tbxDelay);
-            pnlCommentBot.Controls.Add(label15);
+            pnlCommentBot.Controls.Add(tbxComments);
+            pnlCommentBot.Controls.Add(lblComments);
             pnlCommentBot.Controls.Add(tbxContract);
             pnlCommentBot.Controls.Add(label17);
             pnlCommentBot.Location = new Point(25, 140);
@@ -351,25 +350,25 @@
             pnlCommentBot.TabIndex = 73;
             pnlCommentBot.Visible = false;
             // 
-            // tbxDelay
+            // tbxComments
             // 
-            tbxDelay.Location = new Point(144, 156);
-            tbxDelay.Name = "tbxDelay";
-            tbxDelay.Size = new Size(81, 23);
-            tbxDelay.TabIndex = 70;
-            tbxDelay.TextChanged += tbxDelay_TextChanged;
-            tbxDelay.KeyPress += tbxDelay_KeyPress;
+            tbxComments.Location = new Point(38, 114);
+            tbxComments.Multiline = true;
+            tbxComments.Name = "tbxComments";
+            tbxComments.Size = new Size(292, 102);
+            tbxComments.TabIndex = 70;
+            tbxComments.TextChanged += tbxDelay_TextChanged;
             // 
-            // label15
+            // lblComments
             // 
-            label15.AutoSize = true;
-            label15.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label15.ForeColor = Color.White;
-            label15.Location = new Point(157, 130);
-            label15.Name = "label15";
-            label15.Size = new Size(56, 15);
-            label15.TabIndex = 69;
-            label15.Text = "Delay (S)";
+            lblComments.AutoSize = true;
+            lblComments.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblComments.ForeColor = Color.White;
+            lblComments.Location = new Point(156, 85);
+            lblComments.Name = "lblComments";
+            lblComments.Size = new Size(67, 15);
+            lblComments.TabIndex = 69;
+            lblComments.Text = "Comments";
             // 
             // tbxContract
             // 
@@ -403,24 +402,6 @@
             pnlBumpIt.Size = new Size(370, 235);
             pnlBumpIt.TabIndex = 74;
             pnlBumpIt.Visible = false;
-            // 
-            // textBox12
-            // 
-            textBox12.Location = new Point(38, 45);
-            textBox12.Name = "textBox12";
-            textBox12.Size = new Size(292, 23);
-            textBox12.TabIndex = 65;
-            // 
-            // label19
-            // 
-            label19.AutoSize = true;
-            label19.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label19.ForeColor = Color.White;
-            label19.Location = new Point(115, 19);
-            label19.Name = "label19";
-            label19.Size = new Size(139, 15);
-            label19.TabIndex = 53;
-            label19.Text = "Token Contract Address";
             // 
             // textBox2
             // 
@@ -458,6 +439,24 @@
             label3.TabIndex = 71;
             label3.Text = "Buy Amount";
             // 
+            // textBox12
+            // 
+            textBox12.Location = new Point(38, 45);
+            textBox12.Name = "textBox12";
+            textBox12.Size = new Size(292, 23);
+            textBox12.TabIndex = 65;
+            // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label19.ForeColor = Color.White;
+            label19.Location = new Point(115, 19);
+            label19.Name = "label19";
+            label19.Size = new Size(139, 15);
+            label19.TabIndex = 53;
+            label19.Text = "Token Contract Address";
+            // 
             // formTaskCreation
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -471,11 +470,11 @@
             Controls.Add(tbxTaskName);
             Controls.Add(lblTaskName);
             Controls.Add(lblTaskType);
+            Controls.Add(pnlBuyParameters);
             Controls.Add(pnlBumpIt);
             Controls.Add(pnlCommentBot);
             Controls.Add(pnlSingleSell);
             Controls.Add(pnlSellAll);
-            Controls.Add(pnlBuyParameters);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "formTaskCreation";
             StartPosition = FormStartPosition.CenterParent;
@@ -515,13 +514,12 @@
         private TextBox textBox8;
         private Label label14;
         private Panel pnlSingleSell;
-        private TextBox textBox6;
         private Label label11;
         private TextBox textBox7;
         private Label label12;
         private Panel pnlCommentBot;
-        private TextBox tbxDelay;
-        private Label label15;
+        private TextBox tbxComments;
+        private Label lblComments;
         private TextBox tbxContract;
         private Label label17;
         private Panel pnlBumpIt;
@@ -531,5 +529,6 @@
         private Label label2;
         private TextBox textBox3;
         private Label label3;
+        private ComboBox cbxWallet;
     }
 }
