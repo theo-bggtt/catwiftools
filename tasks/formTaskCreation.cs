@@ -24,6 +24,12 @@ namespace catwiftools.tasks
             InitializeComponent();
         }
 
+        private void formTaskCreation_Load(object sender, EventArgs e)
+        {
+            cbxWallet.Items.AddRange(TaskHelper.GetAllWallets());
+        }
+
+
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
@@ -57,7 +63,7 @@ namespace catwiftools.tasks
         private void cbxTaskType_SelectedIndexChanged(object sender, EventArgs e)
         {
             parameters.Clear();
-            
+
             task_type = cbxTaskType.SelectedItem.ToString();
 
             List<Panel> parameters_panel = [pnlBuyParameters, pnlSellAll, pnlSingleSell, pnlCommentBot, pnlBumpIt];
@@ -136,6 +142,11 @@ namespace catwiftools.tasks
                 checkRequisit();
             }
         }
+        private void cbxWallet_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            wallet = cbxWallet.Text;
+            checkRequisit();
+        }
 
         private void checkRequisit()
         {
@@ -170,9 +181,9 @@ namespace catwiftools.tasks
             else if (active_panel == pnlSingleSell)
             {
                 token_contract = textBox7.Text;
-                delay = cbxWallet.SelectedItem.ToString();
+                wallet = cbxWallet.Text;
                 // Add wallet
-                if (string.IsNullOrEmpty(token_contract) || string.IsNullOrEmpty(delay))
+                if (string.IsNullOrEmpty(token_contract) || string.IsNullOrEmpty(wallet))
                 {
                     btnCreate.Enabled = false;
                 }
@@ -277,5 +288,7 @@ namespace catwiftools.tasks
                 }
             }
         }
+
+
     }
 }

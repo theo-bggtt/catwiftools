@@ -227,7 +227,7 @@
             lblTaskType.ForeColor = Color.White;
             lblTaskType.Location = new Point(9, 43);
             lblTaskType.Name = "lblTaskType";
-            lblTaskType.Size = new Size(58, 15);
+            lblTaskType.Size = new Size(56, 15);
             lblTaskType.TabIndex = 1;
             lblTaskType.Text = "Task Type";
             // 

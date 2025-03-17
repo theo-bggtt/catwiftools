@@ -307,6 +307,7 @@
             cbxWallet.Name = "cbxWallet";
             cbxWallet.Size = new Size(192, 23);
             cbxWallet.TabIndex = 70;
+            cbxWallet.SelectedIndexChanged += cbxWallet_SelectedIndexChanged;
             // 
             // label11
             // 
@@ -470,14 +471,15 @@
             Controls.Add(tbxTaskName);
             Controls.Add(lblTaskName);
             Controls.Add(lblTaskType);
+            Controls.Add(pnlSingleSell);
+            Controls.Add(pnlSellAll);
             Controls.Add(pnlBuyParameters);
             Controls.Add(pnlBumpIt);
             Controls.Add(pnlCommentBot);
-            Controls.Add(pnlSingleSell);
-            Controls.Add(pnlSellAll);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "formTaskCreation";
             StartPosition = FormStartPosition.CenterParent;
+            Load += formTaskCreation_Load;
             pnlBuyParameters.ResumeLayout(false);
             pnlBuyParameters.PerformLayout();
             pnlSellAll.ResumeLayout(false);

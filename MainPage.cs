@@ -15,7 +15,7 @@ namespace catwiftools
             DraggingHelper.EnableDragging(this);
             this.Paint += Form_Paint;
             InitializeButtonControlMap();
-            fundWallet = functions.CheckForFundWallet();
+            fundWallet = Functions.CheckForFundWallet();
         }
 
         private void CatWifTools_Load(object sender, EventArgs e)
@@ -23,7 +23,7 @@ namespace catwiftools
             ShowControls(new List<Control>());
             tmrClock.Enabled = true;
             gbxBackground.Visible = true;
-            fundWallet = functions.CheckForFundWallet();
+            fundWallet = Functions.CheckForFundWallet();
             settingsGeneral settingsGeneral = new settingsGeneral();
             settingsGeneral.fundWalletSetup();
         }

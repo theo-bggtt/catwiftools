@@ -187,7 +187,7 @@ namespace catwiftools
             return Walletphrase;
         }
 
-        public string CheckForFundWallet()
+        public static string CheckForFundWallet()
         {
             using (var connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
             {

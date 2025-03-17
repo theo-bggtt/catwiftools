@@ -51,7 +51,7 @@ namespace catwiftools.settings
 
         public void fundWalletSetup()
         {
-            fundWallet = functions.CheckForFundWallet();
+            fundWallet = Functions.CheckForFundWallet();
             if (fundWallet != "")
             {
                 lblFundWallAddr.Text = fundWallet;

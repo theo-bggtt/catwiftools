@@ -273,15 +273,16 @@ namespace catwiftools.tasks
             gbxTask.Controls.Add(lblParamName1);
             gbxTask.Controls.Add(lblTaskName);
             gbxTask.Controls.Add(lblTaskType);
-            gbxTask.FlatStyle = FlatStyle.Flat;
             gbxTask.Location = new Point(10, 5);
             gbxTask.Margin = new Padding(10, 5, 10, 5);
             gbxTask.Name = "gbxTask";
+            gbxTask.Text = "";
             gbxTask.Size = new Size(890, 100);
             gbxTask.TabIndex = 42;
             gbxTask.TabStop = false;
-            
-            
+            gbxTask.FlatStyle = FlatStyle.Flat;
+
+
             if (parameters.Count > 0)
             {
                 // 
