@@ -15,7 +15,7 @@ namespace catwiftools.tasks
     {
         private static readonly (string ConnectionString, string HeliusUrl, string ApiKey) envVariables = Functions.LoadEnvVariables();
         private static string connectionString = envVariables.ConnectionString;
-        public string groupName;
+        public string groupName, walletGroup;
 
         public formTaskGroupCreation()
         {
@@ -33,6 +33,7 @@ namespace catwiftools.tasks
             {
                 // Return the group_name to the main form
                 groupName = tbxName.Text;
+                walletGroup = cbxWalletGroup.Text;
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
@@ -46,7 +47,28 @@ namespace catwiftools.tasks
 
         private void tbxName_TextChanged(object sender, EventArgs e) // Check if the name is empty
         {
-            if (string.IsNullOrWhiteSpace(tbxName.Text))
+            if (string.IsNullOrWhiteSpace(tbxName.Text) || string.IsNullOrWhiteSpace(cbxWalletGroup.Text))
+            {
+                btnCreate.Enabled = false;
+            }
+            else
+            {
+                btnCreate.Enabled = true;
+            }
+        }
+
+        private void formTaskGroupCreation_Load(object sender, EventArgs e)
+        {
+            List<string> groupNames = TaskHelper.GetAllWalletGroupNames();
+            foreach (string groupName in groupNames)
+            {
+                cbxWalletGroup.Items.Add(groupName);
+            }
+        }
+
+        private void cbxWalletGroup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(tbxName.Text) || string.IsNullOrWhiteSpace(cbxWalletGroup.Text))
             {
                 btnCreate.Enabled = false;
             }

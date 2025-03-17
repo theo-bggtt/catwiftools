@@ -36,7 +36,7 @@ namespace catwiftools.tasks
             {
                 if (formTaskGroupCreation.ShowDialog() == DialogResult.OK)
                 {
-                    TaskHelper.InsertTaskGroup(formTaskGroupCreation.groupName);
+                    TaskHelper.InsertTaskGroup(formTaskGroupCreation.groupName, formTaskGroupCreation.walletGroup);
                     active_group = TaskHelper.GetTaskGroupId(formTaskGroupCreation.groupName);
                 }
             }
@@ -257,6 +257,7 @@ namespace catwiftools.tasks
             Label lblTaskType = new Label();
             Button btnEditTask = new Button();
             Button btnDeleteTask = new Button();
+            
             // 
             // gbxTask
             // 
@@ -280,6 +281,7 @@ namespace catwiftools.tasks
             gbxTask.TabStop = false;
             gbxTask.FlatStyle = FlatStyle.Flat;
 
+            
 
             if (parameters.Count > 0)
             {
@@ -403,7 +405,7 @@ namespace catwiftools.tasks
             btnDeleteTask.Text = "Delete";
             btnDeleteTask.UseVisualStyleBackColor = false;
             btnDeleteTask.Click += btnDeleteTask_Click;
-            
+
             // 
             // lblTaskName
             // 
@@ -415,9 +417,9 @@ namespace catwiftools.tasks
             lblTaskName.Size = new Size(93, 21);
             lblTaskName.TabIndex = 44;
             lblTaskName.Text = TaskHelper.GetTaskName(task_id);
-            // 
+            //
             // lblTaskType
-            // 
+            //
             lblTaskType.AutoSize = true;
             lblTaskType.ForeColor = Color.White;
             lblTaskType.Location = new Point(9, 43);

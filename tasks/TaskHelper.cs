@@ -136,14 +136,15 @@ namespace catwiftools.tasks
             }
         }
 
-        public static void InsertTaskGroup(string groupName) // Inserts a new task group
+        public static void InsertTaskGroup(string groupName, string walletGroup) // Inserts a new task group
         {
-            string query = "INSERT INTO 'task_groups' (group_name) VALUES (@groupName)";
+            string query = "INSERT INTO 'task_groups' (group_name, walletGroup) VALUES (@groupName, @walletGroup)";
             using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@groupName", groupName);
+                    command.Parameters.AddWithValue("@walletGroup", walletGroup);
                     connection.Open();
                     command.ExecuteNonQuery();
                 }
@@ -263,6 +264,27 @@ namespace catwiftools.tasks
                 }
             }
             return wallets.ToArray();
+        }
+
+        public static List<string> GetAllWalletGroupNames()
+        {
+            List<string> groupNames = new List<string>();
+            string query = "SELECT group_name FROM 'wallet_groups'";
+            using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+            {
+                using (SqliteCommand command = new SqliteCommand(query, connection))
+                {
+                    connection.Open();
+                    using (SqliteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            groupNames.Add(reader.GetString(0));
+                        }
+                    }
+                }
+            }
+            return groupNames;
         }
     }
 }
