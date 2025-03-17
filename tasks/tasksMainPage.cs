@@ -150,7 +150,8 @@ namespace catwiftools.tasks
             }
             foreach (int task_id in loaded_tasks)
             {
-                CreateTaskBox(task_id);
+                Dictionary<string, string> parameters = TaskHelper.GetTaskParameters(task_id);
+                CreateTaskBox(task_id, parameters);
             }
             lblGroupAmount.Text = "Total Groups: " + TaskHelper.GetGroupCount();
             lblTaskAmount.Text = "Total Tasks: " + TaskHelper.GetTaskCount();
@@ -239,7 +240,7 @@ namespace catwiftools.tasks
             flpTaskGroupList.Controls.Add(gbxTaskGroup);
         }        
 
-        private void CreateTaskBox(int task_id) // Method to create a task box
+        private void CreateTaskBox(int task_id, Dictionary<string, string> parameters) // Method to create a task box
         {
             TaskHelper taskHelper = new TaskHelper();
 
@@ -279,69 +280,106 @@ namespace catwiftools.tasks
             gbxTask.Size = new Size(890, 100);
             gbxTask.TabIndex = 42;
             gbxTask.TabStop = false;
-            // 
-            // lblParamValue4
-            // 
-            lblParamValue4.AutoSize = true;
-            lblParamValue4.ForeColor = Color.White;
-            lblParamValue4.Location = new Point(554, 56);
-            lblParamValue4.Name = "lblParamValue4";
-            lblParamValue4.Size = new Size(72, 15);
-            lblParamValue4.TabIndex = 52;
-            lblParamValue4.Text = "Param Value";
-            // 
-            // lblParamName4
-            // 
-            lblParamName4.AutoSize = true;
-            lblParamName4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblParamName4.ForeColor = Color.White;
-            lblParamName4.Location = new Point(443, 56);
-            lblParamName4.Name = "lblParamName4";
-            lblParamName4.Size = new Size(78, 15);
-            lblParamName4.TabIndex = 51;
-            lblParamName4.Text = "Param Name";
-            // 
-            // lblParamValue3
-            // 
-            lblParamValue3.AutoSize = true;
-            lblParamValue3.ForeColor = Color.White;
-            lblParamValue3.Location = new Point(554, 26);
-            lblParamValue3.Name = "lblParamValue3";
-            lblParamValue3.Size = new Size(72, 15);
-            lblParamValue3.TabIndex = 50;
-            lblParamValue3.Text = "Param Value";
-            // 
-            // lblParamName3
-            // 
-            lblParamName3.AutoSize = true;
-            lblParamName3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblParamName3.ForeColor = Color.White;
-            lblParamName3.Location = new Point(443, 26);
-            lblParamName3.Name = "lblParamName3";
-            lblParamName3.Size = new Size(78, 15);
-            lblParamName3.TabIndex = 49;
-            lblParamName3.Text = "Param Name";
-            // 
-            // lblParamValue2
-            // 
-            lblParamValue2.AutoSize = true;
-            lblParamValue2.ForeColor = Color.White;
-            lblParamValue2.Location = new Point(308, 56);
-            lblParamValue2.Name = "lblParamValue2";
-            lblParamValue2.Size = new Size(72, 15);
-            lblParamValue2.TabIndex = 48;
-            lblParamValue2.Text = "Param Value";
-            // 
-            // lblParamName2
-            // 
-            lblParamName2.AutoSize = true;
-            lblParamName2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblParamName2.ForeColor = Color.White;
-            lblParamName2.Location = new Point(197, 56);
-            lblParamName2.Name = "lblParamName2";
-            lblParamName2.Size = new Size(78, 15);
-            lblParamName2.TabIndex = 47;
-            lblParamName2.Text = "Param Name";
+            
+            
+            if (parameters.Count > 0)
+            {
+                // 
+                // lblParamName1
+                // 
+                lblParamName1.AutoSize = true;
+                lblParamName1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+                lblParamName1.ForeColor = Color.White;
+                lblParamName1.Location = new Point(197, 26);
+                lblParamName1.Name = "lblParamName1";
+                lblParamName1.Size = new Size(78, 15);
+                lblParamName1.TabIndex = 45;
+                // 
+                // lblParamValue1
+                // 
+                lblParamValue1.AutoSize = true;
+                lblParamValue1.ForeColor = Color.White;
+                lblParamValue1.Location = new Point(308, 26);
+                lblParamValue1.Name = "lblParamValue1";
+                lblParamValue1.Size = new Size(72, 15);
+                lblParamValue1.TabIndex = 46;
+                lblParamName1.Text = parameters.ElementAt(0).Key;
+                lblParamValue1.Text = parameters.ElementAt(0).Value;
+            }
+            if (parameters.Count > 1)
+            {
+                // 
+                // lblParamValue2
+                // 
+                lblParamValue2.AutoSize = true;
+                lblParamValue2.ForeColor = Color.White;
+                lblParamValue2.Location = new Point(308, 56);
+                lblParamValue2.Name = "lblParamValue2";
+                lblParamValue2.Size = new Size(72, 15);
+                lblParamValue2.TabIndex = 48;
+                // 
+                // lblParamName2
+                // 
+                lblParamName2.AutoSize = true;
+                lblParamName2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+                lblParamName2.ForeColor = Color.White;
+                lblParamName2.Location = new Point(197, 56);
+                lblParamName2.Name = "lblParamName2";
+                lblParamName2.Size = new Size(78, 15);
+                lblParamName2.TabIndex = 47;
+                lblParamName2.Text = parameters.ElementAt(1).Key;
+                lblParamValue2.Text = parameters.ElementAt(1).Value;
+            }
+            if (parameters.Count > 2)
+            {
+                // 
+                // lblParamValue3
+                // 
+                lblParamValue3.AutoSize = true;
+                lblParamValue3.ForeColor = Color.White;
+                lblParamValue3.Location = new Point(554, 26);
+                lblParamValue3.Name = "lblParamValue3";
+                lblParamValue3.Size = new Size(72, 15);
+                lblParamValue3.TabIndex = 50;
+                // 
+                // lblParamName3
+                // 
+                lblParamName3.AutoSize = true;
+                lblParamName3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+                lblParamName3.ForeColor = Color.White;
+                lblParamName3.Location = new Point(443, 26);
+                lblParamName3.Name = "lblParamName3";
+                lblParamName3.Size = new Size(78, 15);
+                lblParamName3.TabIndex = 49;
+                lblParamName3.Text = parameters.ElementAt(2).Key;
+                lblParamValue3.Text = parameters.ElementAt(2).Value;
+            }
+            if (parameters.Count > 3)
+            {
+                // 
+                // lblParamValue4
+                // 
+                lblParamValue4.AutoSize = true;
+                lblParamValue4.ForeColor = Color.White;
+                lblParamValue4.Location = new Point(554, 56);
+                lblParamValue4.Name = "lblParamValue4";
+                lblParamValue4.Size = new Size(72, 15);
+                lblParamValue4.TabIndex = 52;
+                // 
+                // lblParamName4
+                // 
+                lblParamName4.AutoSize = true;
+                lblParamName4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+                lblParamName4.ForeColor = Color.White;
+                lblParamName4.Location = new Point(443, 56);
+                lblParamName4.Name = "lblParamName4";
+                lblParamName4.Size = new Size(78, 15);
+                lblParamName4.TabIndex = 51;
+                lblParamName4.Text = parameters.ElementAt(3).Key;
+                lblParamValue4.Text = parameters.ElementAt(3).Value;
+            }
+            
+                       
             // 
             // btnEditTask
             // 
@@ -366,27 +404,7 @@ namespace catwiftools.tasks
             btnDeleteTask.Text = "Delete";
             btnDeleteTask.UseVisualStyleBackColor = false;
             btnDeleteTask.Click += btnDeleteTask_Click;
-            // 
-            // lblParamValue1
-            // 
-            lblParamValue1.AutoSize = true;
-            lblParamValue1.ForeColor = Color.White;
-            lblParamValue1.Location = new Point(308, 26);
-            lblParamValue1.Name = "lblParamValue1";
-            lblParamValue1.Size = new Size(72, 15);
-            lblParamValue1.TabIndex = 46;
-            lblParamValue1.Text = "Param Value";
-            // 
-            // lblParamName1
-            // 
-            lblParamName1.AutoSize = true;
-            lblParamName1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblParamName1.ForeColor = Color.White;
-            lblParamName1.Location = new Point(197, 26);
-            lblParamName1.Name = "lblParamName1";
-            lblParamName1.Size = new Size(78, 15);
-            lblParamName1.TabIndex = 45;
-            lblParamName1.Text = "Param Name";
+            
             // 
             // lblTaskName
             // 

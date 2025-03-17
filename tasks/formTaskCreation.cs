@@ -218,35 +218,35 @@ namespace catwiftools.tasks
 
         private void updateParameters()
         {
-            parameters.Add("token_contract", token_contract);
+            parameters.Add("Token Contract", token_contract);
 
             if (active_panel == pnlBuyParameters)
             {
                 if (!string.IsNullOrEmpty(minimum_buy))
                 {
-                    parameters.Add("minimum_buy", minimum_buy);
+                    parameters.Add("Minimum Buy", minimum_buy);
                 }
                 if (!string.IsNullOrEmpty(maximum_buy))
                 {
-                    parameters.Add("maximum_buy", maximum_buy);
+                    parameters.Add("Maximum Buy", maximum_buy);
                 }
                 if (!string.IsNullOrEmpty(delay))
                 {
-                    parameters.Add("delay", delay);
+                    parameters.Add("Delay", delay);
                 }
             }
             else if (active_panel == pnlSellAll)
             {
                 if (!string.IsNullOrEmpty(delay))
                 {
-                    parameters.Add("delay", delay);
+                    parameters.Add("Delay", delay);
                 }
             }
             else if (active_panel == pnlSingleSell)
             {
                 if (!string.IsNullOrEmpty(wallet))
                 {
-                    parameters.Add("wallet", wallet);
+                    parameters.Add("Wallets", wallet);
                 }
 
             }
@@ -254,26 +254,26 @@ namespace catwiftools.tasks
             {
                 if (!string.IsNullOrEmpty(comments))
                 {
-                    parameters.Add("comments", comments);
+                    parameters.Add("Comments", comments);
                 }
                 if (!string.IsNullOrEmpty(comments))
                 {
-                    parameters.Add("comments", comments);
+                    parameters.Add("Comments", comments);
                 }
             }
             else if (active_panel == pnlBumpIt)
             {
                 if (!string.IsNullOrEmpty(buy_amount))
                 {
-                    parameters.Add("buy_amount", buy_amount);
+                    parameters.Add("Buy Amount", buy_amount);
                 }
                 if (!string.IsNullOrEmpty(delay))
                 {
-                    parameters.Add("delay", delay);
+                    parameters.Add("Delay", delay);
                 }
                 if (!string.IsNullOrEmpty(wallet))
                 {
-                    parameters.Add("wallet", wallet);
+                    parameters.Add("Wallet", wallet);
                 }
             }
         }
