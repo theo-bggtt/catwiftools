@@ -14,7 +14,7 @@ namespace catwiftools.wallet
     public partial class walletGroup : UserControl
     {
         private List<String> groupNames = new List<String>();
-        private int group_id = 0;
+        public static int group_id = 0;
         private List<String> walletMnemonics = new List<string>();
 
         public walletGroup()
@@ -243,11 +243,16 @@ namespace catwiftools.wallet
 
             Button viewButton = new Button();
             viewButton.Text = "View";
-            viewButton.Location = new Point(100, 120);
+            viewButton.Location = new Point(20, 120);
             viewButton.ForeColor = Color.White;
             viewButton.BackColor = Color.FromArgb(78, 93, 148);
             viewButton.AutoSize = true;
-            //viewButton.Click += (s, ev) =>;
+            // On click, use FormWalletList to show the wallets of the group
+            viewButton.Click += (s, ev) =>
+            {
+                FormWalletList formWalletList = new FormWalletList();
+                formWalletList.Show();
+            };
 
             borderlessGroupBox.Controls.Add(lbAmount);
             borderlessGroupBox.Controls.Add(lbName);

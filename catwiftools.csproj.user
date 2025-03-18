@@ -37,6 +37,9 @@
     <Compile Update="tasks\tasksMainPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="wallet\FormWalletList.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="wallet\supplyWalletForm.cs">
       <SubType>Form</SubType>
     </Compile>

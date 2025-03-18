@@ -243,6 +243,28 @@ namespace catwiftools.tasks
             }
         }
 
+        public static string[] GetWalletFromGroup(int group_id)
+        {
+            List<string> wallets = new List<string>();
+            string query = "SELECT walletAddress FROM 'wallets' WHERE group_id = @group_id";
+            using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+            {
+                using (SqliteCommand command = new SqliteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@group_id", group_id);
+                    connection.Open();
+                    using (SqliteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            wallets.Add(reader.GetString(0));
+                        }
+                    }
+                }
+            }
+            return wallets.ToArray();
+        }
+
         public static string[] GetAllWallets()
         {
             string fundwallet = Functions.CheckForFundWallet();

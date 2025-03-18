@@ -20,7 +20,7 @@ namespace catwiftools.wallet
         private static readonly string heliusUrl = envVariables.HeliusUrl;
         private static readonly string apiKey = envVariables.ApiKey;
 
-        public static async Task<double> GetWalletBalance(string walletAddress, int walletType)
+        public static async Task<double> GetWalletBalance(string walletAddress)
         {
             var rpcClient = ClientFactory.GetClient(Cluster.DevNet);
             var balanceResponse = await rpcClient.GetBalanceAsync(walletAddress);
@@ -94,7 +94,7 @@ namespace catwiftools.wallet
             foreach (DataRow row in wallets.Rows)
             {
                 string walletAddress = row["walletAddress"]?.ToString() ?? string.Empty;
-                double balance = await GetWalletBalance(walletAddress, walletType);
+                double balance = await GetWalletBalance(walletAddress);
                 await Task.Run(() => SaveBalanceToDatabase(walletAddress, balance));
             }
         }

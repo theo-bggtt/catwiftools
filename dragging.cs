@@ -18,7 +18,7 @@ namespace catwiftools
         private static void AttachDragEvents(Control control)
         {
             // Attach Mouse events only to the form and GroupBox controls
-            if (control is Form || control is System.Windows.Forms.GroupBox || control is System.Windows.Forms.UserControl)
+            if (control is Form || control is System.Windows.Forms.GroupBox || control is System.Windows.Forms.UserControl || control is System.Windows.Forms.FlowLayoutPanel)
             {
                 control.MouseDown += Control_MouseDown;
                 control.MouseMove += Control_MouseMove;
