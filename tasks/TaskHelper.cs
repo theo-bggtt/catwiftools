@@ -136,7 +136,7 @@ namespace catwiftools.tasks
             }
         }
 
-        public static void InsertTaskGroup(string groupName, string walletGroup) // Inserts a new task group
+        public static void InsertTaskGroup(string groupName, string walletGroup)
         {
             string query = "INSERT INTO 'task_groups' (group_name, walletGroup) VALUES (@groupName, @walletGroup)";
             using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
