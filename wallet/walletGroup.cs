@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Data.Sqlite;
+using static catwiftools.CatWifTools;
 
 namespace catwiftools.wallet
 {
@@ -16,6 +17,7 @@ namespace catwiftools.wallet
         private List<String> groupNames = new List<String>();
         public static int group_id = 0;
         private List<String> walletMnemonics = new List<string>();
+        private ControlPanelForm controlPanelForm;
 
         public walletGroup()
         {
@@ -26,7 +28,7 @@ namespace catwiftools.wallet
         {
 
             GetGroups();
-            
+
             foreach (string groupName in groupNames)
             {
                 group_id = GetGroupId(groupName);
@@ -70,7 +72,7 @@ namespace catwiftools.wallet
 
         private void btnCreateGroup_Click(object sender, EventArgs e)
         {
-            
+
             using (WalletGroupForm optionsForm = new WalletGroupForm())
             {
                 if (optionsForm.ShowDialog() == DialogResult.OK)
@@ -96,6 +98,7 @@ namespace catwiftools.wallet
                     WalletGenerator.WalletCreator walletCreator = new WalletGenerator.WalletCreator();
                     walletCreator.SaveWallets(walletMnemonics, group_id);
                     UpdateInfo();
+                    AppState.WriteConsole($"Wallet Group '{groupName}' with {walletAmount} wallets created!");
                 }
             }
         }
@@ -205,7 +208,8 @@ namespace catwiftools.wallet
                         connection.Open();
                         command.ExecuteNonQuery();
                     }
-                }          
+                }
+                AppState.WriteConsole($"Group {group_id} deleted!");
             }
             UpdateInfo();
         }
@@ -261,6 +265,11 @@ namespace catwiftools.wallet
 
             flpWalletGroup.Controls.Add(borderlessGroupBox);
 
+        }
+
+        private void btnUpdateGroup_Click(object sender, EventArgs e)
+        {
+            AppState.WriteConsole("Wallet Data updated!");
         }
     }
 }

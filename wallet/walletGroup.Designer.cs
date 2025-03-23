@@ -118,6 +118,7 @@
             btnUpdateGroup.TabIndex = 15;
             btnUpdateGroup.Text = "Update Group Info";
             btnUpdateGroup.UseVisualStyleBackColor = false;
+            btnUpdateGroup.Click += btnUpdateGroup_Click;
             // 
             // walletGroup
             // 

@@ -1,6 +1,7 @@
 ﻿using catwiftools.settings;
 using catwiftools.wallet;
 using Microsoft.Data.Sqlite;
+using System.Net.NetworkInformation;
 namespace catwiftools
 {
     public partial class CatWifTools : Form
@@ -8,6 +9,8 @@ namespace catwiftools
         Functions functions = new Functions();
         private Dictionary<Button, Control> buttonControlMap = new Dictionary<Button, Control>();
         public string fundWallet = "";
+        private ControlPanelForm controlPanelForm;
+        private walletGroup walletGroup; // Add this line
 
         public CatWifTools()
         {
@@ -16,6 +19,7 @@ namespace catwiftools
             this.Paint += Form_Paint;
             InitializeButtonControlMap();
             fundWallet = Functions.CheckForFundWallet();
+            walletGroup = new walletGroup(); // Add this line
         }
 
         private void CatWifTools_Load(object sender, EventArgs e)
@@ -31,19 +35,19 @@ namespace catwiftools
         private void InitializeButtonControlMap()
         {
             buttonControlMap = new Dictionary<Button, Control>
-            {
-                { btnSettings, gbxSettingsNav },
-                { btnWallets, walletVolume1 },
-                { btnTasks, tasksMainPage1 },
-                { btnBundler, bundlerMainPage1 },
-                { btnProxies, proxiesMainPage1 },
+                {
+                    { btnSettings, gbxSettingsNav },
+                    { btnWallets, walletVolume1 },
+                    { btnTasks, tasksMainPage1 },
+                    { btnBundler, bundlerMainPage1 },
+                    { btnProxies, proxiesMainPage1 },
 
-                { btnSettingsGeneral, settingsGeneral1 },
-                { btnSettingsVolume, settingsVolume1 },
-                { btnSettingsBundler, settingsBundler1 },
-                { btnSettingsBumpIt, settingsBumpIt1 }
+                    { btnSettingsGeneral, settingsGeneral1 },
+                    { btnSettingsVolume, settingsVolume1 },
+                    { btnSettingsBundler, settingsBundler1 },
+                    { btnSettingsBumpIt, settingsBumpIt1 }
 
-            };
+                };
         }
 
         private List<Control> GetControlsForButton(Button button)
@@ -97,18 +101,18 @@ namespace catwiftools
             }
 
             var allControls = new List<Control>
-            {
-                gbxSettingsNav,
-                bundlerMainPage1,
-                tasksMainPage1,
-                proxiesMainPage1,
-                gbxBackground,
-                walletVolume1,
-                settingsGeneral1,
-                settingsVolume1,
-                settingsBundler1,
-                settingsBumpIt1,
-            };
+                {
+                    gbxSettingsNav,
+                    bundlerMainPage1,
+                    tasksMainPage1,
+                    proxiesMainPage1,
+                    gbxBackground,
+                    walletVolume1,
+                    settingsGeneral1,
+                    settingsVolume1,
+                    settingsBundler1,
+                    settingsBumpIt1,
+                };
 
             foreach (var control in allControls)
             {
@@ -205,14 +209,25 @@ namespace catwiftools
             }
         }
 
-        private void gbxWalletNav_VisibleChanged(object sender, EventArgs e)
+        private void gbxSettingsNav_VisibleChanged(object sender, EventArgs e)
         {
             this.Invalidate();
         }
 
-        private void gbxSettingsNav_VisibleChanged(object sender, EventArgs e)
+        private void btnControlPanel_Click(object sender, EventArgs e)
         {
-            this.Invalidate();
+            if (AppState.ControlPanelForm == null || AppState.ControlPanelForm.IsDisposed)
+            {
+                AppState.ControlPanelForm = new ControlPanelForm();
+                AppState.ControlPanelForm.Show();
+                AppState.WriteConsole("Control Panel opened");
+            }
+            else
+            {
+                AppState.ControlPanelForm.BringToFront();
+                AppState.ControlPanelForm.Location = new Point(this.Location.X + (this.Width / 4), this.Location.Y);
+                AppState.ControlPanelForm.Visible = true;
+            }
         }
     }
 }

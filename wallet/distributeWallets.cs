@@ -56,11 +56,11 @@ namespace catwiftools.wallet
                 // Check balance
                 var balanceResponse = await rpcClient.GetBalanceAsync(fromAccount);
                 double balanceSol = balanceResponse.Result.Value / 1_000_000_000.0;
-                Console.WriteLine($"🔎 Wallet Balance: {balanceSol} SOL");
+                AppState.WriteConsole($"🔎 Wallet Balance: {balanceSol} SOL");
 
                 if (balanceSol < 0.002) // Ensure sufficient balance for fees
                 {
-                    Console.WriteLine("❌ Not enough SOL to send.");
+                    AppState.WriteConsole("❌ Not enough SOL to send.");
                     return;
                 }
 
@@ -68,11 +68,11 @@ namespace catwiftools.wallet
                 var blockHashResponse = await rpcClient.GetLatestBlockHashAsync();
                 if (!blockHashResponse.WasSuccessful)
                 {
-                    Console.WriteLine("❌ Failed to fetch latest block hash.");
+                    AppState.WriteConsole("❌ Failed to fetch latest block hash.");
                     return;
                 }
                 string blockHash = blockHashResponse.Result.Value.Blockhash;
-                Console.WriteLine($"🔎 Blockhash: {blockHash}");
+                AppState.WriteConsole($"🔎 Blockhash: {blockHash}");
 
                 ulong amountLamports = 200_000_000; // 0.2 SOL
 
@@ -95,17 +95,17 @@ namespace catwiftools.wallet
 
                 // Send transaction
                 var firstSig = await rpcClient.SendTransactionAsync(tx);
-                Console.WriteLine($"✅ Transaction Sent! Signature: {firstSig.Result}");
+                AppState.WriteConsole($"✅ Transaction Sent! Signature: {firstSig.Result}");
 
                 if (!firstSig.WasSuccessful)
                 {
-                    Console.WriteLine($"❌ Transaction Failed: {firstSig.Reason}");
-                    Console.WriteLine($"❌ Full Response: {firstSig.RawRpcResponse}");
+                    AppState.WriteConsole($"❌ Transaction Failed: {firstSig.Reason}");
+                    AppState.WriteConsole($"❌ Full Response: {firstSig.RawRpcResponse}");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Error: {ex.Message}");
+                AppState.WriteConsole($"❌ Error: {ex.Message}");
             }
         }
 
@@ -121,7 +121,7 @@ namespace catwiftools.wallet
                 PublicKey toAccount = new PublicKey(address);
 
                 var balanceResponse = await rpcClient.GetBalanceAsync(fromAccount);
-                Console.WriteLine($"🔎 Wallet Balance: {balanceResponse.Result.Value / 1_000_000_000.0} SOL");
+                AppState.WriteConsole($"🔎 Wallet Balance: {balanceResponse.Result.Value / 1_000_000_000.0} SOL");
 
                 ulong amountLamports = balanceResponse.Result.Value - 5000; // 0.2 SOL
 
@@ -138,11 +138,11 @@ namespace catwiftools.wallet
                 var blockHashResponse = await rpcClient.GetLatestBlockHashAsync();
                 if (!blockHashResponse.WasSuccessful)
                 {
-                    Console.WriteLine("❌ Failed to fetch latest block hash.");
+                    AppState.WriteConsole("❌ Failed to fetch latest block hash.");
                     return;
                 }
                 string blockHash = blockHashResponse.Result.Value.Blockhash;
-                Console.WriteLine($"🔎 Blockhash: {blockHash}");
+                AppState.WriteConsole($"🔎 Blockhash: {blockHash}");
 
                 var tx = new TransactionBuilder()
                     .SetRecentBlockHash(blockHash)
@@ -152,17 +152,17 @@ namespace catwiftools.wallet
                     .Build(wallet.Account);
 
                 var firstSig = await rpcClient.SendTransactionAsync(tx);
-                Console.WriteLine($"✅ Transaction Sent! Signature: {firstSig.Result}");
+                AppState.WriteConsole($"✅ Transaction Sent! Signature: {firstSig.Result}");
 
                 if (!firstSig.WasSuccessful)
                 {
-                    Console.WriteLine($"❌ Transaction Failed: {firstSig.Reason}");
-                    Console.WriteLine($"❌ Full Response: {firstSig.RawRpcResponse}");
+                    AppState.WriteConsole($"❌ Transaction Failed: {firstSig.Reason}");
+                    AppState.WriteConsole($"❌ Full Response: {firstSig.RawRpcResponse}");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Error: {ex.Message}");
+                AppState.WriteConsole($"❌ Error: {ex.Message}");
             }
         }
     }

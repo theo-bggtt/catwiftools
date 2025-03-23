@@ -59,6 +59,7 @@
             settingsBumpIt1 = new catwiftools.settings.settingsBumpIt();
             walletVolume1 = new catwiftools.wallet.walletGroup();
             settingsGeneral1 = new catwiftools.settings.settingsGeneral();
+            btnControlPanel = new Button();
             ((System.ComponentModel.ISupportInitialize)pbxLogo).BeginInit();
             gbxBackground.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -476,6 +477,16 @@
             settingsGeneral1.Size = new Size(990, 762);
             settingsGeneral1.TabIndex = 42;
             // 
+            // btnControlPanel
+            // 
+            btnControlPanel.Location = new Point(426, 6);
+            btnControlPanel.Name = "btnControlPanel";
+            btnControlPanel.Size = new Size(75, 23);
+            btnControlPanel.TabIndex = 43;
+            btnControlPanel.Text = "console";
+            btnControlPanel.UseVisualStyleBackColor = true;
+            btnControlPanel.Click += btnControlPanel_Click;
+            // 
             // CatWifTools
             // 
             AutoScaleMode = AutoScaleMode.None;
@@ -483,6 +494,7 @@
             BackColor = Color.FromArgb(25, 25, 25);
             ClientSize = new Size(1440, 810);
             ControlBox = false;
+            Controls.Add(btnControlPanel);
             Controls.Add(settingsGeneral1);
             Controls.Add(gbxMainNav);
             Controls.Add(pbxLogo);
@@ -551,5 +563,6 @@
         public Button btnSettingsBumpIt;
         private wallet.walletGroup walletVolume1;
         private settings.settingsGeneral settingsGeneral1;
+        private Button btnControlPanel;
     }
 }

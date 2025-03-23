@@ -58,7 +58,7 @@ namespace WalletGenerator
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine("Error: " + ex.Message);
+                        AppState.WriteConsole("Error: " + ex.Message);
                     }
                 }
             }
@@ -104,7 +104,7 @@ namespace WalletGenerator
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Error: " + ex.Message);
+                    AppState.WriteConsole("Error: " + ex.Message);
                 }
             }
         }

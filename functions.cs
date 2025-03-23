@@ -183,7 +183,8 @@ namespace catwiftools
                     }
                 }
             }
-            Console.WriteLine(Walletphrase);
+            string[] words = Walletphrase.Split(' ');
+            AppState.WriteConsole(words[0] + " " + words[1] + " " + words[2] + " " + words[3] + " ...");
             return Walletphrase;
         }
 
