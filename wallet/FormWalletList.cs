@@ -14,10 +14,12 @@ namespace catwiftools.wallet
 {
     public partial class FormWalletList : Form
     {
-        public FormWalletList()
+        private int group_id;
+        public FormWalletList(int group_id)
         {
             InitializeComponent();
             DraggingHelper.EnableDragging(this);
+            this.group_id = group_id;
         }
 
         private void btnCloseApp_Click(object sender, EventArgs e)
@@ -28,9 +30,7 @@ namespace catwiftools.wallet
         private void FormWalletList_Load(object sender, EventArgs e)
         {
             flpWallets.Controls.Clear();
-
-            int group_id = walletGroup.group_id;
-            string[] walletsArray = TaskHelper.GetWalletFromGroup(group_id: group_id);
+            string[] walletsArray = TaskHelper.GetWalletFromGroup(group_id);
             List<string> wallets = new List<string>(walletsArray);
             foreach (string walletAddress in wallets)
             {
@@ -41,7 +41,7 @@ namespace catwiftools.wallet
 
         private async void createGroupBoxWallet(string walletAddress)
         {
-            var balancea = await RetrieveBalance.GetWalletBalance(walletAddress);
+            var balancea = await balanceHelper.GetWalletBalance(walletAddress);
             string balance = balancea.ToString();
 
             gbxWallet = new BorderlessGroupBox();

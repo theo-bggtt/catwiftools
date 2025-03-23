@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace catwiftools.wallet
 {
-    internal class RetrieveBalance
+    internal class balanceHelper
     {
         
         private static readonly (string ConnectionString, string HeliusUrl, string ApiKey) envVariables = Functions.LoadEnvVariables();
@@ -29,34 +29,25 @@ namespace catwiftools.wallet
             return balanceSol;
         }
 
-        //public static async Task<double> GetWalletBalance(string walletAddress, int walletType)
-        //{
-        //    using (var httpClient = new HttpClient())
-        //    {
-        //        httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
-
-        //        var requestPayload = new
-        //        {
-        //            jsonrpc = "2.0",
-        //            id = 1,
-        //            method = "getBalance",
-        //            @params = new object[] { walletAddress }
-        //        };
-
-        //        var jsonPayload = Newtonsoft.Json.JsonConvert.SerializeObject(requestPayload);
-        //        var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
-
-        //        var response = await httpClient.PostAsync(heliusUrl, content);
-        //        response.EnsureSuccessStatusCode();
-
-        //        var jsonResponse = await response.Content.ReadAsStringAsync();
-        //        var result = JObject.Parse(jsonResponse);
-
-        //        var balanceInLamports = result["result"]?["value"]?.Value<long>() ?? 0;
-
-        //        return balanceInLamports / 1_000_000_000.0;
-        //    }
-        //}
+        public static string getFundAddress()
+        {
+            string fundWallet = string.Empty;
+            
+            string query = "SELECT walletAddress FROM wallets WHERE group_id = 0";
+            using (SqliteConnection connection = new SqliteConnection(connectionString))
+            {
+                using (SqliteCommand command = new SqliteCommand(query, connection))
+                {
+                    connection.Open();
+                    var result = command.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        fundWallet = result.ToString();
+                    }
+                }
+            }
+            return fundWallet;
+        }
 
         public DataTable GetWallets(int walletType)
         {

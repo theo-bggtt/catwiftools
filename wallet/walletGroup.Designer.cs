@@ -30,11 +30,20 @@
         {
             lbGroupAmount = new Label();
             flpWalletGroup = new FlowLayoutPanel();
+            borderlessGroupBox = new BorderlessGroupBox();
+            btnWithdraw = new Button();
+            btnDeposit = new Button();
+            lbAmount = new Label();
+            lbName = new Label();
+            delButton = new Button();
+            viewButton = new Button();
             btnCreateGroup = new Button();
             lblSettings = new Label();
             lbTotalWallet = new Label();
             label2 = new Label();
             btnUpdateGroup = new Button();
+            flpWalletGroup.SuspendLayout();
+            borderlessGroupBox.SuspendLayout();
             SuspendLayout();
             // 
             // lbGroupAmount
@@ -52,11 +61,117 @@
             // 
             flpWalletGroup.AutoScroll = true;
             flpWalletGroup.BorderStyle = BorderStyle.FixedSingle;
+            flpWalletGroup.Controls.Add(borderlessGroupBox);
             flpWalletGroup.Location = new Point(10, 160);
             flpWalletGroup.Margin = new Padding(0);
             flpWalletGroup.Name = "flpWalletGroup";
             flpWalletGroup.Size = new Size(1140, 587);
             flpWalletGroup.TabIndex = 3;
+            // 
+            // borderlessGroupBox
+            // 
+            borderlessGroupBox.BackColor = Color.FromArgb(40, 40, 40);
+            borderlessGroupBox.Controls.Add(btnWithdraw);
+            borderlessGroupBox.Controls.Add(btnDeposit);
+            borderlessGroupBox.Controls.Add(lbAmount);
+            borderlessGroupBox.Controls.Add(lbName);
+            borderlessGroupBox.Controls.Add(delButton);
+            borderlessGroupBox.Controls.Add(viewButton);
+            borderlessGroupBox.FlatStyle = FlatStyle.Flat;
+            borderlessGroupBox.ForeColor = Color.White;
+            borderlessGroupBox.Location = new Point(29, 29);
+            borderlessGroupBox.Margin = new Padding(29);
+            borderlessGroupBox.Name = "borderlessGroupBox";
+            borderlessGroupBox.Size = new Size(260, 143);
+            borderlessGroupBox.TabIndex = 0;
+            borderlessGroupBox.TabStop = false;
+            borderlessGroupBox.Visible = false;
+            // 
+            // btnWithdraw
+            // 
+            btnWithdraw.AutoSize = true;
+            btnWithdraw.BackColor = Color.Transparent;
+            btnWithdraw.FlatAppearance.BorderColor = Color.FromArgb(78, 93, 148);
+            btnWithdraw.FlatAppearance.BorderSize = 0;
+            btnWithdraw.FlatAppearance.MouseOverBackColor = Color.FromArgb(25, 25, 25);
+            btnWithdraw.FlatStyle = FlatStyle.Flat;
+            btnWithdraw.ForeColor = Color.White;
+            btnWithdraw.Image = Properties.Resources.send;
+            btnWithdraw.ImageAlign = ContentAlignment.MiddleRight;
+            btnWithdraw.Location = new Point(140, 88);
+            btnWithdraw.Name = "btnWithdraw";
+            btnWithdraw.Size = new Size(110, 45);
+            btnWithdraw.TabIndex = 5;
+            btnWithdraw.Text = "Withdraw";
+            btnWithdraw.TextAlign = ContentAlignment.MiddleLeft;
+            btnWithdraw.UseVisualStyleBackColor = false;
+            // 
+            // btnDeposit
+            // 
+            btnDeposit.AutoSize = true;
+            btnDeposit.BackColor = Color.Transparent;
+            btnDeposit.FlatAppearance.BorderColor = Color.FromArgb(78, 93, 148);
+            btnDeposit.FlatAppearance.BorderSize = 0;
+            btnDeposit.FlatAppearance.MouseOverBackColor = Color.FromArgb(25, 25, 25);
+            btnDeposit.FlatStyle = FlatStyle.Flat;
+            btnDeposit.ForeColor = Color.White;
+            btnDeposit.Image = Properties.Resources.receive;
+            btnDeposit.ImageAlign = ContentAlignment.MiddleRight;
+            btnDeposit.Location = new Point(10, 88);
+            btnDeposit.Name = "btnDeposit";
+            btnDeposit.Size = new Size(110, 45);
+            btnDeposit.TabIndex = 4;
+            btnDeposit.Text = "Deposit";
+            btnDeposit.TextAlign = ContentAlignment.MiddleLeft;
+            btnDeposit.UseVisualStyleBackColor = false;
+            // 
+            // lbAmount
+            // 
+            lbAmount.AutoSize = true;
+            lbAmount.Location = new Point(10, 49);
+            lbAmount.Name = "lbAmount";
+            lbAmount.Size = new Size(93, 15);
+            lbAmount.TabIndex = 0;
+            lbAmount.Text = "Wallet Amount: ";
+            // 
+            // lbName
+            // 
+            lbName.AutoSize = true;
+            lbName.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbName.Location = new Point(10, 13);
+            lbName.Name = "lbName";
+            lbName.Size = new Size(107, 21);
+            lbName.TabIndex = 1;
+            lbName.Text = "Group Name: ";
+            // 
+            // delButton
+            // 
+            delButton.AutoSize = true;
+            delButton.BackColor = Color.DarkRed;
+            delButton.FlatAppearance.BorderSize = 0;
+            delButton.FlatStyle = FlatStyle.Flat;
+            delButton.ForeColor = Color.White;
+            delButton.Image = Properties.Resources.Close;
+            delButton.Location = new Point(220, 10);
+            delButton.Name = "delButton";
+            delButton.Size = new Size(30, 30);
+            delButton.TabIndex = 2;
+            delButton.UseVisualStyleBackColor = false;
+            // 
+            // viewButton
+            // 
+            viewButton.AutoSize = true;
+            viewButton.BackColor = Color.FromArgb(78, 93, 148);
+            viewButton.FlatAppearance.BorderSize = 0;
+            viewButton.FlatStyle = FlatStyle.Flat;
+            viewButton.ForeColor = Color.White;
+            viewButton.Image = Properties.Resources.eye1;
+            viewButton.Location = new Point(173, 10);
+            viewButton.Name = "viewButton";
+            viewButton.Size = new Size(30, 30);
+            viewButton.TabIndex = 3;
+            viewButton.TextAlign = ContentAlignment.MiddleLeft;
+            viewButton.UseVisualStyleBackColor = false;
             // 
             // btnCreateGroup
             // 
@@ -135,6 +250,9 @@
             Name = "walletGroup";
             Size = new Size(1210, 762);
             Load += walletGroup_Load;
+            flpWalletGroup.ResumeLayout(false);
+            borderlessGroupBox.ResumeLayout(false);
+            borderlessGroupBox.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -148,5 +266,12 @@
         private Label lbTotalWallet;
         private Label label2;
         private Button btnUpdateGroup;
+        private BorderlessGroupBox borderlessGroupBox;
+        private Button btnWithdraw;
+        private Button btnDeposit;
+        private Label lbAmount;
+        private Label lbName;
+        private Button delButton;
+        private Button viewButton;
     }
 }

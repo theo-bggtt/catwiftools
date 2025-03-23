@@ -17,7 +17,6 @@ namespace catwiftools.wallet
         private List<String> groupNames = new List<String>();
         public static int group_id = 0;
         private List<String> walletMnemonics = new List<string>();
-        private ControlPanelForm controlPanelForm;
 
         public walletGroup()
         {
@@ -218,43 +217,126 @@ namespace catwiftools.wallet
         {
             // Create a new GroupbBox with 2 labels (one for walletAmount and one with groupName) and add that groupbox to flpWalletGroup
             BorderlessGroupBox borderlessGroupBox = new BorderlessGroupBox();
-            borderlessGroupBox.Size = new Size(260, 160);
-            borderlessGroupBox.Text = "";
-            borderlessGroupBox.ForeColor = Color.White;
+            // 
+            // borderlessGroupBox
+            // 
             borderlessGroupBox.BackColor = Color.FromArgb(40, 40, 40);
-            borderlessGroupBox.Margin = new Padding(29);
             borderlessGroupBox.FlatStyle = FlatStyle.Flat;
+            borderlessGroupBox.ForeColor = Color.White;
+            borderlessGroupBox.Location = new Point(29, 29);
+            borderlessGroupBox.Margin = new Padding(29);
+            borderlessGroupBox.Name = "borderlessGroupBox";
+            borderlessGroupBox.Size = new Size(260, 143);
+            borderlessGroupBox.TabIndex = 0;
+            borderlessGroupBox.TabStop = false;
             borderlessGroupBox.Tag = group_id;
-
+            // 
+            // btnWithdraw
+            // 
+            Button btnWithdraw = new Button();
+            btnWithdraw.AutoSize = true;
+            btnWithdraw.BackColor = Color.Transparent;
+            btnWithdraw.FlatAppearance.BorderColor = Color.FromArgb(78, 93, 148);
+            btnWithdraw.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnWithdraw.FlatAppearance.BorderSize = 0;
+            btnWithdraw.FlatAppearance.MouseOverBackColor = Color.FromArgb(25, 25, 25);
+            btnWithdraw.FlatStyle = FlatStyle.Flat;
+            btnWithdraw.ForeColor = Color.White;
+            btnWithdraw.Image = Properties.Resources.send;
+            btnWithdraw.ImageAlign = ContentAlignment.MiddleRight;
+            btnWithdraw.Location = new Point(140, 88);
+            btnWithdraw.Name = "btnWithdraw";
+            btnWithdraw.Size = new Size(110, 45);
+            btnWithdraw.TabIndex = 5;
+            btnWithdraw.Text = "Withdraw";
+            btnWithdraw.TextAlign = ContentAlignment.MiddleLeft;
+            btnWithdraw.UseVisualStyleBackColor = false;
+            // 
+            // btnDeposit
+            // 
+            Button btnDeposit = new Button();
+            btnDeposit.AutoSize = true;
+            btnDeposit.BackColor = Color.Transparent;
+            btnDeposit.FlatAppearance.BorderColor = Color.FromArgb(78, 93, 148);
+            btnDeposit.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnDeposit.FlatAppearance.BorderSize = 0;
+            btnDeposit.FlatAppearance.MouseOverBackColor = Color.FromArgb(25, 25, 25);
+            btnDeposit.FlatStyle = FlatStyle.Flat;
+            btnDeposit.ForeColor = Color.White;
+            btnDeposit.Image = Properties.Resources.receive;
+            btnDeposit.ImageAlign = ContentAlignment.MiddleRight;
+            btnDeposit.Location = new Point(10, 88);
+            btnDeposit.Name = "btnDeposit";
+            btnDeposit.Size = new Size(110, 45);
+            btnDeposit.TabIndex = 4;
+            btnDeposit.Text = "Deposit";
+            btnDeposit.TextAlign = ContentAlignment.MiddleLeft;
+            btnDeposit.UseVisualStyleBackColor = false;
+            btnDeposit.Click += (s, ev) =>
+            {
+                group_id = Convert.ToInt32(borderlessGroupBox.Tag);
+                SendToGroup sendToGroup = new SendToGroup(group_id);
+                sendToGroup.Show();
+            };
+            // 
+            // lbAmount
+            // 
             Label lbAmount = new Label();
-            lbAmount.Text = "Wallet Amount: " + walletAmount;
-            lbAmount.Location = new Point(10, 40);
             lbAmount.AutoSize = true;
-
+            lbAmount.Location = new Point(10, 45);
+            lbAmount.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbAmount.Name = "lbAmount";
+            lbAmount.Size = new Size(93, 15);
+            lbAmount.TabIndex = 0;
+            lbAmount.Text = walletAmount + " wallets";
+            // 
+            // lbName
+            // 
             Label lbName = new Label();
-            lbName.Text = "Group Name: " + groupName;
-            lbName.Location = new Point(10, 20);
             lbName.AutoSize = true;
-
+            lbName.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbName.Location = new Point(10, 10);
+            lbName.Name = "lbName";
+            lbName.Size = new Size(107, 21);
+            lbName.TabIndex = 1;
+            lbName.Text = groupName;
+            // 
+            // delButton
+            // 
             Button delButton = new Button();
-            delButton.Text = "Delete";
-            delButton.Location = new Point(170, 120);
-            delButton.ForeColor = Color.White;
-            delButton.BackColor = Color.DarkRed;
             delButton.AutoSize = true;
-            //delButton.Click += (s, ev) => flpWalletGroup.Controls.Remove(borderlessGroupBox);
-            delButton.Click += (s, ev) => delGroup(borderlessGroupBox);
-
+            delButton.BackColor = Color.DarkRed;
+            delButton.FlatAppearance.BorderSize = 0;
+            delButton.FlatStyle = FlatStyle.Flat;
+            delButton.ForeColor = Color.White;
+            delButton.Image = Properties.Resources.Close;
+            delButton.Location = new Point(220, 10);
+            delButton.ImageAlign = ContentAlignment.MiddleCenter;
+            delButton.Name = "delButton";
+            delButton.Size = new Size(30, 30);
+            delButton.TabIndex = 2;
+            delButton.UseVisualStyleBackColor = false;
+            delButton.Click += (sender, e) => delGroup(borderlessGroupBox);
+            // 
+            // viewButton
+            // 
             Button viewButton = new Button();
-            viewButton.Text = "View";
-            viewButton.Location = new Point(20, 120);
-            viewButton.ForeColor = Color.White;
-            viewButton.BackColor = Color.FromArgb(78, 93, 148);
             viewButton.AutoSize = true;
-            // On click, use FormWalletList to show the wallets of the group
+            viewButton.BackColor = Color.FromArgb(78, 93, 148);
+            viewButton.FlatAppearance.BorderSize = 0;
+            viewButton.FlatStyle = FlatStyle.Flat;
+            viewButton.ForeColor = Color.White;
+            viewButton.Image = Properties.Resources.eye1;
+            viewButton.Location = new Point(173, 10);
+            viewButton.Name = "viewButton";
+            viewButton.Size = new Size(30, 30);
+            viewButton.TabIndex = 3;
+            viewButton.TextAlign = ContentAlignment.MiddleLeft;
+            viewButton.UseVisualStyleBackColor = false;
             viewButton.Click += (s, ev) =>
             {
-                FormWalletList formWalletList = new FormWalletList();
+                group_id = Convert.ToInt32(borderlessGroupBox.Tag);
+                FormWalletList formWalletList = new FormWalletList(group_id);
                 formWalletList.Show();
             };
 
@@ -262,6 +344,9 @@ namespace catwiftools.wallet
             borderlessGroupBox.Controls.Add(lbName);
             borderlessGroupBox.Controls.Add(delButton);
             borderlessGroupBox.Controls.Add(viewButton);
+            borderlessGroupBox.Controls.Add(btnDeposit);
+            borderlessGroupBox.Controls.Add(btnWithdraw);
+            
 
             flpWalletGroup.Controls.Add(borderlessGroupBox);
 
