@@ -62,6 +62,7 @@
             btnConfirm.TabIndex = 29;
             btnConfirm.Text = "Send";
             btnConfirm.UseVisualStyleBackColor = true;
+            btnConfirm.Click += btnConfirm_Click;
             // 
             // lblAmountPerWallet
             // 
@@ -110,7 +111,7 @@
             lblMax.ForeColor = Color.LimeGreen;
             lblMax.Location = new Point(250, 50);
             lblMax.Name = "lblMax";
-            lblMax.Size = new Size(141, 15);
+            lblMax.Size = new Size(142, 15);
             lblMax.TabIndex = 34;
             lblMax.Text = "Maximum to send : NULL";
             // 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,14 +29,18 @@ namespace catwiftools.wallet
         {
             Console.WriteLine(groupId);
             walletAddresses = TaskHelper.GetWalletFromGroup(groupId).ToList();
-            //maxAmount = await balanceHelper.GetWalletBalance(fundWallet);
-            maxAmount = Math.Round(5.2 - (walletAddresses.Count * 0.01),3);
+            maxAmount = await balanceHelper.GetWalletBalance(fundWallet);
+            maxAmount = Math.Round(maxAmount - (walletAddresses.Count * 0.01), 3);
             updateText();
         }
 
         private void tbxAmount_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',')
+            {
+                e.Handled = true;
+            }
+            if ((e.KeyChar == '.' || e.KeyChar == ',') && (sender as TextBox).Text.IndexOfAny(new char[] { '.', ',' }) > -1)
             {
                 e.Handled = true;
             }
@@ -50,16 +55,18 @@ namespace catwiftools.wallet
             }
             else
             {
-                if (double.Parse(tbxAmount.Text) > maxAmount)
+                // Parse tbxAmount to double
+
+                if (double.TryParse(tbxAmount.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out double parsedAmount) && parsedAmount > maxAmount)
                 {
-                    tbxAmount.Text = maxAmount.ToString();
+                    tbxAmount.Text = maxAmount.ToString(CultureInfo.InvariantCulture);
                     tbxAmount.SelectionStart = tbxAmount.Text.Length;
                     selectedAmount = Math.Round(maxAmount, 3);
                     hsbAmount.Value = 100;
                 }
                 else
                 {
-                    selectedAmount = Math.Round(double.Parse(tbxAmount.Text), 3);
+                    selectedAmount = Math.Round(parsedAmount, 3);
                     hsbAmount.Value = (int)(selectedAmount / maxAmount * 100);
                 }
             }
@@ -77,7 +84,6 @@ namespace catwiftools.wallet
             {
                 selectedAmount = Math.Round(maxAmount * hsbAmount.Value / 100, 3);
             }
-            AppState.WriteConsole(hsbAmount.Value.ToString());
             updateText();
         }
 
@@ -93,9 +99,37 @@ namespace catwiftools.wallet
 
         private void updateText()
         {
-            lblAmountToSend.Text = $"Amount to send: {Math.Round(selectedAmount,3)} SOL";
-            lblMax.Text = $"Max: {Math.Round(maxAmount,3)} SOL";
+            if (selectedAmount == 0)
+            {
+                btnConfirm.Enabled = false;
+            } else
+            {
+                btnConfirm.Enabled = true;
+            }
+                lblAmountToSend.Text = $"Amount to send: {Math.Round(selectedAmount, 3)} SOL";
+            lblMax.Text = $"Max: {Math.Round(maxAmount, 3)} SOL";
             lblAmountPerWallet.Text = $"Amount per wallet: {Math.Round(selectedAmount / walletAddresses.Count, 3)} SOL";
+        }
+
+        private void hsbAmount_ValueChanged(object sender, EventArgs e)
+        {
+            if (hsbAmount.Value >= 100)
+            {
+                selectedAmount = maxAmount;
+                hsbAmount.Value = 100;
+            }
+            else
+            {
+                selectedAmount = Math.Round(maxAmount * hsbAmount.Value / 100, 3);
+            }
+            tbxAmount.Text = selectedAmount.ToString();
+            updateText();
+        }
+
+        private void btnConfirm_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            DistributeWallets.Distribute(walletAddresses, selectedAmount);
         }
     }
 }

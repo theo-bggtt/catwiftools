@@ -11,21 +11,21 @@ namespace catwiftools.wallet
     {
         Functions Functions = new Functions();
         // These private keys and public keys are all empty and the solana used is on DevNet, no harm can be done to these wallets, they are used for TEST ONLY!
-        public static async Task Distribute(List<String>selectedAddresses)
+        public static async Task Distribute(List<String>selectedAddresses, double selectedAmount)
         {
-
+            double amountPerWall = (selectedAmount / selectedAddresses.Count - (selectedAddresses.Count*0.01));
+            AppState.WriteConsole($"Amount per wallet to send: {amountPerWall}");
             for (int i = 0; i < selectedAddresses.Count; i++)
             {
-                await new DistributeWallets().SendSol(selectedAddresses[i]);
+                await new DistributeWallets().SendSol(selectedAddresses[i], amountPerWall);
             }
         }
 
         public static async Task Recall(List<String> selectedAddresses)
         {
-
-            for (int i = 0; i < selectedAddresses.Count; i++)
+            foreach (string address in selectedAddresses)
             {
-                await new DistributeWallets().RecallSol(selectedAddresses[i]);
+                await new DistributeWallets().RecallSol(address);
             }
         }
 
@@ -55,14 +55,7 @@ namespace catwiftools.wallet
 
                 // Check balance
                 var balanceResponse = await rpcClient.GetBalanceAsync(fromAccount);
-                double balanceSol = balanceResponse.Result.Value / 1_000_000_000.0;
-                AppState.WriteConsole($"🔎 Wallet Balance: {balanceSol} SOL");
-
-                if (balanceSol < 0.002) // Ensure sufficient balance for fees
-                {
-                    AppState.WriteConsole("❌ Not enough SOL to send.");
-                    return;
-                }
+                AppState.WriteConsole($"🔎 Sending amount: {balanceResponse.Result.Value / 1_000_000_000.0} SOL");
 
                 // Fetch latest block hash
                 var blockHashResponse = await rpcClient.GetLatestBlockHashAsync();
@@ -74,22 +67,13 @@ namespace catwiftools.wallet
                 string blockHash = blockHashResponse.Result.Value.Blockhash;
                 AppState.WriteConsole($"🔎 Blockhash: {blockHash}");
 
-                ulong amountLamports = 200_000_000; // 0.2 SOL
-
-                if (balanceResponse.Result.Value >= 200005000)
-                {
-                    amountLamports = 200_000_000; // 0.2 SOL
-                }
-                else
-                {
-                    amountLamports = balanceResponse.Result.Value - 5000;
-                }
+                ulong amountLamports = balanceResponse.Result.Value - 5000;
 
                 // Build transaction
                 var tx = new TransactionBuilder()
                     .SetRecentBlockHash(blockHash)
                     .SetFeePayer(fromAccount)
-                    .AddInstruction(MemoProgram.NewMemo(fromAccount, "Hello from Sol.Net :)"))
+                    .AddInstruction(MemoProgram.NewMemo(fromAccount, "Hello from CatWifTools :)"))
                     .AddInstruction(SystemProgram.Transfer(fromAccount, toAccount, amountLamports))
                     .Build(wallet.Account); // Ensure proper signing
 
@@ -110,7 +94,7 @@ namespace catwiftools.wallet
         }
 
 
-        private async Task SendSol(string address)
+        private async Task SendSol(string address, double amount)
         {
             try
             {
@@ -120,19 +104,9 @@ namespace catwiftools.wallet
                 PublicKey fromAccount = wallet.Account.PublicKey;
                 PublicKey toAccount = new PublicKey(address);
 
-                var balanceResponse = await rpcClient.GetBalanceAsync(fromAccount);
-                AppState.WriteConsole($"🔎 Wallet Balance: {balanceResponse.Result.Value / 1_000_000_000.0} SOL");
-
-                ulong amountLamports = balanceResponse.Result.Value - 5000; // 0.2 SOL
-
-                //if (balanceResponse.Result.Value >= 200005000)
-                //{
-                //    amountLamports = 200_000_000; // 0.2 SOL
-                //}
-                //else
-                //{
-                //    amountLamports = balanceResponse.Result.Value - 5000;
-                //}
+                AppState.WriteConsole($"🔎 Amount Sending: {amount} SOL");
+                
+                ulong amountLamports = (ulong)((amount * 1_000_000_000.0) - 5000);
 
 
                 var blockHashResponse = await rpcClient.GetLatestBlockHashAsync();
@@ -147,8 +121,8 @@ namespace catwiftools.wallet
                 var tx = new TransactionBuilder()
                     .SetRecentBlockHash(blockHash)
                     .SetFeePayer(fromAccount)
-                    .AddInstruction(MemoProgram.NewMemo(fromAccount, "Hello from Sol.Net :)"))
-                    .AddInstruction(SystemProgram.Transfer(fromAccount, toAccount, amountLamports)) // 0.2 SOL
+                    .AddInstruction(MemoProgram.NewMemo(fromAccount, "Hello from CatWifTools :)"))
+                    .AddInstruction(SystemProgram.Transfer(fromAccount, toAccount, amountLamports))
                     .Build(wallet.Account);
 
                 var firstSig = await rpcClient.SendTransactionAsync(tx);

@@ -251,6 +251,18 @@ namespace catwiftools.wallet
             btnWithdraw.Text = "Withdraw";
             btnWithdraw.TextAlign = ContentAlignment.MiddleLeft;
             btnWithdraw.UseVisualStyleBackColor = false;
+            btnWithdraw.Click += (s, ev) =>
+            
+            {
+                group_id = Convert.ToInt32(borderlessGroupBox.Tag);
+                // Ask the user to confirm with a message box
+                DialogResult result = MessageBox.Show("Are you sure you want to withdraw from this group?", "Withdraw from Group", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    DistributeWallets.Recall(balanceHelper.GetWallets(group_id));
+                }
+            }
+            ;
             // 
             // btnDeposit
             // 
@@ -278,6 +290,7 @@ namespace catwiftools.wallet
                 SendToGroup sendToGroup = new SendToGroup(group_id);
                 sendToGroup.Show();
             };
+
             // 
             // lbAmount
             // 

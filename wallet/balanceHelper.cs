@@ -49,11 +49,11 @@ namespace catwiftools.wallet
             return fundWallet;
         }
 
-        public DataTable GetWallets(int walletType)
+        public static List<String> GetWallets(int group_id)
         {
-            DataTable dataTable = new DataTable();
+            List<String> walletAddresses = new List<String>();
 
-            string query = $"SELECT idWallet, walletAddress FROM wallets WHERE walletType = {walletType}";
+            string query = $"SELECT walletAddress FROM wallets WHERE group_id = {group_id}";
             using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
@@ -61,32 +61,23 @@ namespace catwiftools.wallet
                     connection.Open();
                     using (SqliteDataReader reader = command.ExecuteReader())
                     {
-                        // Create columns in the DataTable
-                        dataTable.Columns.Add("idWallet", typeof(int));
-                        dataTable.Columns.Add("walletAddress", typeof(string));
-
-                        // Fill the DataTable with data from the reader
                         while (reader.Read())
                         {
-                            DataRow row = dataTable.NewRow();
-                            row["idWallet"] = reader.GetInt32(0);
-                            row["walletAddress"] = reader.GetString(1);
-                            dataTable.Rows.Add(row);
+                            walletAddresses.Add(reader.GetString(0));
                         }
                     }
                 }
             }
-            return dataTable;
+            return walletAddresses;
         }
 
-        public async Task GetAllWalletBalances(int walletType)
+        public async Task GetAllWalletBalances(int group_id)
         {
-            DataTable wallets = GetWallets(walletType);
-            foreach (DataRow row in wallets.Rows)
+            List<String> wallet = GetWallets(group_id);
+            foreach (String address in wallet)
             {
-                string walletAddress = row["walletAddress"]?.ToString() ?? string.Empty;
-                double balance = await GetWalletBalance(walletAddress);
-                await Task.Run(() => SaveBalanceToDatabase(walletAddress, balance));
+                double balance = await GetWalletBalance(address);
+                await Task.Run(() => SaveBalanceToDatabase(address, balance));
             }
         }
 
