@@ -16,7 +16,7 @@ namespace catwiftools.wallet
     {
         private double maxAmount, selectedAmount;
         private List<string> walletAddresses = new List<string>();
-        string fundWallet = balanceHelper.getFundAddress();
+        string fundWallet = walletHelper.getFundAddress();
         private int groupId;
         public SendToGroup(int groupId)
         {
@@ -29,7 +29,7 @@ namespace catwiftools.wallet
         {
             Console.WriteLine(groupId);
             walletAddresses = TaskHelper.GetWalletFromGroup(groupId).ToList();
-            maxAmount = await balanceHelper.GetWalletBalance(fundWallet);
+            maxAmount = await walletHelper.GetWalletBalance(fundWallet);
             maxAmount = Math.Round(maxAmount - (walletAddresses.Count * 0.01), 3);
             updateText();
         }
@@ -129,7 +129,7 @@ namespace catwiftools.wallet
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             this.Close();
-            DistributeWallets.Distribute(walletAddresses, selectedAmount);
+            walletHelper.Distribute(walletAddresses, selectedAmount);
             AppState.RecentAction($"Sent {selectedAmount} SOL to {walletAddresses.Count} wallets");
         }
     }

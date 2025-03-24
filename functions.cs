@@ -144,7 +144,7 @@ namespace catwiftools
             }
             return WalletAddress;
         }
-        public string GetWalletphrase(int? idWallet, string? walletAddress) // Prends la phrase mnemonic d'un walletId ou d'une addresse, à travers la bdd
+        public static string GetWalletphrase(int? idWallet, string? walletAddress) // Prends la phrase mnemonic d'un walletId ou d'une addresse, à travers la bdd
         {
             string Walletphrase = "";
             if (idWallet.HasValue)

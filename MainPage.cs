@@ -9,7 +9,6 @@ namespace catwiftools
         Functions functions = new Functions();
         private Dictionary<Button, Control> buttonControlMap = new Dictionary<Button, Control>();
         public string fundWallet = "";
-        private ControlPanelForm controlPanelForm;
         private walletGroup walletGroup; // Add this line
 
         public CatWifTools()

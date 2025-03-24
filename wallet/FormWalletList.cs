@@ -41,7 +41,7 @@ namespace catwiftools.wallet
 
         private async void createGroupBoxWallet(string walletAddress)
         {
-            var balancea = await balanceHelper.GetWalletBalance(walletAddress);
+            var balancea = await walletHelper.GetWalletBalance(walletAddress);
             string balance = balancea.ToString();
 
             gbxWallet = new BorderlessGroupBox();

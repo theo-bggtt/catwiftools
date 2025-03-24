@@ -184,7 +184,7 @@ namespace catwiftools.wallet
                     }
                 }
 
-                await DistributeWallets.Recall(selectedAddresses);
+                await walletHelper.Recall(selectedAddresses);
 
                 // Delete the wallets of the group
                 query = $"DELETE FROM wallets WHERE group_id = @group_id";
@@ -259,7 +259,7 @@ namespace catwiftools.wallet
                 DialogResult result = MessageBox.Show("Are you sure you want to withdraw from this group?", "Withdraw from Group", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
-                    DistributeWallets.Recall(balanceHelper.GetWallets(group_id));
+                    walletHelper.Recall(walletHelper.GetWallets(group_id));
                 }
             }
             ;

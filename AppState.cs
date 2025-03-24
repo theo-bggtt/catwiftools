@@ -8,7 +8,7 @@ namespace catwiftools
 {
     class AppState
     {
-        public static ControlPanelForm ControlPanelForm { get; set; }
+        public static ControlPanelForm? ControlPanelForm { get; set; }
 
         // Helper method to write to the ControlPanelForm
         public static void WriteConsole(string message)

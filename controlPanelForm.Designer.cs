@@ -159,7 +159,6 @@
 
         private RichTextBox rtbConsole;
         private ListView lvRunningTasks;
-        private ListView lvRecentActions;
         private Label lblRecentAction;
         private Label label1;
         private Button btnMinimise;

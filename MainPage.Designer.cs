@@ -153,7 +153,7 @@
             lblClock.AutoSize = true;
             lblClock.ForeColor = Color.FromArgb(153, 153, 153);
             lblClock.ImeMode = ImeMode.NoControl;
-            lblClock.Location = new Point(1250, 14);
+            lblClock.Location = new Point(1210, 14);
             lblClock.Name = "lblClock";
             lblClock.Size = new Size(0, 15);
             lblClock.TabIndex = 24;
@@ -176,7 +176,7 @@
             btnMinimise.BackColor = Color.DimGray;
             btnMinimise.FlatStyle = FlatStyle.Flat;
             btnMinimise.ImeMode = ImeMode.NoControl;
-            btnMinimise.Location = new Point(1378, 10);
+            btnMinimise.Location = new Point(1375, 10);
             btnMinimise.Name = "btnMinimise";
             btnMinimise.Size = new Size(22, 22);
             btnMinimise.TabIndex = 26;
@@ -479,12 +479,15 @@
             // 
             // btnControlPanel
             // 
-            btnControlPanel.Location = new Point(426, 6);
+            btnControlPanel.BackColor = Color.DimGray;
+            btnControlPanel.FlatAppearance.BorderSize = 0;
+            btnControlPanel.FlatStyle = FlatStyle.Flat;
+            btnControlPanel.Location = new Point(1268, 10);
             btnControlPanel.Name = "btnControlPanel";
-            btnControlPanel.Size = new Size(75, 23);
+            btnControlPanel.Size = new Size(88, 22);
             btnControlPanel.TabIndex = 43;
-            btnControlPanel.Text = "console";
-            btnControlPanel.UseVisualStyleBackColor = true;
+            btnControlPanel.Text = "Control Panel";
+            btnControlPanel.UseVisualStyleBackColor = false;
             btnControlPanel.Click += btnControlPanel_Click;
             // 
             // CatWifTools
@@ -492,7 +495,7 @@
             AutoScaleMode = AutoScaleMode.None;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = Color.FromArgb(25, 25, 25);
-            ClientSize = new Size(1440, 810);
+            ClientSize = new Size(1436, 806);
             ControlBox = false;
             Controls.Add(btnControlPanel);
             Controls.Add(settingsGeneral1);

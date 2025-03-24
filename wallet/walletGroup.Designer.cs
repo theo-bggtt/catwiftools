@@ -42,10 +42,8 @@
             lbTotalWallet = new Label();
             label2 = new Label();
             btnUpdateGroup = new Button();
-            fileSystemWatcher1 = new FileSystemWatcher();
             flpWalletGroup.SuspendLayout();
             borderlessGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)fileSystemWatcher1).BeginInit();
             SuspendLayout();
             // 
             // lbGroupAmount
@@ -237,11 +235,6 @@
             btnUpdateGroup.UseVisualStyleBackColor = false;
             btnUpdateGroup.Click += btnUpdateGroup_Click;
             // 
-            // fileSystemWatcher1
-            // 
-            fileSystemWatcher1.EnableRaisingEvents = true;
-            fileSystemWatcher1.SynchronizingObject = this;
-            // 
             // walletGroup
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -260,7 +253,6 @@
             flpWalletGroup.ResumeLayout(false);
             borderlessGroupBox.ResumeLayout(false);
             borderlessGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)fileSystemWatcher1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -281,6 +273,5 @@
         private Label lbName;
         private Button delButton;
         private Button viewButton;
-        private FileSystemWatcher fileSystemWatcher1;
     }
 }
