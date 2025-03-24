@@ -9,7 +9,7 @@ namespace catwiftools
         Functions functions = new Functions();
         private Dictionary<Button, Control> buttonControlMap = new Dictionary<Button, Control>();
         public string fundWallet = "";
-        private walletGroup walletGroup; // Add this line
+        private walletGroup walletGroup;
 
         public CatWifTools()
         {
@@ -18,7 +18,11 @@ namespace catwiftools
             this.Paint += Form_Paint;
             InitializeButtonControlMap();
             fundWallet = Functions.CheckForFundWallet();
-            walletGroup = new walletGroup(); // Add this line
+            if (fundWallet == "")
+            {
+                walletGroup.DisableCreation();
+            }
+            walletGroup = new walletGroup();
         }
 
         private void CatWifTools_Load(object sender, EventArgs e)
@@ -27,6 +31,10 @@ namespace catwiftools
             tmrClock.Enabled = true;
             gbxBackground.Visible = true;
             fundWallet = Functions.CheckForFundWallet();
+            if (fundWallet == "")
+            {
+                walletGroup.DisableCreation();
+            }
             settingsGeneral settingsGeneral = new settingsGeneral();
             settingsGeneral.fundWalletSetup();
         }

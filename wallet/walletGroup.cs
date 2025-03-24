@@ -370,5 +370,10 @@ namespace catwiftools.wallet
             AppState.WriteConsole("Wallet Data updated!");
             AppState.RecentAction("Wallet Data updated!");
         }
+
+        public void DisableCreation()
+        {
+            btnCreateGroup.Enabled = false;
+        }
     }
 }
