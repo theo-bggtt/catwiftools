@@ -368,6 +368,7 @@ namespace catwiftools.wallet
         private void btnUpdateGroup_Click(object sender, EventArgs e)
         {
             AppState.WriteConsole("Wallet Data updated!");
+            AppState.RecentAction("Wallet Data updated!");
         }
     }
 }

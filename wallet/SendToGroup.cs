@@ -130,6 +130,7 @@ namespace catwiftools.wallet
         {
             this.Close();
             DistributeWallets.Distribute(walletAddresses, selectedAmount);
+            AppState.RecentAction($"Sent {selectedAmount} SOL to {walletAddresses.Count} wallets");
         }
     }
 }

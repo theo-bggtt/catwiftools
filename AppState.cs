@@ -18,5 +18,12 @@ namespace catwiftools
                 ControlPanelForm.WriteConsole(message);
             }
         }
+        public static void RecentAction(string message)
+        {
+            if (ControlPanelForm != null && !ControlPanelForm.IsDisposed)
+            {
+                ControlPanelForm.RecentAction(message);
+            }
+        }
     }
 }

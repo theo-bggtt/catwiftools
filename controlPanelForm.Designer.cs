@@ -30,12 +30,12 @@
         {
             rtbConsole = new RichTextBox();
             lvRunningTasks = new ListView();
-            lvRecentActions = new ListView();
             lblRecentAction = new Label();
             label1 = new Label();
             btnMinimise = new Button();
             btnCloseApp = new Button();
             lblConsole = new Label();
+            rtbRecentAction = new RichTextBox();
             SuspendLayout();
             // 
             // rtbConsole
@@ -61,17 +61,6 @@
             lvRunningTasks.Size = new Size(382, 350);
             lvRunningTasks.TabIndex = 1;
             lvRunningTasks.UseCompatibleStateImageBehavior = false;
-            // 
-            // lvRecentActions
-            // 
-            lvRecentActions.BackColor = Color.Black;
-            lvRecentActions.BorderStyle = BorderStyle.None;
-            lvRecentActions.ForeColor = Color.White;
-            lvRecentActions.Location = new Point(406, 430);
-            lvRecentActions.Name = "lvRecentActions";
-            lvRecentActions.Size = new Size(382, 366);
-            lvRecentActions.TabIndex = 2;
-            lvRecentActions.UseCompatibleStateImageBehavior = false;
             // 
             // lblRecentAction
             // 
@@ -132,6 +121,19 @@
             lblConsole.TabIndex = 29;
             lblConsole.Text = "Console Log";
             // 
+            // rtbRecentAction
+            // 
+            rtbRecentAction.BackColor = Color.Black;
+            rtbRecentAction.BorderStyle = BorderStyle.None;
+            rtbRecentAction.Font = new Font("Consolas", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            rtbRecentAction.ForeColor = Color.White;
+            rtbRecentAction.Location = new Point(406, 430);
+            rtbRecentAction.Name = "rtbRecentAction";
+            rtbRecentAction.ReadOnly = true;
+            rtbRecentAction.Size = new Size(382, 366);
+            rtbRecentAction.TabIndex = 30;
+            rtbRecentAction.Text = "";
+            // 
             // ControlPanelForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -139,12 +141,12 @@
             BackColor = Color.FromArgb(25, 25, 25);
             ClientSize = new Size(798, 808);
             ControlBox = false;
+            Controls.Add(rtbRecentAction);
             Controls.Add(lblConsole);
             Controls.Add(btnMinimise);
             Controls.Add(btnCloseApp);
             Controls.Add(label1);
             Controls.Add(lblRecentAction);
-            Controls.Add(lvRecentActions);
             Controls.Add(lvRunningTasks);
             Controls.Add(rtbConsole);
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -163,5 +165,6 @@
         private Button btnMinimise;
         private Button btnCloseApp;
         private Label lblConsole;
+        private RichTextBox rtbRecentAction;
     }
 }

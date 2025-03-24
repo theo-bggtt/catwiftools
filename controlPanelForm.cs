@@ -26,6 +26,12 @@ namespace catwiftools
             rtbConsole.ScrollToCaret();
         }
 
+        public void RecentAction(string message)
+        {
+            rtbRecentAction.AppendText($"[ {DateTime.Now.ToString("HH:mm:ss")} ] {message}\n");
+            rtbConsole.ScrollToCaret();
+        }
+
         private void btnCloseApp_Click(object sender, EventArgs e)
         {
             this.Visible = false;
