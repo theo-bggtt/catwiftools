@@ -98,5 +98,7 @@ namespace catwiftools.wallet
             flpWallets.Controls.Add(gbxWallet);
 
         }
+
+
     }
 }
