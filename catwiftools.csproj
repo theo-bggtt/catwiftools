@@ -101,6 +101,8 @@
     <PackageReference Include="DotNetEnv" Version="3.1.1" />
     <PackageReference Include="Microsoft.ClearScript.V8" Version="7.5.0" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="9.0.3" />
+    <PackageReference Include="Solana.Metaplex" Version="8.0.0" />
+    <PackageReference Include="Solana.Pumpfun" Version="8.0.0.1" />
     <PackageReference Include="Solnet.Extensions" Version="6.1.0" />
     <PackageReference Include="Solnet.KeyStore" Version="6.1.0" />
     <PackageReference Include="Solnet.Programs" Version="6.1.0" />
