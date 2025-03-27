@@ -28,7 +28,7 @@ namespace catwiftools.wallet
         private async void SendToGroup_Load(object sender, EventArgs e)
         {
             Console.WriteLine(groupId);
-            walletAddresses = TaskHelper.GetWalletFromGroup(groupId).ToList();
+            walletAddresses = walletHelper.GetWallets(groupId).ToList();
             maxAmount = await walletHelper.GetWalletBalance(fundWallet);
             maxAmount = Math.Round(maxAmount - (walletAddresses.Count * 0.01), 3);
             updateText();

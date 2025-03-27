@@ -8,8 +8,9 @@ namespace catwiftools.tasks
 {
     class TasksManager
     {
-        public void ExecuteBumpItBuyTask(int taskId)
+        public static void ExecuteBumpItBuyTask(int taskId)
         {
+            Random random = new Random();
             Functions functions = new Functions();
             var parameters = TaskHelper.GetTaskParameters(taskId);
 
@@ -21,7 +22,7 @@ namespace catwiftools.tasks
             int walletGroup = int.Parse(parameters["wallet_group"]);
 
             // Retrieve wallets in the selected wallet group
-            var wallets = functions.GetWalletsInGroup(walletGroup);
+            List<String> wallets = functions.GetWalletsInGroup(walletGroup);
             int walletCount = wallets.Count;
 
             // Calculate amount per wallet per iteration
@@ -34,11 +35,32 @@ namespace catwiftools.tasks
                 {
                     // Make the buy transaction
 
-                    Thread.Sleep(delay * 1000);
+                    Thread.Sleep(random.Next(delay-4,delay+4) * 1000);
+                    AppState.RecentAction($"BumpItBuy Bought {amountPerWalletPerIteration} from {wallet}");
                 }
                 // Update progress
                 //UpdateTaskProgress(taskId, i + 1);
             }
+        }
+
+        public static void ExecuteMicroBuyTask(int taskId)
+        {
+        }
+
+        public static void ExecuteGenVolumeTask(int taskId)
+        {
+        }
+
+        public static void ExecuteSellAllTask(int taskId)
+        {
+        }
+
+        public static void ExecuteSingleSellTask(int taskId)
+        {
+        }
+
+        public static void ExecuteCommentBotTask(int taskId)
+        {
         }
     }
 }

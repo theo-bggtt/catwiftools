@@ -238,7 +238,7 @@ namespace catwiftools.tasks
             btnViewGroup.Click += btnViewGroup_Click;
 
             flpTaskGroupList.Controls.Add(gbxTaskGroup);
-        }        
+        }
 
         private void CreateTaskBox(int task_id, Dictionary<string, string> parameters) // Method to create a task box
         {
@@ -257,7 +257,7 @@ namespace catwiftools.tasks
             Label lblTaskType = new Label();
             Button btnEditTask = new Button();
             Button btnDeleteTask = new Button();
-            
+
             // 
             // gbxTask
             // 
@@ -281,7 +281,7 @@ namespace catwiftools.tasks
             gbxTask.TabStop = false;
             gbxTask.FlatStyle = FlatStyle.Flat;
 
-            
+
 
             if (parameters.Count > 0)
             {
@@ -379,8 +379,8 @@ namespace catwiftools.tasks
                 lblParamName4.Text = parameters.ElementAt(3).Key;
                 lblParamValue4.Text = parameters.ElementAt(3).Value;
             }
-            
-                       
+
+
             // 
             // btnEditTask
             // 
@@ -430,6 +430,14 @@ namespace catwiftools.tasks
 
             flpTaskList.Controls.Add(gbxTask);
         }
-        
+
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            List<int> task_ids = TaskHelper.GetTasksFromGroupId(active_group);
+            foreach (int task_id in task_ids)
+            {
+                TaskHelper.ExecuteTask(task_id);
+            }
+        }
     }
 }

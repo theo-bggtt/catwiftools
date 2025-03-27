@@ -30,7 +30,7 @@ namespace catwiftools.wallet
         private void FormWalletList_Load(object sender, EventArgs e)
         {
             flpWallets.Controls.Clear();
-            string[] walletsArray = TaskHelper.GetWalletFromGroup(group_id);
+            List<string> walletsArray = walletHelper.GetWallets(group_id);
             List<string> wallets = new List<string>(walletsArray);
             foreach (string walletAddress in wallets)
             {

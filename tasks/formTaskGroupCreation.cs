@@ -59,7 +59,7 @@ namespace catwiftools.tasks
 
         private void formTaskGroupCreation_Load(object sender, EventArgs e)
         {
-            List<string> groupNames = TaskHelper.GetAllWalletGroupNames();
+            List<string> groupNames = GetAllWalletGroupNames();
             foreach (string groupName in groupNames)
             {
                 cbxWalletGroup.Items.Add(groupName);
@@ -76,6 +76,27 @@ namespace catwiftools.tasks
             {
                 btnCreate.Enabled = true;
             }
+        }
+
+        private static List<string> GetAllWalletGroupNames()
+        {
+            List<string> groupNames = new List<string>();
+            string query = "SELECT group_name FROM 'wallet_groups'";
+            using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+            {
+                using (SqliteCommand command = new SqliteCommand(query, connection))
+                {
+                    connection.Open();
+                    using (SqliteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            groupNames.Add(reader.GetString(0));
+                        }
+                    }
+                }
+            }
+            return groupNames;
         }
     }
 }
