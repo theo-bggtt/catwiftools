@@ -74,6 +74,33 @@ namespace catwiftools.wallet
             return walletAddresses;
         }
 
+        public static string GetWalletPhrase(string walletAddresse)
+        {
+            string phrase;
+            string query = "SELECT walletphrase FROM wallets WHERE walletAddress = @walletAddress";
+            using (SqliteConnection connection = new SqliteConnection(connectionString))
+            {
+                using (SqliteCommand command = new SqliteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@walletAddress", walletAddresse);
+                    connection.Open();
+                    using (SqliteDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            phrase = reader.GetString(0);
+                        }
+                        else
+                        {
+                            throw new Exception("Wallet address not found.");
+                        }
+                    }
+                }
+            }
+            return phrase;
+        }
+
+
         public async Task GetAllWalletBalances(int group_id)
         {
             List<String> wallet = GetWallets(group_id);

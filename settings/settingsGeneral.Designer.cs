@@ -35,6 +35,7 @@
             btnGenFundWall = new Button();
             lblTitleFundWall = new Label();
             lblFundWallAddr = new Label();
+            lblFundBalance = new Label();
             SuspendLayout();
             // 
             // lblSettingsGeneral
@@ -71,7 +72,7 @@
             btnDelFundWall.FlatStyle = FlatStyle.Flat;
             btnDelFundWall.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnDelFundWall.ImeMode = ImeMode.NoControl;
-            btnDelFundWall.Location = new Point(792, 50);
+            btnDelFundWall.Location = new Point(792, 49);
             btnDelFundWall.Name = "btnDelFundWall";
             btnDelFundWall.Size = new Size(89, 22);
             btnDelFundWall.TabIndex = 26;
@@ -89,7 +90,7 @@
             btnGenFundWall.ForeColor = Color.White;
             btnGenFundWall.ImageAlign = ContentAlignment.MiddleLeft;
             btnGenFundWall.ImeMode = ImeMode.NoControl;
-            btnGenFundWall.Location = new Point(781, 49);
+            btnGenFundWall.Location = new Point(781, 48);
             btnGenFundWall.Name = "btnGenFundWall";
             btnGenFundWall.Padding = new Padding(5, 0, 5, 0);
             btnGenFundWall.Size = new Size(110, 25);
@@ -105,7 +106,7 @@
             lblTitleFundWall.AutoSize = true;
             lblTitleFundWall.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblTitleFundWall.ForeColor = Color.White;
-            lblTitleFundWall.Location = new Point(260, 47);
+            lblTitleFundWall.Location = new Point(206, 50);
             lblTitleFundWall.Name = "lblTitleFundWall";
             lblTitleFundWall.Size = new Size(92, 21);
             lblTitleFundWall.TabIndex = 40;
@@ -122,11 +123,23 @@
             lblFundWallAddr.Text = "Wallet Address";
             lblFundWallAddr.Visible = false;
             // 
+            // lblFundBalance
+            // 
+            lblFundBalance.AutoSize = true;
+            lblFundBalance.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblFundBalance.ForeColor = Color.White;
+            lblFundBalance.Location = new Point(360, 53);
+            lblFundBalance.Name = "lblFundBalance";
+            lblFundBalance.Size = new Size(60, 15);
+            lblFundBalance.TabIndex = 42;
+            lblFundBalance.Text = "NULL SOL";
+            // 
             // settingsGeneral
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
+            Controls.Add(lblFundBalance);
             Controls.Add(lblFundWallAddr);
             Controls.Add(lblTitleFundWall);
             Controls.Add(btnDelFundWall);
@@ -150,5 +163,6 @@
         public Button btnGenFundWall;
         private Label lblTitleFundWall;
         private Label lblFundWallAddr;
+        private Label lblFundBalance;
     }
 }

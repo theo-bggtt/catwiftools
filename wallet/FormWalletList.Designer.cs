@@ -111,6 +111,7 @@
             btnExport.TabIndex = 5;
             btnExport.Text = "Export Key";
             btnExport.UseVisualStyleBackColor = false;
+            btnExport.Click += btnExport_Click;
             // 
             // lblWalletAddress
             // 

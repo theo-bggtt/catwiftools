@@ -1,4 +1,5 @@
-﻿using System;
+﻿using catwiftools.wallet;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,10 +24,14 @@ namespace catwiftools.settings
             InitializeComponent();
         }
 
-        private void settingsGeneral_Load(object sender, EventArgs e)
+        private async void settingsGeneral_Load(object sender, EventArgs e)
         {
             fundWalletSetup();
+            double balance = await walletHelper.GetWalletBalance(fundWallet);
+            lblFundBalance.Text = Math.Round(balance,3).ToString();
+            Console.WriteLine(lblFundBalance.Text);
         }
+
 
         private void btnGenFundWall_Click(object sender, EventArgs e)
         {

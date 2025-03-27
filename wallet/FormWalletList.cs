@@ -84,6 +84,8 @@ namespace catwiftools.wallet
             btnExport.TabIndex = 5;
             btnExport.Text = "Export Key";
             btnExport.UseVisualStyleBackColor = false;
+            btnExport.Tag = walletAddress;
+            btnExport.Click += new EventHandler(btnExport_Click);
             // 
             // lblBalance
             // 
@@ -99,6 +101,42 @@ namespace catwiftools.wallet
 
         }
 
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            string address = ((Button)sender).Tag.ToString();
+            string key = walletHelper.GetWalletPhrase(address);
 
+            var button = (Button)sender;
+            button.Enabled = false;
+            button.Text = "Copied";
+            button.BackColor = Color.DarkGreen;
+
+            var thread = new Thread(() =>
+            {
+                try
+                {
+                    Clipboard.SetText(key);
+                }
+                catch (Exception ex)
+                {
+                    this.Invoke((MethodInvoker)(() =>
+                        MessageBox.Show($"Failed to copy: {ex.Message}")));
+                }
+            });
+
+            thread.SetApartmentState(ApartmentState.STA);
+            thread.Start();
+            thread.Join();
+
+            Task.Delay(500).ContinueWith(t =>
+            {
+                this.Invoke((MethodInvoker)(() =>
+                {
+                    button.Enabled = true;
+                    button.Text = "Export Key";
+                    button.BackColor = Color.FromArgb(78, 93, 148);
+                }));
+            });
+        }
     }
 }
