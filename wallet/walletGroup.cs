@@ -40,7 +40,7 @@ namespace catwiftools.wallet
         private void GetGroups()
         {
             string query = "SELECT group_name FROM 'wallet_groups'";
-            using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
                 {
@@ -82,7 +82,7 @@ namespace catwiftools.wallet
 
                     // Insert into database
                     string query = "INSERT INTO 'wallet_groups' (group_name) VALUES (@groupName)";
-                    using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+                    using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
                     {
                         using (SqliteCommand command = new SqliteCommand(query, connection))
                         {
@@ -106,7 +106,7 @@ namespace catwiftools.wallet
         {
             int walletAmount = 0;
             string query = $"SELECT COUNT(walletAddress) FROM wallets WHERE group_id = {group_id}";
-            using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
                 {
@@ -127,7 +127,7 @@ namespace catwiftools.wallet
         {
             int group_id = 0;
             string query = $"SELECT group_id FROM 'wallet_groups' WHERE group_name = @groupName";
-            using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
                 {
@@ -169,7 +169,7 @@ namespace catwiftools.wallet
                 // Recall the wallets
                 List<String> selectedAddresses = new List<string>();
                 string query = $"SELECT walletAddress FROM wallets WHERE group_id = {group_id}";
-                using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+                using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
                 {
                     using (SqliteCommand command = new SqliteCommand(query, connection))
                     {
@@ -188,7 +188,7 @@ namespace catwiftools.wallet
 
                 // Delete the wallets of the group
                 query = $"DELETE FROM wallets WHERE group_id = @group_id";
-                using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+                using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
                 {
                     using (SqliteCommand command = new SqliteCommand(query, connection))
                     {
@@ -199,7 +199,7 @@ namespace catwiftools.wallet
                 }
 
                 query = $"DELETE FROM 'wallet_groups' WHERE group_id = @group_id";
-                using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+                using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
                 {
                     using (SqliteCommand command = new SqliteCommand(query, connection))
                     {

@@ -53,7 +53,7 @@ namespace catwiftools.tasks
                 string groupName = btnDeleteGroup.Name;
                 int group_id = TaskHelper.GetTaskGroupId(groupName);
                 string query = $"DELETE FROM 'task_groups' WHERE group_id = {group_id}";
-                using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+                using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
                 {
                     using (SqliteCommand command = new SqliteCommand(query, connection))
                     {
@@ -63,7 +63,7 @@ namespace catwiftools.tasks
                     }
                 }
                 query = $"DELETE FROM 'tasks' WHERE group_id = {group_id}";
-                using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+                using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
                 {
                     using (SqliteCommand command = new SqliteCommand(query, connection))
                     {
@@ -109,7 +109,7 @@ namespace catwiftools.tasks
                 Button btnDeleteTask = (Button)sender;
                 int task_id = int.Parse(btnDeleteTask.Name);
                 string query = "DELETE FROM tasks WHERE task_id = @task_id";
-                using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+                using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
                 {
                     using (SqliteCommand command = new SqliteCommand(query, connection))
                     {
@@ -134,7 +134,7 @@ namespace catwiftools.tasks
             flpTaskList.Controls.Clear();
             List<int> loaded_tasks = new List<int>();
             string query = $"SELECT task_id FROM tasks WHERE group_id = '{active_group}'";
-            using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
                 {
@@ -161,7 +161,7 @@ namespace catwiftools.tasks
         {
             flpTaskGroupList.Controls.Clear();
             string query = "SELECT group_name FROM 'task_groups'";
-            using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
                 {

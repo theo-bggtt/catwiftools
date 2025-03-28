@@ -17,8 +17,6 @@ namespace catwiftools
     internal class Functions
     {
         private Button? selectedButton = null;
-        private static readonly (string ConnectionString, string HeliusUrl, string ApiKey) envVariables = Functions.LoadEnvVariables();
-        public static string connectionString = envVariables.ConnectionString;
 
         public void SelectButton(Button button)
         {
@@ -76,7 +74,7 @@ namespace catwiftools
             if (!string.IsNullOrEmpty(walletAddress))
             {
                 string query = $"SELECT idWallet FROM wallets WHERE walletAddress = '{walletAddress}'";
-                using (SqliteConnection connection = new SqliteConnection(connectionString))
+                using (SqliteConnection connection = new SqliteConnection(LoadEnvVariables().ConnectionString))
                 {
                     using (SqliteCommand command = new SqliteCommand(query, connection))
                     {
@@ -94,7 +92,7 @@ namespace catwiftools
             else if (!string.IsNullOrEmpty(walletphrase))
             {
                 string query = $"SELECT idWallet FROM wallets WHERE walletphrase = '{walletphrase}'";
-                using (SqliteConnection connection = new SqliteConnection(connectionString))
+                using (SqliteConnection connection = new SqliteConnection(LoadEnvVariables().ConnectionString))
                 {
                     using (SqliteCommand command = new SqliteCommand(query, connection))
                     {
@@ -117,7 +115,7 @@ namespace catwiftools
             if (idWallet.HasValue)
             {
                 string query = $"SELECT walletAddress FROM wallets WHERE idWallet = {idWallet.Value}";
-                using (SqliteConnection connection = new SqliteConnection(connectionString))
+                using (SqliteConnection connection = new SqliteConnection(LoadEnvVariables().ConnectionString))
                 {
                     using (SqliteCommand command = new SqliteCommand(query, connection))
                     {
@@ -150,7 +148,7 @@ namespace catwiftools
             if (idWallet.HasValue)
             {
                 string query = $"SELECT walletphrase FROM wallets WHERE idWallet = {idWallet.Value}";
-                using (SqliteConnection connection = new SqliteConnection(connectionString))
+                using (SqliteConnection connection = new SqliteConnection(LoadEnvVariables().ConnectionString))
                 {
                     using (SqliteCommand command = new SqliteCommand(query, connection))
                     {
@@ -168,7 +166,7 @@ namespace catwiftools
             else if (!string.IsNullOrEmpty(walletAddress))
             {
                 string query = $"SELECT walletphrase FROM wallets WHERE walletAddress = '{walletAddress}'";
-                using (SqliteConnection connection = new SqliteConnection(connectionString))
+                using (SqliteConnection connection = new SqliteConnection(LoadEnvVariables().ConnectionString))
                 {
                     using (SqliteCommand command = new SqliteCommand(query, connection))
                     {
@@ -216,7 +214,7 @@ namespace catwiftools
         {
             List<string> wallets = new List<string>();
             string query = $"SELECT walletAddress FROM 'wallets' WHERE group_id = {group_id}";
-            using (SqliteConnection connection = new SqliteConnection(connectionString))
+            using (SqliteConnection connection = new SqliteConnection(LoadEnvVariables().ConnectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
                 {

@@ -289,3 +289,5 @@ D:\crypto\catwiftools\obj\Debug\net8.0-windows\catwiftools.controlPanelForm.reso
 D:\crypto\catwiftools\obj\Debug\net8.0-windows\catwiftools.wallet.SendToGroup.resources
 C:\Users\theo.bggtt\Documents\2024-2025\Atelier_Programmation\sem2\catwiftools\obj\Debug\net8.0-windows\catwiftools.ControlPanelForm.resources
 C:\Users\theo.bggtt\Documents\2024-2025\Atelier_Programmation\sem2\catwiftools\obj\Debug\net8.0-windows\catwiftools.wallet.SendToGroup.resources
+C:\Users\theo.bggtt\Documents\2024-2025\Atelier_Programmation\sem2\catwiftools\bin\Debug\net8.0-windows\Solnet.Metaplex.dll
+C:\Users\theo.bggtt\Documents\2024-2025\Atelier_Programmation\sem2\catwiftools\bin\Debug\net8.0-windows\Solnet.Pumpfun.dll

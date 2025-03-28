@@ -13,8 +13,6 @@ namespace catwiftools.wallet
 {
     public partial class WalletGroupForm : Form
     {
-        private static readonly (string ConnectionString, string HeliusUrl, string ApiKey) envVariables = Functions.LoadEnvVariables();
-        private static string connectionString = envVariables.ConnectionString;
         public string walletAmount { get; private set; }
         public string groupName { get; private set; }
         private bool _isAmountValid = false, _isNameValid = false;
@@ -72,7 +70,7 @@ namespace catwiftools.wallet
         {
             // Check if the name of the group already exists in the database
             string query = $"SELECT group_name FROM 'wallet_groups' WHERE group_name = '{tbxName.Text}'";
-            using (SqliteConnection connection = new SqliteConnection(connectionString))
+            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
                 {

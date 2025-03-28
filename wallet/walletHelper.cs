@@ -17,8 +17,6 @@ namespace catwiftools.wallet
         // ======================
         private static readonly (string ConnectionString, string HeliusUrl, string ApiKey) envVariables = Functions.LoadEnvVariables();
         private static string connectionString = envVariables.ConnectionString;
-        private static readonly string heliusUrl = envVariables.HeliusUrl;
-        private static readonly string apiKey = envVariables.ApiKey;
 
         // ======================
         // Wallet Retrieval Methods

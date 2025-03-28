@@ -14,8 +14,6 @@ namespace WalletGenerator
 {
     public class WalletCreator
     {
-        private static readonly (string ConnectionString, string HeliusUrl, string ApiKey) envVariables = Functions.LoadEnvVariables();
-        private static string connectionString = envVariables.ConnectionString;
         Functions functions = new Functions();
 
         public static List<String> GenWallet(int? qt) // Génère 1, ou la quantité mentionnée de wallet et en retourne une liste de mnemonic
@@ -40,7 +38,7 @@ namespace WalletGenerator
             {
                 var rpcClient = ClientFactory.GetClient(Cluster.DevNet);
                 string walletAddress = functions.GetWalletAddress(null, walletMnemonic);
-                using (var connection = new SqliteConnection(connectionString))
+                using (var connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
                 {
                     try
                     {
@@ -66,7 +64,7 @@ namespace WalletGenerator
 
         public void DelWallet(string? walletAddress, int? walletId, int? group_id)
         {
-            using (var connection = new SqliteConnection(connectionString))
+            using (var connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
             {
                 try
                 {

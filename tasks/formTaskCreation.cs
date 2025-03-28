@@ -295,7 +295,7 @@ namespace catwiftools.tasks
 
             List<string> wallets = new List<string>();
             string query = "SELECT walletAddress FROM 'wallets' WHERE walletAddress != @fundwallet";
-            using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
                 {

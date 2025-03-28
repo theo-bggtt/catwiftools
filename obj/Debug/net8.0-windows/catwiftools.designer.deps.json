@@ -141,7 +141,7 @@
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection": "6.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
-          "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.2",
           "Microsoft.Extensions.Options": "6.0.0",
           "System.Diagnostics.DiagnosticSource": "6.0.0"
         },
@@ -152,11 +152,11 @@
           }
         }
       },
-      "Microsoft.Extensions.Logging.Abstractions/6.0.0": {
+      "Microsoft.Extensions.Logging.Abstractions/6.0.2": {
         "runtime": {
           "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll": {
             "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.0.21.52210"
+            "fileVersion": "6.0.922.41905"
           }
         }
       },
@@ -167,7 +167,7 @@
           "Microsoft.Extensions.Configuration.Binder": "6.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
           "Microsoft.Extensions.Logging": "6.0.0",
-          "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.2",
           "Microsoft.Extensions.Options": "6.0.0",
           "Microsoft.Extensions.Options.ConfigurationExtensions": "6.0.0"
         },
@@ -182,7 +182,7 @@
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
           "Microsoft.Extensions.Logging": "6.0.0",
-          "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.2",
           "Microsoft.Extensions.Logging.Configuration": "6.0.0",
           "Microsoft.Extensions.Options": "6.0.0",
           "System.Text.Json": "6.0.0"
@@ -461,6 +461,74 @@
           }
         }
       },
+      "Solana.Metaplex/8.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Logging": "6.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.2",
+          "Microsoft.Extensions.Logging.Console": "6.0.0",
+          "Newtonsoft.Json": "13.0.3",
+          "Solnet.Extensions": "6.1.0",
+          "Solnet.KeyStore": "6.1.0",
+          "Solnet.Programs": "6.1.0",
+          "Solnet.Rpc": "6.1.0",
+          "Solnet.Wallet": "6.1.0"
+        },
+        "runtime": {
+          "lib/net8.0/Solnet.Metaplex.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.0.0"
+          }
+        }
+      },
+      "Solana.Programs/8.0.2": {
+        "dependencies": {
+          "Solana.Rpc": "8.0.2"
+        },
+        "runtime": {
+          "lib/net8.0/Solnet.Programs.dll": {
+            "assemblyVersion": "8.0.2.0",
+            "fileVersion": "8.0.2.0"
+          }
+        }
+      },
+      "Solana.Pumpfun/8.0.0.1": {
+        "dependencies": {
+          "Solana.Programs": "8.0.2",
+          "Solana.Rpc": "8.0.2",
+          "Solana.Wallet": "8.0.2"
+        },
+        "runtime": {
+          "lib/net8.0/Solnet.Pumpfun.dll": {
+            "assemblyVersion": "8.0.0.1",
+            "fileVersion": "8.0.0.1"
+          }
+        }
+      },
+      "Solana.Rpc/8.0.2": {
+        "dependencies": {
+          "Microsoft.Extensions.Logging": "6.0.0",
+          "Microsoft.Extensions.Logging.Console": "6.0.0",
+          "Solana.Wallet": "8.0.2"
+        },
+        "runtime": {
+          "lib/net8.0/Solnet.Rpc.dll": {
+            "assemblyVersion": "8.0.2.0",
+            "fileVersion": "8.0.2.0"
+          }
+        }
+      },
+      "Solana.Wallet/8.0.2": {
+        "dependencies": {
+          "Chaos.NaCl.Standard": "1.0.0",
+          "Portable.BouncyCastle": "1.9.0"
+        },
+        "runtime": {
+          "lib/net8.0/Solnet.Wallet.dll": {
+            "assemblyVersion": "8.0.2.0",
+            "fileVersion": "8.0.2.0"
+          }
+        }
+      },
       "Solnet.Extensions/6.1.0": {
         "dependencies": {
           "Solnet.Programs": "6.1.0",
@@ -514,7 +582,7 @@
       "Solnet.Serum/6.0.13": {
         "dependencies": {
           "Microsoft.Extensions.Logging": "6.0.0",
-          "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.2",
           "Microsoft.Extensions.Logging.Console": "6.0.0",
           "Solnet.Programs": "6.1.0",
           "Solnet.Rpc": "6.1.0",
@@ -1708,12 +1776,12 @@
       "path": "microsoft.extensions.logging/6.0.0",
       "hashPath": "microsoft.extensions.logging.6.0.0.nupkg.sha512"
     },
-    "Microsoft.Extensions.Logging.Abstractions/6.0.0": {
+    "Microsoft.Extensions.Logging.Abstractions/6.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-/HggWBbTwy8TgebGSX5DBZ24ndhzi93sHUBDvP1IxbZD7FDokYzdAr6+vbWGjw2XAfR2EJ1sfKUotpjHnFWPxA==",
-      "path": "microsoft.extensions.logging.abstractions/6.0.0",
-      "hashPath": "microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512"
+      "sha512": "sha512-pwXCZKaA7m5wgmCj49dW+H1RPSY7U62SKLTQYCcavf/k3Nyt/WnBgAjG4jMGnwy9rElfAZ2KvxvM5CJzJWG0hg==",
+      "path": "microsoft.extensions.logging.abstractions/6.0.2",
+      "hashPath": "microsoft.extensions.logging.abstractions.6.0.2.nupkg.sha512"
     },
     "Microsoft.Extensions.Logging.Configuration/6.0.0": {
       "type": "package",
@@ -1910,6 +1978,41 @@
       "sha512": "sha512-leXiwfiIkW7Gmn7cgnNcdtNAU70SjmKW3jxGj1iKHOvdn0zRWsgv/l2OJUO5zdGdiv2VRFnAsxxhDgMzofPdWg==",
       "path": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl/4.3.2",
       "hashPath": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512"
+    },
+    "Solana.Metaplex/8.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-VbH4e1lzlVYPMwEIe5cm2AjxIp4F1/PknYayfFlQYbqOiRmJfwzeS10ivv2bH+b6zAtl7pmGaSJ3dQZHHhjwRg==",
+      "path": "solana.metaplex/8.0.0",
+      "hashPath": "solana.metaplex.8.0.0.nupkg.sha512"
+    },
+    "Solana.Programs/8.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QyeeVPpD/X22SZ2kLCnGf2zV+l/YDwxGkLg/GVojMgNKgfuNSGABRwApr/LymodGZ1y5ylIRn6XU1q7t2bB3uw==",
+      "path": "solana.programs/8.0.2",
+      "hashPath": "solana.programs.8.0.2.nupkg.sha512"
+    },
+    "Solana.Pumpfun/8.0.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-kzRDUbQrYtNmMd+RdEklKzS4JaOVnmTUqOwo+SKrvDanMrP9Eyh43vmyAI1DHvcTd9/LKHbLBzJ6QLkrY9ZHHw==",
+      "path": "solana.pumpfun/8.0.0.1",
+      "hashPath": "solana.pumpfun.8.0.0.1.nupkg.sha512"
+    },
+    "Solana.Rpc/8.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-zyjODkrj4lqnqvQhBd0VbjTedE5YCvqZXgCw1LnsEAAAwsLlxfhxWPNCEnijXVquKEWaxDaWMNCEeArh8ESrww==",
+      "path": "solana.rpc/8.0.2",
+      "hashPath": "solana.rpc.8.0.2.nupkg.sha512"
+    },
+    "Solana.Wallet/8.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-SwTr3O7nFmsr9Xu/kD9gyuxq9m6k8515EXyAQQRByY8Jf/wDUy53ZiNK6zFb6LHqvXayrvuKJJz8T/nPbDQlwg==",
+      "path": "solana.wallet/8.0.2",
+      "hashPath": "solana.wallet.8.0.2.nupkg.sha512"
     },
     "Solnet.Extensions/6.1.0": {
       "type": "package",

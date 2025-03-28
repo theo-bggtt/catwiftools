@@ -27,7 +27,7 @@ namespace catwiftools.tasks
         public static void InsertTask(int groupId, string taskName, string taskType)
         {
             string query = "INSERT INTO 'tasks' (group_id, task_name, task_type) VALUES (@groupId, @taskName, @taskType)";
-            using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
                 {
@@ -44,7 +44,7 @@ namespace catwiftools.tasks
         {
             int task_id = GetTaskId(task_name);
             string query = "INSERT INTO 'task_parameters' (task_id, parameter_name, parameter_value) VALUES (@taskId, @parameterName, @parameterValue)";
-            using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
                 {
@@ -64,7 +64,7 @@ namespace catwiftools.tasks
         public static void deleteParameters(int task_id)
         {
             string query = $"DELETE FROM 'task_parameters' WHERE task_id = {task_id}";
-            using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
                 {
@@ -77,7 +77,7 @@ namespace catwiftools.tasks
         public static void InsertTaskGroup(string groupName, string walletGroup)
         {
             string query = "INSERT INTO 'task_groups' (group_name, walletGroup) VALUES (@groupName, @walletGroup)";
-            using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
                 {
@@ -96,7 +96,7 @@ namespace catwiftools.tasks
         {
             string task_type = "";
             string query = $"SELECT task_type FROM 'tasks' WHERE task_id = {task_id}";
-            using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
                 {
@@ -117,7 +117,7 @@ namespace catwiftools.tasks
         {
             string task_name = "";
             string query = $"SELECT task_name FROM 'tasks' WHERE task_id = {task_id}";
-            using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
                 {
@@ -138,7 +138,7 @@ namespace catwiftools.tasks
         {
             int task_id = 0;
             string query = $"SELECT task_id FROM 'tasks' WHERE task_name = '{task_name}'";
-            using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
                 {
@@ -159,7 +159,7 @@ namespace catwiftools.tasks
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             string query = $"SELECT parameter_name, parameter_value FROM 'task_parameters' WHERE task_id = {task_id}";
-            using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
                 {
@@ -180,7 +180,7 @@ namespace catwiftools.tasks
         {
             List<int> task_ids = new List<int>();
             string query = $"SELECT task_id FROM 'tasks' WHERE group_id = '{group_id}'";
-            using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
                 {
@@ -204,7 +204,7 @@ namespace catwiftools.tasks
         {
             int groupId = 0;
             string query = $"SELECT group_id FROM 'task_groups' WHERE group_name = '{groupName}'";
-            using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
                 {
@@ -228,7 +228,7 @@ namespace catwiftools.tasks
         {
             int groupCount = 0;
             string query = "SELECT COUNT(*) FROM 'task_groups'";
-            using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
                 {
@@ -243,7 +243,7 @@ namespace catwiftools.tasks
         {
             int taskCount = 0;
             string query = "SELECT COUNT(*) FROM 'tasks'";
-            using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
                 {
@@ -260,7 +260,7 @@ namespace catwiftools.tasks
         public static bool GroupNameExists(string groupName)
         {
             string query = $"SELECT group_name FROM 'task_groups' WHERE group_name = @groupName";
-            using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
                 {
@@ -277,7 +277,7 @@ namespace catwiftools.tasks
         public static bool TaskNameExists(string taskName)
         {
             string query = $"SELECT task_name FROM 'tasks' WHERE task_name = @taskName";
-            using (SqliteConnection connection = new SqliteConnection(Functions.connectionString))
+            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
                 {
