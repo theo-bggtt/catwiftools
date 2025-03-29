@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Microsoft.Data.Sqlite;
 using Solnet.Wallet.Bip39;
 using Solnet.Wallet;
+using Solnet.Rpc;
 
 namespace catwiftools
 {
@@ -59,14 +60,23 @@ namespace catwiftools
             }
         }
 
-        public static (string ConnectionString, string HeliusUrl, string ApiKey) LoadEnvVariables()
+        public static (string ConnectionString, string HeliusUrl, string ApiKey, Cluster cluster) LoadEnvVariables()
         {
             Env.Load();
             string heliusApiKey = Env.GetString("API_KEY");
             string connectionString = "Data Source=catwiftools.db;";
+            string clusterString = Env.GetString("CLUSTER");
+            Cluster cluster = (Cluster)Enum.Parse(typeof(Cluster), clusterString, true);
             string heliusUrl = $"https://devnet.helius-rpc.com/?api-key={heliusApiKey}";
-            return (connectionString, heliusUrl, heliusApiKey);
+            return (connectionString, heliusUrl, heliusApiKey, cluster);
         }
+
+        public static IRpcClient GetRpcClient()
+        {
+            Cluster cluster = LoadEnvVariables().cluster;
+            return ClientFactory.GetClient(cluster);
+        }
+
 
         public int GetWalletId(string? walletAddress, string? walletphrase) // Prends l'Id d'un wallet à travers son addresse ou sa phrase, à travers la bdd
         {

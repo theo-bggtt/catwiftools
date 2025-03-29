@@ -12,11 +12,6 @@ namespace catwiftools.wallet
 {
     internal class walletHelper
     {
-        // ======================
-        // Configuration & Constants
-        // ======================
-        private static readonly (string ConnectionString, string HeliusUrl, string ApiKey) envVariables = Functions.LoadEnvVariables();
-        private static string connectionString = envVariables.ConnectionString;
 
         // ======================
         // Wallet Retrieval Methods
@@ -26,7 +21,7 @@ namespace catwiftools.wallet
             List<string> walletAddresses = new List<string>();
             string query = $"SELECT walletAddress FROM wallets WHERE group_id = {group_id}";
 
-            using (SqliteConnection connection = new SqliteConnection(connectionString))
+            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
             using (SqliteCommand command = new SqliteCommand(query, connection))
             {
                 connection.Open();
@@ -46,7 +41,7 @@ namespace catwiftools.wallet
             string phrase;
             string query = "SELECT walletphrase FROM wallets WHERE walletAddress = @walletAddress";
 
-            using (SqliteConnection connection = new SqliteConnection(connectionString))
+            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
             using (SqliteCommand command = new SqliteCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@walletAddress", walletAddress);
@@ -71,7 +66,7 @@ namespace catwiftools.wallet
             string fundWallet = string.Empty;
             string query = "SELECT walletAddress FROM wallets WHERE group_id = 0";
 
-            using (SqliteConnection connection = new SqliteConnection(connectionString))
+            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
             using (SqliteCommand command = new SqliteCommand(query, connection))
             {
                 connection.Open();
@@ -89,7 +84,7 @@ namespace catwiftools.wallet
         // ======================
         public static async Task<double> GetWalletBalance(string walletAddress)
         {
-            var rpcClient = ClientFactory.GetClient(Cluster.DevNet);
+            var rpcClient = Functions.GetRpcClient();
             var balanceResponse = await rpcClient.GetBalanceAsync(walletAddress);
             return balanceResponse.Result.Value / 1_000_000_000.0;
         }
@@ -115,7 +110,7 @@ namespace catwiftools.wallet
         {
             string query = "UPDATE wallets SET balance = @balance WHERE walletAddress = @walletAddress";
 
-            using (SqliteConnection connection = new SqliteConnection(connectionString))
+            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
             using (SqliteCommand command = new SqliteCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@balance", balance);
@@ -151,7 +146,7 @@ namespace catwiftools.wallet
         {
             try
             {
-                var rpcClient = ClientFactory.GetClient(Cluster.DevNet);
+                var rpcClient = Functions.GetRpcClient();
                 string privateKey = Functions.GetWalletphrase(null, Functions.CheckForFundWallet());
                 Wallet wallet = new Wallet(privateKey);
                 Solnet.Wallet.PublicKey fromAccount = wallet.Account.PublicKey;
@@ -196,7 +191,7 @@ namespace catwiftools.wallet
         {
             try
             {
-                var rpcClient = ClientFactory.GetClient(Cluster.DevNet);
+                var rpcClient = Functions.GetRpcClient();
                 string privateKeyString = Functions.GetWalletphrase(null, address);
 
                 Wallet wallet;

@@ -13,8 +13,6 @@ namespace catwiftools.tasks
 {
     public partial class formTaskGroupCreation : Form
     {
-        private static readonly (string ConnectionString, string HeliusUrl, string ApiKey) envVariables = Functions.LoadEnvVariables();
-        private static string connectionString = envVariables.ConnectionString;
         public string groupName, walletGroup;
 
         public formTaskGroupCreation()
