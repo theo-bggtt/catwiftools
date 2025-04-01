@@ -167,9 +167,8 @@ namespace catwiftools.tasks
             }
             else if (active_panel == pnlSellAll)
             {
-                token_contract = textBox8.Text;
                 delay = textBox5.Text;
-                if (string.IsNullOrEmpty(token_contract) || string.IsNullOrEmpty(delay))
+                if (string.IsNullOrEmpty(delay))
                 {
                     btnCreate.Enabled = false;
                 }

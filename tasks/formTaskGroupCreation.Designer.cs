@@ -35,6 +35,8 @@
             lbName = new Label();
             label1 = new Label();
             cbxWalletGroup = new ComboBox();
+            tbxContractAddress = new TextBox();
+            label2 = new Label();
             SuspendLayout();
             // 
             // btnCancel
@@ -55,7 +57,7 @@
             // 
             lbTitle.AutoSize = true;
             lbTitle.ForeColor = Color.White;
-            lbTitle.Location = new Point(95, 31);
+            lbTitle.Location = new Point(95, 15);
             lbTitle.Name = "lbTitle";
             lbTitle.Size = new Size(102, 15);
             lbTitle.TabIndex = 12;
@@ -78,7 +80,7 @@
             // 
             // tbxName
             // 
-            tbxName.Location = new Point(147, 85);
+            tbxName.Location = new Point(147, 52);
             tbxName.Name = "tbxName";
             tbxName.Size = new Size(100, 23);
             tbxName.TabIndex = 9;
@@ -88,7 +90,7 @@
             // 
             lbName.AutoSize = true;
             lbName.ForeColor = Color.White;
-            lbName.Location = new Point(42, 89);
+            lbName.Location = new Point(42, 56);
             lbName.Name = "lbName";
             lbName.Size = new Size(81, 15);
             lbName.TabIndex = 8;
@@ -98,7 +100,7 @@
             // 
             label1.AutoSize = true;
             label1.ForeColor = Color.White;
-            label1.Location = new Point(108, 125);
+            label1.Location = new Point(108, 162);
             label1.Name = "label1";
             label1.Size = new Size(76, 15);
             label1.TabIndex = 14;
@@ -107,11 +109,28 @@
             // cbxWalletGroup
             // 
             cbxWalletGroup.FormattingEnabled = true;
-            cbxWalletGroup.Location = new Point(50, 162);
+            cbxWalletGroup.Location = new Point(50, 195);
             cbxWalletGroup.Name = "cbxWalletGroup";
             cbxWalletGroup.Size = new Size(192, 23);
             cbxWalletGroup.TabIndex = 71;
             cbxWalletGroup.SelectedIndexChanged += cbxWalletGroup_SelectedIndexChanged;
+            // 
+            // tbxContractAddress
+            // 
+            tbxContractAddress.Location = new Point(42, 118);
+            tbxContractAddress.Name = "tbxContractAddress";
+            tbxContractAddress.Size = new Size(205, 23);
+            tbxContractAddress.TabIndex = 73;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(97, 94);
+            label2.Name = "label2";
+            label2.Size = new Size(98, 15);
+            label2.TabIndex = 72;
+            label2.Text = "Contract Address";
             // 
             // formTaskGroupCreation
             // 
@@ -120,6 +139,8 @@
             BackColor = Color.FromArgb(25, 25, 25);
             ClientSize = new Size(278, 278);
             ControlBox = false;
+            Controls.Add(tbxContractAddress);
+            Controls.Add(label2);
             Controls.Add(cbxWalletGroup);
             Controls.Add(label1);
             Controls.Add(btnCancel);
@@ -145,5 +166,7 @@
         private Label lbName;
         private Label label1;
         private ComboBox cbxWalletGroup;
+        private TextBox tbxContractAddress;
+        private Label label2;
     }
 }

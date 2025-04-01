@@ -1,8 +1,12 @@
-﻿using System;
+﻿using catwiftools.transactions.sources;
+using Solnet.Pumpfun;
+using Solnet.Wallet;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace catwiftools.tasks
 {
@@ -34,8 +38,7 @@ namespace catwiftools.tasks
                 foreach (var wallet in wallets)
                 {
                     // Make the buy transaction
-
-                    Thread.Sleep(random.Next(delay-4,delay+4) * 1000);
+                    Thread.Sleep(random.Next(delay - 4, delay + 4) * 1000);
                     AppState.RecentAction($"BumpItBuy Bought {amountPerWalletPerIteration} from {wallet}");
                 }
                 // Update progress
@@ -53,10 +56,32 @@ namespace catwiftools.tasks
 
         public static void ExecuteSellAllTask(int taskId)
         {
+            Random random = new Random();
+            Functions functions = new Functions();
+            var parameters = TaskHelper.GetTaskParameters(taskId);
+            var mintAddress = TaskHelper.GetMintAddress(taskId);
+
+            // Parse parameters
+            int delay = int.Parse(parameters["delay"]);
+            int walletGroup = int.Parse(parameters["walletGroup"]);
+
+            // Retrieve wallets in the selected wallet group
+            List<String> wallets = functions.GetWalletsInGroup(walletGroup);
+            int walletCount = wallets.Count;
+
+            // Execute the task
+
+            foreach (var wallet in wallets)
+            {
+                PumpfunClient pumpfunClient = new PumpfunClient(null, null);
+                decimal tokenAmount = pumpfunClient.GetAccountBalance(wallet, mintAddress).Result;
+                transactionHelper.SellTokens(pumpfunClient, wallet, mintAddress, tokenAmount, 20);
+            }
         }
 
         public static void ExecuteSingleSellTask(int taskId)
         {
+
         }
 
         public static void ExecuteCommentBotTask(int taskId)

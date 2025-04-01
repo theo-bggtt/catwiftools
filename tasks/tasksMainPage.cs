@@ -82,7 +82,7 @@ namespace catwiftools.tasks
         {
             Button btnViewGroup = (Button)sender;
             active_group = TaskHelper.GetTaskGroupId(btnViewGroup.Name);
-            Console.WriteLine($"Group Box Clicked: {active_group}");
+            AppState.WriteConsole($"Group Box Clicked: {active_group}");
             LoadTaskGroups();
             LoadTasks(active_group);
         }
@@ -93,7 +93,7 @@ namespace catwiftools.tasks
             {
                 if (formTaskCreation.ShowDialog() == DialogResult.OK)
                 {
-                    TaskHelper.InsertTask(active_group, formTaskCreation.task_name, formTaskCreation.task_type);
+                    TaskHelper.InsertTask(active_group, formTaskCreation.task_name, formTaskCreation.task_type, formTaskCreation.contractAddress);
                     TaskHelper.saveParameters(formTaskCreation.task_name, formTaskCreation.parameters);
                 }
             }

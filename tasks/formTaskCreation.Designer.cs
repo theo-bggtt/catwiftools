@@ -46,7 +46,6 @@
             pnlSellAll = new Panel();
             textBox5 = new TextBox();
             label9 = new Label();
-            textBox8 = new TextBox();
             label14 = new Label();
             pnlSingleSell = new Panel();
             cbxWallet = new ComboBox();
@@ -241,7 +240,6 @@
             // 
             pnlSellAll.Controls.Add(textBox5);
             pnlSellAll.Controls.Add(label9);
-            pnlSellAll.Controls.Add(textBox8);
             pnlSellAll.Controls.Add(label14);
             pnlSellAll.Location = new Point(25, 140);
             pnlSellAll.Name = "pnlSellAll";
@@ -251,7 +249,7 @@
             // 
             // textBox5
             // 
-            textBox5.Location = new Point(144, 156);
+            textBox5.Location = new Point(144, 177);
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(81, 23);
             textBox5.TabIndex = 70;
@@ -263,30 +261,22 @@
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label9.ForeColor = Color.White;
-            label9.Location = new Point(157, 130);
+            label9.Location = new Point(157, 151);
             label9.Name = "label9";
             label9.Size = new Size(56, 15);
             label9.TabIndex = 69;
             label9.Text = "Delay (S)";
-            // 
-            // textBox8
-            // 
-            textBox8.Location = new Point(38, 45);
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(292, 23);
-            textBox8.TabIndex = 65;
-            textBox8.TextChanged += token_contract_TextChanged;
             // 
             // label14
             // 
             label14.AutoSize = true;
             label14.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label14.ForeColor = Color.White;
-            label14.Location = new Point(115, 19);
+            label14.Location = new Point(146, 19);
             label14.Name = "label14";
-            label14.Size = new Size(139, 15);
+            label14.Size = new Size(78, 15);
             label14.TabIndex = 53;
-            label14.Text = "Token Contract Address";
+            label14.Text = "WalletGroup";
             // 
             // pnlSingleSell
             // 
@@ -471,11 +461,11 @@
             Controls.Add(tbxTaskName);
             Controls.Add(lblTaskName);
             Controls.Add(lblTaskType);
-            Controls.Add(pnlSingleSell);
             Controls.Add(pnlSellAll);
             Controls.Add(pnlBuyParameters);
             Controls.Add(pnlBumpIt);
             Controls.Add(pnlCommentBot);
+            Controls.Add(pnlSingleSell);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "formTaskCreation";
             StartPosition = FormStartPosition.CenterParent;
@@ -513,7 +503,6 @@
         private Panel pnlSellAll;
         private TextBox textBox5;
         private Label label9;
-        private TextBox textBox8;
         private Label label14;
         private Panel pnlSingleSell;
         private Label label11;

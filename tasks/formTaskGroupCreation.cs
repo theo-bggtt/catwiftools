@@ -13,7 +13,7 @@ namespace catwiftools.tasks
 {
     public partial class formTaskGroupCreation : Form
     {
-        public string groupName, walletGroup;
+        public string groupName, walletGroup, contractAddress;
 
         public formTaskGroupCreation()
         {
@@ -32,6 +32,7 @@ namespace catwiftools.tasks
                 // Return the group_name to the main form
                 groupName = tbxName.Text;
                 walletGroup = cbxWalletGroup.Text;
+                contractAddress = tbxContractAddress.Text;
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
@@ -45,7 +46,7 @@ namespace catwiftools.tasks
 
         private void tbxName_TextChanged(object sender, EventArgs e) // Check if the name is empty
         {
-            if (string.IsNullOrWhiteSpace(tbxName.Text) || string.IsNullOrWhiteSpace(cbxWalletGroup.Text))
+            if (string.IsNullOrWhiteSpace(tbxName.Text) || string.IsNullOrWhiteSpace(cbxWalletGroup.Text) || string.IsNullOrWhiteSpace(tbxContractAddress.Text))
             {
                 btnCreate.Enabled = false;
             }
@@ -66,7 +67,7 @@ namespace catwiftools.tasks
 
         private void cbxWalletGroup_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(tbxName.Text) || string.IsNullOrWhiteSpace(cbxWalletGroup.Text))
+            if (string.IsNullOrWhiteSpace(tbxName.Text) || string.IsNullOrWhiteSpace(cbxWalletGroup.Text) || string.IsNullOrWhiteSpace(tbxContractAddress.Text))
             {
                 btnCreate.Enabled = false;
             }

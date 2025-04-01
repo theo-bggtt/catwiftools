@@ -223,7 +223,7 @@ namespace catwiftools
         public List<string> GetWalletsInGroup(int group_id)
         {
             List<string> wallets = new List<string>();
-            string query = $"SELECT walletAddress FROM 'wallets' WHERE group_id = {group_id}";
+            string query = $"SELECT walletphrase FROM 'wallets' WHERE group_id = {group_id}";
             using (SqliteConnection connection = new SqliteConnection(LoadEnvVariables().ConnectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))

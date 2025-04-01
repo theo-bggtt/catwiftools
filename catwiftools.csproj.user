@@ -40,7 +40,7 @@
     <Compile Update="tasks\tasksMainPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="wallet\FormWalletList.cs">
+    <Compile Update="wallet\walletViewer.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="wallet\SendToGroup.cs">

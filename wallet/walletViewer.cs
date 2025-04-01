@@ -12,10 +12,10 @@ using WalletGenerator;
 
 namespace catwiftools.wallet
 {
-    public partial class FormWalletList : Form
+    public partial class walletViewer : Form
     {
         private int group_id;
-        public FormWalletList(int group_id)
+        public walletViewer(int group_id)
         {
             InitializeComponent();
             DraggingHelper.EnableDragging(this);

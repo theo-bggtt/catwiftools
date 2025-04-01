@@ -1,6 +1,6 @@
 ﻿namespace catwiftools.wallet
 {
-    partial class FormWalletList
+    partial class walletViewer
     {
         /// <summary>
         /// Required designer variable.

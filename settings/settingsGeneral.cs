@@ -29,7 +29,7 @@ namespace catwiftools.settings
             fundWalletSetup();
             double balance = await walletHelper.GetWalletBalance(fundWallet);
             lblFundBalance.Text = Math.Round(balance,3).ToString();
-            Console.WriteLine(lblFundBalance.Text);
+            AppState.WriteConsole(lblFundBalance.Text);
         }
 
 

@@ -24,9 +24,9 @@ namespace catwiftools.tasks
         // ====================
         // Insert and delete 
         // ====================
-        public static void InsertTask(int groupId, string taskName, string taskType)
+        public static void InsertTask(int groupId, string taskName, string taskType, string contractAddress)
         {
-            string query = "INSERT INTO 'tasks' (group_id, task_name, task_type) VALUES (@groupId, @taskName, @taskType)";
+            string query = "INSERT INTO 'tasks' (group_id, task_name, task_type, contractAddress) VALUES (@groupId, @taskName, @taskType, @contractAddress)";
             using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
@@ -34,6 +34,7 @@ namespace catwiftools.tasks
                     command.Parameters.AddWithValue("@groupId", groupId);
                     command.Parameters.AddWithValue("@taskName", taskName);
                     command.Parameters.AddWithValue("@taskType", taskType);
+                    command.Parameters.AddWithValue("@contractAddress", contractAddress);
                     connection.Open();
                     command.ExecuteNonQuery();
                 }
@@ -219,6 +220,30 @@ namespace catwiftools.tasks
                 }
             }
             return groupId;
+        }
+
+        public static string GetMintAddress(int taskId)
+        {
+            string contractAddress = string.Empty;
+            string query = "SELECT contractAddress FROM 'task_groups' WHERE group_id = (SELECT group_id FROM 'tasks' WHERE task_id = @taskId)";
+            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
+            {
+                using (SqliteCommand command = new SqliteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@taskId", taskId);
+                    connection.Open();
+                    using (SqliteDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            contractAddress = reader.GetString(0);
+                        }
+                    }
+                }
+            }
+
+
+            return contractAddress;
         }
 
         // ====================

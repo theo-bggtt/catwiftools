@@ -349,7 +349,7 @@ namespace catwiftools.wallet
             viewButton.Click += (s, ev) =>
             {
                 group_id = Convert.ToInt32(borderlessGroupBox.Tag);
-                FormWalletList formWalletList = new FormWalletList(group_id);
+                walletViewer formWalletList = new walletViewer(group_id);
                 formWalletList.Show();
             };
 
