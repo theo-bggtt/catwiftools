@@ -1,28 +1,27 @@
 ﻿using Solnet.Programs.Models;
 using Solnet.Programs.Utilities;
 using Solnet.Programs;
-using Solnet.Pumpfun;
 using Solnet.Rpc.Builders;
 using Solnet.Rpc.Models;
 using Solnet.Rpc.Types;
 using Solnet.Rpc;
 using Solnet.Wallet;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http.Json;
+using System.Text;
 using System.Text.Json;
+using System.Threading.Tasks;
 using static Solnet.Pumpfun.Accounts;
+using Solnet.Pumpfun;
 
-namespace catwiftools.transactions.sources
+namespace catwiftools.transactions
 {
     internal class PumpfunClient
     {
         public IRpcClient RpcClient { get; set; }
-        private Account trader { get; set; }
 
-        public PumpfunClient(IRpcClient rpc, Account _trader)
-        {
-            this.RpcClient = rpc;
-            this.trader = _trader;
-        }
         public async Task<AccountResultWrapper<BondingCurve>> GetBondingCurveAsync(string accountAddress, Commitment commitment = Commitment.Finalized)
         {
             var res = await RpcClient.GetAccountInfoAsync(accountAddress, commitment);
@@ -31,14 +30,11 @@ namespace catwiftools.transactions.sources
             var resultingAccount = BondingCurve.Deserialize(Convert.FromBase64String(res.Result.Value.Data[0]));
             return new AccountResultWrapper<BondingCurve>(res, resultingAccount);
         }
-        public void SetTrader(Account _trader)
-        {
-            this.trader = _trader;
-        }
-        public async Task<string> Buy(string mint_address, decimal sol_amount, decimal slippage_percentage, ulong computebudget = 100000, ulong computeprice = 1080000)
+
+        public async Task<string> Buy(Account wallet, string mint_address, decimal sol_amount, decimal slippage_percentage, ulong computebudget = 100000, ulong computeprice = 1080000)
         {
             PublicKey mint = new PublicKey(mint_address);
-            PublicKey associatedUser = AssociatedTokenAccountProgram.DeriveAssociatedTokenAccount(trader, mint);
+            PublicKey associatedUser = AssociatedTokenAccountProgram.DeriveAssociatedTokenAccount(wallet, mint);
 
             PublicKey bondingCurveAddress = PDALookup.FindBondingPDA(mint);
             PublicKey associatedCurveAddress = PDALookup.FindAssociatedBondingPDA(bondingCurveAddress, mint);
@@ -47,27 +43,27 @@ namespace catwiftools.transactions.sources
             {
                 decimal virtualSol = curve.virtualSolReserves / SolHelper.LAMPORTS_PER_SOL;
 
-                decimal virtualToken = curve.virtualTokenReserves / (ulong)1000000;
+                decimal virtualToken = curve.virtualTokenReserves / 1000000;
 
                 decimal tokenPrice = virtualSol / virtualToken;
 
-                ulong amountOut = (ulong)(sol_amount / tokenPrice) * (ulong)1000000;
+                ulong amountOut = (ulong)(sol_amount / tokenPrice) * 1000000;
 
-                decimal slippage = (sol_amount / 100) * slippage_percentage;
+                decimal slippage = sol_amount / 100 * slippage_percentage;
                 ulong max_sol = SolHelper.ConvertToLamports(sol_amount + slippage);
                 TransactionInstruction computeBudget = PumpfunProgram.SetCUlimit(computebudget);
                 TransactionInstruction computePrice = ComputeBudgetProgram.SetComputeUnitPrice(computeprice);
-                TransactionInstruction buy_instruction = PumpfunProgram.CreateBuyInstruction(mint, bondingCurveAddress, associatedCurveAddress, associatedUser, trader, amountOut, max_sol);
+                TransactionInstruction buy_instruction = PumpfunProgram.CreateBuyInstruction(mint, bondingCurveAddress, associatedCurveAddress, associatedUser, wallet, amountOut, max_sol);
 
                 LatestBlockHash latestBlockHash = (await RpcClient.GetLatestBlockHashAsync()).Result.Value;
                 TransactionBuilder tx = new TransactionBuilder();
-                tx.SetFeePayer(trader);
+                tx.SetFeePayer(wallet);
                 tx.SetRecentBlockHash(latestBlockHash.Blockhash);
                 tx.AddInstruction(computeBudget);
                 tx.AddInstruction(computePrice);
-                //tx.AddInstruction(AssociatedTokenAccountProgram.CreateAssociatedTokenAccount(trader, trader, mint));
+                //tx.AddInstruction(AssociatedTokenAccountProgram.CreateAssociatedTokenAccount(wallet, wallet, mint));
                 tx.AddInstruction(buy_instruction);
-                byte[] final_tx = tx.Build(trader);
+                byte[] final_tx = tx.Build(wallet);
                 string response = (await RpcClient.SendTransactionAsync(final_tx)).RawRpcResponse;
                 return response;
             }
@@ -76,10 +72,10 @@ namespace catwiftools.transactions.sources
                 return "curve not found";
             }
         }
-        public async Task<string> Sell(string mint_address, decimal token_amount, string blockhash, decimal min_sol_out = 0, ulong computebudget = 100000, ulong computeprice = 2080000)
+        public async Task<string> Sell(Account wallet, string mint_address, decimal token_amount, decimal min_sol_out = 0, ulong computebudget = 100000, ulong computeprice = 2080000)
         {
             PublicKey mint = new PublicKey(mint_address);
-            PublicKey associatedUser = AssociatedTokenAccountProgram.DeriveAssociatedTokenAccount(trader, mint);
+            PublicKey associatedUser = AssociatedTokenAccountProgram.DeriveAssociatedTokenAccount(wallet, mint);
 
             PublicKey bondingCurveAddress = PDALookup.FindBondingPDA(mint);
             PublicKey associatedCurveAddress = PDALookup.FindAssociatedBondingPDA(bondingCurveAddress, mint);
@@ -91,16 +87,16 @@ namespace catwiftools.transactions.sources
                 TransactionInstruction computePrice = ComputeBudgetProgram.SetComputeUnitPrice(computeprice);
                 TransactionInstruction sell_instruction = PumpfunProgram.CreateSellInstruction(
                     mint, bondingCurveAddress, associatedCurveAddress,
-                    associatedUser, trader, (ulong)(token_amount * 1000000), min_sol_out);
+                    associatedUser, wallet, (ulong)(token_amount * 1000000), min_sol_out);
 
                 TransactionBuilder tx = new TransactionBuilder();
-                tx.SetFeePayer(trader);
-                tx.SetRecentBlockHash(blockhash);
+                tx.SetFeePayer(wallet);
+                tx.SetRecentBlockHash((await RpcClient.GetLatestBlockHashAsync()).ToString());
                 tx.AddInstruction(computeBudget);
                 tx.AddInstruction(computePrice);
                 tx.AddInstruction(sell_instruction);
 
-                byte[] final_tx = tx.Build(trader);
+                byte[] final_tx = tx.Build(wallet);
                 var sendResult = await RpcClient.SendTransactionAsync(final_tx);
 
                 // Parse the JSON response to extract just the transaction signature
@@ -122,13 +118,13 @@ namespace catwiftools.transactions.sources
         {
             // Ensure the conversion factors are correct
             decimal virtualSol = curve.virtualSolReserves / SolHelper.LAMPORTS_PER_SOL;
-            decimal virtualToken = curve.virtualTokenReserves / (ulong)1000000;
+            decimal virtualToken = curve.virtualTokenReserves / 1000000;
 
             // Calculate the token price based on the bonding curve
             decimal tokenPrice = virtualSol / virtualToken;
 
             // Calculate the expected SOL amount based on the token amount and token price
-            decimal expectedSolAmount = tokenAmount * tokenPrice / (ulong)1000000;
+            decimal expectedSolAmount = tokenAmount * tokenPrice / 1000000;
 
             return expectedSolAmount;
         }
@@ -144,30 +140,27 @@ namespace catwiftools.transactions.sources
         public async Task<string> OpenAccount(PublicKey owner, string mint_address)
         {
             PublicKey mint = new PublicKey(mint_address);
-            bool exists = await AccountExists(owner, mint);
-            if (exists)
+            if (await AccountExists(owner, mint))
             {
                 return "Account already exists";
             }
 
-            TransactionInstruction openInstruction = AssociatedTokenAccountProgram.CreateAssociatedTokenAccount(owner, owner, mint);
+            var openInstruction = AssociatedTokenAccountProgram.CreateAssociatedTokenAccount(owner, owner, mint);
+            var latestBlockHash = (await RpcClient.GetLatestBlockHashAsync()).Result.Value;
 
-            LatestBlockHash latestBlockHash = (await RpcClient.GetLatestBlockHashAsync()).Result.Value;
-            TransactionBuilder tx = new TransactionBuilder();
-            tx.SetFeePayer(owner);
-            tx.SetRecentBlockHash(latestBlockHash.Blockhash);
-            tx.AddInstruction(openInstruction);
-
-            byte[] final_tx = tx.Build(trader);
-            string response = (await RpcClient.SendTransactionAsync(final_tx)).RawRpcResponse;
-            return response;
+            var tx = new TransactionBuilder()
+                .SetFeePayer(owner)
+                .SetRecentBlockHash(latestBlockHash.Blockhash)
+                .AddInstruction(openInstruction);
+            var final_tx = tx.Build((IList<Account>)owner); // Use owner to sign the transaction
+            return (await RpcClient.SendTransactionAsync(final_tx)).RawRpcResponse;
         }
+
 
         public async Task<string> CloseAccount(PublicKey owner, string mint_address)
         {
             PublicKey mint = new PublicKey(mint_address);
-            bool exists = await AccountExists(owner, mint);
-            if (!exists)
+            if (!await AccountExists(owner, mint))
             {
                 return "Account does not exist";
             }
@@ -181,14 +174,12 @@ namespace catwiftools.transactions.sources
             );
 
             LatestBlockHash latestBlockHash = (await RpcClient.GetLatestBlockHashAsync()).Result.Value;
-            TransactionBuilder tx = new TransactionBuilder();
-            tx.SetFeePayer(owner);
-            tx.SetRecentBlockHash(latestBlockHash.Blockhash);
-            tx.AddInstruction(closeInstruction);
-
-            byte[] final_tx = tx.Build(trader);
-            string response = (await RpcClient.SendTransactionAsync(final_tx)).RawRpcResponse;
-            return response;
+            var tx = new TransactionBuilder()
+                .SetFeePayer(owner)
+                .SetRecentBlockHash(latestBlockHash.Blockhash)
+                .AddInstruction(closeInstruction);
+            byte[] final_tx = tx.Build((IList<Account>)owner);
+            return (await RpcClient.SendTransactionAsync(final_tx)).RawRpcResponse;
         }
 
         public async Task<bool> IsTransactionFinalized(string transactionSignature, CancellationToken cancellationToken = default)

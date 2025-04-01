@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solnet.Pumpfun
+namespace catwiftools.transactions
 {
-    public class Accounts
+    internal class Accounts
     {
         public partial class BondingCurve
         {

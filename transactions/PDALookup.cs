@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solnet.Pumpfun
+namespace catwiftools.transactions
 {
-    public static class PDALookup
+    internal class PDALookup
     {
         public static PublicKey FindGlobalPDA()
         {

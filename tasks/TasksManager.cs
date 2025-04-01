@@ -1,4 +1,4 @@
-﻿using catwiftools.transactions.sources;
+﻿using catwiftools.transactions.file;
 using Solnet.Pumpfun;
 using Solnet.Wallet;
 using System;
@@ -73,10 +73,6 @@ namespace catwiftools.tasks
 
             foreach (var wallet in wallets)
             {
-                // Use fully qualified names to resolve ambiguity
-                catwiftools.transactions.sources.PumpfunClient pumpfunClient = new catwiftools.transactions.sources.PumpfunClient(null, null);
-                decimal tokenAmount = pumpfunClient.GetAccountBalance(wallet, mintAddress).Result;
-                transactionHelper.SellTokens(pumpfunClient, wallet, mintAddress, tokenAmount, 20);
             }
         }
 

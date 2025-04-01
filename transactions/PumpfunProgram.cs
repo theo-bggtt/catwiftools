@@ -1,11 +1,16 @@
-﻿using Solnet.Programs;
-using Solnet.Programs.Utilities;
+﻿using Solnet.Programs.Utilities;
+using Solnet.Programs;
 using Solnet.Rpc.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Solnet.Wallet;
 
-namespace Solnet.Pumpfun
+namespace catwiftools.transactions
 {
-    public static class PumpfunProgram
+    internal class PumpfunProgram
     {
         public static PublicKey ProgramID = new PublicKey("6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P");
         public static PublicKey FeeReceiver = new PublicKey("CebN5WGQ4jvEPvsVU4EoHEpgzq1VV7AbicfhtW4xC9iM");
@@ -26,7 +31,7 @@ namespace Solnet.Pumpfun
                 Data = data
             };
         }
-        public static TransactionInstruction CreateBuyInstruction( PublicKey tokenMint, PublicKey bonding, PublicKey assocBondingAddr, PublicKey ataUser, PublicKey user, ulong tokenOut, ulong solWithSlippage)
+        public static TransactionInstruction CreateBuyInstruction(PublicKey tokenMint, PublicKey bonding, PublicKey assocBondingAddr, PublicKey ataUser, PublicKey user, ulong tokenOut, ulong solWithSlippage)
         {
             List<AccountMeta> keys = new()
             {
@@ -102,5 +107,3 @@ namespace Solnet.Pumpfun
         }
     }
 }
-
-
