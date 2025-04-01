@@ -71,7 +71,7 @@ namespace catwiftools.transactions.sources
                         AppState.WriteConsole("Transaction not confirmed. Exiting.");
                         return;
                     }
-                    decimal balance = await pumpfunClient.GetAccountBalance(trader, mintAddress);
+                    decimal balance = await pumpfunClient.GetAccountBalance(wallet, mintAddress);
                     if (balance == 0)
                     {
                         string closeAccountResponse = await pumpfunClient.CloseAccount(trader, mintAddress);

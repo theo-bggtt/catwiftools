@@ -73,7 +73,8 @@ namespace catwiftools.tasks
 
             foreach (var wallet in wallets)
             {
-                PumpfunClient pumpfunClient = new PumpfunClient(null, null);
+                // Use fully qualified names to resolve ambiguity
+                catwiftools.transactions.sources.PumpfunClient pumpfunClient = new catwiftools.transactions.sources.PumpfunClient(null, null);
                 decimal tokenAmount = pumpfunClient.GetAccountBalance(wallet, mintAddress).Result;
                 transactionHelper.SellTokens(pumpfunClient, wallet, mintAddress, tokenAmount, 20);
             }

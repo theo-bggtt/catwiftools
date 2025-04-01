@@ -24,9 +24,9 @@ namespace catwiftools.tasks
         // ====================
         // Insert and delete 
         // ====================
-        public static void InsertTask(int groupId, string taskName, string taskType, string contractAddress)
+        public static void InsertTask(int groupId, string taskName, string taskType)
         {
-            string query = "INSERT INTO 'tasks' (group_id, task_name, task_type, contractAddress) VALUES (@groupId, @taskName, @taskType, @contractAddress)";
+            string query = "INSERT INTO 'tasks' (group_id, task_name, task_type) VALUES (@groupId, @taskName, @taskType)";
             using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
@@ -34,7 +34,7 @@ namespace catwiftools.tasks
                     command.Parameters.AddWithValue("@groupId", groupId);
                     command.Parameters.AddWithValue("@taskName", taskName);
                     command.Parameters.AddWithValue("@taskType", taskType);
-                    command.Parameters.AddWithValue("@contractAddress", contractAddress);
+                    
                     connection.Open();
                     command.ExecuteNonQuery();
                 }
@@ -75,15 +75,16 @@ namespace catwiftools.tasks
             }
         }
 
-        public static void InsertTaskGroup(string groupName, string walletGroup)
+        public static void InsertTaskGroup(string groupName, string walletGroup, string contractAddress)
         {
-            string query = "INSERT INTO 'task_groups' (group_name, walletGroup) VALUES (@groupName, @walletGroup)";
+            string query = "INSERT INTO 'task_groups' (group_name, walletGroup, contractAddress) VALUES (@groupName, @walletGroup, @contractAddress)";
             using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@groupName", groupName);
                     command.Parameters.AddWithValue("@walletGroup", walletGroup);
+                    command.Parameters.AddWithValue("@contractAddress", contractAddress);
                     connection.Open();
                     command.ExecuteNonQuery();
                 }

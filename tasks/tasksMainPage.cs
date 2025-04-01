@@ -36,7 +36,7 @@ namespace catwiftools.tasks
             {
                 if (formTaskGroupCreation.ShowDialog() == DialogResult.OK)
                 {
-                    TaskHelper.InsertTaskGroup(formTaskGroupCreation.groupName, formTaskGroupCreation.walletGroup);
+                    TaskHelper.InsertTaskGroup(formTaskGroupCreation.groupName, formTaskGroupCreation.walletGroup, formTaskGroupCreation.contractAddress);
                     active_group = TaskHelper.GetTaskGroupId(formTaskGroupCreation.groupName);
                 }
             }
@@ -93,7 +93,7 @@ namespace catwiftools.tasks
             {
                 if (formTaskCreation.ShowDialog() == DialogResult.OK)
                 {
-                    TaskHelper.InsertTask(active_group, formTaskCreation.task_name, formTaskCreation.task_type, formTaskCreation.contractAddress);
+                    TaskHelper.InsertTask(active_group, formTaskCreation.task_name, formTaskCreation.task_type);
                     TaskHelper.saveParameters(formTaskCreation.task_name, formTaskCreation.parameters);
                 }
             }
