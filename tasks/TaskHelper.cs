@@ -223,7 +223,7 @@ namespace catwiftools.tasks
             return groupId;
         }
 
-        public static string GetMintAddress(int taskId)
+        public static string GetCAFromGroupId(int taskId)
         {
             string contractAddress = string.Empty;
             string query = "SELECT contractAddress FROM 'task_groups' WHERE group_id = (SELECT group_id FROM 'tasks' WHERE task_id = @taskId)";

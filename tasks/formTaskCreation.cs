@@ -15,7 +15,7 @@ namespace catwiftools.tasks
 {
     public partial class formTaskCreation : Form
     {
-        public string task_name, task_type, token_contract, buy_amount, minimum_buy, maximum_buy, delay, comments, wallet;
+        public string task_name, task_type, buy_amount, minimum_buy, maximum_buy, delay, comments, wallet, cycle;
         public Dictionary<string, string> parameters = [];
         private Panel active_panel;
 
@@ -52,7 +52,7 @@ namespace catwiftools.tasks
             }
         }
 
-        private void tbxDelay_KeyPress(object sender, KeyPressEventArgs e)
+        private void tbx_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
             {
@@ -107,15 +107,6 @@ namespace catwiftools.tasks
             checkRequisit();
         }
 
-        private void token_contract_TextChanged(object sender, EventArgs e)
-        {
-            if (sender is TextBox textBox)
-            {
-                token_contract = textBox.Text;
-                checkRequisit();
-            }
-        }
-
         private void tbxDelay_TextChanged(object sender, EventArgs e)
         {
             if (sender is TextBox textBox)
@@ -125,7 +116,7 @@ namespace catwiftools.tasks
             }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void tbxMinimumBuy_TextChanged(object sender, EventArgs e)
         {
             if (sender is TextBox textBox)
             {
@@ -148,15 +139,20 @@ namespace catwiftools.tasks
             checkRequisit();
         }
 
+        private void tbxCycle_TextChanged(object sender, EventArgs e)
+        {
+            cycle = tbxCycle.Text;
+            checkRequisit();
+        }
+
         private void checkRequisit()
         {
             if (active_panel == pnlBuyParameters)
             {
-                token_contract = tbxContracttbxContract.Text;
                 minimum_buy = tbxMinimumBuy.Text;
                 delay = textBox4.Text;
                 maximum_buy = tbxMaximumBuy.Text;
-                if (string.IsNullOrEmpty(token_contract) || string.IsNullOrEmpty(minimum_buy) || string.IsNullOrEmpty(maximum_buy) || string.IsNullOrEmpty(delay))
+                if (string.IsNullOrEmpty(minimum_buy) || string.IsNullOrEmpty(maximum_buy) || string.IsNullOrEmpty(delay))
                 {
                     btnCreate.Enabled = false;
                 }
@@ -168,7 +164,8 @@ namespace catwiftools.tasks
             else if (active_panel == pnlSellAll)
             {
                 delay = textBox5.Text;
-                if (string.IsNullOrEmpty(delay))
+                cycle = tbxCycle.Text;
+                if (string.IsNullOrEmpty(delay) || string.IsNullOrEmpty(cycle))
                 {
                     btnCreate.Enabled = false;
                 }
@@ -179,10 +176,9 @@ namespace catwiftools.tasks
             }
             else if (active_panel == pnlSingleSell)
             {
-                token_contract = textBox7.Text;
                 wallet = cbxWallet.Text;
                 // Add wallet
-                if (string.IsNullOrEmpty(token_contract) || string.IsNullOrEmpty(wallet))
+                if (string.IsNullOrEmpty(wallet))
                 {
                     btnCreate.Enabled = false;
                 }
@@ -193,10 +189,9 @@ namespace catwiftools.tasks
             }
             else if (active_panel == pnlCommentBot)
             {
-                token_contract = tbxContract.Text;
-                delay = tbxComments.Text;
+                comments = tbxComments.Text;
                 // Add comments
-                if (string.IsNullOrEmpty(token_contract))
+                if (string.IsNullOrEmpty(comments))
                 {
                     btnCreate.Enabled = false;
                 }
@@ -207,11 +202,10 @@ namespace catwiftools.tasks
             }
             else if (active_panel == pnlBumpIt)
             {
-                token_contract = textBox12.Text;
                 buy_amount = textBox3.Text;
                 delay = textBox2.Text;
                 // Add wallet
-                if (string.IsNullOrEmpty(token_contract) || string.IsNullOrEmpty(buy_amount) || string.IsNullOrEmpty(delay))
+                if (string.IsNullOrEmpty(buy_amount) || string.IsNullOrEmpty(delay))
                 {
                     btnCreate.Enabled = false;
                 }
@@ -228,8 +222,6 @@ namespace catwiftools.tasks
 
         private void updateParameters()
         {
-            parameters.Add("Token Contract", token_contract);
-
             if (active_panel == pnlBuyParameters)
             {
                 if (!string.IsNullOrEmpty(minimum_buy))
@@ -250,6 +242,11 @@ namespace catwiftools.tasks
                 if (!string.IsNullOrEmpty(delay))
                 {
                     parameters.Add("Delay", delay);
+                    
+                }
+                if (!string.IsNullOrEmpty(cycle))
+                {
+                     parameters.Add("Cycle", cycle);
                 }
             }
             else if (active_panel == pnlSingleSell)
@@ -312,6 +309,6 @@ namespace catwiftools.tasks
             return wallets.ToArray();
         }
 
-
+        
     }
 }

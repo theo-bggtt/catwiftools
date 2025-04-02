@@ -41,29 +41,22 @@
             label4 = new Label();
             tbxMinimumBuy = new TextBox();
             label13 = new Label();
-            label16 = new Label();
-            tbxContracttbxContract = new TextBox();
             pnlSellAll = new Panel();
+            tbxCycle = new TextBox();
+            lblCycle = new Label();
             textBox5 = new TextBox();
             label9 = new Label();
-            label14 = new Label();
             pnlSingleSell = new Panel();
             cbxWallet = new ComboBox();
             label11 = new Label();
-            textBox7 = new TextBox();
-            label12 = new Label();
             pnlCommentBot = new Panel();
             tbxComments = new TextBox();
             lblComments = new Label();
-            tbxContract = new TextBox();
-            label17 = new Label();
             pnlBumpIt = new Panel();
             textBox2 = new TextBox();
             label2 = new Label();
             textBox3 = new TextBox();
             label3 = new Label();
-            textBox12 = new TextBox();
-            label19 = new Label();
             pnlBuyParameters.SuspendLayout();
             pnlSellAll.SuspendLayout();
             pnlSingleSell.SuspendLayout();
@@ -149,8 +142,6 @@
             pnlBuyParameters.Controls.Add(label4);
             pnlBuyParameters.Controls.Add(tbxMinimumBuy);
             pnlBuyParameters.Controls.Add(label13);
-            pnlBuyParameters.Controls.Add(label16);
-            pnlBuyParameters.Controls.Add(tbxContracttbxContract);
             pnlBuyParameters.Location = new Point(25, 140);
             pnlBuyParameters.Name = "pnlBuyParameters";
             pnlBuyParameters.Size = new Size(370, 235);
@@ -159,19 +150,19 @@
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(144, 193);
+            textBox4.Location = new Point(144, 163);
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(81, 23);
             textBox4.TabIndex = 70;
             textBox4.TextChanged += tbxDelay_TextChanged;
-            textBox4.KeyPress += tbxDelay_KeyPress;
+            textBox4.KeyPress += tbx_KeyPress;
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.White;
-            label5.Location = new Point(157, 167);
+            label5.Location = new Point(157, 137);
             label5.Name = "label5";
             label5.Size = new Size(56, 15);
             label5.TabIndex = 69;
@@ -179,19 +170,19 @@
             // 
             // tbxMaximumBuy
             // 
-            tbxMaximumBuy.Location = new Point(251, 122);
+            tbxMaximumBuy.Location = new Point(251, 92);
             tbxMaximumBuy.Name = "tbxMaximumBuy";
             tbxMaximumBuy.Size = new Size(81, 23);
             tbxMaximumBuy.TabIndex = 68;
             tbxMaximumBuy.TextChanged += tbxMaximumBuy_TextChanged;
-            tbxMaximumBuy.KeyPress += tbxDelay_KeyPress;
+            tbxMaximumBuy.KeyPress += tbx_KeyPress;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.White;
-            label4.Location = new Point(224, 96);
+            label4.Location = new Point(224, 66);
             label4.Name = "label4";
             label4.Size = new Size(135, 15);
             label4.TabIndex = 67;
@@ -199,91 +190,80 @@
             // 
             // tbxMinimumBuy
             // 
-            tbxMinimumBuy.Location = new Point(40, 121);
+            tbxMinimumBuy.Location = new Point(40, 91);
             tbxMinimumBuy.Name = "tbxMinimumBuy";
             tbxMinimumBuy.Size = new Size(81, 23);
             tbxMinimumBuy.TabIndex = 66;
-            tbxMinimumBuy.TextChanged += textBox1_TextChanged;
-            tbxMinimumBuy.KeyPress += tbxDelay_KeyPress;
+            tbxMinimumBuy.TextChanged += tbxMinimumBuy_TextChanged;
+            tbxMinimumBuy.KeyPress += tbx_KeyPress;
             // 
             // label13
             // 
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label13.ForeColor = Color.White;
-            label13.Location = new Point(14, 95);
+            label13.Location = new Point(14, 65);
             label13.Name = "label13";
             label13.Size = new Size(132, 15);
             label13.TabIndex = 57;
             label13.Text = "Minimum Buy Amount";
             // 
-            // label16
-            // 
-            label16.AutoSize = true;
-            label16.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label16.ForeColor = Color.White;
-            label16.Location = new Point(115, 19);
-            label16.Name = "label16";
-            label16.Size = new Size(139, 15);
-            label16.TabIndex = 53;
-            label16.Text = "Token Contract Address";
-            // 
-            // tbxContracttbxContract
-            // 
-            tbxContracttbxContract.Location = new Point(38, 45);
-            tbxContracttbxContract.Name = "tbxContracttbxContract";
-            tbxContracttbxContract.Size = new Size(292, 23);
-            tbxContracttbxContract.TabIndex = 65;
-            tbxContracttbxContract.TextChanged += token_contract_TextChanged;
-            // 
             // pnlSellAll
             // 
+            pnlSellAll.Controls.Add(tbxCycle);
+            pnlSellAll.Controls.Add(lblCycle);
             pnlSellAll.Controls.Add(textBox5);
             pnlSellAll.Controls.Add(label9);
-            pnlSellAll.Controls.Add(label14);
             pnlSellAll.Location = new Point(25, 140);
             pnlSellAll.Name = "pnlSellAll";
             pnlSellAll.Size = new Size(370, 235);
             pnlSellAll.TabIndex = 71;
             pnlSellAll.Visible = false;
             // 
+            // tbxCycle
+            // 
+            tbxCycle.Location = new Point(249, 45);
+            tbxCycle.Name = "tbxCycle";
+            tbxCycle.Size = new Size(81, 23);
+            tbxCycle.TabIndex = 72;
+            tbxCycle.TextChanged += tbxCycle_TextChanged;
+            tbxCycle.KeyPress += tbx_KeyPress;
+            // 
+            // lblCycle
+            // 
+            lblCycle.AutoSize = true;
+            lblCycle.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCycle.ForeColor = Color.White;
+            lblCycle.Location = new Point(248, 19);
+            lblCycle.Name = "lblCycle";
+            lblCycle.Size = new Size(82, 15);
+            lblCycle.TabIndex = 71;
+            lblCycle.Text = "Cycle amount";
+            // 
             // textBox5
             // 
-            textBox5.Location = new Point(144, 177);
+            textBox5.Location = new Point(40, 45);
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(81, 23);
             textBox5.TabIndex = 70;
             textBox5.TextChanged += tbxDelay_TextChanged;
-            textBox5.KeyPress += tbxDelay_KeyPress;
+            textBox5.KeyPress += tbx_KeyPress;
             // 
             // label9
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label9.ForeColor = Color.White;
-            label9.Location = new Point(157, 151);
+            label9.Location = new Point(53, 19);
             label9.Name = "label9";
             label9.Size = new Size(56, 15);
             label9.TabIndex = 69;
             label9.Text = "Delay (S)";
             // 
-            // label14
-            // 
-            label14.AutoSize = true;
-            label14.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label14.ForeColor = Color.White;
-            label14.Location = new Point(146, 19);
-            label14.Name = "label14";
-            label14.Size = new Size(78, 15);
-            label14.TabIndex = 53;
-            label14.Text = "WalletGroup";
-            // 
             // pnlSingleSell
             // 
             pnlSingleSell.Controls.Add(cbxWallet);
             pnlSingleSell.Controls.Add(label11);
-            pnlSingleSell.Controls.Add(textBox7);
-            pnlSingleSell.Controls.Add(label12);
             pnlSingleSell.Location = new Point(25, 140);
             pnlSingleSell.Name = "pnlSingleSell";
             pnlSingleSell.Size = new Size(370, 235);
@@ -293,7 +273,7 @@
             // cbxWallet
             // 
             cbxWallet.FormattingEnabled = true;
-            cbxWallet.Location = new Point(88, 166);
+            cbxWallet.Location = new Point(88, 119);
             cbxWallet.Name = "cbxWallet";
             cbxWallet.Size = new Size(192, 23);
             cbxWallet.TabIndex = 70;
@@ -304,37 +284,16 @@
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label11.ForeColor = Color.White;
-            label11.Location = new Point(163, 131);
+            label11.Location = new Point(163, 84);
             label11.Name = "label11";
             label11.Size = new Size(43, 15);
             label11.TabIndex = 69;
             label11.Text = "Wallet";
             // 
-            // textBox7
-            // 
-            textBox7.Location = new Point(38, 45);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(292, 23);
-            textBox7.TabIndex = 65;
-            textBox7.TextChanged += token_contract_TextChanged;
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label12.ForeColor = Color.White;
-            label12.Location = new Point(115, 19);
-            label12.Name = "label12";
-            label12.Size = new Size(139, 15);
-            label12.TabIndex = 53;
-            label12.Text = "Token Contract Address";
-            // 
             // pnlCommentBot
             // 
             pnlCommentBot.Controls.Add(tbxComments);
             pnlCommentBot.Controls.Add(lblComments);
-            pnlCommentBot.Controls.Add(tbxContract);
-            pnlCommentBot.Controls.Add(label17);
             pnlCommentBot.Location = new Point(25, 140);
             pnlCommentBot.Name = "pnlCommentBot";
             pnlCommentBot.Size = new Size(370, 235);
@@ -343,10 +302,10 @@
             // 
             // tbxComments
             // 
-            tbxComments.Location = new Point(38, 114);
+            tbxComments.Location = new Point(38, 48);
             tbxComments.Multiline = true;
             tbxComments.Name = "tbxComments";
-            tbxComments.Size = new Size(292, 102);
+            tbxComments.Size = new Size(292, 162);
             tbxComments.TabIndex = 70;
             tbxComments.TextChanged += tbxDelay_TextChanged;
             // 
@@ -355,30 +314,11 @@
             lblComments.AutoSize = true;
             lblComments.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblComments.ForeColor = Color.White;
-            lblComments.Location = new Point(156, 85);
+            lblComments.Location = new Point(156, 19);
             lblComments.Name = "lblComments";
             lblComments.Size = new Size(67, 15);
             lblComments.TabIndex = 69;
             lblComments.Text = "Comments";
-            // 
-            // tbxContract
-            // 
-            tbxContract.Location = new Point(38, 45);
-            tbxContract.Name = "tbxContract";
-            tbxContract.Size = new Size(292, 23);
-            tbxContract.TabIndex = 65;
-            tbxContract.TextChanged += token_contract_TextChanged;
-            // 
-            // label17
-            // 
-            label17.AutoSize = true;
-            label17.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label17.ForeColor = Color.White;
-            label17.Location = new Point(115, 19);
-            label17.Name = "label17";
-            label17.Size = new Size(139, 15);
-            label17.TabIndex = 53;
-            label17.Text = "Token Contract Address";
             // 
             // pnlBumpIt
             // 
@@ -386,8 +326,6 @@
             pnlBumpIt.Controls.Add(label2);
             pnlBumpIt.Controls.Add(textBox3);
             pnlBumpIt.Controls.Add(label3);
-            pnlBumpIt.Controls.Add(textBox12);
-            pnlBumpIt.Controls.Add(label19);
             pnlBumpIt.Location = new Point(25, 140);
             pnlBumpIt.Name = "pnlBumpIt";
             pnlBumpIt.Size = new Size(370, 235);
@@ -396,7 +334,7 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(251, 154);
+            textBox2.Location = new Point(251, 114);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(81, 23);
             textBox2.TabIndex = 74;
@@ -406,7 +344,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(272, 128);
+            label2.Location = new Point(272, 88);
             label2.Name = "label2";
             label2.Size = new Size(38, 15);
             label2.TabIndex = 73;
@@ -414,7 +352,7 @@
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(40, 154);
+            textBox3.Location = new Point(40, 114);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(81, 23);
             textBox3.TabIndex = 72;
@@ -424,29 +362,11 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(42, 128);
+            label3.Location = new Point(42, 88);
             label3.Name = "label3";
             label3.Size = new Size(76, 15);
             label3.TabIndex = 71;
             label3.Text = "Buy Amount";
-            // 
-            // textBox12
-            // 
-            textBox12.Location = new Point(38, 45);
-            textBox12.Name = "textBox12";
-            textBox12.Size = new Size(292, 23);
-            textBox12.TabIndex = 65;
-            // 
-            // label19
-            // 
-            label19.AutoSize = true;
-            label19.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label19.ForeColor = Color.White;
-            label19.Location = new Point(115, 19);
-            label19.Name = "label19";
-            label19.Size = new Size(139, 15);
-            label19.TabIndex = 53;
-            label19.Text = "Token Contract Address";
             // 
             // formTaskCreation
             // 
@@ -495,31 +415,24 @@
         private TextBox tbxMaximumBuy;
         private Label label4;
         private TextBox tbxMinimumBuy;
-        private TextBox tbxContracttbxContract;
         private Label label13;
-        private Label label16;
         private Label label5;
         private TextBox textBox4;
         private Panel pnlSellAll;
         private TextBox textBox5;
         private Label label9;
-        private Label label14;
         private Panel pnlSingleSell;
         private Label label11;
-        private TextBox textBox7;
-        private Label label12;
         private Panel pnlCommentBot;
         private TextBox tbxComments;
         private Label lblComments;
-        private TextBox tbxContract;
-        private Label label17;
         private Panel pnlBumpIt;
-        private TextBox textBox12;
-        private Label label19;
         private TextBox textBox2;
         private Label label2;
         private TextBox textBox3;
         private Label label3;
         private ComboBox cbxWallet;
+        private TextBox tbxCycle;
+        private Label lblCycle;
     }
 }

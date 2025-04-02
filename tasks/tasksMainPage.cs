@@ -434,9 +434,11 @@ namespace catwiftools.tasks
         private void btnStart_Click(object sender, EventArgs e)
         {
             List<int> task_ids = TaskHelper.GetTasksFromGroupId(active_group);
+            string contract_address = TaskHelper.GetCAFromGroupId(active_group);
+            List<string> wallets = get;
             foreach (int task_id in task_ids)
             {
-                TaskHelper.ExecuteTask(task_id);
+                TaskHelper.ExecuteTask(task_id, contract_address);
             }
         }
     }

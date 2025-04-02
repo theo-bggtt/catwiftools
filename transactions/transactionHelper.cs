@@ -26,6 +26,12 @@ namespace catwiftools.transactions
         public static async Task SellTokens(string wallet, string mintAddress, decimal tokenAmount, decimal slippagePercentage)
         {
             Account trader = Account.FromSecretKey(wallet);
+            if (tokenAmount == 0)
+            {
+                tokenAmount = await _pumpfunClient.GetAccountBalance(wallet, mintAddress);
+                AppState.WriteConsole("Token amount to sell: "+tokenAmount);
+                return;
+            }
             var bondingCurveResult = await _pumpfunClient.GetBondingCurveAsync(mintAddress);
             if (bondingCurveResult.WasSuccessful && bondingCurveResult.ParsedResult != null)
             {

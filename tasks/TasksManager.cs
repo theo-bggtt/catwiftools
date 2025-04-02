@@ -1,4 +1,5 @@
-﻿using catwiftools.transactions.file;
+﻿using catwiftools.transactions;
+using catwiftools.wallet;
 using Solnet.Pumpfun;
 using Solnet.Wallet;
 using System;
@@ -54,17 +55,19 @@ namespace catwiftools.tasks
         {
         }
 
-        public static void ExecuteSellAllTask(int taskId)
+        public static async Task ExecuteSellAllTaskAsync(int taskId)
         {
             Random random = new Random();
             Functions functions = new Functions();
             var parameters = TaskHelper.GetTaskParameters(taskId);
-            var mintAddress = TaskHelper.GetMintAddress(taskId);
+            //var mintAddress = TaskHelper.GetCAFromGroupId(taskId);
 
             // Parse parameters
             int delay = int.Parse(parameters["delay"]);
-            int walletGroup = int.Parse(parameters["walletGroup"]);
-
+            int walletGroup = int.Parse(parameters["wallet"]);
+            int cycleAmount = int.Parse(parameters["cycle"]);
+            Console.WriteLine($"Cycle Amount: {cycleAmount}");
+            Console.WriteLine($"Delay: {delay}");
             // Retrieve wallets in the selected wallet group
             List<String> wallets = functions.GetWalletsInGroup(walletGroup);
             int walletCount = wallets.Count;
@@ -73,6 +76,10 @@ namespace catwiftools.tasks
 
             foreach (var wallet in wallets)
             {
+                // Make the sell transaction
+                Thread.Sleep(random.Next(delay - 4, delay + 4) * 1000);
+                //await transactionHelper.SellTokens(wallet, mintAddress, 0, 15);
+                AppState.RecentAction($"SellAll Sold all from {wallet}");
             }
         }
 
