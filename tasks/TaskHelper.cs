@@ -247,6 +247,27 @@ namespace catwiftools.tasks
             return contractAddress;
         }
 
+        public static string GetWalletGroupFromTaskGroup(int group_id)
+        {
+            string contractAddress = string.Empty;
+            string query = $"SELECT walletGroup FROM 'task_groups' WHERE group_id = '{group_id}'";
+            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
+            {
+                using (SqliteCommand command = new SqliteCommand(query, connection))
+                {
+                    connection.Open();
+                    using (SqliteDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            contractAddress = reader.GetString(0);
+                        }
+                    }
+                }
+            }
+            return contractAddress;
+        }
+
         // ====================
         // Count 
         // ====================

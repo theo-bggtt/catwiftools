@@ -435,10 +435,14 @@ namespace catwiftools.tasks
         {
             List<int> task_ids = TaskHelper.GetTasksFromGroupId(active_group);
             string contract_address = TaskHelper.GetCAFromGroupId(active_group);
-            List<string> wallets = get;
+            List<string> wallets = walletHelper.GetWallets(walletHelper.GetGroupId(TaskHelper.GetWalletGroupFromTaskGroup(active_group)));
+            foreach (string wallet in wallets)
+            {
+                Console.WriteLine(wallet);
+            }
             foreach (int task_id in task_ids)
             {
-                TaskHelper.ExecuteTask(task_id, contract_address);
+                //TaskHelper.ExecuteTask(task_id, contract_address);
             }
         }
     }

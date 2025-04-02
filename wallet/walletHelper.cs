@@ -79,6 +79,26 @@ namespace catwiftools.wallet
             return fundWallet;
         }
 
+        public static int GetGroupId(string groupName) // Gets wallet group Id from the group's name
+        {
+            int groupId = 0;
+            string query = "SELECT group_id FROM wallet_groups WHERE group_name = @groupName";
+            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
+            using (SqliteCommand command = new SqliteCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@groupName", groupName);
+                connection.Open();
+                using (SqliteDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        groupId = reader.GetInt32(0);
+                    }
+                }
+            }
+            return groupId;
+        }
+
         // ======================
         // Balance Methods
         // ======================
