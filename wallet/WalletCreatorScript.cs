@@ -36,7 +36,7 @@ namespace WalletGenerator
         {
             foreach (string walletMnemonic in wallets)
             {
-                string walletAddress = walletHelper.GetWalletAddress(null, walletMnemonic);
+                string walletAddress = walletHelper.GetWalletAddress(walletMnemonic);
                 using (var connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
                 {
                     try

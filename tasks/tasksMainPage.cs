@@ -432,12 +432,12 @@ namespace catwiftools.tasks
             flpTaskList.Controls.Add(gbxTask);
         }
 
-        private void btnStart_Click(object sender, EventArgs e)
+        private async void btnStart_Click(object sender, EventArgs e)
         {
             List<int> task_ids = TaskHelper.GetTasksFromGroupId(active_group);
             foreach (int task_id in task_ids)
             {
-                TaskHelper.ExecuteTask(task_id, active_group);
+                await Task.Run(() => TaskHelper.ExecuteTask(task_id, active_group));
             }
         }
     }

@@ -33,7 +33,7 @@ namespace catwiftools.tasks
                     TasksManager.ExecuteSellAllTask(task_id, taskWallets);
                     break;
                 case "Single Sell":
-                    //TasksManager.ExecuteSingleSellTask(task_id, taskWallets);
+                    TasksManager.ExecuteSingleSellTask(task_id, taskWallets);
                     break;
             }
         }
@@ -241,7 +241,7 @@ namespace catwiftools.tasks
             return groupId;
         }
 
-        public static string GetCAFromGroupId(int taskId)
+        public static string GetContractAddressByTaskId(int taskId)
         {
             string contractAddress = string.Empty;
             string query = "SELECT contractAddress FROM 'task_groups' WHERE group_id = (SELECT group_id FROM 'tasks' WHERE task_id = @taskId)";

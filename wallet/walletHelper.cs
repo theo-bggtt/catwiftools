@@ -326,38 +326,15 @@ namespace catwiftools.wallet
             }
             return idWallet;
         }
-        public static string GetWalletAddress(int? idWallet, string? walletphrase) // Prends l'addresse d'un walletId ou d'une phrase de wallet
+        public static string GetWalletAddress(string walletphrase) // Prends l'addresse d'un walletId ou d'une phrase de wallet
         {
-            string WalletAddress = "";
-            if (idWallet.HasValue)
-            {
-                string query = $"SELECT walletAddress FROM wallets WHERE idWallet = {idWallet.Value}";
-                using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
-                {
-                    using (SqliteCommand command = new SqliteCommand(query, connection))
-                    {
-                        connection.Open();
-                        using (SqliteDataReader reader = command.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                WalletAddress = reader.GetString(0);
-                            }
-                        }
-                    }
-                }
-            }
-            else if (!string.IsNullOrEmpty(walletphrase))
-            {
-                string mnemonicPhrase = walletphrase.ToString();
+            string mnemonicPhrase = walletphrase.ToString();
 
-                Wallet wallet = new Wallet(walletphrase);
+            Wallet wallet = new Wallet(walletphrase);
 
-                var account = wallet.GetAccount(0);
-                string publicKey = account.PublicKey;
-                return publicKey;
-            }
-            return WalletAddress;
+            var account = wallet.GetAccount(0);
+            string publicKey = account.PublicKey;
+            return publicKey;
         }
 
         public static string GetWalletphrase(int? idWallet, string? walletAddress) // Prends la phrase mnemonic d'un walletId ou d'une addresse, à travers la bdd

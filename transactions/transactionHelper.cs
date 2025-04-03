@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic.FileIO;
+﻿using catwiftools.wallet;
+using Microsoft.VisualBasic.FileIO;
 using Solnet.Programs;
 using Solnet.Pumpfun;
 using Solnet.Rpc;
@@ -21,7 +22,6 @@ namespace catwiftools.transactions
             Account trader = Account.FromSecretKey(wallet);
             // Check if account exists and create if needed
             string openAccountResponse = await _pumpfunClient.OpenAccount(trader, mintAddress);
-            AppState.WriteConsole($"Account Status: {openAccountResponse}");
 
             string response = await _pumpfunClient.Buy(trader, mintAddress, solAmount, slippagePercentage);
             AppState.WriteConsole($"Buy Response: {response}");
@@ -55,6 +55,7 @@ namespace catwiftools.transactions
             //    {
             //        string response = await _pumpfunClient.Sell(trader, mintAddress, tokenAmount);
             //        AppState.WriteConsole($"Sell Response: {response}");
+            //        AppState.RecentAction($"Sold all from {walletHelper.GetWalletAddress(wallet)}");
             //        bool confirmed = await _pumpfunClient.IsTransactionFinalized(response);
             //        if (!confirmed)
             //        {
