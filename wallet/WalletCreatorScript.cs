@@ -14,7 +14,7 @@ namespace WalletGenerator
 {
     public class WalletCreator
     {
-        Functions functions = new Functions();
+        UiHelper functions = new UiHelper();
 
         public static List<String> GenWallet(int? qt) // Génère 1, ou la quantité mentionnée de wallet et en retourne une liste de mnemonic
         {
@@ -36,8 +36,8 @@ namespace WalletGenerator
         {
             foreach (string walletMnemonic in wallets)
             {
-                string walletAddress = functions.GetWalletAddress(null, walletMnemonic);
-                using (var connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
+                string walletAddress = walletHelper.GetWalletAddress(null, walletMnemonic);
+                using (var connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
                 {
                     try
                     {
@@ -63,7 +63,7 @@ namespace WalletGenerator
 
         public void DelWallet(string? walletAddress, int? walletId, int? group_id)
         {
-            using (var connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
+            using (var connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
             {
                 try
                 {

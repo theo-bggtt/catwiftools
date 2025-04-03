@@ -6,7 +6,7 @@ namespace catwiftools
 {
     public partial class CatWifTools : Form
     {
-        Functions functions = new Functions();
+        UiHelper functions = new UiHelper();
         private Dictionary<Button, Control> buttonControlMap = new Dictionary<Button, Control>();
         public string fundWallet = "";
         private walletGroup walletGroup;
@@ -17,7 +17,7 @@ namespace catwiftools
             DraggingHelper.EnableDragging(this);
             this.Paint += Form_Paint;
             InitializeButtonControlMap();
-            fundWallet = Functions.CheckForFundWallet();
+            fundWallet = walletHelper.CheckForFundWallet();
             if (fundWallet == "")
             {
                 walletGroup.DisableCreation();
@@ -30,7 +30,7 @@ namespace catwiftools
             ShowControls(new List<Control>());
             tmrClock.Enabled = true;
             gbxBackground.Visible = true;
-            fundWallet = Functions.CheckForFundWallet();
+            fundWallet = walletHelper.CheckForFundWallet();
             if (fundWallet == "")
             {
                 walletGroup.DisableCreation();

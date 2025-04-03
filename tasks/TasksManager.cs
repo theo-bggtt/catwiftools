@@ -16,18 +16,19 @@ namespace catwiftools.tasks
         public static void ExecuteBumpItBuyTask(int taskId)
         {
             Random random = new Random();
-            Functions functions = new Functions();
             var parameters = TaskHelper.GetTaskParameters(taskId);
+            var mintAddress = TaskHelper.GetCAFromGroupId(taskId);
+            // Get the wallet group from the task's group id's wallet group id
+
 
             // Parse parameters
-            int delay = int.Parse(parameters["delay"]);
+            int delay = int.Parse(parameters["Delay"]);
             decimal totalAmount = decimal.Parse(parameters["amount"]);
             bool runIndefinitely = bool.Parse(parameters["run_indefinitely"]);
             int quantityToRepeat = runIndefinitely ? int.MaxValue : int.Parse(parameters["quantity_to_repeat"]);
             int walletGroup = int.Parse(parameters["wallet_group"]);
 
             // Retrieve wallets in the selected wallet group
-            List<String> wallets = functions.GetWalletsInGroup(walletGroup);
             int walletCount = wallets.Count;
 
             // Calculate amount per wallet per iteration
@@ -49,38 +50,63 @@ namespace catwiftools.tasks
 
         public static void ExecuteMicroBuyTask(int taskId)
         {
+            Random random = new Random();
+            var parameters = TaskHelper.GetTaskParameters(taskId);
+            var mintAddress = TaskHelper.GetCAFromGroupId(taskId);
+            List<string> wallets = TaskHelper.GetWalletsFromTaskId(taskId);
         }
 
         public static void ExecuteGenVolumeTask(int taskId)
         {
+            Random random = new Random();
+            var parameters = TaskHelper.GetTaskParameters(taskId);
+            var mintAddress = TaskHelper.GetCAFromGroupId(taskId);
+            List<string> wallets = TaskHelper.GetWalletsFromTaskId(taskId);
         }
 
-        public static async Task ExecuteSellAllTaskAsync(int taskId)
-        {
+        public static async Task ExecuteSellAllTask(int taskId)
+         {
             Random random = new Random();
-            Functions functions = new Functions();
             var parameters = TaskHelper.GetTaskParameters(taskId);
-            //var mintAddress = TaskHelper.GetCAFromGroupId(taskId);
+            var mintAddress = TaskHelper.GetCAFromGroupId(taskId);
+            List<string> wallets = TaskHelper.GetWalletsFromTaskId(taskId);
 
+            int cycleAmount, delay;
             // Parse parameters
-            int delay = int.Parse(parameters["delay"]);
-            int walletGroup = int.Parse(parameters["wallet"]);
-            int cycleAmount = int.Parse(parameters["cycle"]);
+            if (parameters.ContainsKey("Cycle"))
+            {
+                cycleAmount = int.Parse(parameters["Cycle"]);
+            }
+            else
+            {
+                cycleAmount = 1;
+            }
+            if (parameters.ContainsKey("Delay"))
+            {
+                delay = int.Parse(parameters["Delay"]);
+            }
+            else
+            {
+                delay = 1;
+            }
+
             Console.WriteLine($"Cycle Amount: {cycleAmount}");
             Console.WriteLine($"Delay: {delay}");
-            // Retrieve wallets in the selected wallet group
-            List<String> wallets = functions.GetWalletsInGroup(walletGroup);
-            int walletCount = wallets.Count;
-
-            // Execute the task
-
+            Console.WriteLine($"Mint Address: {mintAddress}");
             foreach (var wallet in wallets)
             {
-                // Make the sell transaction
-                Thread.Sleep(random.Next(delay - 4, delay + 4) * 1000);
-                //await transactionHelper.SellTokens(wallet, mintAddress, 0, 15);
-                AppState.RecentAction($"SellAll Sold all from {wallet}");
+                Console.WriteLine($"Wallet: {wallet}");
             }
+            // Retrieve wallets in the selected wallet group
+            int walletCount = wallets.Count;
+
+            //foreach (var wallet in wallets)
+            //{
+            //    // Make the sell transaction
+            //    Thread.Sleep(random.Next(delay - 4, delay + 4) * 1000);
+            //    await transactionHelper.SellTokens(wallet, mintAddress, 0, 15, cycleAmount);
+            //    AppState.RecentAction($"SellAll Sold all from {wallet}");
+            //}
         }
 
         public static void ExecuteSingleSellTask(int taskId)

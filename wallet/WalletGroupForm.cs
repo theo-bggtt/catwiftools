@@ -70,7 +70,7 @@ namespace catwiftools.wallet
         {
             // Check if the name of the group already exists in the database
             string query = $"SELECT group_name FROM 'wallet_groups' WHERE group_name = '{tbxName.Text}'";
-            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
+            using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
                 {

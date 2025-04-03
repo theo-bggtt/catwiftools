@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.Sqlite;
+﻿using catwiftools.wallet;
+using Microsoft.Data.Sqlite;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -287,11 +288,11 @@ namespace catwiftools.tasks
 
         private static string[] GetAllWallets()
         {
-            string fundwallet = Functions.CheckForFundWallet();
+            string fundwallet = walletHelper.CheckForFundWallet();
 
             List<string> wallets = new List<string>();
             string query = "SELECT walletAddress FROM 'wallets' WHERE walletAddress != @fundwallet";
-            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
+            using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
                 {

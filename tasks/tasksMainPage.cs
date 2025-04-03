@@ -37,7 +37,7 @@ namespace catwiftools.tasks
                 if (formTaskGroupCreation.ShowDialog() == DialogResult.OK)
                 {
                     TaskHelper.InsertTaskGroup(formTaskGroupCreation.groupName, formTaskGroupCreation.walletGroup, formTaskGroupCreation.contractAddress);
-                    active_group = TaskHelper.GetTaskGroupId(formTaskGroupCreation.groupName);
+                    active_group = TaskHelper.GetTaskGroupIdFromName(formTaskGroupCreation.groupName);
                 }
             }
             LoadTaskGroups();
@@ -51,9 +51,9 @@ namespace catwiftools.tasks
             {
                 Button btnDeleteGroup = (Button)sender;
                 string groupName = btnDeleteGroup.Name;
-                int group_id = TaskHelper.GetTaskGroupId(groupName);
+                int group_id = TaskHelper.GetTaskGroupIdFromName(groupName);
                 string query = $"DELETE FROM 'task_groups' WHERE group_id = {group_id}";
-                using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
+                using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
                 {
                     using (SqliteCommand command = new SqliteCommand(query, connection))
                     {
@@ -63,7 +63,7 @@ namespace catwiftools.tasks
                     }
                 }
                 query = $"DELETE FROM 'tasks' WHERE group_id = {group_id}";
-                using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
+                using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
                 {
                     using (SqliteCommand command = new SqliteCommand(query, connection))
                     {
@@ -81,7 +81,7 @@ namespace catwiftools.tasks
         private void btnViewGroup_Click(object sender, EventArgs e)
         {
             Button btnViewGroup = (Button)sender;
-            active_group = TaskHelper.GetTaskGroupId(btnViewGroup.Name);
+            active_group = TaskHelper.GetTaskGroupIdFromName(btnViewGroup.Name);
             AppState.WriteConsole($"Group Box Clicked: {active_group}");
             LoadTaskGroups();
             LoadTasks(active_group);
@@ -109,7 +109,7 @@ namespace catwiftools.tasks
                 Button btnDeleteTask = (Button)sender;
                 int task_id = int.Parse(btnDeleteTask.Name);
                 string query = "DELETE FROM tasks WHERE task_id = @task_id";
-                using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
+                using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
                 {
                     using (SqliteCommand command = new SqliteCommand(query, connection))
                     {
@@ -134,7 +134,7 @@ namespace catwiftools.tasks
             flpTaskList.Controls.Clear();
             List<int> loaded_tasks = new List<int>();
             string query = $"SELECT task_id FROM tasks WHERE group_id = '{active_group}'";
-            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
+            using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
                 {
@@ -161,7 +161,7 @@ namespace catwiftools.tasks
         {
             flpTaskGroupList.Controls.Clear();
             string query = "SELECT group_name FROM 'task_groups'";
-            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
+            using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
                 {
@@ -181,7 +181,7 @@ namespace catwiftools.tasks
         private void CreateTaskGroupBox(string groupName)
         {
 
-            int group_id = TaskHelper.GetTaskGroupId(groupName);
+            int group_id = TaskHelper.GetTaskGroupIdFromName(groupName);
             BorderlessGroupBox gbxTaskGroup = new BorderlessGroupBox();
             Label lblGroupName = new Label();
             Button btnDeleteGroup = new Button();
@@ -434,15 +434,10 @@ namespace catwiftools.tasks
         private void btnStart_Click(object sender, EventArgs e)
         {
             List<int> task_ids = TaskHelper.GetTasksFromGroupId(active_group);
-            string contract_address = TaskHelper.GetCAFromGroupId(active_group);
             List<string> wallets = walletHelper.GetWallets(walletHelper.GetGroupId(TaskHelper.GetWalletGroupFromTaskGroup(active_group)));
-            foreach (string wallet in wallets)
-            {
-                Console.WriteLine(wallet);
-            }
             foreach (int task_id in task_ids)
             {
-                //TaskHelper.ExecuteTask(task_id, contract_address);
+                TaskHelper.ExecuteTask(task_id, wallets);
             }
         }
     }

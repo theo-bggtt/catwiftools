@@ -16,7 +16,7 @@ namespace catwiftools.settings
     public partial class settingsGeneral : UserControl
     {
         WalletCreator walletCreator = new WalletCreator();
-        Functions functions = new Functions();
+        UiHelper functions = new UiHelper();
         public string fundWallet = "";
 
         public settingsGeneral()
@@ -56,7 +56,7 @@ namespace catwiftools.settings
 
         public void fundWalletSetup()
         {
-            fundWallet = Functions.CheckForFundWallet();
+            fundWallet = walletHelper.CheckForFundWallet();
             if (fundWallet != "")
             {
                 lblFundWallAddr.Text = fundWallet;

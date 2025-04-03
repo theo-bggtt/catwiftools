@@ -184,7 +184,7 @@ namespace catwiftools.transactions
 
         public async Task<bool> IsTransactionFinalized(string transactionSignature, CancellationToken cancellationToken = default)
         {
-            string apiKey = Functions.LoadEnvVariables().ApiKey;
+            string apiKey = ConfigHelper.LoadEnvVariables().ApiKey;
             using var httpClient = new HttpClient();
             var startTime = DateTime.UtcNow;
             int attempt = 0;
@@ -261,30 +261,6 @@ namespace catwiftools.transactions
             return false;
         }
 
-        public async Task<decimal> GetAccountBalance(string walletAddress, string contractAddress)
-        {
-            decimal balance = 0;
-            var rpcClient = ClientFactory.GetClient(Cluster.MainNet);
-            var mintKey = new PublicKey(contractAddress);
-            var wallet = new PublicKey(walletAddress);
-
-            var associatedTokenAccount = AssociatedTokenAccountProgram.DeriveAssociatedTokenAccount(wallet, mintKey);
-            var tokenAccountTask = rpcClient.GetTokenAccountInfoAsync(associatedTokenAccount);
-            var mintInfoTask = rpcClient.GetTokenMintInfoAsync(mintKey);
-
-            await Task.WhenAll(tokenAccountTask, mintInfoTask);
-
-            if (tokenAccountTask.Result.WasSuccessful &&
-                tokenAccountTask.Result.Result != null &&
-                mintInfoTask.Result.WasSuccessful &&
-                mintInfoTask.Result.Result != null)
-            {
-                var amount = tokenAccountTask.Result.Result.Value.Data.Parsed.Info.TokenAmount.Amount;
-                var decimals = mintInfoTask.Result.Result.Value.Data.Parsed.Info.Decimals;
-                balance = decimal.Parse(amount) / (decimal)Math.Pow(10, decimals);
-            }
-            AppState.WriteConsole(balance.ToString());
-            return balance;
-        }
+        
     }
 }

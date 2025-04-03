@@ -81,7 +81,7 @@ namespace catwiftools.tasks
         {
             List<string> groupNames = new List<string>();
             string query = "SELECT group_name FROM 'wallet_groups'";
-            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
+            using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
                 {

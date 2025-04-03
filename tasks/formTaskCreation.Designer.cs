@@ -272,6 +272,7 @@
             // 
             // cbxWallet
             // 
+            cbxWallet.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxWallet.FormattingEnabled = true;
             cbxWallet.Location = new Point(88, 119);
             cbxWallet.Name = "cbxWallet";

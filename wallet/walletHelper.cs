@@ -21,7 +21,7 @@ namespace catwiftools.wallet
             List<string> walletAddresses = new List<string>();
             string query = $"SELECT walletAddress FROM wallets WHERE group_id = {group_id}";
 
-            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
+            using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
             using (SqliteCommand command = new SqliteCommand(query, connection))
             {
                 connection.Open();
@@ -41,7 +41,7 @@ namespace catwiftools.wallet
             string phrase;
             string query = "SELECT walletphrase FROM wallets WHERE walletAddress = @walletAddress";
 
-            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
+            using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
             using (SqliteCommand command = new SqliteCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@walletAddress", walletAddress);
@@ -66,7 +66,7 @@ namespace catwiftools.wallet
             string fundWallet = string.Empty;
             string query = "SELECT walletAddress FROM wallets WHERE group_id = 0";
 
-            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
+            using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
             using (SqliteCommand command = new SqliteCommand(query, connection))
             {
                 connection.Open();
@@ -83,7 +83,7 @@ namespace catwiftools.wallet
         {
             int groupId = 0;
             string query = "SELECT group_id FROM wallet_groups WHERE group_name = @groupName";
-            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
+            using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
             using (SqliteCommand command = new SqliteCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@groupName", groupName);
@@ -104,7 +104,7 @@ namespace catwiftools.wallet
         // ======================
         public static async Task<double> GetWalletBalance(string walletAddress)
         {
-            var rpcClient = Functions.GetRpcClient();
+            var rpcClient = ConfigHelper.GetRpcClient();
             var balanceResponse = await rpcClient.GetBalanceAsync(walletAddress);
             return balanceResponse.Result.Value / 1_000_000_000.0;
         }
@@ -130,7 +130,7 @@ namespace catwiftools.wallet
         {
             string query = "UPDATE wallets SET balance = @balance WHERE walletAddress = @walletAddress";
 
-            using (SqliteConnection connection = new SqliteConnection(Functions.LoadEnvVariables().ConnectionString))
+            using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
             using (SqliteCommand command = new SqliteCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@balance", balance);
@@ -166,8 +166,8 @@ namespace catwiftools.wallet
         {
             try
             {
-                var rpcClient = Functions.GetRpcClient();
-                string privateKey = Functions.GetWalletphrase(null, Functions.CheckForFundWallet());
+                var rpcClient = ConfigHelper.GetRpcClient();
+                string privateKey = GetWalletphrase(null, CheckForFundWallet());
                 Wallet wallet = new Wallet(privateKey);
                 Solnet.Wallet.PublicKey fromAccount = wallet.Account.PublicKey;
                 Solnet.Wallet.PublicKey toAccount = new Solnet.Wallet.PublicKey(address);
@@ -211,8 +211,8 @@ namespace catwiftools.wallet
         {
             try
             {
-                var rpcClient = Functions.GetRpcClient();
-                string privateKeyString = Functions.GetWalletphrase(null, address);
+                var rpcClient = ConfigHelper.GetRpcClient();
+                string privateKeyString = GetWalletphrase(null, address);
 
                 Wallet wallet;
                 if (privateKeyString.Contains(" "))
@@ -226,7 +226,7 @@ namespace catwiftools.wallet
                 }
 
                 Solnet.Wallet.PublicKey fromAccount = wallet.Account.PublicKey;
-                Solnet.Wallet.PublicKey toAccount = new Solnet.Wallet.PublicKey(Functions.CheckForFundWallet());
+                Solnet.Wallet.PublicKey toAccount = new Solnet.Wallet.PublicKey(CheckForFundWallet());
 
                 var balanceResponse = await rpcClient.GetBalanceAsync(fromAccount);
                 AppState.WriteConsole($"🔎 Sending amount: {balanceResponse.Result.Value / 1_000_000_000.0} SOL");
@@ -263,6 +263,170 @@ namespace catwiftools.wallet
             {
                 AppState.WriteConsole($"❌ Error: {ex.Message}");
             }
+        }
+
+        public static int GetWalletId(string? walletAddress, string? walletphrase) // Prends l'Id d'un wallet à travers son addresse ou sa phrase, à travers la bdd
+        {
+            int idWallet = 0;
+            if (!string.IsNullOrEmpty(walletAddress))
+            {
+                string query = $"SELECT idWallet FROM wallets WHERE walletAddress = '{walletAddress}'";
+                using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
+                {
+                    using (SqliteCommand command = new SqliteCommand(query, connection))
+                    {
+                        connection.Open();
+                        using (SqliteDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                idWallet = Convert.ToInt32(reader.GetString(0));
+                            }
+                        }
+                    }
+                }
+            }
+            else if (!string.IsNullOrEmpty(walletphrase))
+            {
+                string query = $"SELECT idWallet FROM wallets WHERE walletphrase = '{walletphrase}'";
+                using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
+                {
+                    using (SqliteCommand command = new SqliteCommand(query, connection))
+                    {
+                        connection.Open();
+                        using (SqliteDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                idWallet = Convert.ToInt32(reader.GetString(0));
+                            }
+                        }
+                    }
+                }
+            }
+            return idWallet;
+        }
+        public static string GetWalletAddress(int? idWallet, string? walletphrase) // Prends l'addresse d'un walletId ou d'une phrase de wallet
+        {
+            string WalletAddress = "";
+            if (idWallet.HasValue)
+            {
+                string query = $"SELECT walletAddress FROM wallets WHERE idWallet = {idWallet.Value}";
+                using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
+                {
+                    using (SqliteCommand command = new SqliteCommand(query, connection))
+                    {
+                        connection.Open();
+                        using (SqliteDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                WalletAddress = reader.GetString(0);
+                            }
+                        }
+                    }
+                }
+            }
+            else if (!string.IsNullOrEmpty(walletphrase))
+            {
+                string mnemonicPhrase = walletphrase.ToString();
+
+                Wallet wallet = new Wallet(walletphrase);
+
+                var account = wallet.GetAccount(0);
+                string publicKey = account.PublicKey;
+                return publicKey;
+            }
+            return WalletAddress;
+        }
+
+        public static string GetWalletphrase(int? idWallet, string? walletAddress) // Prends la phrase mnemonic d'un walletId ou d'une addresse, à travers la bdd
+        {
+            string Walletphrase = "";
+            if (idWallet.HasValue)
+            {
+                string query = $"SELECT walletphrase FROM wallets WHERE idWallet = {idWallet.Value}";
+                using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
+                {
+                    using (SqliteCommand command = new SqliteCommand(query, connection))
+                    {
+                        connection.Open();
+                        using (SqliteDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                Walletphrase = reader.GetString(0);
+                            }
+                        }
+                    }
+                }
+            }
+            else if (!string.IsNullOrEmpty(walletAddress))
+            {
+                string query = $"SELECT walletphrase FROM wallets WHERE walletAddress = '{walletAddress}'";
+                using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
+                {
+                    using (SqliteCommand command = new SqliteCommand(query, connection))
+                    {
+                        connection.Open();
+                        using (SqliteDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                Walletphrase = reader.GetString(0);
+                            }
+                        }
+                    }
+                }
+            }
+            string[] words = Walletphrase.Split(' ');
+            AppState.WriteConsole(words[0] + " " + words[1] + " " + words[2] + " " + words[3] + " ...");
+            return Walletphrase;
+        }
+
+        public static string CheckForFundWallet()
+        {
+            using (var connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
+            {
+                connection.Open();
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "SELECT walletAddress FROM wallets WHERE group_id = 0";
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read() && !reader.IsDBNull(0))
+                        {
+                            return reader.GetString(0);
+
+                        }
+                        else
+                        {
+                            return "";
+                        }
+                    }
+                }
+            }
+        }
+
+        public static List<string> GetWalletsInGroup(int group_id)
+        {
+            List<string> wallets = new List<string>();
+            string query = $"SELECT walletphrase FROM 'wallets' WHERE group_id = {group_id}";
+            using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
+            {
+                using (SqliteCommand command = new SqliteCommand(query, connection))
+                {
+                    connection.Open();
+                    using (SqliteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            wallets.Add(reader.GetString(0));
+                        }
+                    }
+                }
+            }
+            return wallets;
         }
     }
 }

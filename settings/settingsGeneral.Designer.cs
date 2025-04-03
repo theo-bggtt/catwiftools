@@ -36,6 +36,8 @@
             lblTitleFundWall = new Label();
             lblFundWallAddr = new Label();
             lblFundBalance = new Label();
+            lblCluster = new Label();
+            cbxCluster = new ComboBox();
             SuspendLayout();
             // 
             // lblSettingsGeneral
@@ -134,11 +136,34 @@
             lblFundBalance.TabIndex = 42;
             lblFundBalance.Text = "NULL SOL";
             // 
+            // lblCluster
+            // 
+            lblCluster.AutoSize = true;
+            lblCluster.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblCluster.ForeColor = Color.White;
+            lblCluster.Location = new Point(192, 110);
+            lblCluster.Name = "lblCluster";
+            lblCluster.Size = new Size(121, 21);
+            lblCluster.TabIndex = 43;
+            lblCluster.Text = "Selected Cluster";
+            // 
+            // cbxCluster
+            // 
+            cbxCluster.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxCluster.FormattingEnabled = true;
+            cbxCluster.Items.AddRange(new object[] { "DevNet", "MainNet" });
+            cbxCluster.Location = new Point(617, 112);
+            cbxCluster.Name = "cbxCluster";
+            cbxCluster.Size = new Size(121, 23);
+            cbxCluster.TabIndex = 44;
+            // 
             // settingsGeneral
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
+            Controls.Add(cbxCluster);
+            Controls.Add(lblCluster);
             Controls.Add(lblFundBalance);
             Controls.Add(lblFundWallAddr);
             Controls.Add(lblTitleFundWall);
@@ -164,5 +189,7 @@
         private Label lblTitleFundWall;
         private Label lblFundWallAddr;
         private Label lblFundBalance;
+        private Label lblCluster;
+        private ComboBox cbxCluster;
     }
 }
