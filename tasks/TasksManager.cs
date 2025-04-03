@@ -29,20 +29,20 @@ namespace catwiftools.tasks
             int walletGroup = int.Parse(parameters["wallet_group"]);
 
             // Retrieve wallets in the selected wallet group
-            int walletCount = wallets.Count;
+            //int walletCount = wallets.Count;
 
             // Calculate amount per wallet per iteration
-            decimal amountPerWalletPerIteration = totalAmount / quantityToRepeat / walletCount;
+            //decimal amountPerWalletPerIteration = totalAmount / quantityToRepeat / walletCount;
 
             // Execute the task
             for (int i = 0; i < quantityToRepeat; i++)
             {
-                foreach (var wallet in wallets)
-                {
-                    // Make the buy transaction
-                    Thread.Sleep(random.Next(delay - 4, delay + 4) * 1000);
-                    AppState.RecentAction($"BumpItBuy Bought {amountPerWalletPerIteration} from {wallet}");
-                }
+                //foreach (var wallet in wallets)
+                //{
+                //    // Make the buy transaction
+                //    Thread.Sleep(random.Next(delay - 4, delay + 4) * 1000);
+                //    AppState.RecentAction($"BumpItBuy Bought {amountPerWalletPerIteration} from {wallet}");
+                //}
                 // Update progress
                 //UpdateTaskProgress(taskId, i + 1);
             }
@@ -53,7 +53,7 @@ namespace catwiftools.tasks
             Random random = new Random();
             var parameters = TaskHelper.GetTaskParameters(taskId);
             var mintAddress = TaskHelper.GetCAFromGroupId(taskId);
-            List<string> wallets = TaskHelper.GetWalletsFromTaskId(taskId);
+            //List<string> wallets = TaskHelper.GetWalletsFromTaskId(taskId);
         }
 
         public static void ExecuteGenVolumeTask(int taskId)
@@ -61,15 +61,14 @@ namespace catwiftools.tasks
             Random random = new Random();
             var parameters = TaskHelper.GetTaskParameters(taskId);
             var mintAddress = TaskHelper.GetCAFromGroupId(taskId);
-            List<string> wallets = TaskHelper.GetWalletsFromTaskId(taskId);
+            //List<string> wallets = TaskHelper.GetWalletsFromTaskId(taskId);
         }
 
-        public static async Task ExecuteSellAllTask(int taskId)
+        public static async Task ExecuteSellAllTask(int taskId, List<string> wallets)
          {
             Random random = new Random();
             var parameters = TaskHelper.GetTaskParameters(taskId);
             var mintAddress = TaskHelper.GetCAFromGroupId(taskId);
-            List<string> wallets = TaskHelper.GetWalletsFromTaskId(taskId);
 
             int cycleAmount, delay;
             // Parse parameters
@@ -90,23 +89,13 @@ namespace catwiftools.tasks
                 delay = 1;
             }
 
-            Console.WriteLine($"Cycle Amount: {cycleAmount}");
-            Console.WriteLine($"Delay: {delay}");
-            Console.WriteLine($"Mint Address: {mintAddress}");
             foreach (var wallet in wallets)
             {
-                Console.WriteLine($"Wallet: {wallet}");
+                // Make the sell transaction
+                Thread.Sleep(random.Next(delay - 4, delay + 4) * 1000);
+                await transactionHelper.SellTokens(wallet, mintAddress, 0, 15, cycleAmount);
+                AppState.RecentAction($"SellAll Sold all from {wallet}");
             }
-            // Retrieve wallets in the selected wallet group
-            int walletCount = wallets.Count;
-
-            //foreach (var wallet in wallets)
-            //{
-            //    // Make the sell transaction
-            //    Thread.Sleep(random.Next(delay - 4, delay + 4) * 1000);
-            //    await transactionHelper.SellTokens(wallet, mintAddress, 0, 15, cycleAmount);
-            //    AppState.RecentAction($"SellAll Sold all from {wallet}");
-            //}
         }
 
         public static void ExecuteSingleSellTask(int taskId)

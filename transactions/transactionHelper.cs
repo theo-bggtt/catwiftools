@@ -34,21 +34,17 @@ namespace catwiftools.transactions
             Console.WriteLine($"Token Amount: {tokenAmount}");
             Console.WriteLine($"Slippage Percentage: {slippagePercentage}");
             Console.WriteLine($"Cycle Amount: {cycleAmount}");
-            //Account trader = Account.FromSecretKey(wallet);
-            //if (tokenAmount == 0)
-            //{
-            //    tokenAmount = await GetAccountBalance(wallet, mintAddress);
-            //    if (cycleAmount != null)
-            //    {
-            //        tokenAmount = (decimal)(tokenAmount / cycleAmount);
-            //    }
-            //    AppState.WriteConsole("Token amount to sell: "+tokenAmount);
-            //    return;
-            //} else
-            //{
-
-            //}
-            //    var bondingCurveResult = await _pumpfunClient.GetBondingCurveAsync(mintAddress);
+            Account trader = Account.FromSecretKey(wallet);
+            if (tokenAmount == 0)
+            {
+                tokenAmount = await GetAccountBalance(wallet, mintAddress);
+                if (cycleAmount != null)
+                {
+                    tokenAmount = (decimal)(tokenAmount / cycleAmount);
+                }
+                AppState.WriteConsole("Token amount to sell: " + tokenAmount);
+            }
+            //var bondingCurveResult = await _pumpfunClient.GetBondingCurveAsync(mintAddress);
             //if (bondingCurveResult.WasSuccessful && bondingCurveResult.ParsedResult != null)
             //{
             //    decimal expectedSolAmount = _pumpfunClient.CalculateExpectedSolAmount(bondingCurveResult.ParsedResult, tokenAmount);

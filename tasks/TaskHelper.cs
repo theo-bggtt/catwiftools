@@ -1,7 +1,11 @@
-﻿using Microsoft.Data.Sqlite;
+﻿using catwiftools.wallet;
+using Microsoft.Data.Sqlite;
+using Org.BouncyCastle.Tls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskBand;
 
 namespace catwiftools.tasks
 {
@@ -10,25 +14,26 @@ namespace catwiftools.tasks
         // ======================
         // Execute Task
         // ======================
-        public static void ExecuteTask(int task_id, List<string> wallets)
+        public static void ExecuteTask(int task_id, int group_Id)
         {
+            List<string> taskWallets = GetWalletsByTaskGroupId(group_Id);
             string task_type = GetTaskType(task_id);
             switch (task_type)
             {
                 case "Bump It":
-                    //TasksManager.ExecuteBumpItBuyTask(task_id, wallets);
+                    //TasksManager.ExecuteBumpItBuyTask(task_id, taskWallets);
                     break;
                 case "Micro-Buy":
-                    //TasksManager.ExecuteMicroBuyTask(task_id, wallets);
+                    //TasksManager.ExecuteMicroBuyTask(task_id, taskWallets);
                     break;
                 case "Generate Volume":
-                    //TasksManager.ExecuteGenVolumeTask(task_id, wallets);
+                    //TasksManager.ExecuteGenVolumeTask(task_id, taskWallets);
                     break;
                 case "Sell All":
-                    TasksManager.ExecuteSellAllTask(task_id);
+                    TasksManager.ExecuteSellAllTask(task_id, taskWallets);
                     break;
                 case "Single Sell":
-                    //TasksManager.ExecuteSingleSellTask(task_id, wallets);
+                    //TasksManager.ExecuteSingleSellTask(task_id, taskWallets);
                     break;
             }
         }
@@ -89,13 +94,14 @@ namespace catwiftools.tasks
 
         public static void InsertTaskGroup(string groupName, string walletGroup, string contractAddress)
         {
+            int getGroupId = walletHelper.GetGroupId(walletGroup);
             string query = "INSERT INTO 'task_groups' (group_name, walletGroup, contractAddress) VALUES (@groupName, @walletGroup, @contractAddress)";
             using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@groupName", groupName);
-                    command.Parameters.AddWithValue("@walletGroup", walletGroup);
+                    command.Parameters.AddWithValue("@walletGroup", getGroupId);
                     command.Parameters.AddWithValue("@contractAddress", contractAddress);
                     connection.Open();
                     command.ExecuteNonQuery();
@@ -259,25 +265,12 @@ namespace catwiftools.tasks
             return contractAddress;
         }
 
-        public static string GetWalletGroupFromTaskGroup(int group_id)
+        public static List<string> GetWalletsByTaskGroupId(int taskGroupId)
         {
-            string contractAddress = string.Empty;
-            string query = $"SELECT walletGroup FROM 'task_groups' WHERE group_id = '{group_id}'";
-            using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
-            {
-                using (SqliteCommand command = new SqliteCommand(query, connection))
-                {
-                    connection.Open();
-                    using (SqliteDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            contractAddress = reader.GetString(0);
-                        }
-                    }
-                }
-            }
-            return contractAddress;
+            var walletPhrases = new List<string>();
+            int walletGroupId = walletHelper.GetGroupIdFromTaskGroup(taskGroupId);
+            walletPhrases = walletHelper.GetWalletsInGroup(walletGroupId);
+            return walletPhrases;
         }
 
         // ====================

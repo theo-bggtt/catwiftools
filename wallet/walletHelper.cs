@@ -99,6 +99,26 @@ namespace catwiftools.wallet
             return groupId;
         }
 
+        public static int GetGroupIdFromTaskGroup(int taskGroupId)
+        {
+            int groupId = 0;
+            string query = "SELECT walletGroup FROM task_groups WHERE group_id = @taskGroupId";
+            using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
+            using (SqliteCommand command = new SqliteCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@taskGroupId", taskGroupId);
+                connection.Open();
+                using (SqliteDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        groupId = reader.GetInt32(0);
+                    }
+                }
+            }
+            return groupId;
+        }
+
         // ======================
         // Balance Methods
         // ======================

@@ -179,6 +179,7 @@ namespace catwiftools.tasks
         }
 
         private void CreateTaskGroupBox(string groupName)
+
         {
 
             int group_id = TaskHelper.GetTaskGroupIdFromName(groupName);
@@ -434,10 +435,9 @@ namespace catwiftools.tasks
         private void btnStart_Click(object sender, EventArgs e)
         {
             List<int> task_ids = TaskHelper.GetTasksFromGroupId(active_group);
-            List<string> wallets = walletHelper.GetWallets(walletHelper.GetGroupId(TaskHelper.GetWalletGroupFromTaskGroup(active_group)));
             foreach (int task_id in task_ids)
             {
-                TaskHelper.ExecuteTask(task_id, wallets);
+                TaskHelper.ExecuteTask(task_id, active_group);
             }
         }
     }
