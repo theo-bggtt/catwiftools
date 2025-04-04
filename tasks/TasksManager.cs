@@ -13,20 +13,17 @@ namespace catwiftools.tasks
 {
     class TasksManager
     {
-        public static void ExecuteBumpItBuyTask(int taskId)
+        public static void ExecuteBumpItBuyTask(int taskId, List<string> wallets, string mintAddress)
         {
             Random random = new Random();
             var parameters = TaskHelper.GetTaskParameters(taskId);
-            var mintAddress = TaskHelper.GetContractAddressByTaskId(taskId);
             // Get the wallet group from the task's group id's wallet group id
-
 
             // Parse parameters
             int delay = int.Parse(parameters["Delay"]);
             decimal totalAmount = decimal.Parse(parameters["amount"]);
             bool runIndefinitely = bool.Parse(parameters["run_indefinitely"]);
             int quantityToRepeat = runIndefinitely ? int.MaxValue : int.Parse(parameters["quantity_to_repeat"]);
-            int walletGroup = int.Parse(parameters["wallet_group"]);
 
             // Retrieve wallets in the selected wallet group
             //int walletCount = wallets.Count;
@@ -48,27 +45,24 @@ namespace catwiftools.tasks
             }
         }
 
-        public static void ExecuteMicroBuyTask(int taskId)
+        public static void ExecuteMicroBuyTask(int taskId, List<string> wallets, string mintAddress)
         {
             Random random = new Random();
             var parameters = TaskHelper.GetTaskParameters(taskId);
-            var mintAddress = TaskHelper.GetContractAddressByTaskId(taskId);
             //List<string> wallets = TaskHelper.GetWalletsFromTaskId(taskId);
         }
 
-        public static void ExecuteGenVolumeTask(int taskId)
+        public static void ExecuteGenVolumeTask(int taskId, List<string> wallets, string mintAddress)
         {
             Random random = new Random();
             var parameters = TaskHelper.GetTaskParameters(taskId);
-            var mintAddress = TaskHelper.GetContractAddressByTaskId(taskId);
             //List<string> wallets = TaskHelper.GetWalletsFromTaskId(taskId);
         }
 
-        public static async Task ExecuteSellAllTask(int taskId, List<string> wallets)
+        public static async Task ExecuteSellAllTask(int taskId, List<string> wallets, string mintAddress)
          {
             Random random = new Random();
             var parameters = TaskHelper.GetTaskParameters(taskId);
-            var mintAddress = TaskHelper.GetContractAddressByTaskId(taskId);
 
             int cycleAmount, delay;
             // Parse parameters
@@ -98,11 +92,8 @@ namespace catwiftools.tasks
             }
         }
 
-        public static void ExecuteSingleSellTask(int taskId, List<string> wallets)
+        public static void ExecuteSingleSellTask(int taskId, List<string> wallets, string mintAddress)
         {
-            Random random = new Random();
-            var mintAddress = TaskHelper.GetContractAddressByTaskId(taskId);
-
             foreach (var wallet in wallets)
             {
                 transactionHelper.SellTokens(wallet, mintAddress, 0, 25, 1);
@@ -110,7 +101,7 @@ namespace catwiftools.tasks
 
         }
 
-        public static void ExecuteCommentBotTask(int taskId)
+        public static void ExecuteCommentBotTask(int taskId, List<string> wallets, string mintAddress)
         {
         }
     }

@@ -18,22 +18,23 @@ namespace catwiftools.tasks
         {
             List<string> taskWallets = GetWalletsByTaskGroupId(group_Id);
             string task_type = GetTaskType(task_id);
+            var mintAddress = TaskHelper.GetContractAddressByTaskId(task_id);
             switch (task_type)
             {
                 case "Bump It":
-                    //TasksManager.ExecuteBumpItBuyTask(task_id, taskWallets);
+                    //TasksManager.ExecuteBumpItBuyTask(task_id, taskWallets, mintAddress);
                     break;
                 case "Micro-Buy":
-                    //TasksManager.ExecuteMicroBuyTask(task_id, taskWallets);
+                    //TasksManager.ExecuteMicroBuyTask(task_id, taskWallets, mintAddress);
                     break;
                 case "Generate Volume":
-                    //TasksManager.ExecuteGenVolumeTask(task_id, taskWallets);
+                    //TasksManager.ExecuteGenVolumeTask(task_id, taskWallets, mintAddress);
                     break;
                 case "Sell All":
-                    TasksManager.ExecuteSellAllTask(task_id, taskWallets);
+                    TasksManager.ExecuteSellAllTask(task_id, taskWallets, mintAddress);
                     break;
                 case "Single Sell":
-                    TasksManager.ExecuteSingleSellTask(task_id, taskWallets);
+                    TasksManager.ExecuteSingleSellTask(task_id, taskWallets, mintAddress);
                     break;
             }
         }
