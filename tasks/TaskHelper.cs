@@ -25,7 +25,7 @@ namespace catwiftools.tasks
                     //TasksManager.ExecuteBumpItBuyTask(task_id, taskWallets, mintAddress);
                     break;
                 case "Micro-Buy":
-                    //TasksManager.ExecuteMicroBuyTask(task_id, taskWallets, mintAddress);
+                    TasksManager.ExecuteMicroBuyTask(task_id, taskWallets, mintAddress);
                     break;
                 case "Generate Volume":
                     //TasksManager.ExecuteGenVolumeTask(task_id, taskWallets, mintAddress);
@@ -34,7 +34,7 @@ namespace catwiftools.tasks
                     TasksManager.ExecuteSellAllTask(task_id, taskWallets, mintAddress);
                     break;
                 case "Single Sell":
-                    TasksManager.ExecuteSingleSellTask(task_id, taskWallets, mintAddress);
+                    TasksManager.ExecuteSingleSellTask(task_id, mintAddress);
                     break;
             }
         }
