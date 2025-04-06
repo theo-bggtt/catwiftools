@@ -28,8 +28,24 @@ namespace catwiftools.settings
         {
             fundWalletSetup();
             double balance = await walletHelper.GetWalletBalance(fundWallet);
-            lblFundBalance.Text = Math.Round(balance,3).ToString();
+            lblFundBalance.Text = Math.Round(balance, 3).ToString();
             AppState.WriteConsole(lblFundBalance.Text);
+            // Get the cluster from the .env file
+            string envPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ".env");
+            string[] lines = File.ReadAllLines(envPath);
+            string cluster = "";
+            if (cluster == "")
+            {
+                foreach (string line in lines)
+                {
+                    if (line.StartsWith("CLUSTER="))
+                    {
+                        cluster = line.Substring("CLUSTER=".Length);
+                        break;
+                    }
+                }
+            }
+            cbxCluster.SelectedItem = cluster;
         }
 
 
@@ -73,5 +89,50 @@ namespace catwiftools.settings
                 btnGenFundWall.Visible = true;
             }
         }
+
+        private void cbxCluster_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                // Change the cluster in .env to the selected one
+                string selectedCluster = cbxCluster.SelectedItem.ToString();
+                string envPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ".env");
+
+                if (!File.Exists(envPath))
+                {
+                    MessageBox.Show(".env file not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                string[] lines = File.ReadAllLines(envPath);
+                bool clusterUpdated = false;
+
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    if (lines[i].StartsWith("CLUSTER="))
+                    {
+                        lines[i] = "CLUSTER=" + selectedCluster;
+                        clusterUpdated = true;
+                        break;
+                    }
+                }
+
+                if (clusterUpdated)
+                {
+                    File.WriteAllLines(envPath, lines);
+                    // Update the cluster in the app
+                    AppState.WriteConsole("Cluster changed to: " + selectedCluster);
+                }
+                else
+                {
+                    MessageBox.Show("CLUSTER setting not found in .env file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while updating the cluster: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }

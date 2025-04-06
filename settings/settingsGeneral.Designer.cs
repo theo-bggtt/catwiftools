@@ -151,11 +151,12 @@
             // 
             cbxCluster.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxCluster.FormattingEnabled = true;
-            cbxCluster.Items.AddRange(new object[] { "DevNet", "MainNet" });
+            cbxCluster.Items.AddRange(new object[] { "Devnet", "Mainnet" });
             cbxCluster.Location = new Point(617, 112);
             cbxCluster.Name = "cbxCluster";
             cbxCluster.Size = new Size(121, 23);
             cbxCluster.TabIndex = 44;
+            cbxCluster.SelectedIndexChanged += cbxCluster_SelectedIndexChanged;
             // 
             // settingsGeneral
             // 
