@@ -89,7 +89,7 @@ namespace catwiftools.tasks
 
         private void btnCreateTask_Click(object sender, EventArgs e)
         {
-            using (formTaskCreation formTaskCreation = new formTaskCreation())
+            using (formTaskCreation formTaskCreation = new formTaskCreation(null))
             {
                 if (formTaskCreation.ShowDialog() == DialogResult.OK)
                 {
@@ -126,7 +126,14 @@ namespace catwiftools.tasks
 
         private void btnEditTask_Click(object sender, EventArgs e)
         {
-
+            using (formTaskCreation formTaskCreation = new formTaskCreation(null))
+            {
+                if (formTaskCreation.ShowDialog() == DialogResult.OK)
+                {
+                    TaskHelper.InsertTask(active_group, formTaskCreation.task_name, formTaskCreation.task_type);
+                    TaskHelper.saveParameters(formTaskCreation.task_name, formTaskCreation.parameters);
+                }
+            }
         }
 
         private void LoadTasks(int active_group) // Gets the task_ids and creates a task box for each task

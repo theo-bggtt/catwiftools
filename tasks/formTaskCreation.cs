@@ -20,9 +20,23 @@ namespace catwiftools.tasks
         public Dictionary<string, string> parameters = [];
         private Panel active_panel;
 
-        public formTaskCreation()
+        public formTaskCreation(int? task)
         {
+            
             InitializeComponent();
+            if (task != null)
+            {
+                int task_id = task ?? 0;
+                task_type = TaskHelper.GetTaskType(task_id);
+                var parameters = TaskHelper.GetTaskParameters(task_id);
+                // Set it all up
+                tbxTaskName.Text = TaskHelper.GetTaskName(task_id);
+                cbxTaskType.SelectedItem = task_type;
+                tbxTaskName.Enabled = false;
+                cbxTaskType.Enabled = false;
+                tbxTaskName.Enabled = false;
+                updateParameters();
+            }
         }
 
         private void formTaskCreation_Load(object sender, EventArgs e)
