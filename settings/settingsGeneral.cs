@@ -18,6 +18,7 @@ namespace catwiftools.settings
         WalletCreator walletCreator = new WalletCreator();
         UiHelper functions = new UiHelper();
         public string fundWallet = "";
+        double balance = 0;
 
         public settingsGeneral()
         {
@@ -27,7 +28,7 @@ namespace catwiftools.settings
         private async void settingsGeneral_Load(object sender, EventArgs e)
         {
             fundWalletSetup();
-            double balance = await walletHelper.GetWalletBalance(fundWallet);
+            balance = await walletHelper.GetWalletBalance(fundWallet);
             lblFundBalance.Text = Math.Round(balance, 3).ToString();
             AppState.WriteConsole(lblFundBalance.Text);
             // Get the cluster from the .env file
@@ -134,5 +135,26 @@ namespace catwiftools.settings
             }
         }
 
+        private async void btnRefresh_Click(object sender, EventArgs e)
+        {
+            fundWalletSetup();
+            balance = await walletHelper.GetWalletBalance(fundWallet);
+            lblFundBalance.Text = Math.Round(balance, 3).ToString();
+            AppState.WriteConsole(lblFundBalance.Text);
+            // Get the cluster from the .env file
+            string envPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ".env");
+            string[] lines = File.ReadAllLines(envPath);
+            string cluster = "";
+            foreach (string line in lines)
+            {
+                if (line.StartsWith("CLUSTER="))
+                {
+                    cluster = line.Substring("CLUSTER=".Length);
+                    break;
+                }
+            }
+            cbxCluster.SelectedItem = cluster;
+
+        }
     }
 }

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             lblSettingsGeneral = new Label();
-            btnSave = new Button();
             tbxFundWallet = new TextBox();
             btnDelFundWall = new Button();
             btnGenFundWall = new Button();
@@ -38,6 +37,7 @@
             lblFundBalance = new Label();
             lblCluster = new Label();
             cbxCluster = new ComboBox();
+            btnRefresh = new Button();
             SuspendLayout();
             // 
             // lblSettingsGeneral
@@ -50,15 +50,6 @@
             lblSettingsGeneral.Size = new Size(79, 28);
             lblSettingsGeneral.TabIndex = 0;
             lblSettingsGeneral.Text = "General";
-            // 
-            // btnSave
-            // 
-            btnSave.Location = new Point(880, 734);
-            btnSave.Name = "btnSave";
-            btnSave.Size = new Size(75, 23);
-            btnSave.TabIndex = 1;
-            btnSave.Text = "button1";
-            btnSave.UseVisualStyleBackColor = true;
             // 
             // tbxFundWallet
             // 
@@ -158,11 +149,33 @@
             cbxCluster.TabIndex = 44;
             cbxCluster.SelectedIndexChanged += cbxCluster_SelectedIndexChanged;
             // 
+            // btnRefresh
+            // 
+            btnRefresh.BackColor = Color.FromArgb(37, 37, 53);
+            btnRefresh.BackgroundImageLayout = ImageLayout.None;
+            btnRefresh.FlatAppearance.BorderSize = 0;
+            btnRefresh.FlatStyle = FlatStyle.Flat;
+            btnRefresh.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnRefresh.ForeColor = Color.White;
+            btnRefresh.ImageAlign = ContentAlignment.MiddleLeft;
+            btnRefresh.ImeMode = ImeMode.NoControl;
+            btnRefresh.Location = new Point(781, 111);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Padding = new Padding(5, 0, 5, 0);
+            btnRefresh.Size = new Size(110, 25);
+            btnRefresh.TabIndex = 45;
+            btnRefresh.Tag = "1";
+            btnRefresh.Text = "Refresh";
+            btnRefresh.UseMnemonic = false;
+            btnRefresh.UseVisualStyleBackColor = false;
+            btnRefresh.Click += btnRefresh_Click;
+            // 
             // settingsGeneral
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
+            Controls.Add(btnRefresh);
             Controls.Add(cbxCluster);
             Controls.Add(lblCluster);
             Controls.Add(lblFundBalance);
@@ -170,7 +183,6 @@
             Controls.Add(lblTitleFundWall);
             Controls.Add(btnDelFundWall);
             Controls.Add(tbxFundWallet);
-            Controls.Add(btnSave);
             Controls.Add(lblSettingsGeneral);
             Controls.Add(btnGenFundWall);
             Name = "settingsGeneral";
@@ -183,7 +195,6 @@
         #endregion
 
         private Label lblSettingsGeneral;
-        private Button btnSave;
         private TextBox tbxFundWallet;
         private Button btnDelFundWall;
         public Button btnGenFundWall;
@@ -192,5 +203,6 @@
         private Label lblFundBalance;
         private Label lblCluster;
         private ComboBox cbxCluster;
+        public Button btnRefresh;
     }
 }
