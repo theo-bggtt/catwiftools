@@ -16,5 +16,11 @@ namespace catwiftools.bundler
         {
             InitializeComponent();
         }
+
+        private void btnTasks_Click(object sender, EventArgs e)
+        {
+            var pumpFunTokenCreator = new PumpFunTokenCreator();
+            pumpFunTokenCreator.CreateTokenAsync();
+        }
     }
 }

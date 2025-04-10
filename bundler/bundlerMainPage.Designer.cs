@@ -66,6 +66,7 @@
             btnTasks.Text = "Dump All";
             btnTasks.UseMnemonic = false;
             btnTasks.UseVisualStyleBackColor = false;
+            btnTasks.Click += btnTasks_Click;
             // 
             // button1
             // 

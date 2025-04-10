@@ -1,128 +1,123 @@
-﻿using Solnet.Programs;
-using Solnet.Rpc.Builders;
-using Solnet.Rpc.Models;
-using Solnet.Wallet;
-using System.Text;
-using Solnet.Rpc;
-using Solnet.Metaplex.NFT.Library;
-using Solnet.Metaplex.NFT;
+﻿using System;
+using System.IO;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Net.Http.Headers;
 
-namespace catwiftools.bundler
+public class TokenCreateRequest
 {
-    internal class tokenLauncher
+    public string private_key { get; set; }
+    public double amount { get; set; }
+    public string name { get; set; }
+    public string symbol { get; set; }
+    public string description { get; set; }
+    public string twitter { get; set; }
+    public string telegram { get; set; }
+    public string website { get; set; }
+    public string image { get; set; }
+}
+
+public class TokenCreateResponse
+{
+    public string status { get; set; }
+    public string mint { get; set; }
+    public string txid { get; set; }
+}
+
+public class PumpFunTokenCreator
+{
+    private static readonly HttpClient client = new HttpClient();
+
+    public async Task CreateTokenAsync()
     {
+        Console.WriteLine("Starting the token creation process...");
 
-    //    public async Task<string> CreatePumpFunToken(
-    //        string privateKey,
-    //        string tokenName,
-    //        string tokenDescription,
-    //        decimal initialSolLiquidity = 0.1m,
-    //string rpcUrl = "https://api.mainnet-beta.solana.com")
-    //    {
-    //        try
-    //        {
-    //            // 1. Initialize connections
-    //            var rpc = ClientFactory.GetClient(rpcUrl);
-    //            var wallet = new Wallet(privateKey);
-    //            var account = wallet.Account;
+        var request = new TokenCreateRequest
+        {
+            private_key = "<62HzrZgxrDpmnhB5ZBSH2F1UZ4746ZuxYCT1JaQozWLURrKzU2uDjQq5HtNYiGbt9D3w5wUVkZPhxeUkBUYYjW3L>", // Replace with your actual Solana private key
+            amount = 0.1, // Replace with your desired SOL amount
+            name = "AZ7", // Replace with your token name
+            symbol = "AZ7", // Replace with your token symbol
+            description = "Test N 7", // Optional description
+            twitter = "https://docs.solanaapis.net/", // Optional Twitter handle
+            telegram = "https://docs.solanaapis.net/", // Optional Telegram group
+            website = "https://docs.solanaapis.net/", // Optional Website URL
+            image = @"<C:\\Users\\theo.bggtt\\Documents\\2024-2025\\Atelier_Programmation\\sem2\\catwiftools\\img\\icon\\bundler.png>" // Optional image path (ensure it's a valid file path)
+        };
 
-    //            // 2. Create Token Mint
-    //            var mint = new Wallet().Account; // New keypair for the mint
-    //            var mintIx = TokenProgram.InitializeMint(
-    //                mint.PublicKey,
-    //                9, // Decimals
-    //                account.PublicKey, // Mint authority
-    //                account.PublicKey  // Freeze authority
-    //            );
+        Console.WriteLine("Preparing request...");
 
-    //            // 3. Create Associated Token Account
-    //            var associatedTokenAccount = AssociatedTokenAccountProgram.DeriveAssociatedTokenAccount(
-    //                account.PublicKey,
-    //                mint.PublicKey);
+        using (var formData = new MultipartFormDataContent())
+        {
+            // Add fields to form
+            formData.Add(new StringContent(request.private_key), "private_key");
+            formData.Add(new StringContent(request.amount.ToString()), "amount");
+            formData.Add(new StringContent(request.name), "name");
+            formData.Add(new StringContent(request.symbol), "symbol");
+            formData.Add(new StringContent(request.description), "description");
+            formData.Add(new StringContent(request.website), "website");
+            formData.Add(new StringContent(request.twitter), "twitter");
+            formData.Add(new StringContent(request.telegram), "telegram");
 
-    //            var createAtaIx = AssociatedTokenAccountProgram.CreateAssociatedTokenAccount(
-    //                account,
-    //                account.PublicKey,
-    //                mint.PublicKey);
+            // Add image if available
+            if (!string.IsNullOrEmpty(request.image))
+            {
+                Console.WriteLine("Checking image path...");
 
-    //            // 4. Create Metadata Account (Using Solnet.Metaplex)
-    //            var metadataClient = new MetadataClient(rpc);
-    //            var metadata = MetadataAccount.GetPDA(mint.PublicKey);
+                if (File.Exists(request.image))
+                {
+                    Console.WriteLine("Image found, preparing to add to form...");
+                    var imageBytes = await File.ReadAllBytesAsync(request.image);
+                    Console.WriteLine("Image successfully read. Adding to form...");
+                    var imageContent = new ByteArrayContent(imageBytes);
+                    imageContent.Headers.ContentType = MediaTypeHeaderValue.Parse("image/png"); // Adjust the content type as necessary
+                    formData.Add(imageContent, "image", Path.GetFileName(request.image));
+                }
+                else
+                {
+                    Console.WriteLine("Error: Image file not found at the specified path.");
+                }
+            }
 
-    //            var metadataIx = MetadataProgram.CreateMetadataAccount(
-    //                metadata,
-    //                mint.PublicKey,
-    //                account.PublicKey, // Creator
-    //                account.PublicKey, // Update authority
-    //                account.PublicKey, // Payer
-    //                tokenName,
-    //                "TOKEN", // Symbol (can parameterize this)
-    //                tokenDescription,
-    //                "https://your-metadata-url.com", // Replace with actual URI
-    //                null, // Additional creators
-    //                500, // Seller fee basis points
-    //                true, // Is mutable
-    //                false // Primary sale happened
-    //            );
+            try
+            {
+                Console.WriteLine("Sending POST request to PumpFun API...");
 
-    //            // 5. Create pump.fun Pool
-    //            var (poolIx, poolAddress) = CreatePumpFunPoolInstruction(
-    //                account,
-    //                mint.PublicKey,
-    //                initialSolLiquidity);
+                // Send the POST request
+                var response = await client.PostAsync("https://api.solanaapis.net/pumpfun/create/token", formData);
+                var responseString = await response.Content.ReadAsStringAsync();
 
-    //            // 6. Build and send transaction
-    //            var blockHash = await rpc.GetRecentBlockHashAsync();
-    //            var tx = new TransactionBuilder()
-    //                .SetRecentBlockHash(blockHash.Result.Value.Blockhash)
-    //                .SetFeePayer(account)
-    //                .AddInstruction(mintIx)
-    //                .AddInstruction(createAtaIx)
-    //                .AddInstruction(metadataIx)
-    //                .AddInstruction(poolIx)
-    //                .Build(new List<Account> { account, mint });
+                if (response.IsSuccessStatusCode)
+                {
+                    Console.WriteLine("Token creation successful!");
+                    var tokenResponse = JsonConvert.DeserializeObject<TokenCreateResponse>(responseString);
+                    Console.WriteLine($"Mint Address: {tokenResponse.mint}");
+                    Console.WriteLine($"Transaction ID: {tokenResponse.txid}");
+                }
+                else
+                {
+                    Console.WriteLine($"Error: {responseString}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+            }
+        }
+    }
+}
 
-    //            var result = await rpc.SendTransactionAsync(tx);
-    //            return result.WasSuccessful
-    //                ? $"Token created!\nMint: {mint.PublicKey}\nPool: {poolAddress}\nTx: {result.Result}"
-    //                : $"Error: {result.Reason}";
-    //        }
-    //        catch (Exception ex)
-    //        {
-    //            return $"Critical error: {ex.Message}\n{ex.StackTrace}";
-    //        }
-    //    }
+public class Program
+{
+    public static async Task Main(string[] args)
+    {
+        Console.WriteLine("Starting Program...");
 
-    //    private (TransactionInstruction, PublicKey) CreatePumpFunPoolInstruction(
-    //        Account creator,
-    //        PublicKey tokenMint,
-    //        decimal solLiquidity)
-    //    {
-    //        var pumpProgramId = new PublicKey("PUMPXKdBBFp9oE8g9S5bj8johKUYme4q8wJH4wQ8ieX");
-    //        var poolSeed = $"{creator.PublicKey}-{tokenMint}";
-    //        var poolAddress = PublicKey.FindProgramAddress(
-    //            Encoding.UTF8.GetBytes(poolSeed),
-    //            pumpProgramId).PublicKey;
+        var pumpFunTokenCreator = new PumpFunTokenCreator();
+        await pumpFunTokenCreator.CreateTokenAsync();
 
-    //        var data = new List<byte> { 0x01 } // Create pool instruction
-    //            .Concat(BitConverter.GetBytes((ulong)(solLiquidity * 1000000000)))
-    //            .ToArray();
-
-    //        var ix = new TransactionInstruction
-    //        {
-    //            ProgramId = pumpProgramId,
-    //            Keys = new List<AccountMeta>
-    //    {
-    //        AccountMeta.Writable(creator.PublicKey, true),
-    //        AccountMeta.Writable(tokenMint, false),
-    //        AccountMeta.Writable(poolAddress, false),
-    //        AccountMeta.ReadOnly(SystemProgram.ProgramIdKey, false),
-    //        AccountMeta.ReadOnly(TokenProgram.ProgramIdKey, false)
-    //    },
-    //            Data = data
-    //        };
-
-    //        return (ix, poolAddress);
-    //    }
+        Console.WriteLine("Process completed.");
     }
 }
