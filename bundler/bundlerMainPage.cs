@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Solnet.Wallet;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,10 +18,10 @@ namespace catwiftools.bundler
             InitializeComponent();
         }
 
-        private void btnTasks_Click(object sender, EventArgs e)
+        private async void btnTasks_Click(object sender, EventArgs e)
         {
-            var pumpFunTokenCreator = new PumpFunTokenCreator();
-            pumpFunTokenCreator.CreateTokenAsync();
+
         }
+
     }
 }
