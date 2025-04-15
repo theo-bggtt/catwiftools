@@ -4,6 +4,7 @@ using Solnet.Pumpfun;
 using Solnet.Wallet;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,15 +53,18 @@ namespace catwiftools.tasks
 
             // Parse parameters
             int delay = int.Parse(parameters["Delay"]);
-            decimal minimum = decimal.Parse(parameters["Minimum Buy"]);
-            decimal maximum = decimal.Parse(parameters["Maximum Buy"]);
-            bool runIndefinitely = bool.Parse(parameters["run_indefinitely"]);
-            int quantityToRepeat = runIndefinitely ? int.MaxValue : int.Parse(parameters["quantity_to_repeat"]);
+            decimal minimum = decimal.Parse(parameters["Minimum Buy"], CultureInfo.InvariantCulture);
+            decimal maximum = decimal.Parse(parameters["Maximum Buy"], CultureInfo.InvariantCulture);
+
+            //decimal maximum = decimal.Parse(parameters["Maximum Buy"]);
+            //bool runIndefinitely = bool.Parse(parameters["run_indefinitely"]);
+            //int quantityToRepeat = runIndefinitely ? int.MaxValue : int.Parse(parameters["quantity_to_repeat"]);
 
             foreach (var wallet in wallets)
             {
                 decimal amount = (decimal)(random.NextDouble() * (double)(maximum - minimum) + (double)minimum);
-                transactionHelper.BuyTokens(wallet, mintAddress, amount, 0.5m);
+                Console.WriteLine($"Wallet: {wallet} bought {mintAddress} for {amount} SOL");
+                transactionHelper.BuyTokens(wallet, mintAddress, amount, 25.0m);
                 Thread.Sleep(random.Next(delay - 4, delay + 4) * 1000);
                 AppState.RecentAction($"MicroBuy Bought {amount} from {wallet}");
             }
@@ -100,7 +104,7 @@ namespace catwiftools.tasks
             {
                 // Make the sell transaction
                 Thread.Sleep(random.Next(delay - 4, delay + 4) * 1000);
-                transactionHelper.SellTokens(wallet, mintAddress, 0, 25, cycleAmount);
+                transactionHelper.SellTokens(wallet, mintAddress, 0, 25.0m, cycleAmount);
                 
             }
         }

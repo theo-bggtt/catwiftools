@@ -7,6 +7,8 @@ using Solnet.Rpc.Types;
 using Solnet.Rpc;
 using Solnet.Wallet;
 using System;
+using Solnet.Wallet.Utilities;
+using SimpleBase;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Json;
@@ -15,6 +17,8 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using static Solnet.Pumpfun.Accounts;
 using Solnet.Pumpfun;
+using Solnet.Wallet.Bip39;
+using Solnet.Wallet.Utilities;
 
 namespace catwiftools.transactions
 {
@@ -31,47 +35,96 @@ namespace catwiftools.transactions
             return new AccountResultWrapper<BondingCurve>(res, resultingAccount);
         }
 
-        public async Task<string> Buy(Account wallet, string mint_address, decimal sol_amount, decimal slippage_percentage, ulong computebudget = 100000, ulong computeprice = 1080000)
+        public async Task<string> Buy(string walletPrivateKey, string mintAddress, decimal solAmount, decimal slippagePercentage, ulong computeBudget = 100_000, ulong computePrice = 1_080_000)
         {
-            PublicKey mint = new PublicKey(mint_address);
-            PublicKey associatedUser = AssociatedTokenAccountProgram.DeriveAssociatedTokenAccount(wallet, mint);
-
-            PublicKey bondingCurveAddress = PDALookup.FindBondingPDA(mint);
-            PublicKey associatedCurveAddress = PDALookup.FindAssociatedBondingPDA(bondingCurveAddress, mint);
-            BondingCurve? curve = (await GetBondingCurveAsync(bondingCurveAddress)).ParsedResult;
-            if (curve != null)
+            try
             {
+                // 1. Décoder la clé privée (Base58 -> byte[])
+                byte[] privateKeyBytes = Base58.Bitcoin.Decode(walletPrivateKey).ToArray();
+                if (privateKeyBytes.Length != 64)
+                    return "Clé privée invalide : elle doit contenir 64 octets (clé secrète + clé publique)";
+
+                // 2. Créer le compte trader
+                Account trader = Account.Import(privateKeyBytes);
+
+                // 3. Adresses essentielles
+                PublicKey mint = new PublicKey(mintAddress);
+                PublicKey associatedUser = AssociatedTokenAccountProgram.DeriveAssociatedTokenAccount(trader.PublicKey, mint);
+                PublicKey bondingCurveAddress = PDALookup.FindBondingPDA(mint);
+                PublicKey associatedCurveAddress = PDALookup.FindAssociatedBondingPDA(bondingCurveAddress, mint);
+
+                // 4. Récupérer la bonding curve
+                var curveResult = await GetBondingCurveAsync(bondingCurveAddress);
+                if (curveResult == null || !curveResult.WasSuccessful || curveResult.ParsedResult == null)
+                    return "Bonding curve introuvable ou invalide";
+
+                BondingCurve curve = curveResult.ParsedResult;
+
+                // 5. Calcul du montant à acheter
                 decimal virtualSol = curve.virtualSolReserves / SolHelper.LAMPORTS_PER_SOL;
-
-                decimal virtualToken = curve.virtualTokenReserves / 1000000;
-
+                decimal virtualToken = curve.virtualTokenReserves / 1_000_000m;
                 decimal tokenPrice = virtualSol / virtualToken;
 
-                ulong amountOut = (ulong)(sol_amount / tokenPrice) * 1000000;
+                ulong amountOut = (ulong)(solAmount / tokenPrice) * 1_000_000;
+                decimal slippage = (solAmount / 100) * slippagePercentage;
+                ulong maxSol = SolHelper.ConvertToLamports(solAmount + slippage);
 
-                decimal slippage = sol_amount / 100 * slippage_percentage;
-                ulong max_sol = SolHelper.ConvertToLamports(sol_amount + slippage);
-                TransactionInstruction computeBudget = PumpfunProgram.SetCUlimit(computebudget);
-                TransactionInstruction computePrice = ComputeBudgetProgram.SetComputeUnitPrice(computeprice);
-                TransactionInstruction buy_instruction = PumpfunProgram.CreateBuyInstruction(mint, bondingCurveAddress, associatedCurveAddress, associatedUser, wallet, amountOut, max_sol);
+                // 6. Dernier blockhash
+                var blockHashResult = await RpcClient.GetLatestBlockHashAsync();
+                if (!blockHashResult.WasSuccessful || blockHashResult.Result == null)
+                    return "Impossible de récupérer le blockhash";
 
-                LatestBlockHash latestBlockHash = (await RpcClient.GetLatestBlockHashAsync()).Result.Value;
-                TransactionBuilder tx = new TransactionBuilder();
-                tx.SetFeePayer(wallet);
-                tx.SetRecentBlockHash(latestBlockHash.Blockhash);
-                tx.AddInstruction(computeBudget);
-                tx.AddInstruction(computePrice);
-                //tx.AddInstruction(AssociatedTokenAccountProgram.CreateAssociatedTokenAccount(wallet, wallet, mint));
-                tx.AddInstruction(buy_instruction);
-                byte[] final_tx = tx.Build(wallet);
-                string response = (await RpcClient.SendTransactionAsync(final_tx)).RawRpcResponse;
-                return response;
+                // 7. Construction des instructions
+                var instructions = new List<TransactionInstruction>
+        {
+            ComputeBudgetProgram.SetComputeUnitLimit((uint)computeBudget),
+            ComputeBudgetProgram.SetComputeUnitPrice(computePrice)
+        };
+
+                // 7bis. Création de l'ATA si nécessaire
+                if (!await AccountExists(trader.PublicKey, mint))
+                {
+                    var createATA = AssociatedTokenAccountProgram.CreateAssociatedTokenAccount(trader.PublicKey, trader.PublicKey, mint);
+                    instructions.Add(createATA);
+                }
+
+                // 8. Instruction d'achat
+                var buyIx = PumpfunProgram.CreateBuyInstruction(
+                    mint,
+                    bondingCurveAddress,
+                    associatedCurveAddress,
+                    associatedUser,
+                    trader.PublicKey,
+                    amountOut,
+                    maxSol
+                );
+
+                instructions.Add(buyIx);
+
+                // 9. Construction de la transaction
+                var txBuilder = new TransactionBuilder()
+                    .SetFeePayer(trader)
+                    .SetRecentBlockHash(blockHashResult.Result.Value.Blockhash);
+
+                foreach (var ix in instructions)
+                    txBuilder.AddInstruction(ix);
+
+                byte[] finalTx = txBuilder.Build(trader);
+
+                // 10. Envoi de la transaction
+                var sendResult = await RpcClient.SendTransactionAsync(finalTx);
+                if (!sendResult.WasSuccessful)
+                    return $"Échec de la transaction : {sendResult.Reason}";
+
+                return sendResult.Result ?? "Transaction envoyée, signature non reçue";
             }
-            else
+            catch (Exception ex)
             {
-                return "curve not found";
+                return $"Erreur dans Buy: {ex.Message}";
             }
         }
+
+
         public async Task<string> Sell(Account wallet, string mint_address, decimal token_amount, decimal min_sol_out = 0, ulong computebudget = 100000, ulong computeprice = 2080000)
         {
             PublicKey mint = new PublicKey(mint_address);
