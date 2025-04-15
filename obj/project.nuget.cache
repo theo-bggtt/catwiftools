@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "a4KhXo08SUw=",
+  "dgSpecHash": "484s5waKQks=",
   "success": true,
   "projectFilePath": "C:\\Users\\theo.bggtt\\Documents\\2024-2025\\Atelier_Programmation\\sem2\\catwiftools\\catwiftools.csproj",
   "expectedPackageFiles": [
@@ -46,6 +46,7 @@
     "C:\\Users\\theo.bggtt\\.nuget\\packages\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "C:\\Users\\theo.bggtt\\.nuget\\packages\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "C:\\Users\\theo.bggtt\\.nuget\\packages\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
+    "C:\\Users\\theo.bggtt\\.nuget\\packages\\simplebase\\4.0.2\\simplebase.4.0.2.nupkg.sha512",
     "C:\\Users\\theo.bggtt\\.nuget\\packages\\solana.metaplex\\8.0.0\\solana.metaplex.8.0.0.nupkg.sha512",
     "C:\\Users\\theo.bggtt\\.nuget\\packages\\solana.programs\\8.0.2\\solana.programs.8.0.2.nupkg.sha512",
     "C:\\Users\\theo.bggtt\\.nuget\\packages\\solana.pumpfun\\8.0.0.1\\solana.pumpfun.8.0.0.1.nupkg.sha512",
@@ -81,7 +82,7 @@
     "C:\\Users\\theo.bggtt\\.nuget\\packages\\system.io.filesystem.primitives\\4.3.0\\system.io.filesystem.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\theo.bggtt\\.nuget\\packages\\system.linq\\4.3.0\\system.linq.4.3.0.nupkg.sha512",
     "C:\\Users\\theo.bggtt\\.nuget\\packages\\system.linq.expressions\\4.3.0\\system.linq.expressions.4.3.0.nupkg.sha512",
-    "C:\\Users\\theo.bggtt\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
+    "C:\\Users\\theo.bggtt\\.nuget\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512",
     "C:\\Users\\theo.bggtt\\.nuget\\packages\\system.net.http\\4.3.4\\system.net.http.4.3.4.nupkg.sha512",
     "C:\\Users\\theo.bggtt\\.nuget\\packages\\system.net.primitives\\4.3.0\\system.net.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\theo.bggtt\\.nuget\\packages\\system.net.sockets\\4.3.0\\system.net.sockets.4.3.0.nupkg.sha512",
