@@ -40,12 +40,8 @@ namespace catwiftools.transactions
             try
             {
                 // 1. Décoder la clé privée (Base58 -> byte[])
-                byte[] privateKeyBytes = Base58.Bitcoin.Decode(walletPrivateKey).ToArray();
-                if (privateKeyBytes.Length != 64)
-                    return "Clé privée invalide : elle doit contenir 64 octets (clé secrète + clé publique)";
-
-                // 2. Créer le compte trader
-                Account trader = Account.Import(privateKeyBytes);
+                string base58Key = walletPrivateKey; // ta clé base58 de 64 bytes
+                Account trader = Account.FromSecretKey(base58Key);
 
                 // 3. Adresses essentielles
                 PublicKey mint = new PublicKey(mintAddress);
