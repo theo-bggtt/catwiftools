@@ -4,3 +4,5 @@
 .env
 /publish
 publish.zip
+/node_modules
+.tmp.driveupload/
