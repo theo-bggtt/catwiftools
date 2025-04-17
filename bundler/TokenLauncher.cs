@@ -7,6 +7,11 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Solnet.Programs;
+using Solnet.Rpc.Builders;
+using Solnet.Rpc;
+using Solnet.Wallet;
+using System.Text.Json;
 
 namespace catwiftools.bundler
 {
@@ -85,5 +90,57 @@ namespace catwiftools.bundler
                 return "No info was found";
             }
         }
+
+        //public static async Task SendBundleAsync(List<string> privateKeys, string contractAddress, ulong amount)
+        //{
+        //    if (privateKeys.Count != 5)
+        //    {
+        //        throw new ArgumentException("Exactly 5 private keys are required for the bundle.");
+        //    }
+
+        //    var txList = new List<string>();
+
+        //    foreach (string privKey in privateKeys)
+        //    {
+        //        Wallet wallet = new Wallet.Wallet(Convert.FromBase64String(privKey));
+        //        var account = wallet.Account;
+
+        //        // Build a simple transfer to the contract address (could be different based on your program)
+        //        var blockHash = await new RpcClient(Cluster.MainNet).GetRecentBlockHashAsync();
+        //        var tx = new TransactionBuilder()
+        //            .SetRecentBlockHash(blockHash.Result.Value.Blockhash)
+        //            .SetFeePayer(account)
+        //            .AddInstruction(
+        //                SystemProgram.Transfer(
+        //                    fromPublicKey: account.PublicKey,
+        //                    toPublicKey: new PublicKey(contractAddress),
+        //                    lamports: amount
+        //                )
+        //            )
+        //            .Build(account);
+
+        //        txList.Add(Convert.ToBase64String(tx));
+        //    }
+
+        //    var bundle = new
+        //    {
+        //        transactions = txList
+        //    };
+
+        //    var content = new StringContent(JsonSerializer.Serialize(bundle), Encoding.UTF8, "application/json");
+
+        //    try
+        //    {
+        //        var response = await client.PostAsync("https://mainnet.block-engine.jito.wtf/api/v1/bundles", content);
+        //        string responseString = await response.Content.ReadAsStringAsync();
+
+        //        Console.WriteLine("Response from Jito:");
+        //        Console.WriteLine(responseString);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine($"Error sending bundle: {ex.Message}");
+        //    }
+        //}
     }
 }
