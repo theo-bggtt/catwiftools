@@ -1,6 +1,7 @@
 ﻿using catwiftools.settings;
 using catwiftools.wallet;
 using Microsoft.Data.Sqlite;
+using System.Drawing.Drawing2D;
 using System.Net.NetworkInformation;
 namespace catwiftools
 {
@@ -234,6 +235,34 @@ namespace catwiftools
                 AppState.ControlPanelForm.BringToFront();
                 AppState.ControlPanelForm.Location = new Point(this.Location.X + (this.Width / 4), this.Location.Y);
                 AppState.ControlPanelForm.Visible = true;
+            }
+        }
+
+        private void CatWifTools_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics graphics = e.Graphics;
+
+            // Define the bounds of the gradient (same size as form)
+            Rectangle bounds = new Rectangle(0, 0, Width, Height);
+
+            // Define a circle in the center of the form
+            Point center = new Point(bounds.Width / 2, bounds.Height / 2);
+            int radius = Math.Max(bounds.Width, bounds.Height);
+
+            // Create a circular path
+            using (GraphicsPath path = new GraphicsPath())
+            {
+                path.AddEllipse(center.X - radius, center.Y - radius, radius * 2, radius * 2);
+
+                // Create a PathGradientBrush with that path
+                using (PathGradientBrush brush = new PathGradientBrush(path))
+                {
+                    brush.CenterPoint = center;
+                    brush.CenterColor = Color.FromArgb(37, 37, 53);
+                    brush.SurroundColors = new Color[] { Color.Black };
+
+                    graphics.FillRectangle(brush, bounds);
+                }
             }
         }
     }

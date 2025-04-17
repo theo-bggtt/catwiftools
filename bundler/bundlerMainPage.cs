@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -20,8 +21,31 @@ namespace catwiftools.bundler
 
         private async void btnTasks_Click(object sender, EventArgs e)
         {
-            TokenLauncher.LaunchToken("2jGdoShA2SjkhhjyTE81vqiAm3hvJot3VJw4kaP2z8HjgGQuFmrketzTm12hcAvXp549w9uWP6XuxAb47XbkNwC", "0.005", "Test Token", "TT", "Test Description", "https://example.com", "https://twitter.com/example", "https://t.me/example", @"C:\Users\theo.bggtt\Documents\2024-2025\Atelier_Programmation\sem2\catwiftools\img\logo\1.png");
+            //string token = TokenLauncher.LaunchToken("2jGdoShA2SjkhhjyTE81vqiAm3hvJot3VJw4kaP2z8HjgGQuFmrketzTm12hcAvXp549w9uWP6XuxAb47XbkNwC", "0.005", "Test Token", "TT", "Test Description", "https://example.com", "https://twitter.com/example", "https://t.me/example", @"C:\Users\theo.bggtt\Documents\2024-2025\Atelier_Programmation\sem2\catwiftools\img\logo\1.png");
+            string token = "AeuGfjZa6YRgMz33XMRPLdxGNbr9s5Emj6DPd9unpump";
+            string url = $"https://pump.fun/coin/{token}";
+            ProcessStartInfo sInfo = new ProcessStartInfo
+            {
+                FileName = url,
+                UseShellExecute = true
+            };
+            Process.Start(sInfo);
+
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            TokenLauncher.GetTokenMetadataAsync("AeuGfjZa6YRgMz33XMRPLdxGNbr9s5Emj6DPd9unpump");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // Show the TokenInfo form
+            TokenInfo tokenInfoForm = new TokenInfo();
+            tokenInfoForm.Show();
+            tokenInfoForm.BringToFront();
+            tokenInfoForm.Focus();
+            // Set the token address in the TokenInfo form
+        }
     }
 }

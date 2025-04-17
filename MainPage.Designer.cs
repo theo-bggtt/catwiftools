@@ -524,6 +524,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MainPage";
             Load += CatWifTools_Load;
+            Paint += CatWifTools_Paint;
             ((System.ComponentModel.ISupportInitialize)pbxLogo).EndInit();
             gbxBackground.ResumeLayout(false);
             gbxBackground.PerformLayout();
