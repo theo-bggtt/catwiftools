@@ -36,10 +36,10 @@ namespace catwiftools.wallet
             return walletAddresses;
         }
 
-        public static string GetWalletPhrase(string walletAddress)
+        public static string GetWalletPrivateKey(string walletAddress)
         {
-            string phrase;
-            string query = "SELECT walletphrase FROM wallets WHERE walletAddress = @walletAddress";
+            string privateKey;
+            string query = "SELECT privateKey FROM wallets WHERE walletAddress = @walletAddress";
 
             using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
             using (SqliteCommand command = new SqliteCommand(query, connection))
@@ -50,7 +50,7 @@ namespace catwiftools.wallet
                 {
                     if (reader.Read())
                     {
-                        phrase = reader.GetString(0);
+                        privateKey = reader.GetString(0);
                     }
                     else
                     {
@@ -58,7 +58,7 @@ namespace catwiftools.wallet
                     }
                 }
             }
-            return phrase;
+            return privateKey;
         }
 
         public static string getFundAddress()
@@ -187,7 +187,7 @@ namespace catwiftools.wallet
             try
             {
                 var rpcClient = ConfigHelper.GetRpcClient();
-                string privateKey = GetWalletphrase(null, CheckForFundWallet());
+                string privateKey = GetWalletPrivateKey(null, CheckForFundWallet());
                 Wallet wallet = new Wallet(privateKey);
                 Solnet.Wallet.PublicKey fromAccount = wallet.Account.PublicKey;
                 Solnet.Wallet.PublicKey toAccount = new Solnet.Wallet.PublicKey(address);
@@ -232,7 +232,7 @@ namespace catwiftools.wallet
             try
             {
                 var rpcClient = ConfigHelper.GetRpcClient();
-                string privateKeyString = GetWalletphrase(null, address);
+                string privateKeyString = GetWalletPrivateKey(null, address);
 
                 Wallet wallet;
                 if (privateKeyString.Contains(" "))
@@ -285,7 +285,7 @@ namespace catwiftools.wallet
             }
         }
 
-        public static int GetWalletId(string? walletAddress, string? walletphrase) // Prends l'Id d'un wallet à travers son addresse ou sa phrase, à travers la bdd
+        public static int GetWalletId(string? walletAddress, string? privateKey) // Prends l'Id d'un wallet à travers son addresse ou sa privateKey, à travers la bdd
         {
             int idWallet = 0;
             if (!string.IsNullOrEmpty(walletAddress))
@@ -306,9 +306,9 @@ namespace catwiftools.wallet
                     }
                 }
             }
-            else if (!string.IsNullOrEmpty(walletphrase))
+            else if (!string.IsNullOrEmpty(privateKey))
             {
-                string query = $"SELECT idWallet FROM wallets WHERE walletphrase = '{walletphrase}'";
+                string query = $"SELECT idWallet FROM wallets WHERE privateKey = '{privateKey}'";
                 using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
                 {
                     using (SqliteCommand command = new SqliteCommand(query, connection))
@@ -326,23 +326,21 @@ namespace catwiftools.wallet
             }
             return idWallet;
         }
-        public static string GetWalletAddress(string walletphrase) // Prends l'addresse d'un walletId ou d'une phrase de wallet
+        public static string GetWalletAddress(string privateKey) // Prends l'addresse d'un walletId ou d'une phrase de wallet
         {
-            string mnemonicPhrase = walletphrase.ToString();
-
-            Wallet wallet = new Wallet(walletphrase);
+            Wallet wallet = new Wallet(privateKey);
 
             var account = wallet.GetAccount(0);
             string publicKey = account.PublicKey;
             return publicKey;
         }
 
-        public static string GetWalletphrase(int? idWallet, string? walletAddress) // Prends la phrase mnemonic d'un walletId ou d'une addresse, à travers la bdd
+        public static string GetWalletPrivateKey(int? idWallet, string? walletAddress) // Prends la phrase mnemonic d'un walletId ou d'une addresse, à travers la bdd
         {
-            string Walletphrase = "";
+            string privateKey = "";
             if (idWallet.HasValue)
             {
-                string query = $"SELECT walletphrase FROM wallets WHERE idWallet = {idWallet.Value}";
+                string query = $"SELECT privateKey FROM wallets WHERE idWallet = {idWallet.Value}";
                 using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
                 {
                     using (SqliteCommand command = new SqliteCommand(query, connection))
@@ -352,7 +350,7 @@ namespace catwiftools.wallet
                         {
                             if (reader.Read())
                             {
-                                Walletphrase = reader.GetString(0);
+                                privateKey = reader.GetString(0);
                             }
                         }
                     }
@@ -360,7 +358,7 @@ namespace catwiftools.wallet
             }
             else if (!string.IsNullOrEmpty(walletAddress))
             {
-                string query = $"SELECT walletphrase FROM wallets WHERE walletAddress = '{walletAddress}'";
+                string query = $"SELECT privateKey FROM wallets WHERE walletAddress = '{walletAddress}'";
                 using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
                 {
                     using (SqliteCommand command = new SqliteCommand(query, connection))
@@ -370,15 +368,15 @@ namespace catwiftools.wallet
                         {
                             if (reader.Read())
                             {
-                                Walletphrase = reader.GetString(0);
+                                privateKey = reader.GetString(0);
                             }
                         }
                     }
                 }
             }
-            string[] words = Walletphrase.Split(' ');
-            AppState.WriteConsole(words[0] + " " + words[1] + " " + words[2] + " " + words[3] + " ...");
-            return Walletphrase;
+            // Write the 7 first characters of the private key to the console
+            AppState.WriteConsole($"🔎 Private Key: {privateKey.Substring(0, 7)}...");
+            return privateKey;
         }
 
         public static string CheckForFundWallet()
@@ -408,7 +406,7 @@ namespace catwiftools.wallet
         public static List<string> GetWalletsInGroup(int group_id)
         {
             List<string> wallets = new List<string>();
-            string query = $"SELECT walletphrase FROM 'wallets' WHERE group_id = {group_id}";
+            string query = $"SELECT privateKey FROM 'wallets' WHERE group_id = {group_id}";
             using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))

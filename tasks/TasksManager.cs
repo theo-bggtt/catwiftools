@@ -46,7 +46,7 @@ namespace catwiftools.tasks
             }
         }
 
-        public static void ExecuteMicroBuyTask(int taskId, List<string> wallets, string mintAddress)
+        public async static void ExecuteMicroBuyTask(int taskId, List<string> wallets, string mintAddress)
         {
             Random random = new Random();
             var parameters = TaskHelper.GetTaskParameters(taskId);
@@ -64,7 +64,7 @@ namespace catwiftools.tasks
             {
                 decimal amount = (decimal)(random.NextDouble() * (double)(maximum - minimum) + (double)minimum);
                 Console.WriteLine($"Wallet: {wallet} bought {mintAddress} for {amount} SOL");
-                transactionHelper.BuyTokens(wallet, mintAddress, amount, 25.0m);
+                await transactionHelper.BuyTokens(wallet, mintAddress, amount, 25.0m);
                 Thread.Sleep(random.Next(delay - 4, delay + 4) * 1000);
                 AppState.RecentAction($"MicroBuy Bought {amount} from {wallet}");
             }

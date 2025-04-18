@@ -104,7 +104,7 @@ namespace catwiftools.wallet
         private void btnExport_Click(object sender, EventArgs e)
         {
             string address = ((Button)sender).Tag.ToString();
-            string key = walletHelper.GetWalletPhrase(address);
+            string key = walletHelper.GetWalletPrivateKey(address);
 
             var button = (Button)sender;
             button.Enabled = false;

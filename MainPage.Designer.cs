@@ -111,9 +111,10 @@
             // 
             // gbxBackground
             // 
-            gbxBackground.BackColor = Color.FromArgb(25, 25, 25);
+            gbxBackground.BackColor = Color.Transparent;
             gbxBackground.Controls.Add(pictureBox1);
             gbxBackground.Controls.Add(lblBackground);
+            gbxBackground.FlatStyle = FlatStyle.Flat;
             gbxBackground.Location = new Point(700, 350);
             gbxBackground.Name = "gbxBackground";
             gbxBackground.Size = new Size(462, 85);
@@ -214,6 +215,7 @@
             // 
             // gbxSettingsNav
             // 
+            gbxSettingsNav.BackColor = Color.Transparent;
             gbxSettingsNav.Controls.Add(btnSettingsGeneral);
             gbxSettingsNav.Controls.Add(btnSettingsVolume);
             gbxSettingsNav.Controls.Add(btnSettingsBundler);
@@ -316,11 +318,13 @@
             // 
             // gbxMainNav
             // 
+            gbxMainNav.BackColor = Color.Transparent;
             gbxMainNav.Controls.Add(btnSettings);
             gbxMainNav.Controls.Add(btnProxies);
             gbxMainNav.Controls.Add(btnTasks);
             gbxMainNav.Controls.Add(btnBundler);
             gbxMainNav.Controls.Add(btnWallets);
+            gbxMainNav.FlatStyle = FlatStyle.Flat;
             gbxMainNav.Location = new Point(5, 100);
             gbxMainNav.Name = "gbxMainNav";
             gbxMainNav.Size = new Size(200, 762);
@@ -498,7 +502,6 @@
             ClientSize = new Size(1436, 806);
             ControlBox = false;
             Controls.Add(btnControlPanel);
-            Controls.Add(settingsGeneral1);
             Controls.Add(gbxMainNav);
             Controls.Add(pbxLogo);
             Controls.Add(btnMinimise);
@@ -510,11 +513,12 @@
             Controls.Add(settingsBumpIt1);
             Controls.Add(settingsBundler1);
             Controls.Add(settingsVolume1);
+            Controls.Add(gbxSettingsNav);
             Controls.Add(proxiesMainPage1);
             Controls.Add(bundlerMainPage1);
             Controls.Add(walletVolume1);
             Controls.Add(tasksMainPage1);
-            Controls.Add(gbxSettingsNav);
+            Controls.Add(settingsGeneral1);
             FormBorderStyle = FormBorderStyle.None;
             MaximizeBox = false;
             MinimizeBox = false;

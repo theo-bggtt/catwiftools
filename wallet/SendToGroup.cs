@@ -125,10 +125,10 @@ namespace catwiftools.wallet
             updateText();
         }
 
-        private void btnConfirm_Click(object sender, EventArgs e)
+        private async void btnConfirm_Click(object sender, EventArgs e)
         {
             this.Close();
-            walletHelper.Distribute(walletAddresses, selectedAmount);
+            await walletHelper.Distribute(walletAddresses, selectedAmount);
             AppState.RecentAction($"Sent {selectedAmount} SOL to {walletAddresses.Count} wallets");
         }
     }
