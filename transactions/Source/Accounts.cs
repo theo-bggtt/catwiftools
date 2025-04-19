@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace catwiftools.transactions
+namespace catwiftools.transactions.Source
 {
-    internal class Accounts
+    public class Accounts
     {
         public partial class BondingCurve
         {

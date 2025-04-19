@@ -328,10 +328,10 @@ namespace catwiftools.wallet
         }
         public static string GetWalletAddress(string privateKey) // Prends l'addresse d'un walletId ou d'une phrase de wallet
         {
-            Wallet wallet = new Wallet(privateKey);
+            Account account = Account.FromSecretKey(privateKey);
 
-            var account = wallet.GetAccount(0);
-            string publicKey = account.PublicKey;
+            // Fix: Replace the incorrect 'GetAccount' method call with the correct usage of the 'PublicKey' property.
+            string publicKey = account.PublicKey.ToString();
             return publicKey;
         }
 

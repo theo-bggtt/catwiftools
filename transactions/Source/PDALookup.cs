@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace catwiftools.transactions
+namespace catwiftools.transactions.Source
 {
-    internal class PDALookup
+    public static class PDALookup
     {
         public static PublicKey FindGlobalPDA()
         {

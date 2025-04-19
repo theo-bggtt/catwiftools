@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.Json;
+using catwiftools.transactions;
 
 namespace catwiftools.bundler
 {
@@ -52,6 +53,14 @@ namespace catwiftools.bundler
             // Set the token address in the TokenInfo form
         }
 
-        
+        private void button6_Click(object sender, EventArgs e)
+        {
+            TransactionHelper.Buy("57b81x5yA4RxQW7RTpdFX6qAvsv22TFReaAcBoGCwYXcK48pcJcTWochgmbU4UBV5JB48yCndpiLpMYE3eST1zp1", "AeuGfjZa6YRgMz33XMRPLdxGNbr9s5Emj6DPd9unpump", "0.005", null);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            TransactionHelper.Sell("57b81x5yA4RxQW7RTpdFX6qAvsv22TFReaAcBoGCwYXcK48pcJcTWochgmbU4UBV5JB48yCndpiLpMYE3eST1zp1", "AeuGfjZa6YRgMz33XMRPLdxGNbr9s5Emj6DPd9unpump", "357636");
+        }
     }
 }

@@ -145,6 +145,7 @@
             button5.Text = "Dev Sell";
             button5.UseMnemonic = false;
             button5.UseVisualStyleBackColor = false;
+            button5.Click += button5_Click;
             // 
             // button6
             // 
@@ -164,6 +165,7 @@
             button6.Text = "Send SPL";
             button6.UseMnemonic = false;
             button6.UseVisualStyleBackColor = false;
+            button6.Click += button6_Click;
             // 
             // bundlerMainPage
             // 

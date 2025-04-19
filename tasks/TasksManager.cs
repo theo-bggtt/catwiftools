@@ -64,7 +64,7 @@ namespace catwiftools.tasks
             {
                 decimal amount = (decimal)(random.NextDouble() * (double)(maximum - minimum) + (double)minimum);
                 Console.WriteLine($"Wallet: {wallet} bought {mintAddress} for {amount} SOL");
-                await transactionHelper.BuyTokens(wallet, mintAddress, amount, 25.0m);
+                //await transactionHelper.BuyTokens(wallet, mintAddress, amount, 25.0m);
                 Thread.Sleep(random.Next(delay - 4, delay + 4) * 1000);
                 AppState.RecentAction($"MicroBuy Bought {amount} from {wallet}");
             }
@@ -104,7 +104,7 @@ namespace catwiftools.tasks
             {
                 // Make the sell transaction
                 Thread.Sleep(random.Next(delay - 4, delay + 4) * 1000);
-                transactionHelper.SellTokens(wallet, mintAddress, 0, 25.0m, cycleAmount);
+                //transactionHelper.SellTokens(wallet, mintAddress, 0, 25.0m, cycleAmount);
                 
             }
         }
@@ -118,7 +118,7 @@ namespace catwiftools.tasks
                 wallet = parameters["wallet"];
             }
 
-            transactionHelper.SellTokens(wallet, mintAddress, 0, 25, 1);
+            //transactionHelper.SellTokens(wallet, mintAddress, 0, 25, 1);
 
         }
 
