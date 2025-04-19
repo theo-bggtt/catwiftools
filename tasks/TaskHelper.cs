@@ -22,7 +22,7 @@ namespace catwiftools.tasks
             switch (task_type)
             {
                 case "Bump It":
-                    //TasksManager.ExecuteBumpItBuyTask(task_id, taskWallets, mintAddress);
+                    TasksManager.ExecuteBumpItBuyTask(task_id, taskWallets, mintAddress);
                     break;
                 case "Micro-Buy":
                     TasksManager.ExecuteMicroBuyTask(task_id, taskWallets, mintAddress);

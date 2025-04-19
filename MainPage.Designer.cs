@@ -327,7 +327,7 @@
             gbxMainNav.FlatStyle = FlatStyle.Flat;
             gbxMainNav.Location = new Point(5, 100);
             gbxMainNav.Name = "gbxMainNav";
-            gbxMainNav.Size = new Size(200, 762);
+            gbxMainNav.Size = new Size(200, 705);
             gbxMainNav.TabIndex = 32;
             gbxMainNav.TabStop = false;
             // 

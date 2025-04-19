@@ -129,40 +129,16 @@ namespace catwiftools.wallet
             return balanceResponse.Result.Value / 1_000_000_000.0;
         }
 
-        public async Task GetAllWalletBalances(int group_id)
-        {
-            List<string> wallet = GetWallets(group_id);
-            foreach (string address in wallet)
-            {
-                double balance = await GetWalletBalance(address);
-                await Task.Run(() => SaveBalance(address, balance));
-            }
-        }
-
-        public async Task<Double> GetBalance(string walletAddress)
-        {
-            double balance = await GetWalletBalance(walletAddress);
-            await SaveBalance(walletAddress, balance);
-            return balance;
-        }
-
-        public async Task SaveBalance(string walletAddress, double balance)
-        {
-            string query = "UPDATE wallets SET balance = @balance WHERE walletAddress = @walletAddress";
-
-            using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
-            using (SqliteCommand command = new SqliteCommand(query, connection))
-            {
-                command.Parameters.AddWithValue("@balance", balance);
-                command.Parameters.AddWithValue("@walletAddress", walletAddress);
-                await connection.OpenAsync();
-                await command.ExecuteNonQueryAsync();
-            }
-        }
-
         // ======================
         // Transaction Methods
         // ======================
+
+        /// <summary>
+        /// Envoie du solana à chaque wallet sélectionné
+        /// </summary>
+        /// <param name="selectedAddresses"></param>
+        /// <param name="selectedAmount"></param>
+        /// <returns></returns>
         public static async Task Distribute(List<string> selectedAddresses, double selectedAmount)
         {
             double amountPerWall = (selectedAmount / selectedAddresses.Count - (selectedAddresses.Count * 0.01));
@@ -174,6 +150,11 @@ namespace catwiftools.wallet
             }
         }
 
+        /// <summary>
+        /// Pour chaque wallet récupéré, on envoie le solana au wallet de fond
+        /// </summary>
+        /// <param name="selectedAddresses"></param>
+        /// <returns></returns>
         public static async Task Recall(List<string> selectedAddresses)
         {
             foreach (string address in selectedAddresses)
@@ -182,6 +163,12 @@ namespace catwiftools.wallet
             }
         }
 
+        /// <summary>
+        /// Envoie du solana à une adresse
+        /// </summary>
+        /// <param name="address"></param>
+        /// <param name="amount"></param>
+        /// <returns></returns>
         private async Task SendSol(string address, double amount)
         {
             try
@@ -227,6 +214,11 @@ namespace catwiftools.wallet
             }
         }
 
+        /// <summary>
+        /// Reprends le solana d'un wallet jusqu'au wallet de fond
+        /// </summary>
+        /// <param name="address"></param>
+        /// <returns></returns>
         private async Task RecallSol(string address)
         {
             try
@@ -285,57 +277,25 @@ namespace catwiftools.wallet
             }
         }
 
-        public static int GetWalletId(string? walletAddress, string? privateKey) // Prends l'Id d'un wallet à travers son addresse ou sa privateKey, à travers la bdd
-        {
-            int idWallet = 0;
-            if (!string.IsNullOrEmpty(walletAddress))
-            {
-                string query = $"SELECT idWallet FROM wallets WHERE walletAddress = '{walletAddress}'";
-                using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
-                {
-                    using (SqliteCommand command = new SqliteCommand(query, connection))
-                    {
-                        connection.Open();
-                        using (SqliteDataReader reader = command.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                idWallet = Convert.ToInt32(reader.GetString(0));
-                            }
-                        }
-                    }
-                }
-            }
-            else if (!string.IsNullOrEmpty(privateKey))
-            {
-                string query = $"SELECT idWallet FROM wallets WHERE privateKey = '{privateKey}'";
-                using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
-                {
-                    using (SqliteCommand command = new SqliteCommand(query, connection))
-                    {
-                        connection.Open();
-                        using (SqliteDataReader reader = command.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                idWallet = Convert.ToInt32(reader.GetString(0));
-                            }
-                        }
-                    }
-                }
-            }
-            return idWallet;
-        }
-        public static string GetWalletAddress(string privateKey) // Prends l'addresse d'un walletId ou d'une phrase de wallet
+        /// <summary>
+        /// Prends l'addresse d'un walletId ou d'une phrase de wallet
+        /// </summary>
+        /// <param name="privateKey"></param>
+        /// <returns></returns>
+        public static string GetWalletAddress(string privateKey)
         {
             Account account = Account.FromSecretKey(privateKey);
-
-            // Fix: Replace the incorrect 'GetAccount' method call with the correct usage of the 'PublicKey' property.
             string publicKey = account.PublicKey.ToString();
             return publicKey;
         }
 
-        public static string GetWalletPrivateKey(int? idWallet, string? walletAddress) // Prends la phrase mnemonic d'un walletId ou d'une addresse, à travers la bdd
+        /// <summary>
+        /// Prends la clé privée d'un walletId ou d'une addresse, à travers la bdd
+        /// </summary>
+        /// <param name="idWallet"></param>
+        /// <param name="walletAddress"></param>
+        /// <returns></returns>
+        public static string GetWalletPrivateKey(int? idWallet, string? walletAddress)
         {
             string privateKey = "";
             if (idWallet.HasValue)

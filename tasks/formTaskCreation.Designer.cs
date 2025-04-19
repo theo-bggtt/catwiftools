@@ -339,6 +339,7 @@
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(81, 23);
             textBox2.TabIndex = 74;
+            textBox2.TextChanged += tbxDelay_TextChanged;
             // 
             // label2
             // 
@@ -382,11 +383,11 @@
             Controls.Add(tbxTaskName);
             Controls.Add(lblTaskName);
             Controls.Add(lblTaskType);
-            Controls.Add(pnlSellAll);
-            Controls.Add(pnlBuyParameters);
             Controls.Add(pnlBumpIt);
             Controls.Add(pnlCommentBot);
             Controls.Add(pnlSingleSell);
+            Controls.Add(pnlSellAll);
+            Controls.Add(pnlBuyParameters);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "formTaskCreation";
             StartPosition = FormStartPosition.CenterParent;

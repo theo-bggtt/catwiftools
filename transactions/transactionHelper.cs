@@ -16,7 +16,7 @@ namespace catwiftools.transactions
     {
         private static readonly HttpClient client = new HttpClient();
 
-        public async static void Buy(string privateKey, string mintAddress, string solAmountInput, string? slippagePercentageInput)
+        public async static Task<String> Buy(string privateKey, string mintAddress, string solAmountInput, string? slippagePercentageInput)
         {
             IRpcClient rpcClient = ClientFactory.GetClient(Cluster.MainNet);
             Account trader = Account.FromSecretKey(privateKey);
@@ -28,7 +28,7 @@ namespace catwiftools.transactions
                 : decimal.Parse(slippagePercentageInput);
 
             string response = await pumpfunClient.Buy(trader, mintAddress, solAmount, slippagePercentage);
-            Console.WriteLine($"Buy Response: {response}");
+            return response;
         }
 
         public async static void Sell(string privateKey, string mintAddress, string tokenAmountInput)
