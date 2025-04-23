@@ -126,15 +126,38 @@ namespace catwiftools.tasks
 
         private void btnEditTask_Click(object sender, EventArgs e)
         {
+            // Retrieve the task_id from the sender (button)
+            Button btnEditTask = (Button)sender;
+            int task_id = (int)btnEditTask.Tag;
+
+
+            // Fetch the task details using the task_id
+            Dictionary<string, string> parameters = TaskHelper.GetTaskParameters(task_id);
+            string task_name = TaskHelper.GetTaskName(task_id);
+            string task_type = TaskHelper.GetTaskType(task_id);
+
             using (formTaskCreation formTaskCreation = new formTaskCreation(null))
             {
+                // Set default values for the task form based on the task_id
+                formTaskCreation.task_name = task_name;
+                formTaskCreation.task_type = task_type;
+                formTaskCreation.parameters = parameters;
+                formTaskCreation.isEditMode = true;
+                // Set the cbxTaskType's selected value to the task_type
+                formTaskCreation.SetTaskType(task_type);
+                formTaskCreation.SetTaskName(task_name);
+                formTaskCreation.SetTaskParameters(parameters);
+
                 if (formTaskCreation.ShowDialog() == DialogResult.OK)
                 {
-                    TaskHelper.InsertTask(active_group, formTaskCreation.task_name, formTaskCreation.task_type);
-                    TaskHelper.saveParameters(formTaskCreation.task_name, formTaskCreation.parameters);
+                    // Update the task with new values
+                    TaskHelper.UpdateTask(task_id, formTaskCreation.task_name, formTaskCreation.task_type, formTaskCreation.parameters);
                 }
             }
+            LoadTaskGroups();
+            LoadTasks(active_group);
         }
+
 
         private void LoadTasks(int active_group) // Gets the task_ids and creates a task box for each task
         {
@@ -400,6 +423,7 @@ namespace catwiftools.tasks
             btnEditTask.TabIndex = 44;
             btnEditTask.Text = "Edit";
             btnEditTask.UseVisualStyleBackColor = false;
+            btnEditTask.Tag = task_id;
             btnEditTask.Click += btnEditTask_Click;
             // 
             // btnDeleteTask

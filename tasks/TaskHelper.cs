@@ -59,6 +59,24 @@ namespace catwiftools.tasks
             }
         }
 
+        public static void UpdateTask(int task_id, string task_name, string task_type, Dictionary<string, string> parameters)
+        {
+            string query = "UPDATE 'tasks' SET task_name = @taskName, task_type = @taskType WHERE task_id = @taskId";
+            using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
+            {
+                using (SqliteCommand command = new SqliteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@taskId", task_id);
+                    command.Parameters.AddWithValue("@taskName", task_name);
+                    command.Parameters.AddWithValue("@taskType", task_type);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+            deleteParameters(task_id);
+            saveParameters(task_name, parameters);
+        }
+
         public static void saveParameters(string task_name, Dictionary<String, String> parameters)
         {
             int task_id = GetTaskId(task_name);

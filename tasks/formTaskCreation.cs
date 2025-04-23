@@ -1,16 +1,5 @@
 ﻿using catwiftools.wallet;
 using Microsoft.Data.Sqlite;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace catwiftools.tasks
 {
@@ -19,10 +8,11 @@ namespace catwiftools.tasks
         public string task_name, task_type, buy_amount, minimum_buy, maximum_buy, delay, comments, wallet, cycle;
         public Dictionary<string, string> parameters = [];
         private Panel active_panel;
+        public bool isEditMode = false;
 
         public formTaskCreation(int? task)
         {
-            
+
             InitializeComponent();
             if (task != null)
             {
@@ -53,7 +43,7 @@ namespace catwiftools.tasks
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            if (TaskHelper.TaskNameExists(tbxTaskName.Text))
+            if (TaskHelper.TaskNameExists(tbxTaskName.Text) && (isEditMode == false))
             {
                 MessageBox.Show("This Task name already exists", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -61,10 +51,11 @@ namespace catwiftools.tasks
             else
             {
                 updateParameters();
-
+                isEditMode = false;
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
+            
         }
 
         private void tbx_KeyPress(object sender, KeyPressEventArgs e)
@@ -257,11 +248,11 @@ namespace catwiftools.tasks
                 if (!string.IsNullOrEmpty(delay))
                 {
                     parameters.Add("Delay", delay);
-                    
+
                 }
                 if (!string.IsNullOrEmpty(cycle))
                 {
-                     parameters.Add("Cycle", cycle);
+                    parameters.Add("Cycle", cycle);
                 }
             }
             else if (active_panel == pnlSingleSell)
@@ -324,6 +315,54 @@ namespace catwiftools.tasks
             return wallets.ToArray();
         }
 
-        
+        public void SetTaskType(string taskType)
+        {
+            cbxTaskType.SelectedItem = taskType;
+            if (isEditMode)
+            {
+                cbxTaskType.Enabled = false;
+            }
+            else
+            {
+                cbxTaskType.Enabled = true;
+            }
+        }
+
+        public void SetTaskName(string taskName)
+        {
+            tbxTaskName.Text = taskName;
+        }
+
+
+        public void SetTaskParameters(Dictionary<string, string> parameters)
+        {
+            foreach (var parameter in parameters)
+            {
+                switch (parameter.Key)
+                {
+                    case "Minimum Buy":
+                        tbxMinimumBuy.Text = parameter.Value;
+                        break;
+                    case "Maximum Buy":
+                        tbxMaximumBuy.Text = parameter.Value;
+                        break;
+                    case "Delay":
+                        textBox4.Text = parameter.Value;
+                        break;
+                    case "Cycle":
+                        tbxCycle.Text = parameter.Value;
+                        break;
+                    case "Wallets":
+                        cbxWallet.Text = parameter.Value;
+                        break;
+                    case "Comments":
+                        tbxComments.Text = parameter.Value;
+                        break;
+                    case "Buy Amount":
+                        textBox3.Text = parameter.Value;
+                        break;
+                }
+            }
+        }
     }
 }

@@ -10,7 +10,6 @@ namespace catwiftools
     {
         public static ControlPanelForm? ControlPanelForm { get; set; }
 
-        // Helper method to write to the ControlPanelForm
         public static void WriteConsole(string message)
         {
             if (ControlPanelForm != null && !ControlPanelForm.IsDisposed)
@@ -25,7 +24,5 @@ namespace catwiftools
                 ControlPanelForm.RecentAction(message);
             }
         }
-
-
     }
 }
