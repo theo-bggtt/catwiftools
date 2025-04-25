@@ -46,8 +46,10 @@ namespace catwiftools.tasks
 
                 foreach (var wallet in wallets)
                 {
+                    // Randomise the amount
+                    decimal randomAmount = amountPerWalletPerIteration + (decimal)(random.NextDouble() * 0.1 - 0.05);
                     // Make the buy transaction
-                    await TransactionHelper.Buy(wallet, mintAddress, amountPerWalletPerIteration.ToString(), null);
+                    await TransactionHelper.Buy(wallet, mintAddress, randomAmount.ToString(), null);
                     AppState.WriteConsole($"Wallet: {wallet} bought {mintAddress} for {amountPerWalletPerIteration} SOL");
 
                     // Apply random delay
