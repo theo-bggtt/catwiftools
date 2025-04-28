@@ -233,19 +233,26 @@ namespace catwiftools.wallet
             {
                 var rpcClient = ConfigHelper.GetRpcClient();
 
-                // 1. Get the private key Base58 string directly
+                // 1. Load the Account from the Base58 private key string
                 string privateKeyBase58 = GetWalletPrivateKey(null, address);
+                Account walletAccount = Account.FromSecretKey(privateKeyBase58);
 
-                // 2. No decoding needed. Use FromSecretKey directly with the Base58 string
-                Account walletAccount = Account.FromSecretKey(privateKeyBase58); // ✅ Correct!
-
-                // Continue as before
+                // 2. Prepare sender and receiver public keys
                 Solnet.Wallet.PublicKey fromAccount = walletAccount.PublicKey;
                 Solnet.Wallet.PublicKey toAccount = new Solnet.Wallet.PublicKey(CheckForFundWallet());
 
-                var balanceResponse = await rpcClient.GetBalanceAsync(fromAccount);
-                AppState.WriteConsole($"🔎 Sending amount: {balanceResponse.Result.Value / 1_000_000_000} SOL");
+                // 3. Get the maximum safe amount to send
+                ulong amountLamports = await walletHelper.GetMaxSendableLamports(walletAccount);
 
+                if (amountLamports == 0)
+                {
+                    AppState.WriteConsole("⚠️ Not enough SOL to send after reserving fees.");
+                    return;
+                }
+
+                AppState.WriteConsole($"🔎 Sending amount: {amountLamports / 1_000_000_000.0} SOL");
+
+                // 4. Fetch latest blockhash
                 var blockHashResponse = await rpcClient.GetLatestBlockHashAsync();
                 if (!blockHashResponse.WasSuccessful)
                 {
@@ -256,8 +263,7 @@ namespace catwiftools.wallet
                 string blockHash = blockHashResponse.Result.Value.Blockhash;
                 AppState.WriteConsole($"🔎 Blockhash: {blockHash}");
 
-                ulong amountLamports = balanceResponse.Result.Value - 5000;
-
+                // 5. Build and send transaction
                 var tx = new TransactionBuilder()
                     .SetRecentBlockHash(blockHash)
                     .SetFeePayer(fromAccount)
@@ -280,8 +286,23 @@ namespace catwiftools.wallet
             }
         }
 
+        public static async Task<ulong> GetMaxSendableLamports(Account account)
+        {
+            const ulong feeBuffer = 5000;
+            var rpcClient = ConfigHelper.GetRpcClient();
 
+            var balanceResponse = await rpcClient.GetBalanceAsync(account.PublicKey);
 
+            if (!balanceResponse.WasSuccessful)
+                throw new Exception("Failed to fetch wallet balance.");
+
+            ulong balanceLamports = balanceResponse.Result.Value;
+
+            if (balanceLamports <= feeBuffer)
+                return 0;
+
+            return balanceLamports - feeBuffer;
+        }
 
         /// <summary>
         /// Prends l'addresse d'un walletId ou d'une phrase de wallet

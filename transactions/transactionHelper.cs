@@ -16,33 +16,77 @@ namespace catwiftools.transactions
     {
         private static readonly HttpClient client = new HttpClient();
 
-        public async static Task<String> Buy(string privateKey, string mintAddress, string solAmountInput, string? slippagePercentageInput)
+        public async static Task<string> Buy(string privateKeyBase58, string mintAddress, string solAmountInput, string? slippagePercentageInput)
         {
-            IRpcClient rpcClient = ClientFactory.GetClient(Cluster.MainNet);
-            Account trader = Account.FromSecretKey(privateKey);
-            PumpfunClient pumpfunClient = new PumpfunClient(rpcClient);
+            try
+            {
+                // 1. Connect to Solana RPC
+                IRpcClient rpcClient = ClientFactory.GetClient(Cluster.MainNet);
 
-            decimal solAmount = decimal.Parse(solAmountInput);
-            decimal slippagePercentage = string.IsNullOrEmpty(slippagePercentageInput)
-                ? 25.0m
-                : decimal.Parse(slippagePercentageInput);
+                // 2. Load Account from Base58 Private Key
+                Account trader = Account.FromSecretKey(privateKeyBase58); // ✅ Correct now!
 
-            string response = await pumpfunClient.Buy(trader, mintAddress, solAmount, slippagePercentage);
-            return response;
+                // 3. Initialize Pumpfun Client
+                PumpfunClient pumpfunClient = new PumpfunClient(rpcClient);
+
+                // 4. Parse input values safely
+                if (!decimal.TryParse(solAmountInput, out decimal solAmount))
+                {
+                    throw new Exception($"Invalid SOL amount input: {solAmountInput}");
+                }
+
+                decimal slippagePercentage = 25.0m; // Default 25%
+                if (!string.IsNullOrEmpty(slippagePercentageInput))
+                {
+                    if (!decimal.TryParse(slippagePercentageInput, out slippagePercentage))
+                    {
+                        throw new Exception($"Invalid slippage input: {slippagePercentageInput}");
+                    }
+                }
+
+                // 5. Execute Buy
+                string response = await pumpfunClient.Buy(trader, mintAddress, solAmount, slippagePercentage);
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"❌ Error during Buy: {ex.Message}");
+                return $"Error: {ex.Message}";
+            }
         }
 
-        public async static void Sell(string privateKey, string mintAddress, string tokenAmountInput)
+
+        public async static void Sell(string privateKeyBase58, string mintAddress, string tokenAmountInput)
         {
-            IRpcClient rpcClient = ClientFactory.GetClient(Cluster.MainNet);
-            Account trader = Account.FromSecretKey(privateKey);
-            PumpfunClient pumpfunClient = new PumpfunClient(rpcClient);
-            string walletAddress = walletHelper.GetWalletAddress(privateKey).ToString();
-            decimal tokenAmount = await GetTokenBalanceAsync(walletAddress, mintAddress);
+            try
+            {
+                // 1. Load RPC client
+                IRpcClient rpcClient = ClientFactory.GetClient(Cluster.MainNet);
 
+                // 2. Load Account from Base58 private key
+                Account trader = Account.FromSecretKey(privateKeyBase58); // ✅ Correct now!
 
-            string response = await pumpfunClient.Sell(trader, mintAddress, tokenAmount);
-            Console.WriteLine($"Sell Response: {response}");
+                // 3. Initialize Pumpfun Client
+                PumpfunClient pumpfunClient = new PumpfunClient(rpcClient);
+
+                // 4. Get the wallet public address
+                string walletAddress = trader.PublicKey.Key; // ✅ Cleaner! No need to call walletHelper.
+
+                // 5. Get token balance
+                decimal tokenAmount = await GetTokenBalanceAsync(walletAddress, mintAddress);
+
+                // 6. Call Pumpfun Sell
+                string response = await pumpfunClient.Sell(trader, mintAddress, tokenAmount);
+
+                Console.WriteLine($"Sell Response: {response}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"❌ Error during Sell: {ex.Message}");
+            }
         }
+
 
         public static async Task<decimal> GetTokenBalanceAsync(string walletAddress, string tokenMintAddress)
         {

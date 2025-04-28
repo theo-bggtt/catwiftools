@@ -143,12 +143,12 @@ namespace catwiftools.tasks
         {
             var parameters = TaskHelper.GetTaskParameters(taskId);
             string wallet = "";
-            if (parameters.ContainsKey("wallet"))
+            if (parameters.ContainsKey("Wallets"))
             {
-                wallet = parameters["wallet"];
+                wallet = parameters["Wallets"];
             }
-
-            //transactionHelper.SellTokens(wallet, mintAddress, 0, 25, 1);
+            string privateKey = walletHelper.GetWalletPrivateKey(wallet);
+            TransactionHelper.Sell(privateKey, mintAddress, "0");
 
         }
 
