@@ -35,6 +35,7 @@
             button3 = new Button();
             button5 = new Button();
             button6 = new Button();
+            flowLayoutPanel1 = new FlowLayoutPanel();
             SuspendLayout();
             // 
             // lblBundlerTitle
@@ -44,9 +45,9 @@
             lblBundlerTitle.ForeColor = Color.White;
             lblBundlerTitle.Location = new Point(10, 5);
             lblBundlerTitle.Name = "lblBundlerTitle";
-            lblBundlerTitle.Size = new Size(86, 28);
+            lblBundlerTitle.Size = new Size(68, 28);
             lblBundlerTitle.TabIndex = 0;
-            lblBundlerTitle.Text = "Bundler";
+            lblBundlerTitle.Text = "Token";
             // 
             // btnTasks
             // 
@@ -167,11 +168,19 @@
             button6.UseVisualStyleBackColor = false;
             button6.Click += button6_Click;
             // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.Location = new Point(124, 5);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(930, 52);
+            flowLayoutPanel1.TabIndex = 18;
+            // 
             // bundlerMainPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
+            Controls.Add(flowLayoutPanel1);
             Controls.Add(button6);
             Controls.Add(button5);
             Controls.Add(button3);
@@ -194,5 +203,6 @@
         public Button button3;
         public Button button5;
         public Button button6;
+        private FlowLayoutPanel flowLayoutPanel1;
     }
 }

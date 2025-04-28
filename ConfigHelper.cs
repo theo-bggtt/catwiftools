@@ -16,10 +16,22 @@ namespace catwiftools
             string heliusApiKey = Env.GetString("API_KEY");
             string connectionString = "Data Source=catwiftools.db;";
             string clusterString = Env.GetString("CLUSTER");
-            Cluster cluster = (Cluster)Enum.Parse(typeof(Cluster), clusterString, true);
+
+            // Add protection here:
+            Cluster cluster;
+            if (!string.IsNullOrEmpty(clusterString))
+            {
+                cluster = (Cluster)Enum.Parse(typeof(Cluster), clusterString, true);
+            }
+            else
+            {
+                cluster = Cluster.DevNet;
+            }
+
             string heliusUrl = $"https://devnet.helius-rpc.com/?api-key={heliusApiKey}";
             return (connectionString, heliusUrl, heliusApiKey, cluster);
         }
+
 
         public static IRpcClient GetRpcClient()
         {

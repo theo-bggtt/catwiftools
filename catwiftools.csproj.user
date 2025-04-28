@@ -7,7 +7,7 @@
     <Compile Update="BorderlessGroupBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Update="bundler\bundlerMainPage.cs">
+    <Compile Update="bundler\Token.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="bundler\TokenInfo.cs">
