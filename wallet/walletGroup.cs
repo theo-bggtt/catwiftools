@@ -71,7 +71,6 @@ namespace catwiftools.wallet
 
         private void btnCreateGroup_Click(object sender, EventArgs e)
         {
-
             using (WalletGroupForm optionsForm = new WalletGroupForm())
             {
                 if (optionsForm.ShowDialog() == DialogResult.OK)
@@ -91,12 +90,22 @@ namespace catwiftools.wallet
                             command.ExecuteNonQuery();
                         }
                     }
+
                     int group_id = GetGroupId(groupName);
+
                     createBorderlessGroupBox(group_id, walletAmount, groupName);
-                    walletMnemonics = WalletGenerator.WalletCreator.GenWallet(walletAmount);
+
+                    // --- FIX 1: Call GenWallets as static method ---
+                    List<(string Mnemonic, string PrivateKey)> walletMnemonics = WalletGenerator.WalletCreator.GenWallets(walletAmount);
+
+                    // --- FIX 2: Create WalletCreator instance for SaveWallets ---
                     WalletGenerator.WalletCreator walletCreator = new WalletGenerator.WalletCreator();
+
+                    // Save only private keys
                     walletCreator.SaveWallets(walletMnemonics, group_id);
+
                     UpdateInfo();
+
                     AppState.WriteConsole($"Wallet Group '{groupName}' with {walletAmount} wallets created!");
                 }
             }

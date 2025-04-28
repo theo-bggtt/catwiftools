@@ -9,6 +9,7 @@ using catwiftools.wallet;
 using DotNetEnv;
 using Microsoft.Data.Sqlite;
 using Solnet.Rpc;
+using Solnet.Wallet.Utilities;
 
 namespace WalletGenerator
 {
@@ -16,55 +17,85 @@ namespace WalletGenerator
     {
         UiHelper functions = new UiHelper();
 
-        public static List<String> GenWallet(int? qt) // Génère 1, ou la quantité mentionnée de wallet et en retourne une liste de mnemonic
+        public static List<(string Mnemonic, string PrivateKey)> GenWallets(int? qt)
         {
             if (qt == null)
             {
                 qt = 1;
             }
-            List<String> wallets = new List<String>();
+
+            List<(string Mnemonic, string PrivateKey)> wallets = new List<(string, string)>();
+
             for (int i = 0; i < qt; i++)
             {
-                var newMnemonic = new Mnemonic(WordList.English, WordCount.Twelve);
+                // Step 1: Generate a new mnemonic
+                Mnemonic newMnemonic = new Mnemonic(WordList.English, WordCount.Twelve);
                 string walletMnemonic = newMnemonic.ToString();
 
-                var wallet = new Wallet(WordCount.Twelve, WordList.English, walletMnemonic);
-                Account account = wallet.Account;
-                string privateKey = account.PrivateKey.ToString();
+                // Step 2: Create a wallet from the mnemonic
+                Wallet wallet = new Wallet(walletMnemonic, WordList.English);
 
-                wallets.Add(privateKey);
+                // Step 3: Derive the first account with Solana standard path
+                Account account = wallet.GetAccount(0); // m/44'/501'/0'/0'
+
+                // Step 4: Get private key bytes (64 bytes total)
+                byte[] privateKeyBytes = account.PrivateKey;
+
+                // Step 5: Base58 encode the 64-byte private key
+                string privateKeyBase58 = Encoders.Base58.EncodeData(privateKeyBytes);
+
+                wallets.Add((walletMnemonic, privateKeyBase58));
             }
+
             return wallets;
         }
 
-        public void SaveWallets(List<String> wallets, int group_id) // Savegarde la liste de wallet avec comme type, le tag du boutton
+        public void SaveWallets(List<(string Mnemonic, string PrivateKey)> wallets, int group_id, bool saveMnemonics = false)
         {
-            foreach (string privateKey in wallets)
+            using (var connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
             {
-                string walletAddress = walletHelper.GetWalletAddress(privateKey);
-                using (var connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
+                try
                 {
-                    try
+                    connection.Open();
+
+                    foreach (var wallet in wallets)
                     {
-                        connection.Open();
-                        string query = "INSERT INTO wallets (walletAddress, privateKey, group_id) VALUES (@walletAddress, @privateKey, @group_id)";
+                        string walletAddress = walletHelper.GetWalletAddress(wallet.PrivateKey);
+
+                        string query;
+                        if (saveMnemonics)
+                        {
+                            // Save Mnemonic too
+                            query = "INSERT INTO wallets (walletAddress, privateKey, mnemonic, group_id) VALUES (@walletAddress, @privateKey, @mnemonic, @group_id)";
+                        }
+                        else
+                        {
+                            // Save only Private Key (like before)
+                            query = "INSERT INTO wallets (walletAddress, privateKey, group_id) VALUES (@walletAddress, @privateKey, @group_id)";
+                        }
 
                         using (var command = new SqliteCommand(query, connection))
                         {
                             command.Parameters.AddWithValue("@walletAddress", walletAddress);
-                            command.Parameters.AddWithValue("@privateKey", privateKey);
+                            command.Parameters.AddWithValue("@privateKey", wallet.PrivateKey);
                             command.Parameters.AddWithValue("@group_id", group_id);
+
+                            if (saveMnemonics)
+                            {
+                                command.Parameters.AddWithValue("@mnemonic", wallet.Mnemonic);
+                            }
 
                             command.ExecuteNonQuery();
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        AppState.WriteConsole("Error: " + ex.Message);
-                    }
+                }
+                catch (Exception ex)
+                {
+                    AppState.WriteConsole("Error: " + ex.Message);
                 }
             }
         }
+
 
         public void DelWallet(string? walletAddress, int? walletId, int? group_id)
         {

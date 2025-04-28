@@ -141,7 +141,7 @@ namespace catwiftools.wallet
         /// <returns></returns>
         public static async Task Distribute(List<string> selectedAddresses, double selectedAmount)
         {
-            double amountPerWall = (selectedAmount / selectedAddresses.Count - (selectedAddresses.Count * 0.01));
+            double amountPerWall = (selectedAmount / selectedAddresses.Count - (selectedAddresses.Count * 0.0001));
             AppState.WriteConsole($"Amount per wallet to send: {amountPerWall}");
 
             for (int i = 0; i < selectedAddresses.Count; i++)
@@ -174,9 +174,14 @@ namespace catwiftools.wallet
             try
             {
                 var rpcClient = ConfigHelper.GetRpcClient();
-                string privateKey = GetWalletPrivateKey(null, CheckForFundWallet());
-                Wallet wallet = new Wallet(privateKey);
-                Solnet.Wallet.PublicKey fromAccount = wallet.Account.PublicKey;
+
+                // 1. Get the private key as Base58 string
+                string privateKeyBase58 = GetWalletPrivateKey(null, CheckForFundWallet());
+
+                // 2. No decoding needed. Use FromSecretKey directly with the Base58 string
+                Account fundAccount = Account.FromSecretKey(privateKeyBase58); // ✅ Correct!
+
+                Solnet.Wallet.PublicKey fromAccount = fundAccount.PublicKey;
                 Solnet.Wallet.PublicKey toAccount = new Solnet.Wallet.PublicKey(address);
 
                 AppState.WriteConsole($"🔎 Amount Sending: {amount} SOL");
@@ -197,7 +202,7 @@ namespace catwiftools.wallet
                     .SetFeePayer(fromAccount)
                     .AddInstruction(MemoProgram.NewMemo(fromAccount, "Hello from CatWifTools :)"))
                     .AddInstruction(SystemProgram.Transfer(fromAccount, toAccount, amountLamports))
-                    .Build(wallet.Account);
+                    .Build(fundAccount); // ✅ Signed directly with Account!
 
                 var firstSig = await rpcClient.SendTransactionAsync(tx);
                 AppState.WriteConsole($"✅ Transaction Sent! Signature: {firstSig.Result}");
@@ -214,6 +219,9 @@ namespace catwiftools.wallet
             }
         }
 
+
+
+
         /// <summary>
         /// Reprends le solana d'un wallet jusqu'au wallet de fond
         /// </summary>
@@ -224,24 +232,19 @@ namespace catwiftools.wallet
             try
             {
                 var rpcClient = ConfigHelper.GetRpcClient();
-                string privateKeyString = GetWalletPrivateKey(null, address);
 
-                Wallet wallet;
-                if (privateKeyString.Contains(" "))
-                {
-                    wallet = new Wallet(privateKeyString);
-                }
-                else
-                {
-                    byte[] privateKeyBytes = Convert.FromBase64String(privateKeyString);
-                    wallet = new Wallet(privateKeyBytes);
-                }
+                // 1. Get the private key Base58 string directly
+                string privateKeyBase58 = GetWalletPrivateKey(null, address);
 
-                Solnet.Wallet.PublicKey fromAccount = wallet.Account.PublicKey;
+                // 2. No decoding needed. Use FromSecretKey directly with the Base58 string
+                Account walletAccount = Account.FromSecretKey(privateKeyBase58); // ✅ Correct!
+
+                // Continue as before
+                Solnet.Wallet.PublicKey fromAccount = walletAccount.PublicKey;
                 Solnet.Wallet.PublicKey toAccount = new Solnet.Wallet.PublicKey(CheckForFundWallet());
 
                 var balanceResponse = await rpcClient.GetBalanceAsync(fromAccount);
-                AppState.WriteConsole($"🔎 Sending amount: {balanceResponse.Result.Value / 1_000_000_000.0} SOL");
+                AppState.WriteConsole($"🔎 Sending amount: {balanceResponse.Result.Value / 1_000_000_000} SOL");
 
                 var blockHashResponse = await rpcClient.GetLatestBlockHashAsync();
                 if (!blockHashResponse.WasSuccessful)
@@ -260,7 +263,7 @@ namespace catwiftools.wallet
                     .SetFeePayer(fromAccount)
                     .AddInstruction(MemoProgram.NewMemo(fromAccount, "Hello from CatWifTools :)"))
                     .AddInstruction(SystemProgram.Transfer(fromAccount, toAccount, amountLamports))
-                    .Build(wallet.Account);
+                    .Build(walletAccount); // ✅ Signed with Account directly
 
                 var firstSig = await rpcClient.SendTransactionAsync(tx);
                 AppState.WriteConsole($"✅ Transaction Sent! Signature: {firstSig.Result}");
@@ -276,6 +279,9 @@ namespace catwiftools.wallet
                 AppState.WriteConsole($"❌ Error: {ex.Message}");
             }
         }
+
+
+
 
         /// <summary>
         /// Prends l'addresse d'un walletId ou d'une phrase de wallet

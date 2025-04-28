@@ -52,12 +52,22 @@ namespace catwiftools.settings
 
         private void btnGenFundWall_Click(object sender, EventArgs e)
         {
-            List<string> wallets = new List<string>();
-            wallets = WalletCreator.GenWallet(null);
-            fundWallet = wallets[0];
+            // Generate wallets (returns List<(Mnemonic, PrivateKey)>)
+            List<(string Mnemonic, string PrivateKey)> wallets = WalletCreator.GenWallets(null);
+
+            // Set fund wallet private key
+            fundWallet = wallets[0].PrivateKey;
+
+            // Instantiate WalletCreator instance to call instance method 'SaveWallets'
+            WalletCreator walletCreator = new WalletCreator();
+
+            // Save only the private keys to database (you are selecting only PrivateKey part)
             walletCreator.SaveWallets(wallets, 0);
+            // Continue with setup
             fundWalletSetup();
         }
+
+
 
 
         private void btnDelFundWall_Click(object sender, EventArgs e)
