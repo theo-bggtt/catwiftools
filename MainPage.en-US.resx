@@ -382,10 +382,10 @@
   <data name="bundlerMainPage1.Size" type="System.Drawing.Size, System.Drawing">
     <value>1210, 762</value>
   </data>
-  <data name="gbxSettingsNav.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="pnlSettingsNav.Location" type="System.Drawing.Point, System.Drawing">
     <value>225, 43</value>
   </data>
-  <data name="gbxSettingsNav.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="pnlSettingsNav.Size" type="System.Drawing.Size, System.Drawing">
     <value>200, 762</value>
   </data>
   <data name="btnSettingsBumpIt.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">

@@ -18,12 +18,6 @@ namespace catwiftools
             DraggingHelper.EnableDragging(this);
             this.Paint += Form_Paint;
             InitializeButtonControlMap();
-            fundWallet = walletHelper.CheckForFundWallet();
-            if (fundWallet == "")
-            {
-                walletGroup.DisableCreation();
-            }
-            walletGroup = new walletGroup();
         }
 
         private void CatWifTools_Load(object sender, EventArgs e)
@@ -44,7 +38,7 @@ namespace catwiftools
         {
             buttonControlMap = new Dictionary<Button, Control>
                 {
-                    { btnSettings, gbxSettingsNav },
+                    { btnSettings, pnlSettingsNav },
                     { btnWallets, walletVolume1 },
                     { btnTasks, tasksMainPage1 },
                     { btnBundler, bundlerMainPage1 },
@@ -79,23 +73,23 @@ namespace catwiftools
             // Settings sub buttons
             if (button == btnSettings)
             {
-                return new List<Control> { gbxSettingsNav };
+                return new List<Control> { pnlSettingsNav };
             }
             if (button == btnSettingsGeneral)
             {
-                return new List<Control> { gbxSettingsNav, settingsGeneral1 };
+                return new List<Control> { pnlSettingsNav, settingsGeneral1 };
             }
             if (button == btnSettingsVolume)
             {
-                return new List<Control> { gbxSettingsNav, settingsVolume1 };
+                return new List<Control> { pnlSettingsNav, settingsVolume1 };
             }
             if (button == btnSettingsBundler)
             {
-                return new List<Control> { gbxSettingsNav, settingsBundler1 };
+                return new List<Control> { pnlSettingsNav, settingsBundler1 };
             }
             if (button == btnSettingsBumpIt)
             {
-                return new List<Control> { gbxSettingsNav, settingsBumpIt1 };
+                return new List<Control> { pnlSettingsNav, settingsBumpIt1 };
             }
 
             return new List<Control>();
@@ -110,7 +104,7 @@ namespace catwiftools
 
             var allControls = new List<Control>
                 {
-                    gbxSettingsNav,
+                    pnlSettingsNav,
                     bundlerMainPage1,
                     tasksMainPage1,
                     proxiesMainPage1,
@@ -201,7 +195,7 @@ namespace catwiftools
 
         private void Form_Paint(object? sender, PaintEventArgs e)
         {
-            if (gbxSettingsNav.Visible)
+            if (pnlSettingsNav.Visible)
             {
                 using (Pen pen = new Pen(Color.Gray, 2)) // Color.Gray and thickness 2
                 {
@@ -217,7 +211,7 @@ namespace catwiftools
             }
         }
 
-        private void gbxSettingsNav_VisibleChanged(object sender, EventArgs e)
+        private void pnlSettingsNav_VisibleChanged(object sender, EventArgs e)
         {
             this.Invalidate();
         }
