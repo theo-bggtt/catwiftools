@@ -24,7 +24,7 @@ namespace catwiftools
         {
             ShowControls(new List<Control>());
             tmrClock.Enabled = true;
-            gbxBackground.Visible = true;
+            pnlBackground.Visible = true;
             fundWallet = walletHelper.CheckForFundWallet();
             if (fundWallet == "")
             {
@@ -108,7 +108,7 @@ namespace catwiftools
                     bundlerMainPage1,
                     tasksMainPage1,
                     proxiesMainPage1,
-                    gbxBackground,
+                    pnlBackground,
                     walletVolume1,
                     settingsGeneral1,
                     settingsVolume1,
@@ -195,7 +195,7 @@ namespace catwiftools
 
         private void Form_Paint(object? sender, PaintEventArgs e)
         {
-            if (pnlSettingsNav.Visible)
+            if (pnlSettingsNav.Visible || tasksMainPage1.Visible)
             {
                 using (Pen pen = new Pen(Color.Gray, 2)) // Color.Gray and thickness 2
                 {

@@ -33,21 +33,12 @@
             lblAuthor = new Label();
             lblTitle = new Label();
             bundlerMainPage1 = new catwiftools.bundler.bundlerMainPage();
-            gbxBackground = new BorderlessGroupBox();
-            pictureBox1 = new PictureBox();
-            lblBackground = new Label();
             tmrClock = new System.Windows.Forms.Timer(components);
             lblClock = new Label();
             btnCloseApp = new Button();
             btnMinimise = new Button();
             tasksMainPage1 = new catwiftools.tasks.tasksMainPage();
             proxiesMainPage1 = new catwiftools.proxies.proxiesMainPage();
-            gbxMainNav = new BorderlessGroupBox();
-            btnSettings = new Button();
-            btnProxies = new Button();
-            btnTasks = new Button();
-            btnBundler = new Button();
-            btnWallets = new Button();
             settingsVolume1 = new catwiftools.settings.settingsVolume();
             settingsBundler1 = new catwiftools.settings.settingsBundler();
             settingsBumpIt1 = new catwiftools.settings.settingsBumpIt();
@@ -60,11 +51,20 @@
             btnSettingsBundler = new Button();
             btnSettingsBumpIt = new Button();
             label1 = new Label();
+            pnlMainNav = new Panel();
+            btnSettings = new Button();
+            btnProxies = new Button();
+            btnTasks = new Button();
+            btnBundler = new Button();
+            btnWallets = new Button();
+            pnlBackground = new Panel();
+            pictureBox2 = new PictureBox();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)pbxLogo).BeginInit();
-            gbxBackground.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            gbxMainNav.SuspendLayout();
             pnlSettingsNav.SuspendLayout();
+            pnlMainNav.SuspendLayout();
+            pnlBackground.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // pbxLogo
@@ -108,41 +108,6 @@
             bundlerMainPage1.Name = "bundlerMainPage1";
             bundlerMainPage1.Size = new Size(1210, 762);
             bundlerMainPage1.TabIndex = 27;
-            // 
-            // gbxBackground
-            // 
-            gbxBackground.BackColor = Color.Transparent;
-            gbxBackground.Controls.Add(pictureBox1);
-            gbxBackground.Controls.Add(lblBackground);
-            gbxBackground.FlatStyle = FlatStyle.Flat;
-            gbxBackground.Location = new Point(700, 350);
-            gbxBackground.Name = "gbxBackground";
-            gbxBackground.Size = new Size(462, 85);
-            gbxBackground.TabIndex = 23;
-            gbxBackground.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.BackColor = Color.FromArgb(25, 25, 25);
-            pictureBox1.Image = Properties.Resources._21;
-            pictureBox1.ImeMode = ImeMode.NoControl;
-            pictureBox1.Location = new Point(0, 16);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(54, 54);
-            pictureBox1.TabIndex = 11;
-            pictureBox1.TabStop = false;
-            // 
-            // lblBackground
-            // 
-            lblBackground.AutoSize = true;
-            lblBackground.Font = new Font("Segoe UI", 45F);
-            lblBackground.ForeColor = Color.White;
-            lblBackground.ImeMode = ImeMode.NoControl;
-            lblBackground.Location = new Point(84, 2);
-            lblBackground.Name = "lblBackground";
-            lblBackground.Size = new Size(348, 81);
-            lblBackground.TabIndex = 0;
-            lblBackground.Text = "CatWifTools";
             // 
             // tmrClock
             // 
@@ -200,131 +165,6 @@
             proxiesMainPage1.Name = "proxiesMainPage1";
             proxiesMainPage1.Size = new Size(1210, 762);
             proxiesMainPage1.TabIndex = 29;
-            // 
-            // gbxMainNav
-            // 
-            gbxMainNav.BackColor = Color.Transparent;
-            gbxMainNav.Controls.Add(btnSettings);
-            gbxMainNav.Controls.Add(btnProxies);
-            gbxMainNav.Controls.Add(btnTasks);
-            gbxMainNav.Controls.Add(btnBundler);
-            gbxMainNav.Controls.Add(btnWallets);
-            gbxMainNav.FlatStyle = FlatStyle.Flat;
-            gbxMainNav.Location = new Point(5, 100);
-            gbxMainNav.Name = "gbxMainNav";
-            gbxMainNav.Size = new Size(200, 705);
-            gbxMainNav.TabIndex = 32;
-            gbxMainNav.TabStop = false;
-            // 
-            // btnSettings
-            // 
-            btnSettings.BackColor = Color.Transparent;
-            btnSettings.BackgroundImageLayout = ImageLayout.None;
-            btnSettings.FlatAppearance.BorderSize = 0;
-            btnSettings.FlatStyle = FlatStyle.Flat;
-            btnSettings.Font = new Font("Segoe UI", 12F);
-            btnSettings.ForeColor = Color.FromArgb(153, 153, 153);
-            btnSettings.Image = Properties.Resources.settings;
-            btnSettings.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSettings.ImeMode = ImeMode.NoControl;
-            btnSettings.Location = new Point(10, 274);
-            btnSettings.Name = "btnSettings";
-            btnSettings.Padding = new Padding(5, 0, 5, 0);
-            btnSettings.Size = new Size(180, 40);
-            btnSettings.TabIndex = 25;
-            btnSettings.Tag = "settings";
-            btnSettings.Text = "Settings";
-            btnSettings.UseMnemonic = false;
-            btnSettings.UseVisualStyleBackColor = false;
-            btnSettings.Click += Button_Click;
-            // 
-            // btnProxies
-            // 
-            btnProxies.BackColor = Color.Transparent;
-            btnProxies.BackgroundImageLayout = ImageLayout.None;
-            btnProxies.FlatAppearance.BorderSize = 0;
-            btnProxies.FlatStyle = FlatStyle.Flat;
-            btnProxies.Font = new Font("Segoe UI", 12F);
-            btnProxies.ForeColor = Color.FromArgb(153, 153, 153);
-            btnProxies.Image = Properties.Resources.proxies;
-            btnProxies.ImageAlign = ContentAlignment.MiddleLeft;
-            btnProxies.ImeMode = ImeMode.NoControl;
-            btnProxies.Location = new Point(10, 209);
-            btnProxies.Name = "btnProxies";
-            btnProxies.Padding = new Padding(5, 0, 5, 0);
-            btnProxies.Size = new Size(180, 40);
-            btnProxies.TabIndex = 22;
-            btnProxies.Tag = "proxies";
-            btnProxies.Text = "Proxies";
-            btnProxies.UseMnemonic = false;
-            btnProxies.UseVisualStyleBackColor = false;
-            btnProxies.Click += Button_Click;
-            // 
-            // btnTasks
-            // 
-            btnTasks.BackColor = Color.Transparent;
-            btnTasks.BackgroundImageLayout = ImageLayout.None;
-            btnTasks.FlatAppearance.BorderSize = 0;
-            btnTasks.FlatStyle = FlatStyle.Flat;
-            btnTasks.Font = new Font("Segoe UI", 12F);
-            btnTasks.ForeColor = Color.FromArgb(153, 153, 153);
-            btnTasks.Image = Properties.Resources.tasks;
-            btnTasks.ImageAlign = ContentAlignment.MiddleLeft;
-            btnTasks.ImeMode = ImeMode.NoControl;
-            btnTasks.Location = new Point(10, 14);
-            btnTasks.Name = "btnTasks";
-            btnTasks.Padding = new Padding(5, 0, 5, 0);
-            btnTasks.Size = new Size(180, 40);
-            btnTasks.TabIndex = 21;
-            btnTasks.Tag = "tasks";
-            btnTasks.Text = "Tasks";
-            btnTasks.UseMnemonic = false;
-            btnTasks.UseVisualStyleBackColor = false;
-            btnTasks.Click += Button_Click;
-            // 
-            // btnBundler
-            // 
-            btnBundler.BackColor = Color.Transparent;
-            btnBundler.BackgroundImageLayout = ImageLayout.None;
-            btnBundler.FlatAppearance.BorderSize = 0;
-            btnBundler.FlatStyle = FlatStyle.Flat;
-            btnBundler.Font = new Font("Segoe UI", 12F);
-            btnBundler.ForeColor = Color.FromArgb(153, 153, 153);
-            btnBundler.Image = Properties.Resources.bundler;
-            btnBundler.ImageAlign = ContentAlignment.MiddleLeft;
-            btnBundler.ImeMode = ImeMode.NoControl;
-            btnBundler.Location = new Point(10, 79);
-            btnBundler.Name = "btnBundler";
-            btnBundler.Padding = new Padding(5, 0, 5, 0);
-            btnBundler.Size = new Size(180, 40);
-            btnBundler.TabIndex = 24;
-            btnBundler.Tag = "bundler";
-            btnBundler.Text = "Bundler";
-            btnBundler.UseMnemonic = false;
-            btnBundler.UseVisualStyleBackColor = false;
-            btnBundler.Click += Button_Click;
-            // 
-            // btnWallets
-            // 
-            btnWallets.BackColor = Color.Transparent;
-            btnWallets.BackgroundImageLayout = ImageLayout.None;
-            btnWallets.FlatAppearance.BorderSize = 0;
-            btnWallets.FlatStyle = FlatStyle.Flat;
-            btnWallets.Font = new Font("Segoe UI", 12F);
-            btnWallets.ForeColor = Color.FromArgb(153, 153, 153);
-            btnWallets.Image = Properties.Resources.wallets;
-            btnWallets.ImageAlign = ContentAlignment.MiddleLeft;
-            btnWallets.ImeMode = ImeMode.NoControl;
-            btnWallets.Location = new Point(10, 144);
-            btnWallets.Name = "btnWallets";
-            btnWallets.Padding = new Padding(5, 0, 5, 0);
-            btnWallets.Size = new Size(180, 40);
-            btnWallets.TabIndex = 23;
-            btnWallets.Tag = "wallets";
-            btnWallets.Text = "Wallets";
-            btnWallets.UseMnemonic = false;
-            btnWallets.UseVisualStyleBackColor = false;
-            btnWallets.Click += Button_Click;
             // 
             // settingsVolume1
             // 
@@ -492,6 +332,162 @@
             label1.TabIndex = 21;
             label1.Text = "Settings";
             // 
+            // pnlMainNav
+            // 
+            pnlMainNav.BackColor = Color.Transparent;
+            pnlMainNav.Controls.Add(btnSettings);
+            pnlMainNav.Controls.Add(btnProxies);
+            pnlMainNav.Controls.Add(btnTasks);
+            pnlMainNav.Controls.Add(btnBundler);
+            pnlMainNav.Controls.Add(btnWallets);
+            pnlMainNav.Location = new Point(5, 100);
+            pnlMainNav.Name = "pnlMainNav";
+            pnlMainNav.Size = new Size(200, 705);
+            pnlMainNav.TabIndex = 45;
+            // 
+            // btnSettings
+            // 
+            btnSettings.BackColor = Color.Transparent;
+            btnSettings.BackgroundImageLayout = ImageLayout.None;
+            btnSettings.FlatAppearance.BorderSize = 0;
+            btnSettings.FlatStyle = FlatStyle.Flat;
+            btnSettings.Font = new Font("Segoe UI", 12F);
+            btnSettings.ForeColor = Color.FromArgb(153, 153, 153);
+            btnSettings.Image = Properties.Resources.settings;
+            btnSettings.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSettings.ImeMode = ImeMode.NoControl;
+            btnSettings.Location = new Point(10, 274);
+            btnSettings.Name = "btnSettings";
+            btnSettings.Padding = new Padding(5, 0, 5, 0);
+            btnSettings.Size = new Size(180, 40);
+            btnSettings.TabIndex = 30;
+            btnSettings.Tag = "settings";
+            btnSettings.Text = "Settings";
+            btnSettings.UseMnemonic = false;
+            btnSettings.UseVisualStyleBackColor = false;
+            btnSettings.Click += Button_Click;
+            // 
+            // btnProxies
+            // 
+            btnProxies.BackColor = Color.Transparent;
+            btnProxies.BackgroundImageLayout = ImageLayout.None;
+            btnProxies.FlatAppearance.BorderSize = 0;
+            btnProxies.FlatStyle = FlatStyle.Flat;
+            btnProxies.Font = new Font("Segoe UI", 12F);
+            btnProxies.ForeColor = Color.FromArgb(153, 153, 153);
+            btnProxies.Image = Properties.Resources.proxies;
+            btnProxies.ImageAlign = ContentAlignment.MiddleLeft;
+            btnProxies.ImeMode = ImeMode.NoControl;
+            btnProxies.Location = new Point(10, 209);
+            btnProxies.Name = "btnProxies";
+            btnProxies.Padding = new Padding(5, 0, 5, 0);
+            btnProxies.Size = new Size(180, 40);
+            btnProxies.TabIndex = 27;
+            btnProxies.Tag = "proxies";
+            btnProxies.Text = "Proxies";
+            btnProxies.UseMnemonic = false;
+            btnProxies.UseVisualStyleBackColor = false;
+            btnProxies.Click += Button_Click;
+            // 
+            // btnTasks
+            // 
+            btnTasks.BackColor = Color.Transparent;
+            btnTasks.BackgroundImageLayout = ImageLayout.None;
+            btnTasks.FlatAppearance.BorderSize = 0;
+            btnTasks.FlatStyle = FlatStyle.Flat;
+            btnTasks.Font = new Font("Segoe UI", 12F);
+            btnTasks.ForeColor = Color.FromArgb(153, 153, 153);
+            btnTasks.Image = Properties.Resources.tasks;
+            btnTasks.ImageAlign = ContentAlignment.MiddleLeft;
+            btnTasks.ImeMode = ImeMode.NoControl;
+            btnTasks.Location = new Point(10, 14);
+            btnTasks.Name = "btnTasks";
+            btnTasks.Padding = new Padding(5, 0, 5, 0);
+            btnTasks.Size = new Size(180, 40);
+            btnTasks.TabIndex = 26;
+            btnTasks.Tag = "tasks";
+            btnTasks.Text = "Tasks";
+            btnTasks.UseMnemonic = false;
+            btnTasks.UseVisualStyleBackColor = false;
+            btnTasks.Click += Button_Click;
+            // 
+            // btnBundler
+            // 
+            btnBundler.BackColor = Color.Transparent;
+            btnBundler.BackgroundImageLayout = ImageLayout.None;
+            btnBundler.FlatAppearance.BorderSize = 0;
+            btnBundler.FlatStyle = FlatStyle.Flat;
+            btnBundler.Font = new Font("Segoe UI", 12F);
+            btnBundler.ForeColor = Color.FromArgb(153, 153, 153);
+            btnBundler.Image = Properties.Resources.bundler;
+            btnBundler.ImageAlign = ContentAlignment.MiddleLeft;
+            btnBundler.ImeMode = ImeMode.NoControl;
+            btnBundler.Location = new Point(10, 79);
+            btnBundler.Name = "btnBundler";
+            btnBundler.Padding = new Padding(5, 0, 5, 0);
+            btnBundler.Size = new Size(180, 40);
+            btnBundler.TabIndex = 29;
+            btnBundler.Tag = "bundler";
+            btnBundler.Text = "Bundler";
+            btnBundler.UseMnemonic = false;
+            btnBundler.UseVisualStyleBackColor = false;
+            btnBundler.Click += Button_Click;
+            // 
+            // btnWallets
+            // 
+            btnWallets.BackColor = Color.Transparent;
+            btnWallets.BackgroundImageLayout = ImageLayout.None;
+            btnWallets.FlatAppearance.BorderSize = 0;
+            btnWallets.FlatStyle = FlatStyle.Flat;
+            btnWallets.Font = new Font("Segoe UI", 12F);
+            btnWallets.ForeColor = Color.FromArgb(153, 153, 153);
+            btnWallets.Image = Properties.Resources.wallets;
+            btnWallets.ImageAlign = ContentAlignment.MiddleLeft;
+            btnWallets.ImeMode = ImeMode.NoControl;
+            btnWallets.Location = new Point(10, 144);
+            btnWallets.Name = "btnWallets";
+            btnWallets.Padding = new Padding(5, 0, 5, 0);
+            btnWallets.Size = new Size(180, 40);
+            btnWallets.TabIndex = 28;
+            btnWallets.Tag = "wallets";
+            btnWallets.Text = "Wallets";
+            btnWallets.UseMnemonic = false;
+            btnWallets.UseVisualStyleBackColor = false;
+            btnWallets.Click += Button_Click;
+            // 
+            // pnlBackground
+            // 
+            pnlBackground.BackColor = Color.Transparent;
+            pnlBackground.Controls.Add(pictureBox2);
+            pnlBackground.Controls.Add(label2);
+            pnlBackground.Location = new Point(700, 350);
+            pnlBackground.Name = "pnlBackground";
+            pnlBackground.Size = new Size(462, 85);
+            pnlBackground.TabIndex = 46;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.BackColor = Color.FromArgb(25, 25, 25);
+            pictureBox2.Image = Properties.Resources._21;
+            pictureBox2.ImeMode = ImeMode.NoControl;
+            pictureBox2.Location = new Point(15, 16);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(54, 54);
+            pictureBox2.TabIndex = 13;
+            pictureBox2.TabStop = false;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 45F);
+            label2.ForeColor = Color.White;
+            label2.ImeMode = ImeMode.NoControl;
+            label2.Location = new Point(99, 2);
+            label2.Name = "label2";
+            label2.Size = new Size(348, 81);
+            label2.TabIndex = 12;
+            label2.Text = "CatWifTools";
+            // 
             // CatWifTools
             // 
             AutoScaleMode = AutoScaleMode.None;
@@ -499,16 +495,15 @@
             BackColor = Color.FromArgb(25, 25, 25);
             ClientSize = new Size(1436, 806);
             ControlBox = false;
+            Controls.Add(pnlBackground);
             Controls.Add(pnlSettingsNav);
             Controls.Add(btnControlPanel);
-            Controls.Add(gbxMainNav);
             Controls.Add(pbxLogo);
             Controls.Add(btnMinimise);
             Controls.Add(lblTitle);
             Controls.Add(btnCloseApp);
             Controls.Add(lblClock);
             Controls.Add(lblAuthor);
-            Controls.Add(gbxBackground);
             Controls.Add(settingsBundler1);
             Controls.Add(settingsVolume1);
             Controls.Add(proxiesMainPage1);
@@ -517,6 +512,7 @@
             Controls.Add(tasksMainPage1);
             Controls.Add(settingsGeneral1);
             Controls.Add(settingsBumpIt1);
+            Controls.Add(pnlMainNav);
             FormBorderStyle = FormBorderStyle.None;
             MaximizeBox = false;
             MinimizeBox = false;
@@ -528,12 +524,12 @@
             Load += CatWifTools_Load;
             Paint += CatWifTools_Paint;
             ((System.ComponentModel.ISupportInitialize)pbxLogo).EndInit();
-            gbxBackground.ResumeLayout(false);
-            gbxBackground.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            gbxMainNav.ResumeLayout(false);
             pnlSettingsNav.ResumeLayout(false);
             pnlSettingsNav.PerformLayout();
+            pnlMainNav.ResumeLayout(false);
+            pnlBackground.ResumeLayout(false);
+            pnlBackground.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -542,9 +538,6 @@
         private PictureBox pbxLogo;
         private Label lblAuthor;
         private Label lblTitle;
-        private BorderlessGroupBox gbxBackground;
-        private PictureBox pictureBox1;
-        private Label lblBackground;
         private System.Windows.Forms.Timer tmrClock;
         private Label lblClock;
         private Button btnCloseApp;
@@ -552,12 +545,6 @@
         private bundler.bundlerMainPage bundlerMainPage1;
         private tasks.tasksMainPage tasksMainPage1;
         private proxies.proxiesMainPage proxiesMainPage1;
-        private BorderlessGroupBox gbxMainNav;
-        public Button btnSettings;
-        public Button btnProxies;
-        public Button btnTasks;
-        public Button btnBundler;
-        public Button btnWallets;
         private settings.settingsVolume settingsVolume1;
         private settings.settingsBundler settingsBundler1;
         private settings.settingsBumpIt settingsBumpIt1;
@@ -570,5 +557,14 @@
         public Button btnSettingsBundler;
         public Button btnSettingsBumpIt;
         private Label label1;
+        private Panel pnlMainNav;
+        public Button btnSettings;
+        public Button btnProxies;
+        public Button btnTasks;
+        public Button btnBundler;
+        public Button btnWallets;
+        private Panel pnlBackground;
+        private PictureBox pictureBox2;
+        private Label label2;
     }
 }
