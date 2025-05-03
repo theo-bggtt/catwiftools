@@ -31,6 +31,7 @@
             lblTasksTitle = new Label();
             flpTaskList = new FlowLayoutPanel();
             gbxTask = new BorderlessGroupBox();
+            btnstartTask = new Button();
             lblParamValue4 = new Label();
             lblParamName4 = new Label();
             lblParamValue3 = new Label();
@@ -82,6 +83,7 @@
             // gbxTask
             // 
             gbxTask.BackColor = Color.FromArgb(40, 40, 40);
+            gbxTask.Controls.Add(btnstartTask);
             gbxTask.Controls.Add(lblParamValue4);
             gbxTask.Controls.Add(lblParamName4);
             gbxTask.Controls.Add(lblParamValue3);
@@ -102,6 +104,18 @@
             gbxTask.TabIndex = 42;
             gbxTask.TabStop = false;
             gbxTask.Visible = false;
+            // 
+            // btnstartTask
+            // 
+            btnstartTask.BackColor = Color.Lime;
+            btnstartTask.FlatStyle = FlatStyle.Flat;
+            btnstartTask.Location = new Point(691, 30);
+            btnstartTask.Name = "btnstartTask";
+            btnstartTask.Size = new Size(69, 40);
+            btnstartTask.TabIndex = 53;
+            btnstartTask.Text = "Start";
+            btnstartTask.UseVisualStyleBackColor = false;
+            btnstartTask.Click += btnstartTask_Click;
             // 
             // lblParamValue4
             // 
@@ -228,7 +242,7 @@
             lblTaskType.ForeColor = Color.White;
             lblTaskType.Location = new Point(9, 43);
             lblTaskType.Name = "lblTaskType";
-            lblTaskType.Size = new Size(56, 15);
+            lblTaskType.Size = new Size(58, 15);
             lblTaskType.TabIndex = 1;
             lblTaskType.Text = "Task Type";
             // 
@@ -256,7 +270,6 @@
             // flpTaskGroupList
             // 
             flpTaskGroupList.Anchor = AnchorStyles.Top;
-            flpTaskGroupList.BorderStyle = BorderStyle.FixedSingle;
             flpTaskGroupList.Controls.Add(gbxTaskGroup);
             flpTaskGroupList.Location = new Point(10, 50);
             flpTaskGroupList.Name = "flpTaskGroupList";
@@ -422,5 +435,6 @@
         private Label lblTaskAmount;
         private Label lblGroupAmount;
         public Button btnStart;
+        private Button btnstartTask;
     }
 }

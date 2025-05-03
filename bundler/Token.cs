@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.Json;
 using catwiftools.transactions;
+using catwiftools.tasks;
 
 namespace catwiftools.bundler
 {
@@ -61,6 +62,14 @@ namespace catwiftools.bundler
         private void button5_Click(object sender, EventArgs e)
         {
             TransactionHelper.Sell("57b81x5yA4RxQW7RTpdFX6qAvsv22TFReaAcBoGCwYXcK48pcJcTWochgmbU4UBV5JB48yCndpiLpMYE3eST1zp1", "8n8V2YvfVsrRUHnYFQYSXVrngZ47NEALpo2bsjr3pump", "357636");
+        }
+
+        private async void button3_Click(object sender, EventArgs e)
+        {
+            string authToken = await PumpFunAuthenticator.GetAuthTokenAsync();
+            Console.WriteLine($"Your auth token: {authToken}");
+
+            TasksManager.ExecuteCommentBotTask();
         }
     }
 }

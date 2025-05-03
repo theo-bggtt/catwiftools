@@ -127,6 +127,7 @@
             button3.Text = "Holder Count";
             button3.UseMnemonic = false;
             button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
             // 
             // button5
             // 

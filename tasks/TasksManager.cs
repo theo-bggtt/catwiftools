@@ -89,7 +89,7 @@ namespace catwiftools.tasks
             {
                 decimal amount = (decimal)(random.NextDouble() * (double)(maximum - minimum) + (double)minimum);
                 Console.WriteLine($"Wallet: {wallet} bought {mintAddress} for {amount} SOL");
-                //await transactionHelper.BuyTokens(wallet, mintAddress, amount, 25.0m);
+                await TransactionHelper.Buy(wallet, mintAddress, amount.ToString(),null);
                 Thread.Sleep(random.Next(delay - 4, delay + 4) * 1000);
                 AppState.RecentAction($"MicroBuy Bought {amount} from {wallet}");
             }
@@ -152,7 +152,7 @@ namespace catwiftools.tasks
 
         }
 
-        public static void ExecuteCommentBotTask(int taskId, List<string> wallets, string mintAddress)
+        public async static void ExecuteCommentBotTask()
         {
         }
     }

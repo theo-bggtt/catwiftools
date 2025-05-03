@@ -288,6 +288,7 @@ namespace catwiftools.tasks
             Label lblTaskType = new Label();
             Button btnEditTask = new Button();
             Button btnDeleteTask = new Button();
+            Button btnstartTask = new Button();
 
             // 
             // gbxTask
@@ -301,13 +302,14 @@ namespace catwiftools.tasks
             gbxTask.Controls.Add(lblParamName2);
             gbxTask.Controls.Add(btnEditTask);
             gbxTask.Controls.Add(btnDeleteTask);
+            gbxTask.Controls.Add(btnstartTask);
             gbxTask.Controls.Add(lblParamValue1);
             gbxTask.Controls.Add(lblParamName1);
             gbxTask.Controls.Add(lblTaskName);
             gbxTask.Controls.Add(lblTaskType);
             gbxTask.Location = new Point(10, 5);
             gbxTask.Margin = new Padding(10, 5, 10, 5);
-            gbxTask.Name = "gbxTask";
+            gbxTask.Name = task_id.ToString();
             gbxTask.Size = new Size(890, 100);
             gbxTask.TabStop = false;
             gbxTask.FlatStyle = FlatStyle.Flat;
@@ -437,7 +439,18 @@ namespace catwiftools.tasks
             btnDeleteTask.Text = "Delete";
             btnDeleteTask.UseVisualStyleBackColor = false;
             btnDeleteTask.Click += btnDeleteTask_Click;
-
+            // 
+            // btnstartTask
+            // 
+            btnstartTask.BackColor = Color.Lime;
+            btnstartTask.FlatStyle = FlatStyle.Flat;
+            btnstartTask.Location = new Point(691, 30);
+            btnstartTask.Name = "btnstartTask";
+            btnstartTask.Size = new Size(69, 40);
+            btnstartTask.TabIndex = 53;
+            btnstartTask.Text = "Start";
+            btnstartTask.UseVisualStyleBackColor = false;
+            btnstartTask.Click += btnstartTask_Click;
             // 
             // lblTaskName
             // 
@@ -469,6 +482,18 @@ namespace catwiftools.tasks
             foreach (int task_id in task_ids)
             {
                 await Task.Run(() => TaskHelper.ExecuteTask(task_id, active_group));
+            }
+        }
+
+        private async void btnstartTask_Click(object? sender, EventArgs e)
+        {
+            if (sender is Button button && button.Parent is GroupBox parentGroupBox)
+            {
+                await Task.Run(() =>
+                {
+                    int task_id = int.Parse(parentGroupBox.Name);
+                    TaskHelper.ExecuteTask(task_id, active_group);
+                });
             }
         }
     }
