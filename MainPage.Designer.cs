@@ -460,7 +460,7 @@
             pnlBackground.BackColor = Color.Transparent;
             pnlBackground.Controls.Add(pictureBox2);
             pnlBackground.Controls.Add(label2);
-            pnlBackground.Location = new Point(700, 350);
+            pnlBackground.Location = new Point(487, 319);
             pnlBackground.Name = "pnlBackground";
             pnlBackground.Size = new Size(462, 85);
             pnlBackground.TabIndex = 46;
