@@ -21,6 +21,11 @@ namespace catwiftools.wallet
         public walletGroup()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint |
+                          ControlStyles.UserPaint |
+                          ControlStyles.OptimizedDoubleBuffer, true);
+            this.UpdateStyles();
         }
 
         private void walletGroup_Load(object sender, EventArgs e)

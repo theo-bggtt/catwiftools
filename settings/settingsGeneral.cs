@@ -23,6 +23,11 @@ namespace catwiftools.settings
         public settingsGeneral()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint |
+                          ControlStyles.UserPaint |
+                          ControlStyles.OptimizedDoubleBuffer, true);
+            this.UpdateStyles();
         }
 
         private async void settingsGeneral_Load(object sender, EventArgs e)

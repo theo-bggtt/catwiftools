@@ -22,6 +22,11 @@ namespace catwiftools.tasks
         public tasksMainPage()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint |
+                          ControlStyles.UserPaint |
+                          ControlStyles.OptimizedDoubleBuffer, true);
+            this.UpdateStyles();
         }
 
         private void tasksMainPage_Load(object sender, EventArgs e)

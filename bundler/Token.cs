@@ -23,6 +23,11 @@ namespace catwiftools.bundler
         public bundlerMainPage()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint |
+                          ControlStyles.UserPaint |
+                          ControlStyles.OptimizedDoubleBuffer, true);
+            this.UpdateStyles();
         }
 
         private async void btnTasks_Click(object sender, EventArgs e)

@@ -231,6 +231,7 @@
             pnlSettingsNav.Name = "pnlSettingsNav";
             pnlSettingsNav.Size = new Size(200, 762);
             pnlSettingsNav.TabIndex = 44;
+            pnlSettingsNav.VisibleChanged += pnlSettingsNav_VisibleChanged;
             // 
             // btnSettingsGeneral
             // 
@@ -344,6 +345,7 @@
             pnlMainNav.Name = "pnlMainNav";
             pnlMainNav.Size = new Size(200, 705);
             pnlMainNav.TabIndex = 45;
+            pnlMainNav.Paint += Form_Paint;
             // 
             // btnSettings
             // 

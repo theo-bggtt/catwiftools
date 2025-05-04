@@ -10,6 +10,7 @@ namespace catwiftools
         UiHelper functions = new UiHelper();
         private Dictionary<Button, Control> buttonControlMap = new Dictionary<Button, Control>();
         public string fundWallet = "";
+        private string currentSection = "";
         private walletGroup walletGroup;
 
         public CatWifTools()
@@ -18,7 +19,14 @@ namespace catwiftools
             DraggingHelper.EnableDragging(this);
             this.Paint += Form_Paint;
             InitializeButtonControlMap();
+
+            // ✅ Enable double buffering to reduce flicker during custom painting
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer |
+                          ControlStyles.AllPaintingInWmPaint |
+                          ControlStyles.UserPaint, true);
+            this.UpdateStyles();
         }
+
 
         private void CatWifTools_Load(object sender, EventArgs e)
         {
@@ -32,6 +40,7 @@ namespace catwiftools
             }
             settingsGeneral settingsGeneral = new settingsGeneral();
             settingsGeneral.fundWalletSetup();
+            this.DoubleBuffered = true;
         }
 
         private void InitializeButtonControlMap()
@@ -153,8 +162,25 @@ namespace catwiftools
                     functions.DeselectButton(button);
                 }
             }
+
             ShowControls(controlsToShow);
+
+            // 🔄 Update the section name for drawing logic
+            if (selectedButton == btnTasks)
+                currentSection = "Tasks";
+            else if (selectedButton == btnBundler)
+                currentSection = "Bundler";
+            else if (selectedButton == btnSettings || selectedButton == btnSettingsGeneral ||
+                     selectedButton == btnSettingsBundler || selectedButton == btnSettingsVolume ||
+                     selectedButton == btnSettingsBumpIt)
+                currentSection = "Settings";
+            else
+                currentSection = "";
+
+            this.Invalidate(); // 🔄 Force redraw
         }
+
+
 
         public static void HideAllExcept(IEnumerable<Control> controls, Control controlToShow)
         {
@@ -195,21 +221,20 @@ namespace catwiftools
 
         private void Form_Paint(object? sender, PaintEventArgs e)
         {
-            if (pnlSettingsNav.Visible || tasksMainPage1.Visible)
+
+            using (Pen pen = new Pen(Color.Gray, 2))
             {
-                using (Pen pen = new Pen(Color.Gray, 2)) // Color.Gray and thickness 2
+                if (currentSection == "Tasks" || currentSection == "Settings")
                 {
-                    e.Graphics.DrawLine(pen, 435, 50, 435, 790);
+                    e.Graphics.DrawLine(pen, 435, 20, 435, 790);
                 }
-            }
-            if (bundlerMainPage1.Visible)
-            {
-                using (Pen pen = new Pen(Color.Gray, 2)) // Color.Gray and thickness 2
+                else if (currentSection == "Bundler")
                 {
                     e.Graphics.DrawLine(pen, 225, 91, 1000, 91);
                 }
             }
         }
+
 
         private void pnlSettingsNav_VisibleChanged(object sender, EventArgs e)
         {
