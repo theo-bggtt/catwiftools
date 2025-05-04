@@ -85,7 +85,7 @@ namespace catwiftools.tasks
 
         private void btnViewGroup_Click(object sender, EventArgs e)
         {
-            Button btnViewGroup = (Button)sender;
+            Panel btnViewGroup = (Panel)sender;
             active_group = TaskHelper.GetTaskGroupIdFromName(btnViewGroup.Name);
             AppState.WriteConsole($"Group Box Clicked: {active_group}");
             LoadTaskGroups();
@@ -218,25 +218,19 @@ namespace catwiftools.tasks
         {
 
             int group_id = TaskHelper.GetTaskGroupIdFromName(groupName);
-            BorderlessGroupBox gbxTaskGroup = new BorderlessGroupBox();
+            Panel pnlTaskGroup = new Panel();
             Label lblGroupName = new Label();
-            Button btnDeleteGroup = new Button();
-            Button btnViewGroup = new Button();
             // 
             // gbxTaskGroup
             // 
-            gbxTaskGroup.Anchor = AnchorStyles.Top;
-            gbxTaskGroup.BackColor = Color.Transparent;
-            gbxTaskGroup.Controls.Add(lblGroupName);
-            gbxTaskGroup.Controls.Add(btnDeleteGroup);
-            gbxTaskGroup.Controls.Add(btnViewGroup);
-            gbxTaskGroup.FlatStyle = FlatStyle.Flat;
-            gbxTaskGroup.Location = new Point(10, 5);
-            gbxTaskGroup.Margin = new Padding(10, 5, 10, 5);
-            gbxTaskGroup.Name = groupName;
-            gbxTaskGroup.Size = new Size(180, 78);
-            gbxTaskGroup.TabIndex = 4;
-            gbxTaskGroup.TabStop = false;
+            pnlTaskGroup.Controls.Add(lblGroupName);
+            pnlTaskGroup.Location = new Point(10, 5);
+            pnlTaskGroup.Margin = new Padding(10, 5, 10, 5);
+            pnlTaskGroup.BackColor = Color.FromArgb(40, 40, 40);
+            pnlTaskGroup.Name = groupName;
+            pnlTaskGroup.Size = new Size(150, 78);
+            pnlTaskGroup.TabIndex = 5;
+            pnlTaskGroup.Click += btnViewGroup_Click;
             // 
             // lblGroupName
             // 
@@ -248,32 +242,8 @@ namespace catwiftools.tasks
             lblGroupName.Size = new Size(107, 21);
             lblGroupName.TabIndex = 0;
             lblGroupName.Text = groupName;
-            // 
-            // btnDeleteGroup
-            // 
-            btnDeleteGroup.BackColor = Color.DarkRed;
-            btnDeleteGroup.FlatStyle = FlatStyle.Flat;
-            btnDeleteGroup.Location = new Point(100, 45);
-            btnDeleteGroup.Name = groupName;
-            btnDeleteGroup.Size = new Size(69, 24);
-            btnDeleteGroup.TabIndex = 42;
-            btnDeleteGroup.Text = "Delete";
-            btnDeleteGroup.UseVisualStyleBackColor = false;
-            btnDeleteGroup.Click += btnDeleteGroup_Click;
-            // 
-            // btnViewGroup
-            // 
-            btnViewGroup.BackColor = Color.FromArgb(78, 93, 148);
-            btnViewGroup.FlatStyle = FlatStyle.Flat;
-            btnViewGroup.Location = new Point(10, 45);
-            btnViewGroup.Name = groupName;
-            btnViewGroup.Size = new Size(69, 24);
-            btnViewGroup.TabIndex = 43;
-            btnViewGroup.Text = "View";
-            btnViewGroup.UseVisualStyleBackColor = false;
-            btnViewGroup.Click += btnViewGroup_Click;
 
-            flpTaskGroupList.Controls.Add(gbxTaskGroup);
+            flpTaskGroupList.Controls.Add(pnlTaskGroup);
         }
 
         private void CreateTaskBox(int task_id, Dictionary<string, string> parameters) // Method to create a task box

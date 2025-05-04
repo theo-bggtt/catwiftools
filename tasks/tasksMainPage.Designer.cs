@@ -46,10 +46,8 @@
             lblTaskType = new Label();
             btnCreateTask = new Button();
             flpTaskGroupList = new FlowLayoutPanel();
-            gbxTaskGroup = new BorderlessGroupBox();
-            btnViewGroup = new Button();
-            btnDeleteGroup = new Button();
-            lblGroupName = new Label();
+            pnlTaskGroup = new Panel();
+            label1 = new Label();
             btnCreateTaskGroup = new Button();
             lblTaskAmount = new Label();
             lblGroupAmount = new Label();
@@ -57,7 +55,7 @@
             flpTaskList.SuspendLayout();
             gbxTask.SuspendLayout();
             flpTaskGroupList.SuspendLayout();
-            gbxTaskGroup.SuspendLayout();
+            pnlTaskGroup.SuspendLayout();
             SuspendLayout();
             // 
             // lblTasksTitle
@@ -270,61 +268,33 @@
             // flpTaskGroupList
             // 
             flpTaskGroupList.Anchor = AnchorStyles.Top;
-            flpTaskGroupList.Controls.Add(gbxTaskGroup);
+            flpTaskGroupList.Controls.Add(pnlTaskGroup);
             flpTaskGroupList.Location = new Point(10, 50);
             flpTaskGroupList.Name = "flpTaskGroupList";
-            flpTaskGroupList.Size = new Size(200, 702);
+            flpTaskGroupList.Size = new Size(170, 702);
             flpTaskGroupList.TabIndex = 4;
             // 
-            // gbxTaskGroup
+            // pnlTaskGroup
             // 
-            gbxTaskGroup.Anchor = AnchorStyles.Top;
-            gbxTaskGroup.BackColor = Color.Transparent;
-            gbxTaskGroup.Controls.Add(btnViewGroup);
-            gbxTaskGroup.Controls.Add(btnDeleteGroup);
-            gbxTaskGroup.Controls.Add(lblGroupName);
-            gbxTaskGroup.FlatStyle = FlatStyle.Flat;
-            gbxTaskGroup.Location = new Point(10, 5);
-            gbxTaskGroup.Margin = new Padding(10, 5, 10, 5);
-            gbxTaskGroup.Name = "gbxTaskGroup";
-            gbxTaskGroup.Size = new Size(180, 78);
-            gbxTaskGroup.TabIndex = 4;
-            gbxTaskGroup.TabStop = false;
+            pnlTaskGroup.Controls.Add(label1);
+            pnlTaskGroup.Location = new Point(10, 5);
+            pnlTaskGroup.Margin = new Padding(10, 5, 10, 5);
+            pnlTaskGroup.Name = "pnlTaskGroup";
+            pnlTaskGroup.Size = new Size(150, 78);
+            pnlTaskGroup.TabIndex = 5;
+            pnlTaskGroup.Visible = false;
+            pnlTaskGroup.Click += btnViewGroup_Click;
             // 
-            // btnViewGroup
+            // label1
             // 
-            btnViewGroup.BackColor = Color.FromArgb(78, 93, 148);
-            btnViewGroup.FlatStyle = FlatStyle.Flat;
-            btnViewGroup.Location = new Point(10, 45);
-            btnViewGroup.Name = "btnViewGroup";
-            btnViewGroup.Size = new Size(69, 24);
-            btnViewGroup.TabIndex = 43;
-            btnViewGroup.Text = "View";
-            btnViewGroup.UseVisualStyleBackColor = false;
-            btnViewGroup.Click += btnViewGroup_Click;
-            // 
-            // btnDeleteGroup
-            // 
-            btnDeleteGroup.BackColor = Color.DarkRed;
-            btnDeleteGroup.FlatStyle = FlatStyle.Flat;
-            btnDeleteGroup.Location = new Point(100, 45);
-            btnDeleteGroup.Name = "btnDeleteGroup";
-            btnDeleteGroup.Size = new Size(69, 24);
-            btnDeleteGroup.TabIndex = 42;
-            btnDeleteGroup.Text = "Delete";
-            btnDeleteGroup.UseVisualStyleBackColor = false;
-            btnDeleteGroup.Click += btnDeleteGroup_Click;
-            // 
-            // lblGroupName
-            // 
-            lblGroupName.AutoSize = true;
-            lblGroupName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblGroupName.ForeColor = Color.White;
-            lblGroupName.Location = new Point(6, 11);
-            lblGroupName.Name = "lblGroupName";
-            lblGroupName.Size = new Size(107, 21);
-            lblGroupName.TabIndex = 0;
-            lblGroupName.Text = "Group Name";
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(6, 11);
+            label1.Name = "label1";
+            label1.Size = new Size(107, 21);
+            label1.TabIndex = 44;
+            label1.Text = "Group Name";
             // 
             // btnCreateTaskGroup
             // 
@@ -332,7 +302,7 @@
             btnCreateTaskGroup.BackgroundImageLayout = ImageLayout.Center;
             btnCreateTaskGroup.FlatAppearance.BorderSize = 0;
             btnCreateTaskGroup.FlatStyle = FlatStyle.Flat;
-            btnCreateTaskGroup.Location = new Point(173, 9);
+            btnCreateTaskGroup.Location = new Point(152, 9);
             btnCreateTaskGroup.Name = "btnCreateTaskGroup";
             btnCreateTaskGroup.Size = new Size(28, 28);
             btnCreateTaskGroup.TabIndex = 41;
@@ -402,8 +372,8 @@
             gbxTask.ResumeLayout(false);
             gbxTask.PerformLayout();
             flpTaskGroupList.ResumeLayout(false);
-            gbxTaskGroup.ResumeLayout(false);
-            gbxTaskGroup.PerformLayout();
+            pnlTaskGroup.ResumeLayout(false);
+            pnlTaskGroup.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -415,10 +385,6 @@
         public Button btnCreateTask;
         private FlowLayoutPanel flpTaskGroupList;
         private Button btnCreateTaskGroup;
-        private BorderlessGroupBox gbxTaskGroup;
-        private Label lblGroupName;
-        private Button btnDeleteGroup;
-        private Button btnViewGroup;
         private BorderlessGroupBox gbxTask;
         private Label lblTaskName;
         private Label lblTaskType;
@@ -436,5 +402,7 @@
         private Label lblGroupAmount;
         public Button btnStart;
         private Button btnstartTask;
+        private Panel pnlTaskGroup;
+        private Label label1;
     }
 }
