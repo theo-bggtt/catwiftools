@@ -6,12 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace catwiftools.tasks
 {
@@ -57,6 +52,7 @@ namespace catwiftools.tasks
                 Button btnDeleteGroup = (Button)sender;
                 string groupName = btnDeleteGroup.Name;
                 int group_id = TaskHelper.GetTaskGroupIdFromName(groupName);
+
                 string query = $"DELETE FROM 'task_groups' WHERE group_id = {group_id}";
                 using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
                 {
@@ -67,6 +63,7 @@ namespace catwiftools.tasks
                         command.ExecuteNonQuery();
                     }
                 }
+
                 query = $"DELETE FROM 'tasks' WHERE group_id = {group_id}";
                 using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
                 {
@@ -77,8 +74,10 @@ namespace catwiftools.tasks
                         command.ExecuteNonQuery();
                     }
                 }
+
                 active_group = 0;
             }
+
             LoadTaskGroups();
             LoadTasks(active_group);
         }
@@ -87,7 +86,7 @@ namespace catwiftools.tasks
         {
             Panel btnViewGroup = (Panel)sender;
             active_group = TaskHelper.GetTaskGroupIdFromName(btnViewGroup.Name);
-            AppState.WriteConsole($"Group Box Clicked: {active_group}");
+            lblGroupName.Text = btnViewGroup.Name;
             LoadTaskGroups();
             LoadTasks(active_group);
         }
@@ -114,6 +113,7 @@ namespace catwiftools.tasks
                 Button btnDeleteTask = (Button)sender;
                 int task_id = int.Parse(btnDeleteTask.Name);
                 string query = "DELETE FROM tasks WHERE task_id = @task_id";
+
                 using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
                 {
                     using (SqliteCommand command = new SqliteCommand(query, connection))
@@ -123,51 +123,48 @@ namespace catwiftools.tasks
                         command.ExecuteNonQuery();
                     }
                 }
+
                 TaskHelper.deleteParameters(task_id);
             }
+
             LoadTaskGroups();
             LoadTasks(active_group);
         }
 
         private void btnEditTask_Click(object sender, EventArgs e)
         {
-            // Retrieve the task_id from the sender (button)
             Button btnEditTask = (Button)sender;
             int task_id = (int)btnEditTask.Tag;
 
-
-            // Fetch the task details using the task_id
             Dictionary<string, string> parameters = TaskHelper.GetTaskParameters(task_id);
             string task_name = TaskHelper.GetTaskName(task_id);
             string task_type = TaskHelper.GetTaskType(task_id);
 
             using (formTaskCreation formTaskCreation = new formTaskCreation(null))
             {
-                // Set default values for the task form based on the task_id
                 formTaskCreation.task_name = task_name;
                 formTaskCreation.task_type = task_type;
                 formTaskCreation.parameters = parameters;
                 formTaskCreation.isEditMode = true;
-                // Set the cbxTaskType's selected value to the task_type
                 formTaskCreation.SetTaskType(task_type);
                 formTaskCreation.SetTaskName(task_name);
                 formTaskCreation.SetTaskParameters(parameters);
 
                 if (formTaskCreation.ShowDialog() == DialogResult.OK)
                 {
-                    // Update the task with new values
                     TaskHelper.UpdateTask(task_id, formTaskCreation.task_name, formTaskCreation.task_type, formTaskCreation.parameters);
                 }
             }
+
             LoadTaskGroups();
             LoadTasks(active_group);
         }
 
-
-        private void LoadTasks(int active_group) // Gets the task_ids and creates a task box for each task
+        private void LoadTasks(int active_group)
         {
             flpTaskList.Controls.Clear();
             List<int> loaded_tasks = new List<int>();
+
             string query = $"SELECT task_id FROM tasks WHERE group_id = '{active_group}'";
             using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
             {
@@ -183,18 +180,21 @@ namespace catwiftools.tasks
                     }
                 }
             }
+
             foreach (int task_id in loaded_tasks)
             {
                 Dictionary<string, string> parameters = TaskHelper.GetTaskParameters(task_id);
                 CreateTaskBox(task_id, parameters);
             }
+
             lblGroupAmount.Text = "Total Groups: " + TaskHelper.GetGroupCount();
             lblTaskAmount.Text = "Total Tasks: " + TaskHelper.GetTaskCount();
         }
 
-        private void LoadTaskGroups() // Gets the group_names and creates a group box for each group
+        private void LoadTaskGroups()
         {
             flpTaskGroupList.Controls.Clear();
+
             string query = "SELECT group_name FROM 'task_groups'";
             using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
             {
@@ -214,34 +214,44 @@ namespace catwiftools.tasks
         }
 
         private void CreateTaskGroupBox(string groupName)
-
         {
-
             int group_id = TaskHelper.GetTaskGroupIdFromName(groupName);
+
             Panel pnlTaskGroup = new Panel();
             Label lblGroupName = new Label();
-            // 
-            // gbxTaskGroup
-            // 
+            Label lblTaskCount = new Label();
+
             pnlTaskGroup.Controls.Add(lblGroupName);
+            pnlTaskGroup.Controls.Add(lblTaskCount);
             pnlTaskGroup.Location = new Point(10, 5);
             pnlTaskGroup.Margin = new Padding(10, 5, 10, 5);
             pnlTaskGroup.BackColor = Color.FromArgb(40, 40, 40);
             pnlTaskGroup.Name = groupName;
-            pnlTaskGroup.Size = new Size(150, 78);
+            pnlTaskGroup.Size = new Size(150, 33);
             pnlTaskGroup.TabIndex = 5;
             pnlTaskGroup.Click += btnViewGroup_Click;
-            // 
-            // lblGroupName
-            // 
+            pnlTaskGroup.MouseEnter += pnlTaskGroup_MouseEnter;
+            pnlTaskGroup.MouseLeave += pnlTaskGroup_MouseLeave;
+
             lblGroupName.AutoSize = true;
             lblGroupName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblGroupName.ForeColor = Color.White;
-            lblGroupName.Location = new Point(10, 15);
+            lblGroupName.Location = new Point(20, 5);
             lblGroupName.Name = "lblGroupName";
             lblGroupName.Size = new Size(107, 21);
             lblGroupName.TabIndex = 0;
             lblGroupName.Text = groupName;
+            lblGroupName.TextAlign = ContentAlignment.MiddleCenter;
+            lblGroupName.Tag = group_id;
+            lblGroupName.Click += btnViewGroup_Click;
+
+            lblTaskCount.AutoSize = true;
+            lblTaskCount.ForeColor = Color.White;
+            lblTaskCount.Location = new Point(15, 30);
+            lblTaskCount.Name = groupName;
+            lblTaskCount.Size = new Size(36, 15);
+            lblTaskCount.TabIndex = 45;
+            lblTaskCount.Text = TaskHelper.GetTaskCountByGroupId(group_id).ToString();
 
             flpTaskGroupList.Controls.Add(pnlTaskGroup);
         }
@@ -451,13 +461,35 @@ namespace catwiftools.tasks
             flpTaskList.Controls.Add(gbxTask);
         }
 
-        private async void btnStart_Click(object sender, EventArgs e)
+        private async void btnStartStopTask_Click(object sender, EventArgs e)
         {
-            List<int> task_ids = TaskHelper.GetTasksFromGroupId(active_group);
-            foreach (int task_id in task_ids)
+            Button btnStartStopTask = (Button)sender;
+            if (btnStartStopTask.Tag.ToString() == "active")
             {
-                await Task.Run(() => TaskHelper.ExecuteTask(task_id, active_group));
+                btnStartStopTask.BackColor = Color.Lime;
+                btnStartStopTask.Text = "Start";
+                btnStartStopTask.Tag = "inactive";
+
+                List<int> task_ids = TaskHelper.GetTasksFromGroupId(active_group);
+                foreach (int task_id in task_ids)
+                {
+                    await Task.Run(() => TaskHelper.StartTask(task_id, active_group));
+                }
             }
+            else
+            {
+                btnStartStopTask.BackColor = Color.Red;
+                btnStartStopTask.Text = "Stop";
+                btnStartStopTask.Tag = "inactive";
+
+                List<int> task_ids = TaskHelper.GetTasksFromGroupId(active_group);
+                foreach (int task_id in task_ids)
+                {
+                    await Task.Run(() => TaskHelper.StopTask(task_id));
+                }
+            }
+
+
         }
 
         private async void btnstartTask_Click(object? sender, EventArgs e)
@@ -467,9 +499,26 @@ namespace catwiftools.tasks
                 await Task.Run(() =>
                 {
                     int task_id = int.Parse(parentGroupBox.Name);
-                    TaskHelper.ExecuteTask(task_id, active_group);
+                    TaskHelper.StartTask(task_id, active_group);
                 });
             }
+        }
+
+        private void pnlTaskGroup_MouseEnter(object sender, EventArgs e)
+        {
+            Panel pnlTaskGroup = (Panel)sender;
+            pnlTaskGroup.BackColor = Color.FromArgb(60, 60, 60);
+        }
+
+        private void pnlTaskGroup_MouseLeave(object sender, EventArgs e)
+        {
+            Panel pnlTaskGroup = (Panel)sender;
+            pnlTaskGroup.BackColor = Color.FromArgb(40, 40, 40);
+        }
+
+        private void lblTaskAmount_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

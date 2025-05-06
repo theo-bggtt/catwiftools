@@ -147,6 +147,7 @@ namespace catwiftools.wallet
             for (int i = 0; i < selectedAddresses.Count; i++)
             {
                 await new walletHelper().SendSol(selectedAddresses[i], amountPerWall);
+                Thread.Sleep(1000);
             }
         }
 

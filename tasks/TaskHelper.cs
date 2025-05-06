@@ -14,7 +14,7 @@ namespace catwiftools.tasks
         // ======================
         // Execute Task
         // ======================
-        public static void ExecuteTask(int task_id, int group_Id)
+        public static void StartTask(int task_id, int group_Id)
         {
             List<string> taskWallets = GetWalletsByTaskGroupId(group_Id);
             string task_type = GetTaskType(task_id);
@@ -38,6 +38,12 @@ namespace catwiftools.tasks
                     break;
             }
         }
+
+        public static void StopTask(int task_id)
+        {
+            TasksManager.StopTask(task_id);
+        }
+
 
         // ====================
         // Insert and delete 
@@ -192,6 +198,21 @@ namespace catwiftools.tasks
                 }
             }
             return task_id;
+        }
+
+        public static int GetTaskCountByGroupId(int group_id)
+        {
+            int taskCount = 0;
+            string query = $"SELECT COUNT(*) FROM 'tasks' WHERE group_id = {group_id}";
+            using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
+            {
+                using (SqliteCommand command = new SqliteCommand(query, connection))
+                {
+                    connection.Open();
+                    taskCount = Convert.ToInt32(command.ExecuteScalar());
+                }
+            }
+            return taskCount;
         }
 
         public static Dictionary<string, string> GetTaskParameters(int task_id)

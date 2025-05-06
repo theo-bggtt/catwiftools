@@ -31,7 +31,7 @@
             lblTasksTitle = new Label();
             flpTaskList = new FlowLayoutPanel();
             gbxTask = new BorderlessGroupBox();
-            btnstartTask = new Button();
+            btnStartStopTask = new Button();
             lblParamValue4 = new Label();
             lblParamName4 = new Label();
             lblParamValue3 = new Label();
@@ -52,6 +52,7 @@
             lblTaskAmount = new Label();
             lblGroupAmount = new Label();
             btnStart = new Button();
+            lblGroupName = new Label();
             flpTaskList.SuspendLayout();
             gbxTask.SuspendLayout();
             flpTaskGroupList.SuspendLayout();
@@ -81,7 +82,7 @@
             // gbxTask
             // 
             gbxTask.BackColor = Color.FromArgb(40, 40, 40);
-            gbxTask.Controls.Add(btnstartTask);
+            gbxTask.Controls.Add(btnStartStopTask);
             gbxTask.Controls.Add(lblParamValue4);
             gbxTask.Controls.Add(lblParamName4);
             gbxTask.Controls.Add(lblParamValue3);
@@ -103,17 +104,17 @@
             gbxTask.TabStop = false;
             gbxTask.Visible = false;
             // 
-            // btnstartTask
+            // btnStartStopTask
             // 
-            btnstartTask.BackColor = Color.Lime;
-            btnstartTask.FlatStyle = FlatStyle.Flat;
-            btnstartTask.Location = new Point(691, 30);
-            btnstartTask.Name = "btnstartTask";
-            btnstartTask.Size = new Size(69, 40);
-            btnstartTask.TabIndex = 53;
-            btnstartTask.Text = "Start";
-            btnstartTask.UseVisualStyleBackColor = false;
-            btnstartTask.Click += btnstartTask_Click;
+            btnStartStopTask.BackColor = Color.Lime;
+            btnStartStopTask.FlatStyle = FlatStyle.Flat;
+            btnStartStopTask.Location = new Point(691, 30);
+            btnStartStopTask.Name = "btnStartStopTask";
+            btnStartStopTask.Size = new Size(69, 40);
+            btnStartStopTask.TabIndex = 53;
+            btnStartStopTask.Text = "Start";
+            btnStartStopTask.UseVisualStyleBackColor = false;
+            btnStartStopTask.Click += btnstartTask_Click;
             // 
             // lblParamValue4
             // 
@@ -240,7 +241,7 @@
             lblTaskType.ForeColor = Color.White;
             lblTaskType.Location = new Point(9, 43);
             lblTaskType.Name = "lblTaskType";
-            lblTaskType.Size = new Size(58, 15);
+            lblTaskType.Size = new Size(56, 15);
             lblTaskType.TabIndex = 1;
             lblTaskType.Text = "Task Type";
             // 
@@ -276,25 +277,29 @@
             // 
             // pnlTaskGroup
             // 
+            pnlTaskGroup.BackColor = Color.FromArgb(40, 40, 40);
             pnlTaskGroup.Controls.Add(label1);
             pnlTaskGroup.Location = new Point(10, 5);
             pnlTaskGroup.Margin = new Padding(10, 5, 10, 5);
             pnlTaskGroup.Name = "pnlTaskGroup";
-            pnlTaskGroup.Size = new Size(150, 78);
+            pnlTaskGroup.Size = new Size(150, 33);
             pnlTaskGroup.TabIndex = 5;
             pnlTaskGroup.Visible = false;
             pnlTaskGroup.Click += btnViewGroup_Click;
+            pnlTaskGroup.MouseEnter += pnlTaskGroup_MouseEnter;
+            pnlTaskGroup.MouseLeave += pnlTaskGroup_MouseLeave;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(6, 11);
+            label1.Location = new Point(20, 5);
             label1.Name = "label1";
             label1.Size = new Size(107, 21);
             label1.TabIndex = 44;
             label1.Text = "Group Name";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnCreateTaskGroup
             // 
@@ -314,18 +319,19 @@
             lblTaskAmount.AutoSize = true;
             lblTaskAmount.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTaskAmount.ForeColor = Color.White;
-            lblTaskAmount.Location = new Point(251, 67);
+            lblTaskAmount.Location = new Point(240, 67);
             lblTaskAmount.Name = "lblTaskAmount";
             lblTaskAmount.Size = new Size(117, 21);
             lblTaskAmount.TabIndex = 53;
             lblTaskAmount.Text = "Task Amount :";
+            lblTaskAmount.Click += lblTaskAmount_Click;
             // 
             // lblGroupAmount
             // 
             lblGroupAmount.AutoSize = true;
             lblGroupAmount.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblGroupAmount.ForeColor = Color.White;
-            lblGroupAmount.Location = new Point(251, 99);
+            lblGroupAmount.Location = new Point(240, 99);
             lblGroupAmount.Name = "lblGroupAmount";
             lblGroupAmount.Size = new Size(131, 21);
             lblGroupAmount.TabIndex = 54;
@@ -350,13 +356,25 @@
             btnStart.Text = "Start Tasks";
             btnStart.UseMnemonic = false;
             btnStart.UseVisualStyleBackColor = false;
-            btnStart.Click += btnStart_Click;
+            btnStart.Click += btnStartStopTask_Click;
+            // 
+            // lblGroupName
+            // 
+            lblGroupName.AutoSize = true;
+            lblGroupName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblGroupName.ForeColor = Color.White;
+            lblGroupName.Location = new Point(240, 12);
+            lblGroupName.Name = "lblGroupName";
+            lblGroupName.Size = new Size(0, 21);
+            lblGroupName.TabIndex = 45;
+            lblGroupName.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // tasksMainPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
+            Controls.Add(lblGroupName);
             Controls.Add(btnStart);
             Controls.Add(lblGroupAmount);
             Controls.Add(lblTaskAmount);
@@ -401,8 +419,9 @@
         private Label lblTaskAmount;
         private Label lblGroupAmount;
         public Button btnStart;
-        private Button btnstartTask;
+        private Button btnStartStopTask;
         private Panel pnlTaskGroup;
         private Label label1;
+        private Label lblGroupName;
     }
 }
