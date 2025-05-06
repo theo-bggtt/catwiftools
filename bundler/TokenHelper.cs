@@ -13,22 +13,21 @@ namespace catwiftools.bundler
 
         public static List<string> GetTokenAddresses()
         {
-            List<string> addresses = new List<string>();
-            string query = $"SELECT select address FROM tokens";
-
+            List<string> tokenAddresses = new List<string>();
+            string query = "SELECT address FROM token";
             using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
+            using (SqliteCommand command = new SqliteCommand(query, connection))
             {
-                using (SqliteCommand command = new SqliteCommand(query, connection))
+                connection.Open();
+                using (SqliteDataReader reader = command.ExecuteReader())
                 {
-                    command.Parameters.AddWithValue("@groupId", groupId);
-                    command.Parameters.AddWithValue("@taskName", taskName);
-                    command.Parameters.AddWithValue("@taskType", taskType);
-                    
-                    connection.Open();
-                    command.ExecuteNonQuery();
+                    while (reader.Read())
+                    {
+                        tokenAddresses.Add(reader.GetString(0));
+                    }
                 }
             }
-            return addresses;
+            return tokenAddresses;
         }
 
         public static Dictionary<string, string> GetTokenInfo(string tokeAddress)

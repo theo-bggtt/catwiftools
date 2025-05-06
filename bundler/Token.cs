@@ -37,7 +37,7 @@ namespace catwiftools.bundler
             foreach (string Address in tokenAddress)
             {
                 Dictionary<string, string> token = TokenHelper.GetTokenInfo(Address);
-                flpTokenList.Controls.Add(TokenHelper.CreateTokenPanel(token["address"], token["name"], token["symbol"], token["description"], token["imageUrl"], token["twitterUrl"], token["telegramUrl"]));
+                //flpTokenList.Controls.Add(TokenHelper.CreateTokenPanel(token["address"], token["name"], token["symbol"], token["description"], token["imageUrl"], token["twitterUrl"], token["telegramUrl"]));
             }
         }
 

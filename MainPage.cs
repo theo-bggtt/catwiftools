@@ -230,7 +230,8 @@ namespace catwiftools
                 }
                 else if (currentSection == "Bundler")
                 {
-                    e.Graphics.DrawLine(pen, 225, 91, 1000, 91);
+                    e.Graphics.DrawLine(pen, 230, 91, 1406, 91);
+                    e.Graphics.DrawLine(pen, 435, 20, 435, 790);
                 }
             }
         }

@@ -241,7 +241,7 @@
             lblTaskType.ForeColor = Color.White;
             lblTaskType.Location = new Point(9, 43);
             lblTaskType.Name = "lblTaskType";
-            lblTaskType.Size = new Size(56, 15);
+            lblTaskType.Size = new Size(58, 15);
             lblTaskType.TabIndex = 1;
             lblTaskType.Text = "Task Type";
             // 
@@ -270,7 +270,7 @@
             // 
             flpTaskGroupList.Anchor = AnchorStyles.Top;
             flpTaskGroupList.Controls.Add(pnlTaskGroup);
-            flpTaskGroupList.Location = new Point(10, 50);
+            flpTaskGroupList.Location = new Point(10, 63);
             flpTaskGroupList.Name = "flpTaskGroupList";
             flpTaskGroupList.Size = new Size(170, 702);
             flpTaskGroupList.TabIndex = 4;
