@@ -15,6 +15,7 @@ using System.Windows.Forms;
 using System.Text.Json;
 using catwiftools.transactions;
 using catwiftools.tasks;
+using Solnet.Metaplex.Bubblegum.Types;
 
 namespace catwiftools.bundler
 {
@@ -29,6 +30,18 @@ namespace catwiftools.bundler
                           ControlStyles.OptimizedDoubleBuffer, true);
             this.UpdateStyles();
         }
+
+        private void bundlerMainPage_Load(object sender, EventArgs e)
+        {
+            List<string> tokenAddress = TokenHelper.GetTokenAddresses();
+            foreach (string Address in tokenAddress)
+            {
+                Dictionary<string, string> token = TokenHelper.GetTokenInfo(Address);
+                flpTokenList.Controls.Add(TokenHelper.CreateTokenPanel(token["address"], token["name"], token["symbol"], token["description"], token["imageUrl"], token["twitterUrl"], token["telegramUrl"]));
+            }
+        }
+
+        
 
         private async void btnTasks_Click(object sender, EventArgs e)
         {
@@ -76,5 +89,7 @@ namespace catwiftools.bundler
 
             TasksManager.ExecuteCommentBotTask();
         }
+
+        
     }
 }

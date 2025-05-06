@@ -300,6 +300,7 @@
             label1.TabIndex = 44;
             label1.Text = "Group Name";
             label1.TextAlign = ContentAlignment.MiddleCenter;
+            label1.Click += btnViewGroup_Click;
             // 
             // btnCreateTaskGroup
             // 
@@ -365,9 +366,11 @@
             lblGroupName.ForeColor = Color.White;
             lblGroupName.Location = new Point(240, 12);
             lblGroupName.Name = "lblGroupName";
-            lblGroupName.Size = new Size(0, 21);
+            lblGroupName.Size = new Size(107, 21);
             lblGroupName.TabIndex = 45;
+            lblGroupName.Text = "Group Name";
             lblGroupName.TextAlign = ContentAlignment.MiddleCenter;
+            lblGroupName.Visible = false;
             // 
             // tasksMainPage
             // 

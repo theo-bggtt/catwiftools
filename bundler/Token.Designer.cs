@@ -35,7 +35,8 @@
             button3 = new Button();
             button5 = new Button();
             button6 = new Button();
-            flowLayoutPanel1 = new FlowLayoutPanel();
+            flpTokenList = new FlowLayoutPanel();
+            button4 = new Button();
             SuspendLayout();
             // 
             // lblBundlerTitle
@@ -169,19 +170,39 @@
             button6.UseVisualStyleBackColor = false;
             button6.Click += button6_Click;
             // 
-            // flowLayoutPanel1
+            // flpTokenList
             // 
-            flowLayoutPanel1.Location = new Point(124, 5);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(930, 52);
-            flowLayoutPanel1.TabIndex = 18;
+            flpTokenList.Location = new Point(124, 5);
+            flpTokenList.Name = "flpTokenList";
+            flpTokenList.Size = new Size(930, 52);
+            flpTokenList.TabIndex = 18;
+            // 
+            // button4
+            // 
+            button4.BackColor = Color.FromArgb(37, 37, 53);
+            button4.BackgroundImageLayout = ImageLayout.None;
+            button4.FlatAppearance.BorderSize = 0;
+            button4.FlatStyle = FlatStyle.Flat;
+            button4.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            button4.ForeColor = Color.White;
+            button4.ImageAlign = ContentAlignment.MiddleLeft;
+            button4.ImeMode = ImeMode.NoControl;
+            button4.Location = new Point(1070, 5);
+            button4.Name = "button4";
+            button4.Padding = new Padding(5, 0, 5, 0);
+            button4.Size = new Size(120, 52);
+            button4.TabIndex = 19;
+            button4.Text = "Manage tokens";
+            button4.UseMnemonic = false;
+            button4.UseVisualStyleBackColor = false;
             // 
             // bundlerMainPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
-            Controls.Add(flowLayoutPanel1);
+            Controls.Add(button4);
+            Controls.Add(flpTokenList);
             Controls.Add(button6);
             Controls.Add(button5);
             Controls.Add(button3);
@@ -191,6 +212,7 @@
             Controls.Add(lblBundlerTitle);
             Name = "bundlerMainPage";
             Size = new Size(1210, 762);
+            Load += bundlerMainPage_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -204,6 +226,7 @@
         public Button button3;
         public Button button5;
         public Button button6;
-        private FlowLayoutPanel flowLayoutPanel1;
+        private FlowLayoutPanel flpTokenList;
+        public Button button4;
     }
 }

@@ -84,9 +84,22 @@ namespace catwiftools.tasks
 
         private void btnViewGroup_Click(object sender, EventArgs e)
         {
-            Panel btnViewGroup = (Panel)sender;
-            active_group = TaskHelper.GetTaskGroupIdFromName(btnViewGroup.Name);
-            lblGroupName.Text = btnViewGroup.Name;
+            if (sender is Label lblViewGroup)
+            {
+                active_group = TaskHelper.GetTaskGroupIdFromName(lblViewGroup.Name);
+                lblGroupName.Text = lblViewGroup.Name;
+            }
+            else if (sender is Panel pnlTaskGroup)
+            {
+                active_group = TaskHelper.GetTaskGroupIdFromName(pnlTaskGroup.Name);
+                lblGroupName.Text = pnlTaskGroup.Name;
+            }
+            else
+            {
+                return;
+            }
+            
+            lblGroupName.Visible = true;
             LoadTaskGroups();
             LoadTasks(active_group);
         }
