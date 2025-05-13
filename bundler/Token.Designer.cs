@@ -35,20 +35,12 @@
             button3 = new Button();
             button5 = new Button();
             button6 = new Button();
-            flpTaskGroupList = new FlowLayoutPanel();
+            flpTokenList = new FlowLayoutPanel();
             pnlTaskGroup = new Panel();
             label1 = new Label();
-            panel3 = new Panel();
-            label4 = new Label();
-            panel2 = new Panel();
-            label3 = new Label();
-            panel1 = new Panel();
-            label2 = new Label();
-            flpTaskGroupList.SuspendLayout();
+            btnCreateTaskGroup = new Button();
+            flpTokenList.SuspendLayout();
             pnlTaskGroup.SuspendLayout();
-            panel3.SuspendLayout();
-            panel2.SuspendLayout();
-            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // lblBundlerTitle
@@ -56,7 +48,7 @@
             lblBundlerTitle.AutoSize = true;
             lblBundlerTitle.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblBundlerTitle.ForeColor = Color.White;
-            lblBundlerTitle.Location = new Point(10, 5);
+            lblBundlerTitle.Location = new Point(20, 5);
             lblBundlerTitle.Name = "lblBundlerTitle";
             lblBundlerTitle.Size = new Size(68, 28);
             lblBundlerTitle.TabIndex = 0;
@@ -182,17 +174,14 @@
             button6.UseVisualStyleBackColor = false;
             button6.Click += button6_Click;
             // 
-            // flpTaskGroupList
+            // flpTokenList
             // 
-            flpTaskGroupList.Anchor = AnchorStyles.Top;
-            flpTaskGroupList.Controls.Add(pnlTaskGroup);
-            flpTaskGroupList.Controls.Add(panel3);
-            flpTaskGroupList.Controls.Add(panel2);
-            flpTaskGroupList.Controls.Add(panel1);
-            flpTaskGroupList.Location = new Point(10, 63);
-            flpTaskGroupList.Name = "flpTaskGroupList";
-            flpTaskGroupList.Size = new Size(170, 702);
-            flpTaskGroupList.TabIndex = 43;
+            flpTokenList.Anchor = AnchorStyles.Top;
+            flpTokenList.Controls.Add(pnlTaskGroup);
+            flpTokenList.Location = new Point(10, 63);
+            flpTokenList.Name = "flpTokenList";
+            flpTokenList.Size = new Size(170, 702);
+            flpTokenList.TabIndex = 43;
             // 
             // pnlTaskGroup
             // 
@@ -216,78 +205,26 @@
             label1.Text = "Group Name";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // panel3
+            // btnCreateTaskGroup
             // 
-            panel3.BackColor = Color.FromArgb(40, 40, 40);
-            panel3.Controls.Add(label4);
-            panel3.Location = new Point(10, 48);
-            panel3.Margin = new Padding(10, 5, 10, 5);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(150, 33);
-            panel3.TabIndex = 45;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.White;
-            label4.Location = new Point(20, 5);
-            label4.Name = "label4";
-            label4.Size = new Size(107, 21);
-            label4.TabIndex = 44;
-            label4.Text = "Group Name";
-            label4.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // panel2
-            // 
-            panel2.BackColor = Color.FromArgb(40, 40, 40);
-            panel2.Controls.Add(label3);
-            panel2.Location = new Point(10, 91);
-            panel2.Margin = new Padding(10, 5, 10, 5);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(150, 33);
-            panel2.TabIndex = 45;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.White;
-            label3.Location = new Point(20, 5);
-            label3.Name = "label3";
-            label3.Size = new Size(107, 21);
-            label3.TabIndex = 44;
-            label3.Text = "Group Name";
-            label3.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // panel1
-            // 
-            panel1.BackColor = Color.FromArgb(40, 40, 40);
-            panel1.Controls.Add(label2);
-            panel1.Location = new Point(10, 134);
-            panel1.Margin = new Padding(10, 5, 10, 5);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(150, 33);
-            panel1.TabIndex = 45;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(20, 5);
-            label2.Name = "label2";
-            label2.Size = new Size(107, 21);
-            label2.TabIndex = 44;
-            label2.Text = "Group Name";
-            label2.TextAlign = ContentAlignment.MiddleCenter;
+            btnCreateTaskGroup.BackgroundImage = Properties.Resources.plus2;
+            btnCreateTaskGroup.BackgroundImageLayout = ImageLayout.Center;
+            btnCreateTaskGroup.FlatAppearance.BorderSize = 0;
+            btnCreateTaskGroup.FlatStyle = FlatStyle.Flat;
+            btnCreateTaskGroup.Location = new Point(142, 5);
+            btnCreateTaskGroup.Name = "btnCreateTaskGroup";
+            btnCreateTaskGroup.Size = new Size(28, 28);
+            btnCreateTaskGroup.TabIndex = 44;
+            btnCreateTaskGroup.UseVisualStyleBackColor = true;
+            btnCreateTaskGroup.Click += btnCreateTaskGroup_Click;
             // 
             // bundlerMainPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
-            Controls.Add(flpTaskGroupList);
+            Controls.Add(btnCreateTaskGroup);
+            Controls.Add(flpTokenList);
             Controls.Add(button6);
             Controls.Add(button5);
             Controls.Add(button3);
@@ -298,15 +235,9 @@
             Name = "bundlerMainPage";
             Size = new Size(1210, 762);
             Load += bundlerMainPage_Load;
-            flpTaskGroupList.ResumeLayout(false);
+            flpTokenList.ResumeLayout(false);
             pnlTaskGroup.ResumeLayout(false);
             pnlTaskGroup.PerformLayout();
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -320,14 +251,9 @@
         public Button button3;
         public Button button5;
         public Button button6;
-        private FlowLayoutPanel flpTaskGroupList;
+        private FlowLayoutPanel flpTokenList;
         private Panel pnlTaskGroup;
         private Label label1;
-        private Panel panel1;
-        private Label label2;
-        private Panel panel3;
-        private Label label4;
-        private Panel panel2;
-        private Label label3;
+        private Button btnCreateTaskGroup;
     }
 }

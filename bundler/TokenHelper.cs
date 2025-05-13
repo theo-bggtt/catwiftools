@@ -11,6 +11,17 @@ namespace catwiftools.bundler
     internal class TokenHelper
     {
 
+        public static void SaveToken(string address)
+        {
+            string query = $"INSERT INTO token (address) VALUES ('{address}')";
+            using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
+            using (SqliteCommand command = new SqliteCommand(query, connection))
+            {
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+
         public static List<string> GetTokenAddresses()
         {
             List<string> tokenAddresses = new List<string>();
@@ -33,25 +44,7 @@ namespace catwiftools.bundler
         public static Dictionary<string, string> GetTokenInfo(string tokeAddress)
         {
             Dictionary<string, string> token = new Dictionary<string, string>();
-            string query = $"SELECT * FROM tokens WHERE address = {tokeAddress}";
-            using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
-            using (SqliteCommand command = new SqliteCommand(query, connection))
-            {
-                connection.Open();
-                using (SqliteDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        token["address"] = reader.GetString(0);
-                        token["name"] = reader.GetString(1);
-                        token["symbol"] = reader.GetString(2);
-                        token["description"] = reader.GetString(3);
-                        token["imageUrl"] = reader.GetString(4);
-                        token["twitterUrl"] = reader.GetString(5);
-                        token["telegramUrl"] = reader.GetString(6);
-                    }
-                }
-            }
+            // Ajouter l'api
             return token;
         }
 

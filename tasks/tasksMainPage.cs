@@ -1,4 +1,5 @@
-﻿using catwiftools.wallet;
+﻿
+using catwiftools.wallet;
 using Microsoft.Data.Sqlite;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,6 @@ namespace catwiftools.tasks
 {
     public partial class tasksMainPage : UserControl
     {
-        private int active_group = 0;
 
         public tasksMainPage()
         {
@@ -27,7 +27,7 @@ namespace catwiftools.tasks
         private void tasksMainPage_Load(object sender, EventArgs e)
         {
             LoadTaskGroups();
-            LoadTasks(active_group);
+            LoadTasks(ConfigHelper.selectedTaskGroup);
         }
 
         private void btnCreateTaskGroup_Click(object sender, EventArgs e)
@@ -37,11 +37,11 @@ namespace catwiftools.tasks
                 if (formTaskGroupCreation.ShowDialog() == DialogResult.OK)
                 {
                     TaskHelper.InsertTaskGroup(formTaskGroupCreation.groupName, formTaskGroupCreation.walletGroup, formTaskGroupCreation.contractAddress);
-                    active_group = TaskHelper.GetTaskGroupIdFromName(formTaskGroupCreation.groupName);
+                    ConfigHelper.selectedTaskGroup = TaskHelper.GetTaskGroupIdFromName(formTaskGroupCreation.groupName);
                 }
             }
             LoadTaskGroups();
-            LoadTasks(active_group);
+            LoadTasks(ConfigHelper.selectedTaskGroup);
         }
 
         private void btnDeleteGroup_Click(object sender, EventArgs e)
@@ -75,23 +75,23 @@ namespace catwiftools.tasks
                     }
                 }
 
-                active_group = 0;
+                ConfigHelper.selectedTaskGroup = 0;
             }
 
             LoadTaskGroups();
-            LoadTasks(active_group);
+            LoadTasks(ConfigHelper.selectedTaskGroup);
         }
 
         private void btnViewGroup_Click(object sender, EventArgs e)
         {
             if (sender is Label lblViewGroup)
             {
-                active_group = TaskHelper.GetTaskGroupIdFromName(lblViewGroup.Name);
+                ConfigHelper.selectedTaskGroup = TaskHelper.GetTaskGroupIdFromName(lblViewGroup.Name);
                 lblGroupName.Text = lblViewGroup.Name;
             }
             else if (sender is Panel pnlTaskGroup)
             {
-                active_group = TaskHelper.GetTaskGroupIdFromName(pnlTaskGroup.Name);
+                ConfigHelper.selectedTaskGroup = TaskHelper.GetTaskGroupIdFromName(pnlTaskGroup.Name);
                 lblGroupName.Text = pnlTaskGroup.Name;
             }
             else
@@ -101,7 +101,7 @@ namespace catwiftools.tasks
             
             lblGroupName.Visible = true;
             LoadTaskGroups();
-            LoadTasks(active_group);
+            LoadTasks(ConfigHelper.selectedTaskGroup);
         }
 
         private void btnCreateTask_Click(object sender, EventArgs e)
@@ -110,12 +110,12 @@ namespace catwiftools.tasks
             {
                 if (formTaskCreation.ShowDialog() == DialogResult.OK)
                 {
-                    TaskHelper.InsertTask(active_group, formTaskCreation.task_name, formTaskCreation.task_type);
+                    TaskHelper.InsertTask(formTaskCreation.task_name, formTaskCreation.task_type);
                     TaskHelper.saveParameters(formTaskCreation.task_name, formTaskCreation.parameters);
                 }
             }
             LoadTaskGroups();
-            LoadTasks(active_group);
+            LoadTasks(ConfigHelper.selectedTaskGroup);
         }
 
         private void btnDeleteTask_Click(object? sender, EventArgs e)
@@ -141,7 +141,7 @@ namespace catwiftools.tasks
             }
 
             LoadTaskGroups();
-            LoadTasks(active_group);
+            LoadTasks(ConfigHelper.selectedTaskGroup);
         }
 
         private void btnEditTask_Click(object sender, EventArgs e)
@@ -170,15 +170,15 @@ namespace catwiftools.tasks
             }
 
             LoadTaskGroups();
-            LoadTasks(active_group);
+            LoadTasks(ConfigHelper.selectedTaskGroup);
         }
 
-        private void LoadTasks(int active_group)
+        private void LoadTasks(int GroupId)
         {
             flpTaskList.Controls.Clear();
             List<int> loaded_tasks = new List<int>();
 
-            string query = $"SELECT task_id FROM tasks WHERE group_id = '{active_group}'";
+            string query = $"SELECT task_id FROM tasks WHERE group_id = '{GroupId}'";
             using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
@@ -483,10 +483,10 @@ namespace catwiftools.tasks
                 btnStartStopTask.Text = "Start";
                 btnStartStopTask.Tag = "inactive";
 
-                List<int> task_ids = TaskHelper.GetTasksFromGroupId(active_group);
+                List<int> task_ids = TaskHelper.GetTasksFromGroupId(ConfigHelper.selectedTaskGroup);
                 foreach (int task_id in task_ids)
                 {
-                    await Task.Run(() => TaskHelper.StartTask(task_id, active_group));
+                    await Task.Run(() => TaskHelper.StartTask(task_id));
                 }
             }
             else
@@ -495,7 +495,7 @@ namespace catwiftools.tasks
                 btnStartStopTask.Text = "Stop";
                 btnStartStopTask.Tag = "inactive";
 
-                List<int> task_ids = TaskHelper.GetTasksFromGroupId(active_group);
+                List<int> task_ids = TaskHelper.GetTasksFromGroupId(ConfigHelper.selectedTaskGroup);
                 foreach (int task_id in task_ids)
                 {
                     await Task.Run(() => TaskHelper.StopTask(task_id));
@@ -512,7 +512,7 @@ namespace catwiftools.tasks
                 await Task.Run(() =>
                 {
                     int task_id = int.Parse(parentGroupBox.Name);
-                    TaskHelper.StartTask(task_id, active_group);
+                    TaskHelper.StartTask(task_id);
                 });
             }
         }

@@ -10,7 +10,7 @@
     <Compile Update="bundler\Token.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="bundler\TokenInfo.cs">
+    <Compile Update="bundler\AddToken.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="controlPanelForm.cs">

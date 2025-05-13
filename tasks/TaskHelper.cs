@@ -14,9 +14,9 @@ namespace catwiftools.tasks
         // ======================
         // Execute Task
         // ======================
-        public static void StartTask(int task_id, int group_Id)
+        public static void StartTask(int task_id)
         {
-            List<string> taskWallets = GetWalletsByTaskGroupId(group_Id);
+            List<string> taskWallets = GetWalletsByTaskGroupId(ConfigHelper.selectedTaskGroup);
             string task_type = GetTaskType(task_id);
             var mintAddress = TaskHelper.GetContractAddressByTaskId(task_id);
             switch (task_type)
@@ -48,14 +48,14 @@ namespace catwiftools.tasks
         // ====================
         // Insert and delete 
         // ====================
-        public static void InsertTask(int groupId, string taskName, string taskType)
+        public static void InsertTask(string taskName, string taskType)
         {
             string query = "INSERT INTO 'tasks' (group_id, task_name, task_type) VALUES (@groupId, @taskName, @taskType)";
             using (SqliteConnection connection = new SqliteConnection(ConfigHelper.LoadEnvVariables().ConnectionString))
             {
                 using (SqliteCommand command = new SqliteCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@groupId", groupId);
+                    command.Parameters.AddWithValue("@groupId", ConfigHelper.selectedTaskGroup);
                     command.Parameters.AddWithValue("@taskName", taskName);
                     command.Parameters.AddWithValue("@taskType", taskType);
                     

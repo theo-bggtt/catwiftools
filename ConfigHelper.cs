@@ -10,6 +10,9 @@ namespace catwiftools
 {
     internal class ConfigHelper
     {
+        public static string selectedToken = "";
+        public static int selectedTaskGroup = 0;
+
         public static (string ConnectionString, string HeliusUrl, string ApiKey, Cluster cluster) LoadEnvVariables()
         {
             Env.Load();

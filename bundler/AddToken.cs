@@ -11,15 +11,21 @@ using System.Windows.Forms;
 
 namespace catwiftools.bundler
 {
-    public partial class TokenInfo : Form
+    public partial class AddToken : Form
     {
-        public TokenInfo()
+        public string tokenAddress;
+        public AddToken()
         {
             InitializeComponent();
         }
 
         private void TokenInfo_Load(object sender, EventArgs e)
         {
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            tokenAddress = textBox1.Text;
         }
 
         private void set_background(object sender, PaintEventArgs e)
@@ -50,10 +56,23 @@ namespace catwiftools.bundler
             }
         }
 
-
         private void TokenInfo_Paint(object sender, PaintEventArgs e)
         {
             set_background(sender, e);
+        }
+
+        private void btnConfirm_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(tokenAddress))
+            {
+                MessageBox.Show("Please enter a valid token address.");
+            } else
+            {
+                ConfigHelper.selectedToken = tokenAddress;
+
+                MessageBox.Show($"Token address {tokenAddress} has been added.");
+                this.Close();
+            }
         }
     }
 }

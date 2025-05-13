@@ -34,14 +34,21 @@ namespace catwiftools.bundler
         private void bundlerMainPage_Load(object sender, EventArgs e)
         {
             List<string> tokenAddress = TokenHelper.GetTokenAddresses();
-            foreach (string Address in tokenAddress)
+            if (tokenAddress.Count == 0)
             {
-                Dictionary<string, string> token = TokenHelper.GetTokenInfo(Address);
-                //flpTokenList.Controls.Add(TokenHelper.CreateTokenPanel(token["address"], token["name"], token["symbol"], token["description"], token["imageUrl"], token["twitterUrl"], token["telegramUrl"]));
+                return;
+            } else
+            {
+                ConfigHelper.selectedToken = tokenAddress[0];
+                foreach (string Address in tokenAddress)
+                {
+                    Dictionary<string, string> token = TokenHelper.GetTokenInfo(Address);
+                    flpTokenList.Controls.Add(TokenHelper.CreateTokenPanel(token["address"], token["name"], token["symbol"], token["description"], token["imageUrl"], token["twitterUrl"], token["telegramUrl"]));
+                }
             }
         }
 
-        
+
 
         private async void btnTasks_Click(object sender, EventArgs e)
         {
@@ -64,12 +71,6 @@ namespace catwiftools.bundler
 
         private void button2_Click(object sender, EventArgs e)
         {
-            // Show the TokenInfo form
-            TokenInfo tokenInfoForm = new TokenInfo();
-            tokenInfoForm.Show();
-            tokenInfoForm.BringToFront();
-            tokenInfoForm.Focus();
-            // Set the token address in the TokenInfo form
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -90,6 +91,27 @@ namespace catwiftools.bundler
             TasksManager.ExecuteCommentBotTask();
         }
 
-        
+        private void btnCreateTaskGroup_Click(object sender, EventArgs e)
+        {
+            AddToken tokenInfoForm = new AddToken();
+            tokenInfoForm.Show();
+            tokenInfoForm.BringToFront();
+            tokenInfoForm.Focus();
+
+            tokenInfoForm.FormClosed += (s, args) =>
+            {
+                string tokenAddress = tokenInfoForm.tokenAddress;
+
+                if (!string.IsNullOrWhiteSpace(tokenAddress))
+                {
+                    List<string> tokenAddresses = TokenHelper.GetTokenAddresses();
+                    if (!tokenAddresses.Contains(tokenAddress))
+                    {
+                        tokenAddresses.Add(tokenAddress);
+                        TokenHelper.SaveToken(tokenAddress);
+                    }
+                }
+            };
+        }
     }
 }
