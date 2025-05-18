@@ -1,10 +1,12 @@
 ﻿using Microsoft.Data.Sqlite;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace catwiftools.bundler
 {
@@ -41,22 +43,100 @@ namespace catwiftools.bundler
             return tokenAddresses;
         }
 
-        public static Dictionary<string, string> GetTokenInfo(string tokeAddress)
+        public static Dictionary<string, string> GetTokenInfo(string tokenAddress)
         {
-            Dictionary<string, string> token = new Dictionary<string, string>();
-            // Ajouter l'api
+            var token = new Dictionary<string, string>();
+            string apiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjNkODU4Nzk5LWRkZjMtNGRhNC1hMTkwLTM0M2VjNTAwNWQwZiIsIm9yZ0lkIjoiNDQyMzIzIiwidXNlcklkIjoiNDU1MDg0IiwidHlwZUlkIjoiYzg0MTE3NWUtY2ZkZS00N2U5LWJiOWUtNGRhNGM1MGZlY2RmIiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDQ4NzgyOTMsImV4cCI6NDkwMDYzODI5M30.zUFPUjDhBHGoFuerzyhiDbJr71bq9ryx9F4oq4M140k"; // Replace with your Moralis API key
+            string url = $"https://solana-gateway.moralis.io/token/mainnet/{tokenAddress}/metadata";
+
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Add("Accept", "application/json");
+                client.DefaultRequestHeaders.Add("X-API-Key", apiKey);
+
+                try
+                {
+                    // Step 1: Fetch basic metadata
+                    var response = client.GetAsync(url).Result;
+                    response.EnsureSuccessStatusCode();
+                    string json = response.Content.ReadAsStringAsync().Result;
+                    JObject coreMeta = JObject.Parse(json);
+
+                    token["name"] = coreMeta["name"]?.ToString() ?? "";
+                    token["symbol"] = coreMeta["symbol"]?.ToString() ?? "";
+                    token["mint"] = coreMeta["mint"]?.ToString() ?? "";
+                    token["standard"] = coreMeta["standard"]?.ToString() ?? "";
+                    token["logo"] = coreMeta["logo"]?.ToString() ?? "";
+                    token["imageUrl"] = token["logo"]; // Fallback image if none in extended
+
+                    // Step 2: Fetch extended metadata from IPFS/Arweave
+                    string metadataUri = coreMeta["metaplex"]?["metadataUri"]?.ToString();
+                    if (!string.IsNullOrEmpty(metadataUri))
+                    {
+                        var metaResponse = client.GetAsync(metadataUri).Result;
+                        if (metaResponse.IsSuccessStatusCode)
+                        {
+                            string extendedJson = metaResponse.Content.ReadAsStringAsync().Result;
+                            JObject extendedMeta = JObject.Parse(extendedJson);
+
+                            token["description"] = extendedMeta["description"]?.ToString() ?? "";
+                            token["imageUrl"] = extendedMeta["image"]?.ToString() ?? token["logo"];
+
+                            // Optional: Twitter / Telegram
+                            token["twitterUrl"] = extendedMeta["twitter"]?.ToString() ?? "";
+                            token["telegramUrl"] = extendedMeta["telegram"]?.ToString() ?? "";
+                        }
+                        else
+                        {
+                            token["description"] = "";
+                            token["twitterUrl"] = "";
+                            token["telegramUrl"] = "";
+                        }
+                    }
+                    else
+                    {
+                        token["description"] = "";
+                        token["twitterUrl"] = "";
+                        token["telegramUrl"] = "";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    token["name"] = "Error";
+                    token["symbol"] = "ERR";
+                    token["description"] = ex.Message;
+                    token["imageUrl"] = ""; // You could use a placeholder image
+                    token["twitterUrl"] = "";
+                    token["telegramUrl"] = "";
+                }
+            }
+
             return token;
         }
+
 
         public static Panel CreateTokenPanel(string address, string name, string symbol, string description, string imageUrl, string twitterUrl, string telegramUrl)
         {
             Panel tokenPanel = new Panel
             {
-                Size = new Size(200, 200),
+                Size = new Size(150, 33),
                 BackColor = Color.FromArgb(37, 37, 53),
                 BorderStyle = BorderStyle.FixedSingle,
                 Margin = new Padding(10)
             };
+
+            PictureBox pictureBox1 = new PictureBox
+            {
+                Location = new Point(117, 0),
+                Name = "pictureBox1",
+                Size = new Size(30, 30),
+                SizeMode = PictureBoxSizeMode.Zoom,
+                BorderStyle = BorderStyle.FixedSingle,
+                TabIndex = 45,
+                TabStop = false
+            };
+
             Label nameLabel = new Label
             {
                 Text = name,
@@ -64,9 +144,26 @@ namespace catwiftools.bundler
                 Dock = DockStyle.Top,
                 TextAlign = ContentAlignment.MiddleCenter
             };
+
+            
+
+            try
+            {
+                if (!string.IsNullOrEmpty(imageUrl))
+                    pictureBox1.Load(imageUrl);
+            }
+            catch
+            {
+                string basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "img");
+                string imagePath = Path.Combine(basePath, "defaultToken.png");
+                pictureBox1.Image = Image.FromFile(imagePath);
+            }
+            tokenPanel.Controls.Add(pictureBox1);
             tokenPanel.Controls.Add(nameLabel);
+            
 
             return tokenPanel;
         }
+
     }
 }

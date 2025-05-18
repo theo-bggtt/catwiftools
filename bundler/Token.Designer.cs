@@ -39,8 +39,10 @@
             pnlTaskGroup = new Panel();
             label1 = new Label();
             btnCreateTaskGroup = new Button();
+            pictureBox1 = new PictureBox();
             flpTokenList.SuspendLayout();
             pnlTaskGroup.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // lblBundlerTitle
@@ -186,6 +188,7 @@
             // pnlTaskGroup
             // 
             pnlTaskGroup.BackColor = Color.FromArgb(40, 40, 40);
+            pnlTaskGroup.Controls.Add(pictureBox1);
             pnlTaskGroup.Controls.Add(label1);
             pnlTaskGroup.Location = new Point(10, 5);
             pnlTaskGroup.Margin = new Padding(10, 5, 10, 5);
@@ -198,7 +201,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(20, 5);
+            label1.Location = new Point(4, 9);
             label1.Name = "label1";
             label1.Size = new Size(107, 21);
             label1.TabIndex = 44;
@@ -217,6 +220,14 @@
             btnCreateTaskGroup.TabIndex = 44;
             btnCreateTaskGroup.UseVisualStyleBackColor = true;
             btnCreateTaskGroup.Click += btnCreateTaskGroup_Click;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Location = new Point(117, 0);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(30, 30);
+            pictureBox1.TabIndex = 45;
+            pictureBox1.TabStop = false;
             // 
             // bundlerMainPage
             // 
@@ -238,6 +249,7 @@
             flpTokenList.ResumeLayout(false);
             pnlTaskGroup.ResumeLayout(false);
             pnlTaskGroup.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -255,5 +267,6 @@
         private Panel pnlTaskGroup;
         private Label label1;
         private Button btnCreateTaskGroup;
+        private PictureBox pictureBox1;
     }
 }

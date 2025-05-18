@@ -34,16 +34,24 @@ namespace catwiftools.bundler
         private void bundlerMainPage_Load(object sender, EventArgs e)
         {
             List<string> tokenAddress = TokenHelper.GetTokenAddresses();
+            RefreshTokens(sender, e);
+        }
+
+        private void RefreshTokens(object sender, EventArgs e)
+        {
+            flpTokenList.Controls.Clear();
+            List<string> tokenAddress = TokenHelper.GetTokenAddresses();
             if (tokenAddress.Count == 0)
             {
                 return;
-            } else
+            }
+            else
             {
                 ConfigHelper.selectedToken = tokenAddress[0];
                 foreach (string Address in tokenAddress)
                 {
                     Dictionary<string, string> token = TokenHelper.GetTokenInfo(Address);
-                    flpTokenList.Controls.Add(TokenHelper.CreateTokenPanel(token["address"], token["name"], token["symbol"], token["description"], token["imageUrl"], token["twitterUrl"], token["telegramUrl"]));
+                    flpTokenList.Controls.Add(TokenHelper.CreateTokenPanel(Address, token["name"], token["symbol"], token["description"], token["imageUrl"], token["twitterUrl"], token["telegramUrl"]));
                 }
             }
         }
@@ -109,6 +117,7 @@ namespace catwiftools.bundler
                     {
                         tokenAddresses.Add(tokenAddress);
                         TokenHelper.SaveToken(tokenAddress);
+                        RefreshTokens(sender, e);
                     }
                 }
             };
