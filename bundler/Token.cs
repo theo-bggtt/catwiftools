@@ -120,5 +120,13 @@ namespace catwiftools.bundler
                 }
             };
         }
+
+        private void pnlTaskGroup_Click(object sender, EventArgs e)
+        {
+            Panel pnlSender = (Panel)sender;
+
+            ConfigHelper.selectedToken = pnlSender.Name;
+            Console.WriteLine(ConfigHelper.selectedToken);
+        }
     }
 }

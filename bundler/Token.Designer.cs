@@ -37,9 +37,9 @@
             button6 = new Button();
             flpTokenList = new FlowLayoutPanel();
             pnlTaskGroup = new Panel();
+            pictureBox1 = new PictureBox();
             label1 = new Label();
             btnCreateTaskGroup = new Button();
-            pictureBox1 = new PictureBox();
             flpTokenList.SuspendLayout();
             pnlTaskGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -195,6 +195,15 @@
             pnlTaskGroup.Name = "pnlTaskGroup";
             pnlTaskGroup.Size = new Size(150, 33);
             pnlTaskGroup.TabIndex = 5;
+            pnlTaskGroup.Click += pnlTaskGroup_Click;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Location = new Point(117, 0);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(30, 30);
+            pictureBox1.TabIndex = 45;
+            pictureBox1.TabStop = false;
             // 
             // label1
             // 
@@ -220,14 +229,6 @@
             btnCreateTaskGroup.TabIndex = 44;
             btnCreateTaskGroup.UseVisualStyleBackColor = true;
             btnCreateTaskGroup.Click += btnCreateTaskGroup_Click;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Location = new Point(117, 0);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(30, 30);
-            pictureBox1.TabIndex = 45;
-            pictureBox1.TabStop = false;
             // 
             // bundlerMainPage
             // 

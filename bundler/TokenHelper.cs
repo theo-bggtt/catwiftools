@@ -123,7 +123,8 @@ namespace catwiftools.bundler
                 Size = new Size(150, 33),
                 BackColor = Color.FromArgb(37, 37, 53),
                 BorderStyle = BorderStyle.FixedSingle,
-                Margin = new Padding(10)
+                Margin = new Padding(10),
+                Name = address,
             };
 
             PictureBox pictureBox1 = new PictureBox
