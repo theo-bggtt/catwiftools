@@ -14,7 +14,7 @@ namespace catwiftools.tasks
 {
     class TasksManager
     {
-        public async static void ExecuteBumpItBuyTask(int taskId, List<string> wallets, string mintAddress)
+        public async static void ExecuteBumpItBuyTask(int taskId, List<string> wallets)
         {
             Random random = new Random();
             var parameters = TaskHelper.GetTaskParameters(taskId);
@@ -44,8 +44,8 @@ namespace catwiftools.tasks
                 foreach (var wallet in wallets)
                 {
                     decimal randomAmount = amountPerWalletPerIteration + (decimal)(random.NextDouble() * 0.1 - 0.05);
-                    await TransactionHelper.Buy(wallet, mintAddress, randomAmount.ToString(), null);
-                    AppState.WriteConsole($"Wallet: {wallet} bought {mintAddress} for {amountPerWalletPerIteration} SOL");
+                    await TransactionHelper.Buy(wallet, ConfigHelper.selectedToken, randomAmount.ToString(), null);
+                    AppState.WriteConsole($"Wallet: {wallet} bought {ConfigHelper.selectedToken} for {amountPerWalletPerIteration} SOL");
 
                     int sleepTime = (delay <= 4)
                         ? delay * 1000
@@ -65,7 +65,7 @@ namespace catwiftools.tasks
             Console.WriteLine("BumpItBuy task completed.");
         }
 
-        public async static void ExecuteMicroBuyTask(int taskId, List<string> wallets, string mintAddress)
+        public async static void ExecuteMicroBuyTask(int taskId, List<string> wallets)
         {
             Random random = new Random();
             var parameters = TaskHelper.GetTaskParameters(taskId);
@@ -77,20 +77,20 @@ namespace catwiftools.tasks
             foreach (var wallet in wallets)
             {
                 decimal amount = (decimal)(random.NextDouble() * (double)(maximum - minimum) + (double)minimum);
-                Console.WriteLine($"Wallet: {wallet} bought {mintAddress} for {amount} SOL");
-                await TransactionHelper.Buy(wallet, mintAddress, amount.ToString(), null);
+                Console.WriteLine($"Wallet: {wallet} bought {ConfigHelper.selectedToken} for {amount} SOL");
+                await TransactionHelper.Buy(wallet, ConfigHelper.selectedToken, amount.ToString(), null);
                 Thread.Sleep(random.Next(delay - 4, delay + 4) * 1000);
                 AppState.RecentAction($"MicroBuy Bought {amount} from {wallet}");
             }
         }
 
-        public static void ExecuteGenVolumeTask(int taskId, List<string> wallets, string mintAddress)
+        public static void ExecuteGenVolumeTask(int taskId, List<string> wallets)
         {
             Random random = new Random();
             var parameters = TaskHelper.GetTaskParameters(taskId);
         }
 
-        public static async Task ExecuteSellAllTask(int taskId, List<string> wallets, string mintAddress)
+        public static async Task ExecuteSellAllTask(int taskId, List<string> wallets)
         {
             Random random = new Random();
             var parameters = TaskHelper.GetTaskParameters(taskId);
@@ -100,7 +100,7 @@ namespace catwiftools.tasks
 
             foreach (var wallet in wallets)
             {
-                TransactionHelper.Sell(wallet, mintAddress, "0");
+                TransactionHelper.Sell(wallet, ConfigHelper.selectedToken, "0");
 
                 if (delay <= 4)
                 {
@@ -113,12 +113,12 @@ namespace catwiftools.tasks
             }
         }
 
-        public static void ExecuteSingleSellTask(int taskId, string mintAddress)
+        public static void ExecuteSingleSellTask(int taskId)
         {
             var parameters = TaskHelper.GetTaskParameters(taskId);
             string wallet = parameters.ContainsKey("Wallets") ? parameters["Wallets"] : "";
             string privateKey = walletHelper.GetWalletPrivateKey(wallet);
-            TransactionHelper.Sell(privateKey, mintAddress, "0");
+            TransactionHelper.Sell(privateKey, ConfigHelper.selectedToken, "0");
         }
 
         public async static void ExecuteCommentBotTask()

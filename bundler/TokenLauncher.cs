@@ -50,6 +50,7 @@ namespace catwiftools.bundler
                     {
                         dynamic json = JsonConvert.DeserializeObject(result);
                         MessageBox.Show($"✅ Token Created!\n\nMint: {json.mint}\nTxID: {json.txid}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ConfigHelper.selectedToken = $"{json.mint}";
                         return $"{json.mint}";
                     }
                     else
