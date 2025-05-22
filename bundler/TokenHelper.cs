@@ -120,7 +120,7 @@ namespace catwiftools.bundler
         {
             Panel tokenPanel = new Panel
             {
-                Size = new Size(150, 33),
+                Size = new Size(150, 35),
                 BackColor = Color.FromArgb(37, 37, 53),
                 BorderStyle = BorderStyle.FixedSingle,
                 Margin = new Padding(10),
@@ -140,10 +140,11 @@ namespace catwiftools.bundler
 
             Label nameLabel = new Label
             {
+                Location = new Point(5, 27),
                 Text = name,
                 ForeColor = Color.White,
                 Dock = DockStyle.Top,
-                TextAlign = ContentAlignment.MiddleCenter
+                TextAlign = ContentAlignment.MiddleLeft
             };
 
             

@@ -36,12 +36,12 @@
             button5 = new Button();
             button6 = new Button();
             flpTokenList = new FlowLayoutPanel();
-            pnlTaskGroup = new Panel();
+            pnlTokenPanel = new Panel();
             pictureBox1 = new PictureBox();
             label1 = new Label();
             btnCreateTaskGroup = new Button();
             flpTokenList.SuspendLayout();
-            pnlTaskGroup.SuspendLayout();
+            pnlTokenPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -179,23 +179,23 @@
             // flpTokenList
             // 
             flpTokenList.Anchor = AnchorStyles.Top;
-            flpTokenList.Controls.Add(pnlTaskGroup);
+            flpTokenList.Controls.Add(pnlTokenPanel);
             flpTokenList.Location = new Point(10, 63);
             flpTokenList.Name = "flpTokenList";
             flpTokenList.Size = new Size(170, 702);
             flpTokenList.TabIndex = 43;
             // 
-            // pnlTaskGroup
+            // pnlTokenPanel
             // 
-            pnlTaskGroup.BackColor = Color.FromArgb(40, 40, 40);
-            pnlTaskGroup.Controls.Add(pictureBox1);
-            pnlTaskGroup.Controls.Add(label1);
-            pnlTaskGroup.Location = new Point(10, 5);
-            pnlTaskGroup.Margin = new Padding(10, 5, 10, 5);
-            pnlTaskGroup.Name = "pnlTaskGroup";
-            pnlTaskGroup.Size = new Size(150, 33);
-            pnlTaskGroup.TabIndex = 5;
-            pnlTaskGroup.Click += pnlTaskGroup_Click;
+            pnlTokenPanel.BackColor = Color.FromArgb(40, 40, 40);
+            pnlTokenPanel.Controls.Add(pictureBox1);
+            pnlTokenPanel.Controls.Add(label1);
+            pnlTokenPanel.Location = new Point(10, 5);
+            pnlTokenPanel.Margin = new Padding(10, 5, 10, 5);
+            pnlTokenPanel.Name = "pnlTokenPanel";
+            pnlTokenPanel.Size = new Size(150, 33);
+            pnlTokenPanel.TabIndex = 5;
+            pnlTokenPanel.Click += pnlTokenPanel_Click;
             // 
             // pictureBox1
             // 
@@ -204,6 +204,7 @@
             pictureBox1.Size = new Size(30, 30);
             pictureBox1.TabIndex = 45;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pnlTokenPanel_Click;
             // 
             // label1
             // 
@@ -216,6 +217,7 @@
             label1.TabIndex = 44;
             label1.Text = "Group Name";
             label1.TextAlign = ContentAlignment.MiddleCenter;
+            label1.Click += pnlTokenPanel_Click;
             // 
             // btnCreateTaskGroup
             // 
@@ -248,8 +250,8 @@
             Size = new Size(1210, 762);
             Load += bundlerMainPage_Load;
             flpTokenList.ResumeLayout(false);
-            pnlTaskGroup.ResumeLayout(false);
-            pnlTaskGroup.PerformLayout();
+            pnlTokenPanel.ResumeLayout(false);
+            pnlTokenPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -265,7 +267,7 @@
         public Button button5;
         public Button button6;
         private FlowLayoutPanel flpTokenList;
-        private Panel pnlTaskGroup;
+        private Panel pnlTokenPanel;
         private Label label1;
         private Button btnCreateTaskGroup;
         private PictureBox pictureBox1;
