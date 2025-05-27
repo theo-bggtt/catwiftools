@@ -286,8 +286,6 @@
             pnlTaskGroup.TabIndex = 5;
             pnlTaskGroup.Visible = false;
             pnlTaskGroup.Click += btnViewGroup_Click;
-            pnlTaskGroup.MouseEnter += pnlTaskGroup_MouseEnter;
-            pnlTaskGroup.MouseLeave += pnlTaskGroup_MouseLeave;
             // 
             // label1
             // 

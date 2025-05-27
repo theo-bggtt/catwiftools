@@ -121,10 +121,11 @@ namespace catwiftools.bundler
             Panel tokenPanel = new Panel
             {
                 Size = new Size(150, 35),
-                BackColor = Color.FromArgb(37, 37, 53),
-                BorderStyle = BorderStyle.FixedSingle,
+                BackColor = Color.FromArgb(40,40,40),
+                BorderStyle = BorderStyle.None,
                 Margin = new Padding(10),
                 Name = address,
+                
             };
 
             PictureBox pictureBox1 = new PictureBox
@@ -133,7 +134,7 @@ namespace catwiftools.bundler
                 Name = "pictureBox1",
                 Size = new Size(30, 30),
                 SizeMode = PictureBoxSizeMode.Zoom,
-                BorderStyle = BorderStyle.FixedSingle,
+                BorderStyle = BorderStyle.None,
                 TabIndex = 45,
                 TabStop = false
             };
@@ -146,8 +147,14 @@ namespace catwiftools.bundler
                 Dock = DockStyle.Top,
                 TextAlign = ContentAlignment.MiddleLeft
             };
+            tokenPanel.MouseEnter += (s, e) => tokenPanel.BackColor = Color.FromArgb(60, 60, 60);
+            tokenPanel.MouseLeave += (s, e) => tokenPanel.BackColor = Color.FromArgb(40, 40, 40);
+            pictureBox1.MouseEnter += (s, e) => tokenPanel.BackColor = Color.FromArgb(60, 60, 60);
+            pictureBox1.MouseLeave += (s, e) => tokenPanel.BackColor = Color.FromArgb(40, 40, 40);
+            nameLabel.MouseEnter += (s, e) => tokenPanel.BackColor = Color.FromArgb(60, 60, 60);
+            nameLabel.MouseLeave += (s, e) => tokenPanel.BackColor = Color.FromArgb(40, 40, 40);
 
-            
+
 
             try
             {

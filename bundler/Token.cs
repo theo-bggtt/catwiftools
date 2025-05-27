@@ -128,5 +128,11 @@ namespace catwiftools.bundler
             ConfigHelper.selectedToken = send.Name;
             Console.WriteLine(ConfigHelper.selectedToken);
         }
+
+        private void pnlTokenPanel_MouseEnter(object sender, EventArgs e)
+        {
+            dynamic send = sender;
+            send.BackColor = Color.FromArgb(50, 50, 70);
+        }
     }
 }

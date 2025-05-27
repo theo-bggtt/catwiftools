@@ -243,20 +243,22 @@ namespace catwiftools.tasks
             pnlTaskGroup.Size = new Size(150, 33);
             pnlTaskGroup.TabIndex = 5;
             pnlTaskGroup.Click += btnViewGroup_Click;
-            pnlTaskGroup.MouseEnter += pnlTaskGroup_MouseEnter;
-            pnlTaskGroup.MouseLeave += pnlTaskGroup_MouseLeave;
+            pnlTaskGroup.MouseEnter += (s, e) => pnlTaskGroup.BackColor = Color.FromArgb(60,60,60);
+            pnlTaskGroup.MouseLeave += (s, e) => pnlTaskGroup.BackColor = Color.FromArgb(40, 40, 40);
 
             lblGroupName.AutoSize = true;
             lblGroupName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblGroupName.ForeColor = Color.White;
             lblGroupName.Location = new Point(20, 5);
-            lblGroupName.Name = "lblGroupName";
+            lblGroupName.Name = groupName;
             lblGroupName.Size = new Size(107, 21);
             lblGroupName.TabIndex = 0;
             lblGroupName.Text = groupName;
             lblGroupName.TextAlign = ContentAlignment.MiddleCenter;
             lblGroupName.Tag = group_id;
             lblGroupName.Click += btnViewGroup_Click;
+            lblGroupName.MouseEnter += (s, e) => pnlTaskGroup.BackColor = Color.FromArgb(60, 60, 60);
+            lblGroupName.MouseLeave += (s, e) => pnlTaskGroup.BackColor = Color.FromArgb(40, 40, 40);
 
             lblTaskCount.AutoSize = true;
             lblTaskCount.ForeColor = Color.White;
@@ -515,18 +517,6 @@ namespace catwiftools.tasks
                     TaskHelper.StartTask(task_id);
                 });
             }
-        }
-
-        private void pnlTaskGroup_MouseEnter(object sender, EventArgs e)
-        {
-            Panel pnlTaskGroup = (Panel)sender;
-            pnlTaskGroup.BackColor = Color.FromArgb(60, 60, 60);
-        }
-
-        private void pnlTaskGroup_MouseLeave(object sender, EventArgs e)
-        {
-            Panel pnlTaskGroup = (Panel)sender;
-            pnlTaskGroup.BackColor = Color.FromArgb(40, 40, 40);
         }
 
         private void lblTaskAmount_Click(object sender, EventArgs e)
