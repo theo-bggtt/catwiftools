@@ -40,9 +40,13 @@
             pictureBox1 = new PictureBox();
             label1 = new Label();
             btnCreateTaskGroup = new Button();
+            pnlTokenInfo = new Panel();
+            lblTokenMC = new Label();
+            lblTokenName = new Label();
             flpTokenList.SuspendLayout();
             pnlTokenPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            pnlTokenInfo.SuspendLayout();
             SuspendLayout();
             // 
             // lblBundlerTitle
@@ -200,6 +204,7 @@
             // 
             // pictureBox1
             // 
+            pictureBox1.BackColor = Color.Transparent;
             pictureBox1.Location = new Point(117, 0);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(30, 30);
@@ -210,6 +215,7 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
             label1.Location = new Point(4, 9);
@@ -233,11 +239,45 @@
             btnCreateTaskGroup.UseVisualStyleBackColor = true;
             btnCreateTaskGroup.Click += btnCreateTaskGroup_Click;
             // 
+            // pnlTokenInfo
+            // 
+            pnlTokenInfo.BackColor = Color.Transparent;
+            pnlTokenInfo.Controls.Add(lblTokenMC);
+            pnlTokenInfo.Controls.Add(lblTokenName);
+            pnlTokenInfo.Location = new Point(255, 0);
+            pnlTokenInfo.Name = "pnlTokenInfo";
+            pnlTokenInfo.Size = new Size(811, 40);
+            pnlTokenInfo.TabIndex = 45;
+            pnlTokenInfo.Visible = false;
+            // 
+            // lblTokenMC
+            // 
+            lblTokenMC.AutoSize = true;
+            lblTokenMC.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblTokenMC.ForeColor = Color.White;
+            lblTokenMC.Location = new Point(188, 7);
+            lblTokenMC.Name = "lblTokenMC";
+            lblTokenMC.Size = new Size(51, 21);
+            lblTokenMC.TabIndex = 1;
+            lblTokenMC.Text = "NULL";
+            // 
+            // lblTokenName
+            // 
+            lblTokenName.AutoSize = true;
+            lblTokenName.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblTokenName.ForeColor = Color.White;
+            lblTokenName.Location = new Point(3, 5);
+            lblTokenName.Name = "lblTokenName";
+            lblTokenName.Size = new Size(43, 21);
+            lblTokenName.TabIndex = 0;
+            lblTokenName.Text = "Null";
+            // 
             // bundlerMainPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
+            Controls.Add(pnlTokenInfo);
             Controls.Add(btnCreateTaskGroup);
             Controls.Add(flpTokenList);
             Controls.Add(button6);
@@ -254,6 +294,8 @@
             pnlTokenPanel.ResumeLayout(false);
             pnlTokenPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            pnlTokenInfo.ResumeLayout(false);
+            pnlTokenInfo.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -272,5 +314,8 @@
         private Label label1;
         private Button btnCreateTaskGroup;
         private PictureBox pictureBox1;
+        private Panel pnlTokenInfo;
+        private Label lblTokenName;
+        private Label lblTokenMC;
     }
 }

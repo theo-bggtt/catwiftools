@@ -53,10 +53,10 @@ namespace catwiftools.bundler
                     Dictionary<string, string> token = TokenHelper.GetTokenInfo(Address);
                     flpTokenList.Controls.Add(TokenHelper.CreateTokenPanel(Address, token["name"], token["symbol"], token["description"], token["imageUrl"], token["twitterUrl"], token["telegramUrl"]));
                 }
+                pnlTokenInfo.Visible = true;
+                lblTokenName.Text =  TokenHelper.loadTokenName(ConfigHelper.selectedToken);
             }
         }
-
-
 
         private async void btnTasks_Click(object sender, EventArgs e)
         {
@@ -126,7 +126,9 @@ namespace catwiftools.bundler
             dynamic send = sender;
 
             ConfigHelper.selectedToken = send.Name;
-            Console.WriteLine(ConfigHelper.selectedToken);
+            Console.WriteLine(ConfigHelper.selectedToken);  
+            tasksMainPage tasksPage = new tasksMainPage();
+            tasksPage.RefreshTasks();
         }
 
         private void pnlTokenPanel_MouseEnter(object sender, EventArgs e)
@@ -134,5 +136,7 @@ namespace catwiftools.bundler
             dynamic send = sender;
             send.BackColor = Color.FromArgb(50, 50, 70);
         }
+
+        
     }
 }

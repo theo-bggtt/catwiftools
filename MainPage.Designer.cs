@@ -504,8 +504,6 @@
             Controls.Add(btnCloseApp);
             Controls.Add(lblClock);
             Controls.Add(lblAuthor);
-            Controls.Add(bundlerMainPage1);
-            Controls.Add(walletVolume1);
             Controls.Add(tasksMainPage1);
             Controls.Add(settingsGeneral1);
             Controls.Add(settingsBumpIt1);
@@ -515,6 +513,8 @@
             Controls.Add(pnlSettingsNav);
             Controls.Add(proxiesMainPage1);
             Controls.Add(pnlBackground);
+            Controls.Add(bundlerMainPage1);
+            Controls.Add(walletVolume1);
             FormBorderStyle = FormBorderStyle.None;
             MaximizeBox = false;
             MinimizeBox = false;
@@ -545,7 +545,6 @@
         private Button btnCloseApp;
         private Button btnMinimise;
         private bundler.bundlerMainPage bundlerMainPage1;
-        private tasks.tasksMainPage tasksMainPage1;
         private proxies.proxiesMainPage proxiesMainPage1;
         private settings.settingsVolume settingsVolume1;
         private settings.settingsBundler settingsBundler1;
@@ -568,5 +567,6 @@
         private Panel pnlBackground;
         private PictureBox pictureBox2;
         private Label label2;
+        public tasks.tasksMainPage tasksMainPage1;
     }
 }

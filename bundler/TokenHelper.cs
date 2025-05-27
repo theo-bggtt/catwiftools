@@ -153,6 +153,9 @@ namespace catwiftools.bundler
             pictureBox1.MouseLeave += (s, e) => tokenPanel.BackColor = Color.FromArgb(40, 40, 40);
             nameLabel.MouseEnter += (s, e) => tokenPanel.BackColor = Color.FromArgb(60, 60, 60);
             nameLabel.MouseLeave += (s, e) => tokenPanel.BackColor = Color.FromArgb(40, 40, 40);
+            tokenPanel.Click += (s, e) => ConfigHelper.selectedToken = tokenPanel.Name;
+            pictureBox1.Click += (s, e) => ConfigHelper.selectedToken = tokenPanel.Name;
+            nameLabel.Click += (s, e) => ConfigHelper.selectedToken = tokenPanel.Name;
 
 
 
@@ -174,5 +177,11 @@ namespace catwiftools.bundler
             return tokenPanel;
         }
 
+
+        public static string loadTokenName(string address)
+        {
+            Dictionary<string, string> token = TokenHelper.GetTokenInfo(address);
+            return token["name"];
+        }
     }
 }

@@ -53,10 +53,14 @@
             lblGroupAmount = new Label();
             btnStart = new Button();
             lblGroupName = new Label();
+            pnlTokenInfo = new Panel();
+            lblTokenMC = new Label();
+            lblTokenName = new Label();
             flpTaskList.SuspendLayout();
             gbxTask.SuspendLayout();
             flpTaskGroupList.SuspendLayout();
             pnlTaskGroup.SuspendLayout();
+            pnlTokenInfo.SuspendLayout();
             SuspendLayout();
             // 
             // lblTasksTitle
@@ -241,7 +245,7 @@
             lblTaskType.ForeColor = Color.White;
             lblTaskType.Location = new Point(9, 43);
             lblTaskType.Name = "lblTaskType";
-            lblTaskType.Size = new Size(58, 15);
+            lblTaskType.Size = new Size(56, 15);
             lblTaskType.TabIndex = 1;
             lblTaskType.Text = "Task Type";
             // 
@@ -318,7 +322,7 @@
             lblTaskAmount.AutoSize = true;
             lblTaskAmount.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTaskAmount.ForeColor = Color.White;
-            lblTaskAmount.Location = new Point(240, 67);
+            lblTaskAmount.Location = new Point(240, 92);
             lblTaskAmount.Name = "lblTaskAmount";
             lblTaskAmount.Size = new Size(117, 21);
             lblTaskAmount.TabIndex = 53;
@@ -330,7 +334,7 @@
             lblGroupAmount.AutoSize = true;
             lblGroupAmount.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblGroupAmount.ForeColor = Color.White;
-            lblGroupAmount.Location = new Point(240, 99);
+            lblGroupAmount.Location = new Point(240, 121);
             lblGroupAmount.Name = "lblGroupAmount";
             lblGroupAmount.Size = new Size(131, 21);
             lblGroupAmount.TabIndex = 54;
@@ -362,7 +366,7 @@
             lblGroupName.AutoSize = true;
             lblGroupName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblGroupName.ForeColor = Color.White;
-            lblGroupName.Location = new Point(240, 12);
+            lblGroupName.Location = new Point(240, 63);
             lblGroupName.Name = "lblGroupName";
             lblGroupName.Size = new Size(107, 21);
             lblGroupName.TabIndex = 45;
@@ -370,11 +374,45 @@
             lblGroupName.TextAlign = ContentAlignment.MiddleCenter;
             lblGroupName.Visible = false;
             // 
+            // pnlTokenInfo
+            // 
+            pnlTokenInfo.BackColor = Color.Transparent;
+            pnlTokenInfo.Controls.Add(lblTokenMC);
+            pnlTokenInfo.Controls.Add(lblTokenName);
+            pnlTokenInfo.Location = new Point(255, 0);
+            pnlTokenInfo.Name = "pnlTokenInfo";
+            pnlTokenInfo.Size = new Size(811, 40);
+            pnlTokenInfo.TabIndex = 56;
+            pnlTokenInfo.Visible = false;
+            // 
+            // lblTokenMC
+            // 
+            lblTokenMC.AutoSize = true;
+            lblTokenMC.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblTokenMC.ForeColor = Color.White;
+            lblTokenMC.Location = new Point(188, 7);
+            lblTokenMC.Name = "lblTokenMC";
+            lblTokenMC.Size = new Size(51, 21);
+            lblTokenMC.TabIndex = 1;
+            lblTokenMC.Text = "NULL";
+            // 
+            // lblTokenName
+            // 
+            lblTokenName.AutoSize = true;
+            lblTokenName.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblTokenName.ForeColor = Color.White;
+            lblTokenName.Location = new Point(3, 5);
+            lblTokenName.Name = "lblTokenName";
+            lblTokenName.Size = new Size(43, 21);
+            lblTokenName.TabIndex = 0;
+            lblTokenName.Text = "Null";
+            // 
             // tasksMainPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
+            Controls.Add(pnlTokenInfo);
             Controls.Add(lblGroupName);
             Controls.Add(btnStart);
             Controls.Add(lblGroupAmount);
@@ -393,6 +431,8 @@
             flpTaskGroupList.ResumeLayout(false);
             pnlTaskGroup.ResumeLayout(false);
             pnlTaskGroup.PerformLayout();
+            pnlTokenInfo.ResumeLayout(false);
+            pnlTokenInfo.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -424,5 +464,8 @@
         private Panel pnlTaskGroup;
         private Label label1;
         private Label lblGroupName;
+        private Label lblTokenMC;
+        private Label lblTokenName;
+        public Panel pnlTokenInfo;
     }
 }

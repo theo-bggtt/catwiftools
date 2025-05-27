@@ -1,4 +1,5 @@
 ﻿
+using catwiftools.bundler;
 using catwiftools.wallet;
 using Microsoft.Data.Sqlite;
 using System;
@@ -28,6 +29,8 @@ namespace catwiftools.tasks
         {
             LoadTaskGroups();
             LoadTasks(ConfigHelper.selectedTaskGroup);
+            pnlTokenInfo.Visible = true;
+            lblTokenName.Text = TokenHelper.loadTokenName(ConfigHelper.selectedToken);
         }
 
         private void btnCreateTaskGroup_Click(object sender, EventArgs e)
@@ -522,6 +525,14 @@ namespace catwiftools.tasks
         private void lblTaskAmount_Click(object sender, EventArgs e)
         {
 
+        }
+
+        public void RefreshTasks()
+        {
+            flpTaskList.Controls.Clear();
+            LoadTasks(ConfigHelper.selectedTaskGroup);
+            pnlTokenInfo.Visible = true;
+            lblTokenName.Text = TokenHelper.loadTokenName(ConfigHelper.selectedToken);
         }
     }
 }
