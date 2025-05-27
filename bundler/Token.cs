@@ -129,14 +129,6 @@ namespace catwiftools.bundler
             Console.WriteLine(ConfigHelper.selectedToken);  
             tasksMainPage tasksPage = new tasksMainPage();
             tasksPage.RefreshTasks();
-        }
-
-        private void pnlTokenPanel_MouseEnter(object sender, EventArgs e)
-        {
-            dynamic send = sender;
-            send.BackColor = Color.FromArgb(50, 50, 70);
-        }
-
-        
+        }        
     }
 }

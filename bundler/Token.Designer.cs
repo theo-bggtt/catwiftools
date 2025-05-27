@@ -200,7 +200,6 @@
             pnlTokenPanel.Size = new Size(150, 33);
             pnlTokenPanel.TabIndex = 5;
             pnlTokenPanel.Click += pnlTokenPanel_Click;
-            pnlTokenPanel.MouseEnter += pnlTokenPanel_MouseEnter;
             // 
             // pictureBox1
             // 
