@@ -19,9 +19,9 @@ using Solnet.Metaplex.Bubblegum.Types;
 
 namespace catwiftools.bundler
 {
-    public partial class bundlerMainPage : UserControl
+    public partial class token : UserControl
     {
-        public bundlerMainPage()
+        public token()
         {
             InitializeComponent();
             this.DoubleBuffered = true;
@@ -54,7 +54,7 @@ namespace catwiftools.bundler
                     flpTokenList.Controls.Add(TokenHelper.CreateTokenPanel(Address, token["name"], token["symbol"], token["description"], token["imageUrl"], token["twitterUrl"], token["telegramUrl"]));
                 }
                 pnlTokenInfo.Visible = true;
-                lblTokenName.Text =  TokenHelper.loadTokenName(ConfigHelper.selectedToken);
+                lblTokenName.Text = TokenHelper.loadTokenName(ConfigHelper.selectedToken);
             }
         }
 
@@ -121,14 +121,16 @@ namespace catwiftools.bundler
             };
         }
 
-        private void pnlTokenPanel_Click(object sender, EventArgs e)
+        public void pnlTokenPanel_Click(object sender, EventArgs e)
         {
             dynamic send = sender;
 
             ConfigHelper.selectedToken = send.Name;
-            Console.WriteLine(ConfigHelper.selectedToken);  
+            RefreshTokens(sender, e);
+
+
             tasksMainPage tasksPage = new tasksMainPage();
             tasksPage.RefreshTasks();
-        }        
+        }
     }
 }

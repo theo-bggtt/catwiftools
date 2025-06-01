@@ -121,11 +121,10 @@ namespace catwiftools.bundler
             Panel tokenPanel = new Panel
             {
                 Size = new Size(150, 35),
-                BackColor = Color.FromArgb(40,40,40),
+                BackColor = Color.FromArgb(40, 40, 40),
                 BorderStyle = BorderStyle.None,
                 Margin = new Padding(10),
                 Name = address,
-                
             };
 
             PictureBox pictureBox1 = new PictureBox
@@ -147,17 +146,17 @@ namespace catwiftools.bundler
                 Dock = DockStyle.Top,
                 TextAlign = ContentAlignment.MiddleLeft
             };
+
             tokenPanel.MouseEnter += (s, e) => tokenPanel.BackColor = Color.FromArgb(60, 60, 60);
             tokenPanel.MouseLeave += (s, e) => tokenPanel.BackColor = Color.FromArgb(40, 40, 40);
             pictureBox1.MouseEnter += (s, e) => tokenPanel.BackColor = Color.FromArgb(60, 60, 60);
             pictureBox1.MouseLeave += (s, e) => tokenPanel.BackColor = Color.FromArgb(40, 40, 40);
             nameLabel.MouseEnter += (s, e) => tokenPanel.BackColor = Color.FromArgb(60, 60, 60);
             nameLabel.MouseLeave += (s, e) => tokenPanel.BackColor = Color.FromArgb(40, 40, 40);
-            tokenPanel.Click += (s, e) => ConfigHelper.selectedToken = tokenPanel.Name;
-            pictureBox1.Click += (s, e) => ConfigHelper.selectedToken = tokenPanel.Name;
-            nameLabel.Click += (s, e) => ConfigHelper.selectedToken = tokenPanel.Name;
 
-
+            tokenPanel.Click += (s, e) => tokenInstance.pnlTokenPanel_Click(s, e);
+            pictureBox1.Click += (s, e) => tokenInstance.pnlTokenPanel_Click(s, e);
+            nameLabel.Click += (s, e) => tokenInstance.pnlTokenPanel_Click(s, e);
 
             try
             {
@@ -170,12 +169,13 @@ namespace catwiftools.bundler
                 string imagePath = Path.Combine(basePath, "defaultToken.png");
                 pictureBox1.Image = Image.FromFile(imagePath);
             }
+
             tokenPanel.Controls.Add(pictureBox1);
             tokenPanel.Controls.Add(nameLabel);
-            
 
             return tokenPanel;
         }
+
 
 
         public static string loadTokenName(string address)

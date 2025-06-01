@@ -1,6 +1,6 @@
 ﻿namespace catwiftools.bundler
 {
-    partial class bundlerMainPage
+    partial class token
     {
         /// <summary> 
         /// Required designer variable.
@@ -271,7 +271,7 @@
             lblTokenName.TabIndex = 0;
             lblTokenName.Text = "Null";
             // 
-            // bundlerMainPage
+            // token
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;

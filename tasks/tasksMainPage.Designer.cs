@@ -327,7 +327,6 @@
             lblTaskAmount.Size = new Size(117, 21);
             lblTaskAmount.TabIndex = 53;
             lblTaskAmount.Text = "Task Amount :";
-            lblTaskAmount.Click += lblTaskAmount_Click;
             // 
             // lblGroupAmount
             // 

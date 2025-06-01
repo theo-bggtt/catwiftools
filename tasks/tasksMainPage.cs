@@ -522,17 +522,13 @@ namespace catwiftools.tasks
             }
         }
 
-        private void lblTaskAmount_Click(object sender, EventArgs e)
-        {
-
-        }
-
         public void RefreshTasks()
         {
             flpTaskList.Controls.Clear();
             LoadTasks(ConfigHelper.selectedTaskGroup);
             pnlTokenInfo.Visible = true;
             lblTokenName.Text = TokenHelper.loadTokenName(ConfigHelper.selectedToken);
+            Console.WriteLine(ConfigHelper.selectedToken);
         }
     }
 }

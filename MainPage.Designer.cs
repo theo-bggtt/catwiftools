@@ -32,7 +32,7 @@
             pbxLogo = new PictureBox();
             lblAuthor = new Label();
             lblTitle = new Label();
-            bundlerMainPage1 = new catwiftools.bundler.bundlerMainPage();
+            bundlerMainPage1 = new catwiftools.bundler.token();
             tmrClock = new System.Windows.Forms.Timer(components);
             lblClock = new Label();
             btnCloseApp = new Button();
@@ -544,7 +544,7 @@
         private Label lblClock;
         private Button btnCloseApp;
         private Button btnMinimise;
-        private bundler.bundlerMainPage bundlerMainPage1;
+        private bundler.token bundlerMainPage1;
         private proxies.proxiesMainPage proxiesMainPage1;
         private settings.settingsVolume settingsVolume1;
         private settings.settingsBundler settingsBundler1;
