@@ -58,7 +58,7 @@
             btnConfirm.TabIndex = 2;
             btnConfirm.Text = "Add";
             btnConfirm.UseVisualStyleBackColor = true;
-            btnConfirm.Click += this.btnConfirm_Click;
+            btnConfirm.Click += btnConfirm_Click;
             // 
             // AddToken
             // 

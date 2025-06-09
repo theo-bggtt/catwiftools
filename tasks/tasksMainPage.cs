@@ -29,6 +29,7 @@ namespace catwiftools.tasks
         {
             LoadTaskGroups();
             LoadTasks(ConfigHelper.selectedTaskGroup);
+            RefreshTasks();
             pnlTokenInfo.Visible = true;
             lblTokenName.Text = TokenHelper.loadTokenName(ConfigHelper.selectedToken);
         }

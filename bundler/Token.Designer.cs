@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             lblBundlerTitle = new Label();
-            btnTasks = new Button();
+            btnCreateToken = new Button();
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
@@ -60,25 +60,25 @@
             lblBundlerTitle.TabIndex = 0;
             lblBundlerTitle.Text = "Token";
             // 
-            // btnTasks
+            // btnCreateToken
             // 
-            btnTasks.BackColor = Color.FromArgb(37, 37, 53);
-            btnTasks.BackgroundImageLayout = ImageLayout.None;
-            btnTasks.FlatAppearance.BorderSize = 0;
-            btnTasks.FlatStyle = FlatStyle.Flat;
-            btnTasks.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
-            btnTasks.ForeColor = Color.White;
-            btnTasks.ImageAlign = ContentAlignment.MiddleLeft;
-            btnTasks.ImeMode = ImeMode.NoControl;
-            btnTasks.Location = new Point(255, 96);
-            btnTasks.Name = "btnTasks";
-            btnTasks.Padding = new Padding(5, 0, 5, 0);
-            btnTasks.Size = new Size(120, 30);
-            btnTasks.TabIndex = 12;
-            btnTasks.Text = "Dump All";
-            btnTasks.UseMnemonic = false;
-            btnTasks.UseVisualStyleBackColor = false;
-            btnTasks.Click += btnTasks_Click;
+            btnCreateToken.BackColor = Color.FromArgb(37, 37, 53);
+            btnCreateToken.BackgroundImageLayout = ImageLayout.None;
+            btnCreateToken.FlatAppearance.BorderSize = 0;
+            btnCreateToken.FlatStyle = FlatStyle.Flat;
+            btnCreateToken.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            btnCreateToken.ForeColor = Color.White;
+            btnCreateToken.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCreateToken.ImeMode = ImeMode.NoControl;
+            btnCreateToken.Location = new Point(255, 96);
+            btnCreateToken.Name = "btnCreateToken";
+            btnCreateToken.Padding = new Padding(5, 0, 5, 0);
+            btnCreateToken.Size = new Size(120, 30);
+            btnCreateToken.TabIndex = 12;
+            btnCreateToken.Text = "Create Token";
+            btnCreateToken.UseMnemonic = false;
+            btnCreateToken.UseVisualStyleBackColor = false;
+            btnCreateToken.Click += btnTasks_Click;
             // 
             // button1
             // 
@@ -284,9 +284,9 @@
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
-            Controls.Add(btnTasks);
+            Controls.Add(btnCreateToken);
             Controls.Add(lblBundlerTitle);
-            Name = "bundlerMainPage";
+            Name = "token";
             Size = new Size(1210, 762);
             Load += bundlerMainPage_Load;
             flpTokenList.ResumeLayout(false);
@@ -302,7 +302,7 @@
         #endregion
 
         private Label lblBundlerTitle;
-        public Button btnTasks;
+        public Button btnCreateToken;
         public Button button1;
         public Button button2;
         public Button button3;

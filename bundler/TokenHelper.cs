@@ -154,9 +154,9 @@ namespace catwiftools.bundler
             nameLabel.MouseEnter += (s, e) => tokenPanel.BackColor = Color.FromArgb(60, 60, 60);
             nameLabel.MouseLeave += (s, e) => tokenPanel.BackColor = Color.FromArgb(40, 40, 40);
 
-            tokenPanel.Click += (s, e) => tokenInstance.pnlTokenPanel_Click(s, e);
-            pictureBox1.Click += (s, e) => tokenInstance.pnlTokenPanel_Click(s, e);
-            nameLabel.Click += (s, e) => tokenInstance.pnlTokenPanel_Click(s, e);
+            //tokenPanel.Click += (s, e) => tokenInstance.pnlTokenPanel_Click(s, e);
+            //pictureBox1.Click += (s, e) => tokenInstance.pnlTokenPanel_Click(s, e);
+            //nameLabel.Click += (s, e) => tokenInstance.pnlTokenPanel_Click(s, e);
 
             try
             {
